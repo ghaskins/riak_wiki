@@ -1,0 +1,54 @@
+The following steps should get you up and running with Riak on MacOSX 10.5 or 10.6. You can install from source or download a precompiled tarball.
+
+{note:title=ulimit on OS X}
+OS X gives you a very small limit on open file handles, so even with a backend that uses very few file handles, it's possible to run out.  Run this command before getting started developing on your Mac:
+{code}ulimit -n 1024{code}
+{note}
+
+h2. From precompiled tarballs
+
+To run Riak from our precompiled tarball, run these commands for the appropriate platform:
+
+h3. 64-bit
+
+{code}
+$ curl -O http://downloads.basho.com/riak/riak-0.12/riak-0.12.0-osx-x86_64.tar.gz
+$ tar xzvf riak-0.12.0-osx-x86_64.tar.gz
+{code}
+
+h3. 32-bit
+
+{code}
+$ curl -O http://downloads.basho.com/riak/riak-0.11/riak-0.12.0-osx-i386.tar.gz
+$ tar xzvf riak-0.12.0-osx-i386.tar.gz
+{code}
+
+After the release is untared you will be able to cd into the riak directory and execute bin/riak start to start the Riak node.
+
+h2. {anchor:homebrew} Homebrew
+
+Installing with Homebrew is easy:
+
+{code}
+$ brew install riak
+{code}
+
+Homebrew will install Erlang if you don't have it already.
+
+h2. From source
+
+You must have XCode tools installed from the CD that came with your Mac or from Apple's [[Developer website|http://developer.apple.com]].
+
+Riak requires [[Erlang|http://www.erlang.org/]] R13B04 or later. If you do not have Erlang already installed, see [[Installing Erlang]]. Don't worry, it's easy\!
+
+Next, download and unpack the source distribution.
+
+{code}
+$ curl -O http://downloads.basho.com/riak/riak-0.12/riak-0.12.0.tar.gz
+$ tar zxvf riak-0.12.0.tar.gz
+$ make rel
+{code}
+
+If you get errors when building about "incompatible architecture", please verify that you built Erlang with the same architecture as your system (Snow Leopard - 64bit, everything else - 32bit).
+
+Next Steps: [[*Basic Cluster Setup*|Basic Cluster Setup]] will show you how to go from one node to bigger than Google

@@ -1,0 +1,23 @@
+The following steps should get you up and running with Riak Search on Mac OS X 10.5 or 10.6.
+
+{note:title=ulimit on OS X}
+OS X gives you a very small limit on open file handles, so even with a backend that uses very few file handles, it's possible to run out.  Run this command before getting started developing on your Mac:
+{code}ulimit -n 1024{code}
+{note}
+
+h2. Source Install
+
+You must have XCode tools installed from the CD that came with your Mac or from [[Apple's Developer website|http://developer.apple.com]].
+
+Riak Search requires [[Erlang|http://www.erlang.org/]] R13B04 or later. If you do not have Erlang already installed, see [[Installing Erlang]].
+
+Now we can download and install Riak Search:
+
+{code}
+wget http://downloads.basho.com/riak-search/riak-search-0.13/riak_search-0.13.0.tar.gz
+tar zxvf riak_search-0.13.0.tar.gz
+cd riak_search-0.13.0
+make rel
+{code}
+
+There should now be a fresh build of Riak Search in the rel/riaksearch directory.

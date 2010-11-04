@@ -1,0 +1,102 @@
+h3. Riak is:
+
+* A Database
+* A Data Store
+* A key/value store
+* Used by Fortune 100 Companies
+* Used by startups
+* A "NoSQL" database
+* Schemaless and data-type agnostic
+* Written (primarily) in Erlang
+* As distributed as you want and need it to be
+* Scalable
+* Pronounced "REE-ack"
+* Not the best fit for _every_ project and application
+* And much, much more...
+
+\\
+
+Here are some technical specifics that you should know before diving into the Fast Track:
+
+h5. Data
+
+*{_}Buckets, Keys, Values{_}*
+
+Riak organizes data into Buckets, Keys, and Values. Values (or objects) are identifiable by a unique key, and each key/value pair is stored in a bucket.
+
+Buckets are essentially a flat namespace in Riak and have little significance beyond their ability to allow the same key name to exist in multiple buckets and to provide some per-bucket configurability for things like replication factor and pre/post-commit hooks.
+
+
+
+*{_}The Riak API{_}*
+
+We initially implemented both a native Erlang interface, and a HTTP (often referred to as "RESTful") API that allowed users to manipulate data using standard HTTP methods: GET, PUT, POST and DELETE.
+
+With the 0.10 release, we added support for accessing Riak using a Protocol Buffers Client interface.
+
+
+
+*{_}Versioning{_}*
+
+Each update to a Riak object is tracked by a vector clock. Vector clocks determine causal ordering and detect conflicts in a distributed system. Each time a key/value pair is created or updated in Riak, a vector clock is generated to keep track of each version and ensure that the proper value can be determined in the event that there are conflicting updates. 
+
+Riak has two ways of resolving update conflicts on Riak objects. Riak can allow the last update to automatically "win" or Riak can return both versions of the object to the client. This gives the client the opportunity to resolve the conflict on its own.
+
+h5. Languages
+
+At the moment, the core Basho Development Team currently supports libraries for:
+
+* Erlang
+* JavaScript
+* Java
+* PHP
+* Python
+* Ruby
+
+In addition, there are community contributed projects for .NET, JavaScript, Python (and Twisted), Griffon, Perl, and Scala. (And this list is growing rapidly.)
+
+h5. The Riak Cluster
+
+Central to any Riak cluster is a 160-bit integer space (often referred to as "the ring") which is divided into equally-sized partitions.
+
+Physical servers, referred to in the cluster as "nodes," run a certain number of virtual nodes, or "vnodes". Each vnode will claim a partition on the ring. The number of active vnodes is determined by the number of partitions into which the ring has been split.  This is a static number that is chosen at cluster initialization.
+
+As a rule, each node in the cluster is responsible for 1/(total number of physical nodes) of the ring. You can determine the number of vnodes on each node by calculating (number of partitions)/(number of nodes). More simply put, a ring with 32 partitions, composed of four physical nodes, will have approximately eight vnodes per node. This setup is represented in the diagram below.
+[[/images/riak-ring.png|width=550| align=center]]
+
+All nodes in a Riak cluster are equal. Each node is fully capable of serving any client request. This is possible due to the way Riak uses consistent hashing to distribute data around the cluster.
+
+A Riak cluster grows and shrinks dynamically, meaning Riak will automatically re-balance data as nodes join and leave the cluster.
+
+\\
+
+h5. Data Replication
+
+Replication is fundamental and automatic in Riak, providing security that your data will still be there if a node in your Riak cluster goes down. All data stored in Riak will be replicated to a number of nodes in the cluster according to the n_val property set on the bucket.
+
+For example, here is a depiction of what happens when n_val = 3 (This is the default setting). When you store a datum in a bucket with an N value of three, the datum will replicated to three separate partitions on the Riak Ring. 
+[[/images/riak-data-distribution.png|width=550| align=center]]
+
+h5. Querying and Query Languages
+
+At the moment, Riak relies on MapReduce to perform queries that exceed the limitations that come with basic key/value storage model.
+
+Currently users can write their MapReduce queries in either Erlang or Javascript.
+
+
+\\
+\\
+
+*What's Next? \-> You know some of the basics.* *[[+Now it's time to build a three node Riak cluster.+|Building a Development Environment]]*
+
+\\
+
+{info:title=Additional Reading}
+* [[A High Level Introduction to Riak|An Introduction To Riak]]
+* [[The Riak Glossary|Riak Glossary]]
+* [[More on Vector Clocks|https://wiki.basho.com/display/RIAK/Riak+Glossary#RiakGlossary-VectorClock]]
+* [[Protocol Buffers Client Interface|PBC API]]
+* [[Client Libraries|Client Libraries]]
+* [[Replication|Replication]]
+* [[Recommended General Resources|Recommended Resources]]
+{info}

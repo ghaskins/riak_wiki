@@ -1,0 +1,39 @@
+{excerpt}These are some recommendations for how to design and configure your hosting setup for Riak.{excerpt}
+
+{toc}
+
+h2. Operating System
+
+We recommend using a mainstream Unix-like operating system on which to deploy Riak. Mainstream distributions have larger support communities and thus solutions for common problems are easier to find.  Additionally, Basho builds binary packages of Riak for several mainstream distributions, easing deployment. Some acceptable distributions are:
+
+* *Redhat based:* Redhat Enterprise Linux, CentOS, Fedora Core
+* *Debian based:* Debian, Ubuntu
+* *Solaris based:* Sun Solaris, OpenSolaris
+
+h2. Hardware
+
+Riak is designed to scale horizontally -- that is, to improve performance as you add nodes -- but it can always take advantage of more powerful hardware. These are some generic recommendations for hardware configuration:
+
+*Multi-core 64-bit CPU* - Because Riak is built on Erlang, more cores means more concurrency and thus greater performance. 64-bit architectures let Riak do certain numerical computations more efficiently.
+
+*Multiple GB RAM* - More RAM means more data can be held in main memory, resulting in greater read, write, and [[MapReduce]] performance.  Using too much RAM will increase swap utilization, causing performance to tank as memory operations begin to contend with normal disk operations.
+
+*Multiple fast hard disks (RAID and/or SSD)* - Because many operations in Riak are I/O-bound, it is important to have fast hard disks to achieve good performance. It may help to configure the disks in RAID0 for increased read/write performance, and some backends like [[Innostore|Innostore Configuration and Tuning]] benefit directly from independent disks.
+
+*Fast network (Gigabit +)* - Riak uses the network heavily for storage operations and for cluster status (ring-state gossip, handoff, etc).  Fast interconnections between nodes and between clients and the cluster will improve performance.
+
+h2. Virtualization
+
+Like most datastores, *Riak will run best when not virtualized.* Virtual machines (VMs) can suffer from poor I/O and network performance, depending on how they are configured and the environment in which they run.  That said, here are some recommendations for running Riak in VPS or cloud environments:
+
+*Choose the largest VM you can afford.* As mentioned in the [[#Hardware]] section, better hardware means better performance.  Additionally, larger instances are less likely to share hardware resources with other customers' virtual machines.
+
+*Deploy VMs within the same datacenter or region where possible.* Some hosting providers allow you to choose the location of your servers when provisioning. Choosing to provision within the same datacenter or region will usually reduce network latency and increase throughput, resulting in greater performance.
+
+h2. Network configuration and Load-Balancing
+
+There are at least two acceptable strategies for load-balancing requests across your Riak cluster, *virtual IPs* and *reverse-proxy*.
+
+For *virtual IPs*, we recommend using any of the various VIP implementations but we don't recommend VRRP behaviour for the VIP because you'll lose the benefit of spreading client query load to all nodes in a ring.
+
+For *reverse-proxy* configurations (HTTP interface), any one of these should work adequately: haproxy, squid, varnish, nginx, lighttpd, and Apache.

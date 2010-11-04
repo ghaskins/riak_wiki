@@ -1,0 +1,67 @@
+The list of Basho supported client libraries is ever-growing. If you don't see what you are looking for here, you may find it in the list of [[Community Contributed Projects|Community-Developed Libraries and Projects]].
+
+Basho is currently developing and supporting drivers for:
+
+{toc}
+
+h2. Erlang
+
+The local Erlang client is a tightly-integrated part of Riak and the Riak REST interface uses the Erlang client internally. You can find more information about the Erlang-native driver in the [[edoc API|http://riak.basho.com/edoc/index.html]].
+
+The primary client for code that is not inside Riak is the PBC client:
+
+* [[Erlang Protocol Buffers Client Documentation|Erlang Client PBC]]
+* [[http://hg.basho.com/riak-erlang-client]]
+
+h2. Javascript
+
+The officially supported Javascript client uses [[jQuery|http://jquery.com]] for communicating with Riak via Ajax.
+
+[[http://hg.basho.com/riak-javascript-client/]]
+
+{info:title=Sample App}
+[[yakriak - Riak-powered Ajax-polling chatroom|http://github.com/seancribbs/yakriak]]
+{info}
+
+h2. Java
+
+The officially supported Java client was created by Jon Lee.
+
+[[http://hg.basho.com/riak-java-client/]]
+[[http://bitbucket.org/jonjlee/riak-java-client/wiki/Home]]
+
+h2. PHP
+
+The officially supported PHP driver is available on Bitbucket:
+
+[[http://hg.basho.com/riak-php-client/]]
+
+
+{info:title=Sample App}
+There is a sample PHP app that you can check out if you want to see the PHP library in action. You can get it [[here.|http://github.com/schofield/riak_php_app]]
+{info}
+
+
+h2. Python
+
+The officially supported Python driver is available on Bitbucket:
+
+[[http://hg.basho.com/riak-python-client]]
+
+You can also find documentation for the Python driver here:
+
+[[http://wiki.basho.com/download/attachments/360504/riak_python.html]]
+
+
+h2. Ruby
+
+[[Ripple/riak-client|http://github.com/seancribbs/ripple]] is the officially supported Ruby driver for Riak.  It includes a driver for all major Riak client operations and an optional library for doing rich document-style object modeling.
+
+* [[Documentation|http://seancribbs.github.com/ripple]]
+* [[Wiki|http://wiki.github.com/seancribbs/ripple]]
+* [[Client Gem|http://rubygems.org/gems/riak-client]]
+* [[Bug Tracker|http://github.com/seancribbs/ripple/issues]]
+
+*_If you are interested in using Riak with Ruby, you might find value in:_*
+
+* [[Why Riak Should Power Your Next Rails App|http://seancribbs.com/tech/2010/02/06/why-riak-should-power-your-next-rails-app/]]

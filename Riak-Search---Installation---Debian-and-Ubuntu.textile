@@ -1,0 +1,68 @@
+The following steps should get you up and running with Riak Search on Debian or Ubuntu. You can install from our custom .deb package or from source.
+
+h2. Package Install
+
+Riak Search depends on Java for some of its functionality. You can use Sun Java or OpenJDK.
+
+OpenJDK installation:
+{code}
+sudo apt-get install openjdk-6-jre
+{code}
+
+Sun Java installation:
+{code}
+# enable the non-free apt-get repository on Debian
+# enable the Canonical Partner repository on Ubuntu
+sudo apt-get install sun-java6-jre
+{code}
+
+Next, download and install the Riak Search package:
+h3. 64-bit
+
+{code}
+wget http://downloads.basho.com/riak-search/riak-search-0.13/riak-search_0.13.0-1_amd64.deb
+sudo dpkg -i riak-search_0.13.0-1_amd64.deb
+{code}
+
+h3. 32-bit
+
+{code}
+$ wget http://downloads.basho.com/riak-search/riak-search-0.13/riak-search_0.13.0-1_i386.deb
+$ sudo dpkg -i riak-search_0.13.0-1_i386.deb
+{code}
+
+
+h2. Source Install
+
+Riak requires [[Erlang|http://www.erlang.org/]] R13B04 or later. If you do not have Erlang already installed, see [[Installing Erlang]].
+
+Building from source also requires the following packages:
+* build-essential
+* libc6-dev-i386
+* ant
+
+You can install these as follows:
+
+{code}
+sudo apt-get install build-essential libc6-dev-i386 openjdk-6-jdk ant ant-optional
+{code}
+
+{info}
+Installing Ant will also install the OpenJDK version of Java. If you prefer, you can install Sun Java JDK first:
+{code}
+# enable the non-free apt-get repository on Debian
+# enable the Canonical Partner repository on Ubuntu
+sudo apt-get install sun-java6-jdk
+{code}
+{info}
+
+Now download and install Riak Search:
+
+{code}
+wget http://downloads.basho.com/riak-search/riak-search-0.13/riak_search-0.13.0.tar.gz
+tar zxvf riak_search-0.13.0.tar.gz
+cd riak_search-0.13.0
+make rel
+{code}
+
+There should now be a fresh build of Riak Search in the rel/riaksearch directory.

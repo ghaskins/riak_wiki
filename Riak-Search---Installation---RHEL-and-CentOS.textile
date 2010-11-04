@@ -1,0 +1,33 @@
+The following steps should get you up and running with Riak Search on CentOS or Red Hat Enterprise Linux. Please note, CentOS enables SE Linux by default and you may need to disable SE Linux if you encounter errors.
+
+h2. Source Install
+
+Riak Search requires [[Erlang|http://www.erlang.org/]] R13B04 or later. If you do not have Erlang already installed, see [[Installing Erlang]].
+
+Building from source also requires the following packages:
+* gcc
+* gcc-c++
+* glibc-devel
+* make
+* ant
+
+You can install these as follows:
+
+{code}
+sudo yum install gcc gcc-c++ glibc-devel make ant
+{code}
+
+{info}
+Installing Ant will also install the OpenJDK version of Java.
+{info}
+
+Now we can download and install Riak Search:
+
+{code}
+wget http://downloads.basho.com/riak-search/riak-search-0.13/riak_search-0.13.0.tar.gz
+tar zxvf riak_search-0.13.0.tar.gz
+cd riak_search-0.13.0
+make rel
+{code}
+
+There should now be a fresh build of Riak Search in the rel/riaksearch directory.

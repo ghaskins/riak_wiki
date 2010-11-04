@@ -1,0 +1,10 @@
+h5. Need to get in touch with us? Here are the best ways to do it:
+
+
+
+
+* To discuss Riak with the entire community, start by *[[subscribing to the mailing list|http://lists.basho.com/mailman/listinfo/riak-users_lists.basho.com]]*.
+* To contact the core Riak Development Team directly, send an email to _riak@basho.com_.
+* For commercial enquiries, you can *[[read more Riak EnterpriseDS|http://basho.com/enterpriseds.html]]* or use the *[[contact form on Basho.com|http://basho.com/contact.html]]* to reach the sales team directly.
+* If you think the Riak Wiki is missing something or you have other general comments about it, send an email to _wiki@basho.com_ with your thoughts. 
+

@@ -1,0 +1,229 @@
+_This is a list of companies, projects, organizations and consultancies (that we know about) using Riak to build truly awesome and innovative software and services. If you're using Riak and want to be listed here, email *mark@basho.com* so we can tell the world!_
+
+----
+
+{section}
+{column:width=25%}[[/images/mozilla-foundation.png|align=center|width=110]]
+{column}
+
+{column:width=75%}
+
+Mozilla Test Pilot is a platform collecting structured user feedback through Firefox. Test Pilot studies explore how people use their web browser and the Internet - and help us build better products
+
+The Test Pilot Team is running multiple Riak clusters to gather user data and perform large-scale analysis on this data using Riak's MapReduce functionality. 
+
+[[Why the Metrics Team Chose Riak|http://blog.mozilla.com/data/2010/05/18/riak-and-cassandra-and-hbase-oh-my/]]
+[[Benchmarking Riak for the Mozilla Test Pilot Project|http://blog.mozilla.com/data/2010/08/16/benchmarking-riak-for-the-mozilla-test-pilot-project/]]
+{column}
+{section}
+
+----
+
+{section}
+{column:width=25%}[[/images/ws.png|align=center|vspace=35px]]
+{column}
+
+{column:width=75%}
+[[Widescript|http://www.widescript.com]] is a digital reading application targeted to people who study or make use of reference material. It allows them to interact with their texts, everywhere. The development of the idea started in early 2010 and the application is currently in private beta. 
+
+*From Lead Developer Francisco Treacy:* "As Riak is content-type agnostic and excels at consistency/availability fine-tuning, it is being used to persist several kinds of data in Widescript's application - logging, user metadata, multimedia assets. Not only it was chosen for its distributed nature, but because it goes hand in hand with Widescript's Javascript development stack."
+
+[[Riak at Widescript|http://blog.widescript.com/2010/08/14/riak-js/]]
+[[Riak-js|http://riakjs.org/]]
+{column}
+{section}
+
+----
+
+{section}
+{column:width=25%}[[/images/hitta.png|align=center|width=110]]
+{column}
+
+{column:width:75%}
+[[Hitta.se|http://www.hitta.se/]] ("Find.se") is a Swedish search engine that offers telephone directory, addresses and maps. The site was founded in June 2004 and has grown steadily since then. As of 2010 the site averages well above 3 million unique visitors per week and is ranked in the top 10 of the largest sites in Sweden. Revenue comes from different forms of advertising and company marketing products.
+
+Hitta.se uses Riak in its back end service layer to persist critical data that requires fast distribution between multiple
+nodes and tolerates eventual consistency.
+{column}
+{section}
+	
+----
+{section}
+{column:width=25%}[[/images/swingvine-dark.png|align=center|width=110]]
+{column}
+
+{column:width=75%}
+
+Based in Seatlle, [[SwingVine|http://swingvine.com]] helps you discover new music, movies, books, fashion, wines, and more. SwingVine shows you what's hot in each category and then shows you the connections or vines between what you're already looking at and unexplored content that you might enjoy.  SwingVine then lets you personalize your discovery experience by incorporating your friends. 
+
+*From Co-Founder Alan McConnell:* "We've had a fantastic experience using Riak for a media scrapbook product we've recently released called SwingVine Gallery. Our legacy image storage system is over 10K lines of C++ code, and using Riak we were able to replace it with a system that is less than 1000 lines of python and performs better, scales better, and is more durable.  All of our users' scrapbook media (video, images and audio) data/metadata for the SwingVine Gallery product is housed in Riak.
+
+[[SwingVine Gallery|http://gallery.swingvine.com/]]
+
+{column}
+{section}
+
+
+----
+
+
+{section}
+{column:width=25%}[[/images/rigel_group.png|align=center|width=175|vspace=35px]]
+{column}
+
+{column:width=75%}
+[[Rigel Group|http://rigelgroupllc.com]] is a small, high-impact software development company based in Carlsbad, CA. We help clients leverage cutting-edge technologies and cloud-based architectures to build high-performance, large-scale applications at absurdly low costs. 
+
+*From Rigel Group CTO John Lynch:* "One of our favorite tools is the Riak distributed key/value data store. Riak's incredibly low operational costs allow clients who do not have dedicated, high-end system administration resources to still deploy large-scale, data-heavy applications. This "democratization" of Big Data is allowing smaller firms to compete with the big guys. Having a company as developer-friendly as Basho stand behind the product is also a huge win for us."
+
+[[Rolling with Riak|http://www.slideshare.net/johnthethird/rolling-with-riak]]
+
+{column}
+{section}
+
+----
+
+
+{section}
+{column:width=25%}[[/images/gastown_white.png|align=center|width=110|vspace=20px]]
+
+{column}
+
+{column:width=75%}
+Based in Vancouver, [[Gastown Labs|http://www.gastownlabs.com/]] provides managed web and mobile solutions - everything from design, to planning, up through software development and managed hosting on their own proven cloud solution.
+
+Gastown uses Riak behind their various web APIs to provide iPhone applications with scrumptious, highly-available data.
+
+{column}
+{section}
+
+----
+
+{section}
+{column:width=25%}[[/images/wescom-logo-small.png|align=center|vspace=35px]]
+{column}
+
+{column:width=75%}
+[[Western Communications|http://www.bendbulletin.com/wescom/]] (or "Wescom") is a family-owned corporation founded by renowned editor Robert W. Chandler and headquartered in Bend, Oregon. We have a family of newspapers, magazines and web sites located throughout Oregon and California.
+
+*From Wescom's IT Director Mark Turner:* "Wescom's IT team was looking at data store options for an email archiving system we were building and chose Riak for its write reliability and ease of scaling. We are using Riak to store and analyze over six million email messages a month. With the successful implementation of Riak in our email analysis and storage system we have begun testing Riak in other apps that we're developing."
+{column}
+{section}
+
+
+----
+
+{section}
+{column:width=25%}[[/images/inagist.gif|align=center|width=110|vspace=45px]]
+{column}
+
+{column:width:75%}
+[[inagist|http://inagist.com]] (in-a-gist) analyzes twitter content in real-time and filters out the most popular and relevant tweets. If you follow a lot of twitter sources and you want a way to get a gist of all the tweets that come into your timeline, just login using your twitter id and you will be able to see your personalized twitter trends.
+
+inagist uses Riak for archiving tweets and analyzing trends. With Riak, they are able to do innovative things like filter a twitter thread with numerous replies to pick out only ones which are interesting and personalize threads to only show conversations among people you are interested in. They also run trend searches on data stored in Riak using MapReduce queries and Link Walking.
+
+
+[[Riak at inagist.com|http://blog.inagist.com/riak-at-inagistcom]]
+[[Link Map Reduce at inagist.com|http://blog.inagist.com/link-map-reduce-in-riak-an-example-from-inagi]]
+{column}
+{section}
+
+----
+
+
+{section}
+{column:width=25%}[[/images/sensi-soft.png|align=center|width=100]]
+{column}
+
+{column:width=75%}
+
+[[SensiSoft|http://sensisoft.com/]] is a global services and software company specializing in classified advertising.
+
+SensiSoft uses Riak as the datastore for its Web Archive application, used to store and archive advertisements on behalf of its clients. It also makes extensive use of Riak's MapReduce functionality to query this archive.  
+
+{column}
+{section}
+
+----
+
+{section}
+{column:width=25%}[[/images/tma.png|align=center|width=200|vspace=60px]]
+{column}
+
+{column:width=75%}
+Founded in 1979, [Tax Management Associates, Inc.|http://www.tma1.com/] (TMA) is the leader in assisting state and local governments with their revenue enhancement initiatives.
+
+TMA currently uses Riak for two internal applications with plans to roll out a third, public-facing application in 2011. Currently in production are:
+
+
+#  An archiving application responsible for the storage and security of tax forms for more than 100 counties in North Carolina; Using Riak as a document store, TMA is able to handle data inputs from six different applications while never worrying data about versioning and scalability.
+#  A spidering application that uses Riak to store data and distribute work loads via replication. Riak is responsible for managing the work queue that coordinates the spidering and then stores the resulting data to be queried later using Riak's MapReduce. 
+
+{column}
+{section}
+
+----
+
+
+{section}
+{column:width=25%}[[/images/dayfindr.png|align=center|width=200|vspace=35px]]
+{column}
+
+{column:width:75%}
+[[Dayfindr.com|http://www.dayfindr.com/]] is a simple calendar collaboration tool that helps you find a day for your event where most people are available. 
+
+*From Dayfindr's Creator Benjamin Nortier*: "Using Riak as the storage engine provides peace of mind for horizontal scalability in the future, and it also scales down to a small memory footprint for running on a virtual private server. In addition to having a set of hard-core technical credentials, the team and community behind Riak are highly competent and helpful, which sets it apart in a ever more crowded NoSQL market."
+{column}
+{section}
+
+----
+
+{section}
+{column:width=25%}[[/images/rock_of_gainesville.png|align=center|width=150|vspace=30px]]
+{column}
+
+{column:width=75%}
+
+The Rock of Gainesville is a vibrant, non-denominational, family-centered Christian church located in Gainesville, Florida. 
+
+The Rock used Riak to build an SMS-ready, distributed sign-up system that enables members to register for and track upcoming events.
+
+[[Riak in Production: A Distributed Event Registration System Written in Erlang|http://blog.basho.com/2010/04/20/riak-in-production---a-distributed-event-registration-system-written-in-erlang/]]
+{column}
+{section}
+
+----
+
+{section}
+{column:width=25%}[[/images/Wegeo.png|align=center|width=180|vspace=30px]]
+{column}
+
+{column:width=75%}
+
+[[We Geo|http://www.wegeo.com/]] is a location-enabled service that helps people work together on tasks and shopping activities that often lead them into the world to make purchases. As We Geo users accomplish their goals, our location-enabled service delivers targeted coupons, local promotions and daily deal offers based on user's planned activities and their location. We Geo users get things done and save money on brands and services they care about.
+
+We Geo uses Riak in its service layer to store a user's location-specific check-ins and spending activities. Riak serves this data in many forms to the We Geo web and mobile applications and for management reporting of user activity.
+
+{column}
+{section}
+
+----
+
+{section}
+{column:width=25%}[[/images/overnothing_logo.png|align=center|width=100|vspace=70px]]
+{column}
+
+{column:width=75%}
+
+
+[[Division by Zero|http://overnothing.com/]] is a software consultancy based in New York state that specializes in Ruby/Rails application deployments, architecture & infrastructure planning consulting, and Web application Development.
+
+*From Division by Zero Founder Wayne Seguin*: "One system we built integrates Postgresql, Redis and Riak as backends to several applications (including a few Ruby on Rails web applications). Postgresql is used for driving several E/R modeled applications from the same central database. Redis is used as a distributed queue system. And Riak is used for data sets that we do not want adding load to the master Postgresql database as well as for storing result sets as detailed below.
+
+There are a several web and API applications that run off of the Postgresql database where entities and their relationships are stored. Agents run on many servers across multiple data centers. These agents submit data into a centralized Redis queue. Then several worker daemons process the data from the queues and update the database based on the information gained from the collected data.
+
+There are many background processes (some services, some run run as cronjobs) which query the Postgresql database server in order to extract data sets, potentially very large.  These extracted data sets are stored in Riak. After the data sets are stored in the Riak system, there are several reporting / aggregating (long running) processes which load the data sets from Riak. The processes compute their results and then store them back in Riak either for further processing or for retrieval. Riak keys for the results are sent to the Postgresql system thus linking the Riak result sets with the Entities they are related to in Postgresql."
+
+
+{column}
+{section}

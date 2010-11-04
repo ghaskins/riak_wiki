@@ -1,0 +1,251 @@
+Riak has two configuration files located in {{etc/}} if you are using a source install and in {{/etc/riak}} if you used a binary install. The files are {{app.config}} and {{vm.args}}.
+
+The {{app.config}} file is used to set various attributes for the node such as the backend the node will use to store data. The {{vm.args}} file is used to pass parameters to the Erlang node such as the name or cookie of the Erlang node.
+
+{toc:maxlevel=2|indent=1.5em}
+
+h2. app.config
+
+Riak and the Erlang applications it depends on are configured by settings in the {{app.config}} file in the {{etc}} directory of the Riak node.  The format of the file is similar to Erlang's ".app" files:
+{code}
+   [
+    {riak_core, [
+                 {ring_state_dir, "data/ring"}
+                 %% More riak_core settings...
+                ]},
+    {riak_kv, [
+            {storage_backend, riak_dets_backend},
+            {riak_kv_dets_backend_root, "data/dets"}
+
+            %% More riak_kv settings...
+           ]}
+    %% Other application configurations...
+   ].
+{code}
+
+{note:title=Configuration changes in 0.10}
+Many configuration settings changed names and sections in the 0.10 release.  Please backup your {{app.config}} file when upgrading and then copy your previous customizations to the proper places in the new file. See [[the transition notes|http://hg.basho.com/riak/raw/efc290fd9c23/TRANSITION]] for more information.
+{note}
+
+{note:title=Configuration changes in 0.12}
+The settings related to handoff moved from {{riak_kv}} to {{riak_core}} in the 0.12 release.  These are:
+* {{handoff_ip}}
+* {{handoff_port}}
+* {{handoff_concurrency}}
+{note}
+
+h3. {{riak_core}} settings
+
+h4. cluster_name
+
+The name of the cluster. This currently has no visible effect, but could be useful for identifying multiple clusters within your larger infrastructure.
+
+h4. default_bucket_props
+
+Properties used for buckets that have not been explicitly defined (see also [[Setting bucket properties|REST API#Set bucket properties]]). Useful for setting default bucket behavior such as:
+* the number of replicas stored ({{n_val}})
+* whether or not siblings are allowed ({{allow_mult}})
+* the quorum values for get, put and delete requests ({{r, w, dw, rw}})
+* global pre- and post-commit hooks ({{precommit, postcommit}})
+
+{code:language=erlang|title=default}
+{default_bucket_props, [{n_val,3},
+			{allow_mult,false},
+			{last_write_wins,false},
+			{precommit, []},
+			{postcommit, []},
+			{chash_keyfun, {riak_core_util, chash_std_keyfun}},
+			{linkfun, {modfun, riak_kv_wm_link_walker, mapreduce_linkfun}}
+]}
+{code}
+
+h4. gossip_interval
+
+How often nodes in the cluster will share information about their ring state, in milliseconds. (default: {{60000}})
+
+h4. handoff_concurrency
+
+Number of vnodes, per physical node, allowed to perform handoff at once (default: {{4}}).
+
+h4. handoff_port
+
+TCP port number for the handoff listener (default: {{8099}})
+
+h4. handoff_ip
+
+The IP address the handoff listener will bind to. (default: {{"0.0.0.0"}})
+
+h4. ring_state_dir
+
+The directory on-disk in which to store the ring state (default: {{"data/ring"}})
+
+Riak's ring state is stored on-disk by each node, such that each node may be restarted at any time (purposely, or via automatic failover) and know what its place in the cluster was before it terminated, without needing immediate access to the rest of the cluster.
+
+{anchor:ring_creation_size}
+h4. ring_creation_size
+
+The number of partitions to divide the hash space into (default: {{64}})
+
+By default, each Riak node will own {{ring_creation_size}}/(number of nodes in the cluster) partitions.  It is generally a good idea to specify a {{ring_creation_size}} a few times the number of nodes in your cluster (e.g. specify 64-256 partitions for a 4-node cluster).  This gives you room to expand the number of nodes in the cluster, without worrying about under-use due to owning too few partitions. This number should be a power of 2 (64, 128, 256, etc.).
+
+{note}The "ring_creation_size" should be established before your cluster is live and running and should not be changed thereafter.{note}
+
+h4. target_n_val
+
+"The highest {{n_val}} that I generally intend to use." Affects how partitions are distributed amongst the cluster and preflists calculated, helping ensure that data is never stored to the same physical node more than once. *You will only need to change this setting in rare circumstances.*
+
+Assuming {{ring_creation_size}} is a power of 2, the ideal value for this setting is both
+
+* greater than or equal to the largest {{n_val}} of any bucket, and
+* an even divisor of the number of partitions in your ring ({{ring_creation_size}}).
+
+The default value is {{4}}. For this to be effective at preventing hotspots, your cluster size (number of physical nodes) must be equal to or larger than {{target_n_val}}.
+
+h4. web_ip
+
+The ip address on which Riak's HTTP interface should listen (default: {{"127.0.0.1"}})
+
+Riak's HTTP interface will not be started if this setting is not defined.
+
+h4. web_port
+
+The port on which Riak's HTTP interface should listen (default: {{8098}})
+
+Riak's HTTP interface will not be started if this setting is not defined.
+
+h3. {{riak_kv}} settings
+
+h4. add_paths
+
+A list of paths to add to the Erlang code path.
+
+This setting is especially useful for allowing Riak to use external modules during map/reduce queries.
+
+h4. js_max_vm_mem
+
+The maximum amount of memory allocated to each Javascript virtual machine, in megabytes. (default: {{8}})
+
+h4. js_source_dir
+
+Where to load user-defined built in Javascript functions (default: {{unset}})
+
+h4. js_thread_stack
+
+The maximum amount of thread stack space to allocate to Javascript virtual machines, in megabytes.  (default: {{16}})
+
+h4. js_vm_count
+
+How many Javascript virtual machines to start (default: {{8}}).
+
+h4. mapred_name
+
+The base of the path in the URL exposing [[RIAK:MapReduce]] via HTTP. (default: {{"mapred"}})
+
+h4. pb_ip
+
+The IP address that the [[Protocol Buffers interface|PBC API]] will bind to. (default: {{"127.0.0.1"}}) If not set, the PBC interface will not be started.
+
+h4. pb_port
+
+The port that the [[Protocol Buffers interface|PBC API]] will bind to. (default: {{8087}})
+
+h4. raw_name
+
+The base of the path in the URL exposing Riak's HTTP interface (default: {{"riak"}})
+
+The default value will expose data at {{/riak/Bucket/Key}}.  For example, changing this
+setting to {{"bar"}} would expose the interface at {{/bar/Bucket/Key}}.
+
+h4. riak_kv_stat
+
+Enables the statistics-aggregator (/stats URL and {{riak-admin status}} command) if set to {{true}}. (default: {{true}})
+
+h4. stats_urlpath
+
+The base of the path in the URL exposing the statistics-aggregator. (default: {{"stats"}})
+
+h4. storage_backend
+
+The module name of the storage backend that Riak should use (default: {{riak_kv_bitcask_backend}})
+
+The storage format Riak uses is configurable.  Riak will refuse to start if no storage backend is specified.
+
+Available backends, and their additional configuration options are:
+* {{riak_kv_bitcask_backend}}: data is stored in [[Bitcask|http://bitbucket.org/basho/bitcask]] append-only storage
+* {{riak_kv_dets_backend}}: data is stored in DETS files
+** {{riak_kv_dets_backend_root}}: root directory where the DETS files are stored (defualt: {{"data/dets"}}
+* {{riak_kv_ets_backend}}: data is stored in ETS tables (in-memory)
+* {{riak_kv_gb_trees_backend}}: data is stored in general balanced trees (in-memory)
+* {{riak_kv_fs_backend}}: data is stored in binary files on the filesystem
+{{riak_kv_fs_backendroot}}: root directory where the files are stored (ex: {{"/var/lib/riak/data"}})
+* {{riak_kv_multi_backend}}: enables storing data for different buckets in different backends
+Specify the backend to use for a bucket with {{riak_client:set_bucket(BucketName,\[\{backend, BackendName\}\]}} in Erlang or {{\{"props":{"backend":"BackendName"\}\}}} in the [[REST API|REST API#Set bucket properties]].
+** {{multi_backend_default}}: default backend to use if none is specified for a bucket (one of the {{BackendName}} atoms specified in the {{multi_backend}} setting)
+** {{multi_backend}}: list of backends to provide
+Format of each backend specification is {{\{BackendName, BackendModule, BackendConfig\}}}, where {{BackendName}} is any atom, {{BackendModule}} is the name of the Erlang module implementing the backend (the same values you would provide as {{storage_backend}} settings), and {{BackendConfig}} is a parameter that will be passed to the {{start/2}} function of the backend module.
+* {{riak_kv_cache_backend}}: a backend that behaves as an LRU-with-timed-expiry cache
+** {{riak_kv_cache_backend_memory}}: maximum amount of memory to allocate, in megabytes (default: {{100}})
+** {{riak_kv_cache_backend_ttl}}:  amount by which to extend an object's expiry lease on each access, in seconds (default: {{600}})
+** {{riak_kv_cache_backend_max_ttl}}: maximum allowed lease time (default: {{3600}})
+
+{note:title= Dynamically Changing ttl}There is currently no way to dynamically change the ttl per bucket. The current work around would be to define multiple {{riak_cache_backends}} under {{riak_multi_backend}} with different ttl values.{note}
+
+h3. vnode_mr_timeout
+
+How long a map function is permitted to execute on a vnode before it times out and is retried on another vnode, in milliseconds. (default: {{1000}})
+
+h2. vm.args
+
+Parameters for the Erlang node on which Riak runs are set in the {{vm.args}} file in the {{etc}} directory of the embedded Erlang node. Most of these settings can be left at their defaults until you are ready to tune performance.
+
+Two settings you may be interested in right away, though, are {{\-name}} and {{\-setcookie}}.  These control the Erlang node names (possibly host-specific), and Erlang inter-node communication access (cluster-specific), respectively.
+
+The format of the file is fairly loose: all lines that do not begin with the {{\#}} character are concatenated, and passed to the {{erl}} on the command line, as is.
+
+More details about each of these settings can be found in the [[Erlang|http://www.erlang.org/doc/man/erl.html]] documentation for the {{erl}} Erlang virtual machine.
+
+h3. Erlang Runtime Configuration Options
+
+h4. \-name
+
+the name of the Erlang node (default: {{riak@127.0.0.1}})
+
+The default value, {{riak@127.0.0.1}} will work for running Riak locally, but for distributed (multi-node) use, the value after the {{@}} should be changed to the IP address of the machine on which the node is running.
+
+If you have properly-configured DNS, the short-form of this name can be used (for example: {{riak}}).  The name of the node will then be {{riak@Host.Domain}}.
+
+h4. \-setcookie
+
+the cookie of the Erlang node (default: {{riak}})
+
+Erlang nodes grant or deny access based on the sharing of a previously-shared cookie.  You should use the same cookie for every node in your Riak cluster, but it should be a not-easily-guessed string unique to your deployment, to prevent non-authorized access.
+
+h4. \-heart
+
+enable {{heart}} node monitoring (default: {{/disabled/}})
+
+Heart will restart nodes automatically, should they crash.  However, heart is so good at restarting nodes that it can be difficult to prevent it from doing so. Enable heart once you are sure that you wish to have the node restarted automatically on failure.
+
+h4. \+K
+
+enable kernel polling (default: {{true}})
+
+h4. \+A
+
+number of threads in the async thread pool (default: 5)
+
+h4. \-env
+
+set host environment variables for Erlang
+
+h4. \-smp
+
+Enables Erlang's SMP support.  _This is necessary for the innostore backend to work, even on single-processor systems._ (default: {{enable}})
+
+h2. Rebar Overlays
+
+If you are going to be rebuilding Riak often, you will want to edit the {{vm.args}} and {{app.config}} files in the {{rel/files}} directory. These files are used whenever a new release is generated using {{make rel}} or {{rebar generate}}. Each time a release is generated any existing release must first be destroyed. Changes made to release files ({{rel/riak/etc/vm.args}}, {{rel/riak/etc/app.config}}, etc.) would be lost when the release is destroyed.
+
+{note}
+In versions of Riak prior to 0.12, overlay files were stored in the {{rel/overlay}} directory instead of {{rel/files}}.
+{note}

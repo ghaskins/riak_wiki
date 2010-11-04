@@ -1,0 +1,106 @@
+This is intended to be a brief, objective and technical comparison of Riak and MongoDB. (_This comparison is current as of the 1.6 release of MongoDB._)
+
+{toc}
+
+h2. High Level Differences
+
+Riak and MongoDB satisfy some of the same use-cases :
+
+* Semi-structured data modeled as "documents"
+* Storage of non-document data in the database
+* High write-availability
+
+However, they approach solving these problems quite differently.  Fundamentally, Riak is a distributed system while MongoDB is a single-system database (with support for replication and sharding).  MongoDB specifies the internal format of documents while Riak is content-agnostic.  MongoDB uses an ancillary specification called "GridFS" for storing non-document data, while Riak stores non-document or binary data in the same manner as structured data. MongoDB achieves high write-availability through performant in-place writes and "upserts", while Riak achieves availability through quorum writes, tolerance of node failure and hinted handoff.
+
+_[[http://www.mongodb.org/display/DOCS/Home]]_
+_[[http://blog.mongodb.org/post/248614779/fast-updates-with-mongodb-update-in-place]]_
+_[[http://www.mongodb.org/display/DOCS/Updating#Updating-Update]]_
+
+h2. Replication and Scaling Out
+
+Riak uses "consistent hashing" to replicate data. This functionality is deeply and tightly integrated with the Riak core, and enables Riak automatically replicate and rebalance data according to cluster size. Riak has no privileged nodes (no concept of master), making the system resilient to failure.  Thus, when you need to grow your cluster for greater throughput or fault-tolerance, you simply add nodes.
+
+_[[Add Nodes to Riak|https://wiki.basho.com/display/RIAK/Basic+Cluster+Setup#BasicClusterSetup-AddaSecondNodetoYourCluster]]_
+_[[Consistent Hashing|https://wiki.basho.com/display/RIAK/Riak+Glossary#RiakGlossary-ConsistentHashing]]_
+
+As of the 1.6 release, MongoDB offers several options for replication:
+
+* Master/Slave
+
+_[[http://www.mongodb.org/display/DOCS/Master+Slave]]_
+
+* Replica sets 
+
+From the Mongo Docs: "Replica Sets are MongoDB's new method for replication. They are an elaboration on the existing master/slave replication, adding automatic failover and automatic recovery of member nodes."
+
+_[[http://www.mongodb.org/display/DOCS/Replica+Sets]]_
+
+While Master/Slave replication is still supported, Replica sets adds auto failover so it's expected that most users will migrate to this configuratoin. However, in certain use cases traditional M/S is more appropriate and will still be supported. 
+
+To enable horizontal scaling, Mongo uses a process known as "sharding," which involves designating certain server to hold certain chunks of the data as the data set grows. 
+
+New in the 1.6 release is "auto-sharding."
+
+_[[http://www.mongodb.org/display/DOCS/Sharding]]_
+_[[http://www.mongodb.org/display/DOCS/Sharding+Introduction]]_
+_[[http://en.wikipedia.org/wiki/Sharding]]_
+
+h2. Scaling Back In
+
+Riak allows you to remove a node (or nodes) from the cluster when needed. When you do this, RIak will hand the partitions that the removed node was managing and hand them back to the machines still in the cluster, giving each remaining node a few more partitions to worry about. In other words, the load remains evenly distributed.
+
+MongoDB has support for removing shards from your database.  
+
+_[[http://www.mongodb.org/display/DOCS/Configuring+Sharding#ConfiguringSharding-Removingashard]]_
+
+h2. Performance
+
+Riak has pluggable storage engines, with the recommended being [Bitcask|http://blog.basho.com/2010/04/27/hello,-bitcask/] so you can tune levels of performance and durability based on your needs. (One thing  that is said around the office: "Eventual consistency is no excuse for losing data.") Durability and performance can also be tuned at the request level by specifying the number of nodes that need to agree on  reads and writes.
+
+Mongo is more performant because it uses memory-mapped files. The tradeoff is that it fsyncs (flushes in-memory data to disk) only every 60 seconds by default, so you run the risk of losing data if your MongoDB server goes down. The solution for increasing durability in MongoDB is to replicate.
+
+_[[http://www.mongodb.org/display/DOCS/Durability+and+Repair]]_
+_[[http://blog.mongodb.org/post/381927266/what-about-durability]]_
+
+h2. Data Model
+
+Riak is content-type agnostic, and allows you to store  semi-structured documents or objects of varying sizes. Riak lets you specify relationships between objects via links.
+
+_[[Data Storage in Riak|https://wiki.basho.com/display/RIAK/An+Introduction+to+Riak#AnIntroductiontoRiak-DataStorage]]_
+
+Mongo's data format is [[BSON|http://bsonspec.org/]] (binary equivalent to JSON). Mongo stores this data as documents (self-contained records with no intrinsic relationships).  Documents in MongoDB may store any of the defined BSON types, including raw binary data (upon which the GridFS feature is built).
+
+_[[http://www.mongodb.org/display/DOCS/BSON]]_
+_[[http://www.mongodb.org/display/DOCS/Data+Types+and+Conventions]]__[[http://www.mongodb.org/display/DOCS/GridFS]]_
+
+h2. Queries and Distributed Operations
+
+Riak's query interface is entirely key-value, link-walking, or [[MapReduce]]. Riak has no concept of secondary indexes because it does not know the internal structure of the  stored data.
+
+_[[https://wiki.basho.com/display/RIAK/MapReduce|https://wiki.basho.com/display/RIAK/MapReduce]]_
+
+MongoDB has a query interface that has some similarities to relational databases, including secondary indexes that can be derived from the stored documents. MongoDB also has a facility for performing MapReduce queries.
+
+_[[http://www.mongodb.org/display/DOCS/Indexes]]_
+_[[http://www.mongodb.org/display/DOCS/Querying]]__[[http://www.mongodb.org/display/DOCS/MapReduce]]_
+
+h2. Deflecting Conflicting Writes
+
+Riak uses vector-clocks to track the ancestry of each object so your application can decide which representation to pick when two people have updated an object at the same time.
+
+_[[http://wiki.basho.com/display/RIAK/Riak+Glossary#RiakGlossary-VectorClock|http://wiki.basho.com/display/RIAK/Riak+Glossary#RiakGlossary-VectorClock]]_
+
+Mongo uses a "last one wins" technique for conflict resolution.
+
+_[[http://www.mongodb.org/display/DOCS/Atomic+Operations]]_
+
+
+h2. API
+
+Riak offers two primary interfaces to non-Erlang clients:
+
+*HTTP* (_[[https://wiki.basho.com/display/RIAK/REST+API|https://wiki.basho.com/display/RIAK/REST+API]]_) and *Protocol Buffers* (_[[http://wiki.basho.com/display/RIAK/PBC+API|http://wiki.basho.com/display/RIAK/PBC+API]]_)
+
+MongoDB uses a custom protocol with BSON as the interchange format, and [[10gen|http://10gen.com/]] supports clients in the most popular programming languages.
+
+_[[http://www.mongodb.org/display/DOCS/Mongo+Wire+Protocol]]_

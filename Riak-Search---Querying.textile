@@ -1,0 +1,266 @@
+h3. Query Syntax
+
+Riak Search follows the same query syntax as Lucene, detailed here:
+
+   http://lucene.apache.org/java/2_4_0/queryparsersyntax.html
+
+h4. Terms and Phrases
+
+A query can be as simple as a single term (ie: "red") or a series of terms surrounded by quotes called a phrase ("See spot run"). The term (or phrase) is analyzed using the default analyzer for the index.
+
+The index schema contains a {{default_operator}} setting that determines whether a phrase is treated as an AND operation or an OR operation. By default, a phrase is treated as an OR operation. In other words, a document is returned if it matches any one of the terms in the phrase.
+
+h4. Fields
+
+You can specify a field to search by putting it in front of the term or phrase to search. For example:
+
+{code:none} 
+color:red
+{code}
+
+Or:
+
+{code:none} 
+title:"See spot run"
+{code}
+
+You can further specify an index by prefixing the field with the index name. For example:
+
+{code:none} 
+products.color:red
+{code}
+
+Or:
+
+{code:none} 
+books.title:"See spot run"
+{code}
+
+h4. Wildcard Searches
+
+Terms can include wildcards in the form of an asterisk ( * ) to allow prefix matching, or a question mark ( ? ) to match a single character.
+
+Currently, the wildcard must come at the end of the term in both cases.
+
+For example:
+
+* "bus*" will match "busy", "business", "busted", etc.
+* "bus?" will match "busy", "bust", "busk", etc.
+
+h4. Fuzzy Searches
+
+*NOTE:* Fuzzy Searches are not yet supported.
+
+Fuzzy searching allows you to find terms with similar spelling. To specify a fuzzy search, use the tilde operator on a single term with an optional fuzziness argument. (If no fuzziness argument is specified, then 0.5 is used by default.)
+
+For example:
+
+{code:none} 
+bass~
+{code}
+
+Is equivalent to:
+
+{code:none} 
+bass~0.5
+{code}
+
+And will match "bass" as well as "bask", "bats", "bars", etc. The fuzziness argument is a number between 0.0 and 1.0. Values close to 0.0 result in more fuzziness, values close to 1.0 result in less fuzziness.
+
+h4. Proximity Searches
+
+Proximity searching allows you to find terms that are within a certain number of words from each other. To specify a proximity seach, use the tilde argument on a phrase.
+
+For example:
+
+{code:none} 
+"See spot run"~20
+{code}
+
+Will find documents that have the words "see", "spot", and "run" all within the same block of 20 words.
+
+h4. Range Searches
+
+Range searches allow you to find documents with terms in between a specific range. Ranges are calculated lexicographically.  Use square brackets to specify an inclusive range, and curly braces to specify an exclusive range.
+
+The following example will return documents with words containing "red" and "rum", plus any words in between.
+
+{code:none} 
+"field:[[red TO rum]]"
+{code}
+
+The following example will return documents with words in between "red" and "rum":
+
+{code:none} 
+"field:{red TO rum}"
+{code}
+
+h4. Boosting a Term
+
+A term (or phrase) can have its score boosted using the caret operator along with an integer boost factor.
+
+In the following example, documents with the term "red" will have their score boosted:
+
+{code:none} 
+red^5 OR blue
+{code}
+
+h4. Boolean Operators - AND, OR, NOT
+
+Queries can use the boolean operators AND, OR, and NOT. The boolean operators must be capitalized.
+
+The following example return documents containing the words "red" and "blue" but not "yellow".
+
+{code:none} 
+red AND blue AND NOT yellow
+{code}
+
+The required ( + ) operator can be used in place of "AND", and the prohibited ( - ) operator can be used in place of "AND NOT". For example, the query above can be rewritten as:
+
+{code:none} 
++red +blue -yellow
+{code}
+
+h4. Grouping
+
+Clauses in a query can be grouped using parentheses. The following query returns documents that contain the terms "red" or "blue", but not "yellow":
+
+{code:none} 
+(red OR blue) AND NOT yellow
+{code}
+
+h3. Querying via the Search Shell
+
+The Search Shell is the easiest way to run interactive queries against Riak Search. To start the shell, run:
+
+{code:bash} 
+bin/search-cmd shell [[INDEX]]
+{code}
+
+This launches an interactive console into which you can type search commands. For help, type {{h()}}.
+
+
+h3. Querying via the Command Line
+
+To run a single query from the command line, use:
+
+{code:bash} 
+bin/search-cmd search [[INDEX]] QUERY
+{code}
+
+For example:
+
+{code:bash} 
+bin/search-cmd search books "title:\"See spot run\""
+{code}
+
+This will display a list of Document ID values matching the query. To conduct a document search, use the {{search\_doc}} command. For example:
+
+{code:bash} 
+bin/search-cmd search_doc books "title:\"See spot run\""
+{code}
+
+h3. Querying via the Erlang Command Line
+
+To run a query from the Erlang shell, use {{search:search(Query)}} or {{search:search(Index, Query)}}. For example:
+
+{code} 
+search:search(<<"books">>, <<"author:joyce">>).
+{code}
+
+This will display a list of Document ID values matching the query. To conduct a document search, use {{search:search_doc(Query)}} or {{search:search_doc(Index, Query)}}. For example:
+
+{code} 
+search:search_doc(<<"books">>, <<"author:joyce">>).
+{code}
+
+h3. Querying via the Solr Interface
+
+Riak Search supports a Solr-compatible interface for searching documents via HTTP. By default, the select endpoint is located at "http://hostname:8098/solr/select".
+
+Alternatively, the index can be included in the URL, for example "http://hostname:8098/solr/INDEX/select".
+
+The following parameters are supported:
+
+* *index=INDEX* - Specifies the default index name.
+* *q=QUERY* - Run the provided query.
+* *df=FIELDNAME* - Use the provided field as the default. Overrides the {{default_field}} setting in the schema file.
+* *q.op=OPERATION* - Allowed settings are either "and" or "or". Overrides the {{default_op}} setting in the schema file. Default is "or".
+* *start=N* - Specify the starting result of the query. Useful for paging. Default is 0.
+* *rows=N* - Specify the maximum number of results to return. Default is 10.
+* *sort=FIELDNAME* - Sort on the specified field name. Default is "none", which causes the results to be sorted in descending order by score.
+* *wt=FORMAT* - Choose the format of the output.  Options are "xml" and "json".  The default is "xml".
+
+To query data in the system with Curl:
+
+{code:bash} 
+curl "http://localhost:8098/solr/books/select?start=0&rows=10000&q=prog*"
+{code}
+
+h3. Faceted Queries via the Solr Interfae
+
+*NOTE:* Facet querying through the Solr interface is not yet supported.
+
+Faceted search allows you to generate keywords (plus counts) to display to a user to drill down into search results.
+
+Riak Search accepts the following faceting parameters on the Solr interface:
+
+* *facet=BOOLEAN* - If BOOLEAN is set to "true" enable faceting. If set to "false", disable faceting. Default is "false".
+* *facet.field=FIELDNAME* - Tells Search to calculate and return count associated with unique terms in this fieldname. To specify multiple facet fields, include the {{facet.field}} setting multiple times in the query parameters.
+* *facet.prefix=PREFIX* / *f.FIELD.facet.prefix=PREFIX* - Limit faceting to a subset of terms on a field.
+* *facet.sort=MODE* / *f.FIELD.facet.sort=MODE*- If MODE is set to "count", sort the facets counts by count. If set to "index", sort the facet counts lexicographically. Defaults to "count".
+* *facet.offset=N* / *f.FIELDNAME.facet.offset=N* - Set the offset at which to start listing facet entries. Used for paging.
+* *facet.limit=N* / *f.FIELDNAME.facet.limit=N* - Limit the number of facet entries to N. Used for paging.
+
+Use the longer syntax if multiple fields are defined.
+
+Note that when faceting on a field, only terms that are present in the result set are listed in the facet results (in other words, you will never see a facet count entry of zero.) Faceted fields are analyzed using the analyzer associated with the field.
+
+h3. Querying via the Riak Client API
+
+h4. Basic Querying
+
+The Riak Client API's have been updated to support querying of Riak Search. See the client documentation for more information. Currently, the Ruby, Python, PHP, and Erlang clients are supported.
+
+The API takes a default search index as well as as search query, and returns a list of bucket/key pairs. Some clients transform this list into objects specific to that client.
+
+h4. Querying Integrated with Map/Reduce
+
+The Riak Client APIs that integrate with Riak Search also support using a search query to generate inputs for a map/reduce operation. This allows you to perform powerful analysis and computation across your data based on a search query. See the client documentation for more information. Currently, the Ruby, Python, PHP, and Erlang clients are supported.
+
+h4. Querying via HTTP/Curl
+ 
+Developers who are using a language without an official Riak API or prefer to use the pure HTTP API can still execute a search-based map/reduce operation.
+
+The syntax is fairly simple.  In the {{inputs}} section of your map/reduce query, use the new {{modfun}} specification, naming {{riak\_search}} as your module, {{mapred\_search}} as your function, and your index and query as the arguments.
+ 
+For example, if you wanted to search the "article" bucket for objects that had the word "seven" in their "text" field, you would normally issue a Solr query like:
+ 
+{code:bash}
+$ curl http://localhost:8098/solr/article/select?q=text:seven
+{code}
+
+Kicking off a map/reduce query with the same result set over HTTP would use a POST body like this:
+
+{code:javascript}
+{
+  "inputs": {
+             "module":"riak_search",
+             "function":"mapred_search",
+             "arg":["article","text:seven"]
+            },
+  "query":...
+ }
+{code}
+
+The phases in the "query" field should be exactly the same as usual.  An initial map phase will be given each object matching the search for processing, but an initial link phase or reduce phase will also work.
+
+The "arg" field of the inputs specification is always a two-element list.  The first element is the name of the bucket you wish to search, and the second element is the query to search for.  All syntax available in other Search interfaces is available in this query parameter.
+
+h3. Query Scoring
+
+Documents are scored using roughly the same formulas described here:
+
+   http://lucene.apache.org/java/3_0_2/api/core/org/apache/lucene/search/Similarity.html
+
+The key difference is in how Riak Search calculates the Inverse Document Frequency. The equations described on the /Similarity/ page require knowledge of the total number of documents in a collection. Riak Search does not maintain this information for a collection, so instead uses the count of the total number of documents associated with each term in the query.

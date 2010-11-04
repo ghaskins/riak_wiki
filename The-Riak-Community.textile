@@ -1,0 +1,62 @@
+There is a vibrant and fast-growing community forming around Riak. 
+
+Want to get involved with Riak? Here's where you can start:
+
+
+
+{toc:MaxLevel=3}
+----
+
+h3. Overview
+
+h6. Mailing List
+ 
+The [[Riak Developer Mailing List|http://lists.basho.com/mailman/listinfo/riak-users_lists.basho.com]] is highly-trafficked and is a great resource for technical discussions, Riak issues and questions, and community events and announcements. 
+
+h6. Bug Tracker
+
+Basho uses Bugzilla for its bug tracker. You can file, track and comment on all your favorite bugs [[here|https://issues.basho.com/]].
+
+h6. Riak on IRC 
+
+The Riak IRC room is a great place for real-time help with your Riak issues and questions.
+
+[[irc://irc.freenode.net/#riak|irc://irc.freenode.net/#riak]]
+
+h6. The Basho Blog
+
+Members of the Basho Team blog frequently on [[The Basho Blog|http://blog.basho.com]]. 
+
+h6. Basho on Twitter
+
+You can follow the [[Basho Team List|http://twitter.com/basho/team]] on Twitter.
+
+h6. Riak on Facebook
+
+We have a Facebook Page. Get involved [[here|http://www.facebook.com/pages/Riak/143599935667217]]. (Note: you better get involved; we need to beat the Mongo page!)
+
+h6. Riak on LinkedIn
+
+There is a Riak Group on LinkedIn. Join it [[here|http://www.linkedin.com/groups?mostPopular=&gid=2913983]]. (Note: you'll need to have a LinkedIn Account/]
+
+h6. Videos
+
+You can watch all the RIak screecasts and other videos that Basho publishes on the [[Basho Vimeo Page|http://vimeo.com/user2820657/videos]].
+
+
+h6. Meetups
+
+At the moment we have a monthly Riak Meetup in San Francisco. We are working on expanding that (and would [[love to talk to you|https://wiki.basho.com/display/RIAK/Contact+Basho]] if you're interested in helping out).
+
+* [[Riak San Francisco Meetup|http://www.meetup.com/San-Francisco-Riak-Meetup/]]
+
+h3. Community Processes
+
+[[Code Submission and Integration]]
+[[Contributing to the Riak Wiki]]
+
+h3. Contributors
+
+{excerpt-include:Contributors|nopanel=true}
+
+*[[Read more about our Contributors|Contributors]]*

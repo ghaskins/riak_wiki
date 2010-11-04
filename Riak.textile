@@ -1,0 +1,33 @@
+h1. {color:#F68C11}Riak: An Open Source Internet-Scale Data Store{color}
+
+
+{color:#595c61}*Riak is a Dynamo-inspired key/value store that scales predictably and easily. Riak also simplifies development by giving developers the ability to quickly prototype, test, and deploy their applications.*{color}
+
+{color:#595c61}*A truly fault-tolerant system, Riak has no single point of failure. No machines are special or central in Riak, so developers and operations professionals can decide exactly how fault-tolerant they want and need their applications to be.*{color}
+
+
+{section}
+{column:width=250px}
+h3. Get Riak
+[[/images/orange1.png|width=10| align=left| hspace=5]] [[Download a Riak package|http://downloads.basho.com/riak/riak-0.12/]][[/images/orange1.png|width=10| align=left| hspace=5]] [[Build Riak on your preferred Operating System|Installation and Setup]][[/images/orange1.png|width=10| align=left| hspace=5]] [[Get the source|http://hg.basho.com/riak]]
+
+
+h3. Connect your Code
+Looking for a specific Riak Driver? Basho currently supports libraries for [[Erlang|Client Libraries#Erlang]], [[Javascript|Client Libraries#Javascript]], [[Java|Client Libraries#Java]], [[PHP|Client Libraries#PHP]], [[Python|Client Libraries#Python]] and [[Ruby|Client Libraries#Ruby]].  
+
+There's also a bunch of *[[community contributed code and projects|Community-Developed Libraries and Projects]]* and it's easy to connect to Riak via the *[[REST API]]*.
+{column}
+
+{column:width=400px}
+h3. New to Riak? Get on the Fast Track!
+
+[[/images/riak_car_300.jpg|width=150| align=right]]|The Riak Fast Track]
+
+The *[[Fast Track|The Riak Fast Track]]* is a 45-60 minute interactive tutorial that introduces the basics of using and understanding Riak, from building a three node cluster up through MapReduce. 
+
+
+h3. Learn More
+[[/images/orange1.png|width=10| align=left| hspace=5]] Get a *[[high-level overview|An Introduction to Riak]]* of Riak's architecture.[[/images/orange1.png|width=10| align=left| hspace=5]] Learn *[[in-depth|How Things Work]]* how Riak functions.[[/images/orange1.png|width=10| align=left| hspace=5]] See *[screencasts, blog posts, sample applications|Recommended Resources]* and more.[[/images/orange1.png|width=10| align=left| hspace=5]] Browse the *[[Frequently Asked Questions|FAQ]]*.
+
+{column}
+{section}

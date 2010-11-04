@@ -1,0 +1,107 @@
+Riak Search was designed to work seamlessly with Riak. As a result, it retains many of the same properties as Riak, including a schema-free design. In other words, you can start adding data to a new index without having to explicitly define the index fields.
+
+That said, Riak Search does provide the ability to define a custom schema. This allows you to specify required fields and custom analyzer factories, among other things.
+
+h3. The Default Schema
+
+The default schema treats all fields as strings, unless you suffix your field name as follows:
+
+* *FIELDNAME\_num* - Numeric field. Uses Whitespace analyzer. Values are padded to 10 characters.
+* *FIELDNAME\_dt* - Date field. Uses Whitespace analyzer. 
+* All other fields are treated as Strings and use the Standard analyzer.
+
+The default field is named *value*.
+
+h3. Defining a Schema
+
+The schema definition for an index is stored in the Riak bucket {{_rs_schema}}, with a key of the same name as the index. For example, the schema for the "books" index is stored under {{_rs_schema/books}}.
+
+Alternatively, you can set or retrieve the schema for an index
+using command line tools:
+
+{code:bash}
+# Set an index schema.
+bin/search-cmd set_schema Index SchemaFile
+
+# View the schema for an Index.
+bin/search-cmd show_schema Index
+{code}
+
+Note that changes to the Schema File *will not* affect previously indexed data. It is recommended that if you change field definitions, especially settings such as {{type}}, that you re-index your documents.
+
+Below is an example schema file. The schema is formatted as an Erlang term. Spacing does not matter, but it is important to match opening and closing brackets and braces, to include commas between all list items, and to include the final period after the last brace:
+
+{code:javascript}
+{
+    schema,
+    [
+        {version, "1.1"},
+        {default_field, "title"},
+        {default_op, "or"},
+        {n_val, 3},
+        {analyzer_factory, "com.basho.search.analysis.DefaultAnalyzerFactory"}
+    ],
+    [
+        {field, [
+            {name, "id"},
+            {type, string}
+        ]},
+        {field, [
+            {name, "title"},
+            {required, true},
+            {type, string}
+        ]},
+        {field, [
+            {name, "published"},
+            {type, date}
+        ]},
+        {dynamic_field, [
+            {name, "*_text"},
+            {type, string}
+        ]},
+        {field, [
+            {name, "tags"},
+            {type, string},
+            {analyzer_factory, "com.basho.search.analysis.WhitespaceAnalyzerFactory"}
+        ]},
+        {field, [
+            {name, "count"},
+            {type, integer},
+            {padding_size, 10}
+        ]},
+        {field, [
+            {name, "category"}
+        ]}
+    ]
+}.
+{code}
+
+h4. Schema-level properties:
+
+The following properties are defined at a schema level:
+
+* *version* - Required. A version number, currently unused.
+* *default\_field* - Required. Specify the default field used for searching.
+* *default\_op* - Optional. Set to "and" or "or" to define the default boolean. Defaults to "or".
+* *n\_val* - Optional. Set the number of replicas of search data. Defaults to 3.
+* *analyzer\_factory* - Optional. Defaults to "com.basho.search.analysis.DefaultAnalyzerFactory"
+
+h4. Fields and Field-Level Properties:
+
+Fields can either by static or dynamic. A static field is denoted with {{field}} at the start of the field definition, whereas a dynamic field is denoted with {{dynamic\_field}} at the start of the field definition.
+
+The difference is that a static field will perform an exact string match on a field name, and a dynamic field will perform a wildcard match on the string name. The wildcard can appear anywhere within the field, but it usually occurs at the beginning or end. (The default schema, described above, uses dynamic fields, allowing you to use fieldname suffixes to create fields of different data types.)
+
+{info}
+Field matching occurs in the order of appearance in the schema definition. This allows you to create a number of static fields followed by a dynamic field as a "catch all" to match the rest.
+{info}
+
+The following properties are defined at a field level, and apply to both static and dynamic fields:
+
+* *name* - Required. The name of the field. Dynamic fields can use wildcards. Note that the unique field identifying a document *must* be named {{id}}.
+* *required* - Optional. Boolean flag indicating whether this field is required in an incoming search document. If missing, then the document will fail validation. Defaults to false.
+* *type* - Optional. The type of field, either {{string}} or {{integer}}. If {{integer}} is specified, and no field-level analyzer\_factory is defined, then the field will use the Whitespace analyzer. Defaults to {{string}}.
+* *analyzer\_factory* - Optional. Specify the analyzer factory to use when parsing the field. If not specified, defaults to the analyzer factory for the schema. (Unless the field is an integer type. See above.)
+* *skip* - Optional. When {{true}}, the field is stored, but not indexed. Defaults to {{false}}.
+* *aliases* - Optional. A list of aliases that should be mapped to the current field definition, effectively indexing multiple fields of different names into the same field. Defaults to an empty list.
+* *padding\_size* - Optional. Values are padded up to this size. Defaults to 0 for string types, 10 for integer types.

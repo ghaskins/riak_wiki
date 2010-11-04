@@ -1,0 +1,37 @@
+The following steps should get you up and running with Riak on Centos or Redhat.  You can install from source or from our custom .rpm package. Please note, CentOS enables SE Linux by default and you may need to disable SE Linux if you encounter errors.
+
+h2. From our custom .rpm package
+
+{code}
+$ wget http://downloads.basho.com/riak/riak-0.13/riak-0.13.0-2.el5.x86_64.rpm
+$ sudo rpm -Uvh riak-0.13.0-2.el5.x86_64.rpm
+{code}
+
+h2. From source
+
+Riak requires [[Erlang|http://www.erlang.org/]] R13B04 or later. If you do not have Erlang already installed, see [[Installing Erlang]]. Don't worry, it's easy\!
+
+Building from source will require the following packages:
+gcc
+gcc-c++
+glibc-devel
+make
+
+You can install these with yum:
+
+{code}
+$ sudo yum install gcc gcc-c++ glibc-devel make
+{code}
+
+Now we can download and install Riak:
+
+{code}
+$ wget http://downloads.basho.com/riak/riak-0.13/riak-0.13.0.tar.gz
+$ tar zxvf riak-0.13.0.tar.gz
+$ cd riak
+$ make rel
+{code}
+
+There should now be a fresh build of Riak in the rel/riak directory.
+
+Next Steps: [[*Basic Cluster Setup*|Basic Cluster Setup]] will show you how to go from one node to bigger than Yahoo!

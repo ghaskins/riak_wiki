@@ -1,0 +1,46 @@
+The following steps should get you up and running with Riak on Debian or Ubuntu 9.10.  You can install from source or from our custom .deb package.
+
+h2. From our custom .deb package
+
+To install from our pre-built package, run these commands for the appropriate platform:
+
+h3. 64-bit
+
+{code}
+$ wget http://downloads.basho.com/riak/riak-0.13/riak_0.13.0-2_amd64.deb
+$ sudo dpkg -i riak_0.13.0-2_amd64.deb
+{code}
+
+h3. 32-bit
+
+{code}
+$ wget http://downloads.basho.com/riak/riak-0.13/riak_0.13.0-2_i386.deb
+$ sudo dpkg -i riak_0.13.0-2_i386.deb
+{code}
+
+h2. From source
+
+Riak requires [[Erlang|http://www.erlang.org/]] R13B04 or later. If you do not have Erlang already installed, see [[Installing Erlang]]. Don't worry, it's easy\!
+
+Let's install the dependencies that we can from apt:
+
+{code}
+$ sudo apt-get install build-essential libc6-dev-i386
+{code}
+
+If you do not have Erlang installed, please [[do so|Installing Erlang]].
+
+Now we can download and install Riak:
+
+{code}
+$ wget http://downloads.basho.com/riak/riak-0.13/riak-0.13.0.tar.gz
+$ tar zxvf riak-0.13.0.tar.gz
+$ cd riak-0.13.0
+$ make rel
+{code}
+
+There should now be a fresh build of Riak in the rel/riak directory.
+
+\\
+
+Next Steps: [[*Basic Cluster Setup*|Basic Cluster Setup]] will show you how to go from one node to bigger than Google

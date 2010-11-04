@@ -1,0 +1,73 @@
+h5. Community-Developed Libraries and Projects
+
+The Riak Community is developing at a break-neck pace, and the number of community-contributed libraries and drivers is growing right along side it. Here is a list of projects that may suit your programming needs or curiosities. (If you know of something that needs to be added or are developing something that you wish to see added to this list, let us know in the Comment section below.)
+
+{info}
+All of these projects and libraries are at various stages of completeness and may not suit your application's needs based on their level of maturity and activity. 
+{info}
+
+*Clojure*
+* [[clj-riak|http://github.com/mmcgrana/clj-riak]] - Clojure bindings to the Riak Protocol Buffers API 
+* [[teriak|http://github.com/dysinger/teriak]] - Riak Clojure Client that uses Riak's Protocol Buffers API 
+
+*Go* (Go is a language recently released by Google. Read more about it [[here|http://golang.org/]].)
+* [[riak.go|http://github.com/c141charlie/riak.go]] - a Riak Client for Go
+
+*Griffon*
+* [[Riak Plugin for Griffon|http://docs.codehaus.org/display/GRIFFON/Riak+Plugin]]
+
+*Java*
+* [[Riak-Java-PB-Client|http://github.com/krestenkrab/riak-java-pb-client]] - Java Client Library for Riak based on the Protocol Buffers API 
+
+*JavaScript*
+* [[Riak-js|http://github.com/frank06/riak-js]]
+* [[Node-Riak|http://github.com/orlandov/node-riak]]
+* [[Nori|http://github.com/technoweenie/nori]] - Experimental Riak HTTP Library for Node.js modeled after Ripple
+* [[OrionNodeRiak|http://github.com/mauritslamers/OrionNodeRiak]] - Node-based server and database-frontend for Sproutcore
+
+*.NET*
+* [[Hebo|http://github.com/bubbafat/hebo]]
+* [[Data.RiakClient|http://github.com/garethstokes/Data.RiakClient]]
+
+*Perl*
+* [[Net::Riak|http://search.cpan.org/~franckc/Net-Riak-0.01/]]
+* [[AnyEvent-Riak adapter|http://github.com/franckcuny/anyevent-riak]]
+
+*Python*
+* [[txriak|https://launchpad.net/txriak]]- a Twisted module for communicating with Riak via the HTTP interface
+
+*Ruby*
+* [[Riak Model|http://github.com/botanicus/riak-model]]
+* [[Riak DataObjects adapter|http://github.com/botanicus/do_riak]]
+* [[Riak_Client|http://github.com/technoweenie/riak_client]]
+* [[Riak Sessions for rack|http://github.com/igorgue/riak_sessions]]
+* [[Riaktor|http://github.com/benmyles/riaktor]] \- Ruby client and object mapper for Riak
+* [[DataMapper Adapter for Riak|http://github.com/mikeric/dm-riak-adapter]]
+* [[Riak PB Client|http://github.com/aitrus/riak-pbclient]] - Riak Protocol Buffer Client in Ruby
+* [[Devise-Ripple|http://github.com/frank06/devise-ripple]] - An ORM strategy to use Devise with Riak  
+* [[Ripple-anaf|http://github.com/bkaney/ripple-anaf]]
+* [[Pabst|http://github.com/aitrus/pabst]] - Cross-platform Ruby extension for Protocol Buffers written in both Objective-C and Objective-C++
+
+*Scala*
+* [[Riakka|http://github.com/timperrett/riakka]]
+* [[Ryu - A `Tornado Whirlwind Kick` Scala Client|http://github.com/softprops/ryu]]
+
+*Monitoring, Management and GUI Tools* 
+* [[Gmond Python Modules for Riak|http://github.com/jnewland/gmond_python_modules/tree/master/riak]] - Ganglia Module for connecting to Riak
+* [[Riaktive|http://github.com/WealthyThinker/Riaktive]] - A Riak Management Tool released under the MIT License
+* [[riak-admin|http://bitbucket.org/harmen/riak-admin/]] - A Java program with GUI to browse and update a Riak database
+* [[Riak Admin|http://github.com/frank06/riak-admin]] \- A Futon-like web interface for Riak
+
+*Other*
+* [[Couch to Riak|http://github.com/mattsta/couchdb/tree/couch_file-to-riak]]
+* [[Chimera|http://github.com/benmyles/chimera]] \- An object mapper for Riak and Redis
+* [[Riak_Redis Backend|http://github.com/cstar/riak_redis_backend]]
+* [[Riak Homebrew Formula|http://github.com/mattmatt/homebrew]]
+* [[Briak|http://github.com/johnthethird/Briak]] \- A Sinatra-based web front-end browser for Riak
+* [[Using Nginx as a front-end for Riak|http://rigelgroupllc.com/wp/blog/using-nginx-as-a-front-end-for-riak]]
+* [[Riak-fuse - A FUSE Driver for Riak|http://github.com/johnthethird/riak-fuse]]
+* [[RiakAWS - A simple way to deploy a Riak cluster in the Amazon Cloud|http://github.com/roder/riakaws]]
+* [[riakfuse|http://github.com/crucially/riakfuse]] - A distributed filesystem that uses riak as its backend store
+* [[ebot|http://www.redaelli.org/matteo-blog/projects/ebot/]] - A scalable Web Crawler that supports Riak as a backend
+* [[riak-jscouch|http://github.com/jpick/riak-jscouch]] - JSCouch examples done with Riak
+* [[riak_tokyo_cabinet|http://github.com/jebu/riak_tokyo_cabinet]] - A Tokyo Cabinet back end for Riak

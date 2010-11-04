@@ -1,0 +1,152 @@
+h2. {anchor:overview} Setting Up Innostore
+
+Innostore is distributed separately from Riak and will need to be compiled prior to installing.  You will need to have [[Erlang installed|RIAK:Installing Erlang]] to compile Innostore.
+
+h2. {anchor:downloading_deb} Downloading & Installing Innostore on Debian/Ubuntu
+
+h3. 64-bit
+
+{code}
+$ wget http://downloads.basho.com/innostore/innostore-1.0.1/innostore_1.0.1-2_amd64.deb
+$ sudo dpkg -i innostore_1.0.1-2_amd64.deb
+{code}
+
+h3. 32-bit
+
+{code}
+$ wget http://downloads.basho.com/innostore/innostore-1.0.1/innostore_1.0.1-2_i386.deb
+$ sudo dpkg -i innostore_1.0.1-2_i386.deb
+{code}
+
+h2. {anchor:downloading_rpm} Downloading & Installing Innostore on RHEL/CentOS
+
+
+h3. 64-bit
+
+{code}
+$ wget http://downloads.basho.com/innostore/innostore-1.0.1/innostore-1.0.1-2.el5.x86_64.rpm
+$ sudo rpm -Uvh innostore-1.0.1-2.el5.x86_64.rpm
+{code}
+
+h3. 32-bit
+
+{code}
+$ wget http://downloads.basho.com/innostore/innostore-1.0.1/innostore-1.0.1-2.fc12.x86_64.rpm
+$ sudo rpm -Uvh innostore-1.0.1-2.fc12.x86_64.rpm
+{code}
+
+h2. {anchor:downloading_source} Downloading & Installing Innostore from Source
+
+You can download Innostore [[here|http://downloads.basho.com/innostore/innostore-1.0.1/innostore-1.0.1.tar.gz]].  A simple way to do this would be using wget:
+{code}
+$ wget http://downloads.basho.com/innostore/innostore-1.0.1/innostore-1.0.1.tar.gz
+{code}
+
+Change to the Innostore directory and compile:
+{note:title=Single CPU Hosts}
+You will need to run the following to allow Innostore to compile:
+{code}
+$ export ERL_FLAGS="-smp enable"
+{code}
+{note}
+
+Untar and compile Innostore:
+{code}
+$ tar xzvf innostore-1.0.1.tar.gz
+$ cd innostore-1.0.1
+$ make
+{code}
+
+If Innostore compiled as expected you should see the following:
+{code}
+./rebar compile eunit verbose=1
+........
+........
+=======================================================
+  All 7 tests passed.
+Cover analysis: /home/XXXXX/innostore/.eunit/index.html
+{code}
+
+If your compile passed tests you are now ready to install Innostore into your Riak distribution. If you are using a copy of Riak you compiled yourself you can install Innostore by issuing the following command replacing $RIAK with the location of your Riak install:
+{code}
+$ ./rebar install target=$RIAK/lib
+{code}
+
+If you installed Riak using one of our binary packages you would use the following command:
+{code}
+$ ./rebar install target=/usr/lib/riak
+{code}
+
+h2. {anchor:configuration} Configuring Innostore
+
+The last step in setting up Innostore is to configure the Riak node to use Innostore as its storage backend by editing your {{app.config}} file located in your Riak installs {{$RIAK/etc/}} directory or {{/etc/riak/app.config}}.  If your Riak node is running issue it the stop command.
+
+First change the configured storage engine to use Innostore:
+{section}
+{column}{code}{storage_backend, riak_kv_dets_backend},
+{code}{column}
+{column}becomes{column}
+{column}{code}{storage_backend, riak_kv_innostore_backend},
+{code}{column}
+{section}
+
+You will also need to append the Innostore configuration to the end of your {{app.config}} file. A good place for this is after the {{SASL}} section (you will need to add a comma after the existing {{SASL}} section:
+{code}
+#Binary Install
+{sasl, [ ....
+]}, %% < -- make sure you add a comma here!!
+
+{innostore, [
+    {data_home_dir, "/var/lib/riak/innodb"}, %% Where data files go
+    {log_group_home_dir, "/var/lib/riak/innodb"}, %% Where log files go
+    {buffer_pool_size, 268435456} %% 256MB in-memory buffer in bytes
+]}
+#Source Install
+{sasl, [ ....
+]}, %% < -- make sure you add a comma here!!
+
+{innostore, [
+    {data_home_dir, "$RIAK/data/innodb"}, %% Where data files go
+    {log_group_home_dir, "$RIAK/data/innodb"}, %% Where log files go
+    {buffer_pool_size, 268435456} %% 256MB in-memory buffer in bytes
+]}
+{code}
+
+{note:title=Single CPU Hosts}
+You will need to add the following to Riak's [[vm.args file|Configuration Files#vm.args]]:
+{code}
+-smp enable
+{code}
+
+Innostore will either fail to function or function erratically without the flag.
+*This is set by default in 0.10 and later.*
+{note}
+
+{note:title=RHEL/CentOS}
+You will need to add the following to Riak's [[vm.args file|Configuration Files#vm.args]]:
+{code}
+-pa /usr/lib64/innostore/ebin
+{code}
+
+Riak will fail to find the modules to use innostore otherwise.  Riak will fail to startup with an {{invalid_storage_backend}} error.
+{note}
+
+Now that you have configured Innostore you can test your install by running to following command:
+{code}
+# Binary Install
+$ sudo /usr/sbin/riak console
+
+# Source Install
+$ $RIAK/bin/riak console
+{code}
+
+If the install was successful you will see something similar to:
+{code}
+100220 16:36:58 InnoDB: highest supported file format is Barracuda.
+100220 16:36:58 Embedded InnoDB 1.0.3.5325 started; log sequence number 45764
+{code}
+
+Once you have confirmed your install is successful exit the console and start your Riak node with the start command:
+{code}
+(riak@127.0.0.1)1> q().
+{code}

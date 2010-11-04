@@ -1,0 +1,53 @@
+{toc:style=decimal}
+
+
+h5. General Overviews, Tutorials, and Introductions
+
+* [[Justin Sheehy's Riak Presentation at NoSQL East|https://nosqleast.com/2009/#speaker/sheehy]]
+* [[Riak and Nitrogen by Example - Rusty Klophaus at Erlang User Conf. 2009|http://vimeo.com/8258045]]
+* [[Why Riak Should Power Your Next Rails App|http://seancribbs.com/tech/2010/02/06/why-riak-should-power-your-next-rails-app/]]
+* [[Wrap Your Head Around Riak's MapReduce|http://seancribbs.com/tech/2010/02/07/wrap-your-sql-head-around-riaks-map-reduce/]]
+* [[Link Walking By Example|http://blog.basho.com/2010/02/24/link-walking-by-example/]]
+* [[Why Vector Clocks Are Easy|http://blog.basho.com/2010/01/29/why-vector-clocks-are-easy/]]
+* [[An Introduction to Innostore|http://blog.basho.com/2010/02/02/basho-podcast-three---an-introduction-to-innostore/]]
+* [[Schema Design in Riak - An Introduction|http://blog.basho.com/2010/03/19/schema-design-in-riak---introduction//]]
+* [[Schema Design in Riak Pt. 2 - Relationships|http://blog.basho.com/2010/03/25/schema-design-in-riak---relationships/]]
+
+{children:excerpt=true|style=h5}
+
+h5. Sample Applications built using Riak:
+
+* [[Slideblast|http://github.com/rklophaus/SlideBlast]] \- share and control slide presentation for the web.
+* [[riak_php_app|http://github.com/schofield/riak_php_app]] \- a small PHP app that shows some basic usage of the Riak PHP library.
+* [[riak-url-shortener|http://github.com/seancribbs/riak-url-shortener]] \- a small Ruby app (with Sinatra) that creates short URLs and stores them in Riak.
+* [[yakriak|http://github.com/seancribbs/yakriak]] - Riak-powered Ajax-polling chatroom.
+* [[wriaki|http://bitbucket.org/basho/wriaki/src]] - a wiki app backed by Riak.
+
+h5. Screencasts:
+
+* [[Introduction to JavaScript MapReduce in Riak|http://blog.basho.com/2010/02/03/the-release-riak-0.8-and-javascript-map/reduce/]]
+* [[Riak in an Embedded Node Using Rebar|http://blog.basho.com/2009/12/17/basho-screencast---dave-smith-introduces-riak-in-an-embedded-node/]]
+* [[Setting up a Three Node Riak Cluster|http://vimeo.com/11240885]] (Used as part of [[The Riak Fast Track]])
+* [[Brief Overview of JavaScript MapReduce in Riak|http://vimeo.com/11328947]] (Used as part of [[The Riak Fast Track]])
+* [[Links and Link Walking in Riak|http://vimeo.com/14563219]](Used as part of [[The Riak Fast Track]])
+* [[Tuning CAP Controls in Riak|http://vimeo.com/11172656]] (Used as part of [[The Riak Fast Track]])
+
+
+h5. Influential Papers, Books, and other Publications
+
+* [[Amazon's Dynamo Paper|http://www.allthingsdistributed.com/2007/10/amazons_dynamo.html]]
+* [[Distributed Systems: Principles and Paradigms|http://www.amazon.com/Distributed-Systems-Principles-Andrew-Tanenbaum/dp/0130888931]]
+* [Time, Clocks, and the Ordering of Events in a Distributed System|http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.142.3682]
+* [[Distributed Algorithms|http://www.amazon.com/Distributed-Algorithms-Kaufmann-Management-Systems/dp/1558603484/ref=sr_1_1?ie=UTF8&s=books&qid=1273371587&sr=1-1]]
+* [[Elements of Distributed Computing|http://www.amazon.com/Elements-Distributed-Computing-Vijay-Garg/dp/0471036005/ref=pd_bxgy_b_img_c]]
+* [[Towards Robust Distributed Systems|http://www.cs.berkeley.edu/~brewer/cs262b-2004/PODC-keynote.pdf]]
+* [[Brewer's Conjecture and the Feasibility of Consistent Available Partition-Tolerant Web Services|http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.20.1495]]
+
+h5. Recorded Webinars 
+
+* [[Riak in Action: Wriaki|http://vimeo.com/14275191]] - building a Riak-backed wiki. 
+* [[Riak with Rials|http://vimeo.com/13924929]]
+* [[MapReduce Querying in Riak|http://vimeo.com/13554436]]
+* [[NoSQL Performance in the Cloud; Riak on Joyent|http://blog.basho.com/2010/09/16/nosql-performance-in-the-cloud-webinar/]]
+
+ 

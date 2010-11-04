@@ -1,0 +1,37 @@
+h3. Installing Riak Search
+
+Click the link for your operating system to see instructions on how to install Riak Search:
+* [[Debian and Ubuntu|Riak Search - Installation - Debian and Ubuntu]]
+* [[RHEL and CentOS|Riak Search - Installation - RHEL and CentOS]]
+* [[Mac OS X|Riak Search - Installation - Mac OS X]]
+
+
+h3. Starting Riak Search
+
+{info}
+If you are running on a Mac increase your filehandle limit:
+
+{code}
+ulimit -n 1024
+{code}
+{info}
+
+To start up a Riak Search node, change directory as necessary to where you installed Riak Search (in the source directory, it's {{rel/riaksearch/bin}}) and run the {{riaksearch}} command like so:
+
+{code}
+riaksearch start
+{code}
+
+To run Riak Search with an interactive Erlang console:
+
+{code}
+riaksearch console
+{code}
+
+Once your node has started, you can double-check that it is running using:
+
+{code}
+riaksearch ping
+{code}
+
+The command will respond with {{pong}} if the node is running, or {{pang}} if it is not.
