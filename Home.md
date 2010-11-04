@@ -36,7 +36,7 @@
   * [[Riak Search - Querying]]
   * [[Riak Search - Indexing and Querying Riak KV Data]]
   * [[Riak Search - Operations and Troubleshooting]]
-* [[Client Libraries and Community Code]]
+* [[Client Libraries]]
   * [[Community-Developed Libraries and Projects]]
   * [[Erlang Client PBC]]
 * [[The Riak Community]]
