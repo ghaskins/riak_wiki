@@ -61,4 +61,3 @@
 * [[Contact Basho]]
 * [[Sample Data]]
 * [[Benchmarking with Basho Bench]]
-* [[PDF Versions of the Wiki]]
