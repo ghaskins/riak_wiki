@@ -11,13 +11,12 @@
 
 html, body {
   height: 100%;
-  color: black;
+  color: black; 
 }
 
 body {
   background-color: #525c61;
-  font: 13.34px helvetica, arial, freesans, clean, sans-serif;
-  *font-size: small;
+  font: 10pt Verdana,Helvetica,Arial,sans-serif;
 }
 
 #head {
@@ -57,7 +56,6 @@ div.fixwidth {
 }
 
 #footer #address {
-    font-size: smaller;
     width: 100%;
     text-align: center;
     margin-top: 15px;
