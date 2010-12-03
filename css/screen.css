@@ -46,6 +46,14 @@ div.fixwidth {
     border: 0;
 }
 
+#sidebar {
+    float: left;
+    left: 15px;
+    position: relative;
+    width: 200px;
+    text-align: right;
+}
+
 #footer {
     color: #ffffff;
     padding-top: 5px;
@@ -175,6 +183,7 @@ html {overflow-y: scroll;}
 
     #guides .guide .main {
       width: 100%;
+      margin-left: 45px;
     }
     
     #main {
