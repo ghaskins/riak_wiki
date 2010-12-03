@@ -176,14 +176,14 @@ html {overflow-y: scroll;}
   /* guide */
 
   #guides .guide {
-    overflow: hidden;
+    overflow: hidden;   
+    width: 685px;     
   }
 
     /* main */
 
     #guides .guide .main {
-      width: 100%;
-      margin-left: 45px;
+      margin-left: 45px;      
     }
     
     #main {
@@ -225,6 +225,7 @@ html {overflow-y: scroll;}
     border-top: 4px solid #e6e6e6;
     padding-top: .3em;
     overflow: hidden;
+    margin-left: 45px;
   }
 
   /* write */
