@@ -1,0 +1,4 @@
+#rules needed to rewrite URLs from the old wiki
+RewriteRule ^/display/RIAK/([^\+].*)\+([^\+].*\+.*) /display/RIAK/$1-$2 [N]
+RewriteRule ^/display/RIAK/([^\+].*)\+([^\+].*)$ /$1-$2 [L,R=301]
+
