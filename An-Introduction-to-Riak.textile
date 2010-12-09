@@ -2,7 +2,9 @@ This section is a high level overview of concepts, technology choices, and imple
 
 
 
-{toc:maxlevel=2}
+
+<div id="toc"></div>
+
 
 
 
@@ -18,7 +20,7 @@ h6. Clients
 
 Basho supported Drivers are available for Erlang, Python, Java, PHP, Javascript, and Ruby.
 
-* [[Take a more in depth look at the Client Libraries|Client Libraries]]
+* [[Take a more in depth look at the Client Libraries|Client Libraries and Community Code]]
 
 h6. History
 
@@ -53,10 +55,10 @@ h6. Local Disk Storage
 
 As of the 0.12 release, Bitcask is the default backend for Riak. Bitcask is a simple yet powerful local key/value store that serves as Riak's low latency, high throughput storage back end.
 
-{info:title=More on Bitcask}
-* [Hello, Bitcask (from the Basho Blog)|http://blog.basho.com/2010/04/27/hello,-bitcask/]
-* [[An Architectural Overview of Bitcask (PDF)|http://downloads.basho.com/papers/bitcask-intro.pdf]]
-{info}
+
+<div class="info"><div class="title">More on Bitcask</div>* [Hello, Bitcask (from the Basho Blog)|http://blog.basho.com/2010/04/27/hello,-bitcask/]
+* [[An Architectural Overview of Bitcask (PDF)|http://downloads.basho.com/papers/bitcask-intro.pdf]]</div>
+
 
 h6. Pluggable Backends
 
@@ -77,7 +79,7 @@ Central to any Riak cluster is a 160-bit integer space which is divided into equ
 Physical servers, referred to in the cluster as "nodes," run a certain number of virtual nodes, or "vnodes". Each vnode will claim a partition on the ring. The number of active vnodes is determined by the number of physical nodes in the a cluster at any given time.
 
 As a rule, each node in the cluster is responsible for 1/(total number of physical nodes) of the ring. You can determine the number of vnodes on each node by calculating (number of partitions)/(number of nodes). More simply put, a ring with 32 partitions, composed of four physical nodes, will have approximately eight vnodes per node. This setup is represented in the diagram below.
-[[/images/riak-ring.png|width=550| align=center]]
+[[attachments/riak-ring.png|width=550| align=center]]
 
 Nodes can be added and removed from the cluster dynamically and Riak will redistribute the data accordingly.
 
@@ -109,7 +111,7 @@ Riak controls how many replicas of data are kept via a setting called the "N val
 
 For example, here is a depiction of what happens when n_val = 3 (This is the default setting). When you store a datum in a bucket with an N value of three, the datum will replicated to three separate partitions on the Riak Ring. 
 
-[[/images/riak-data-distribution.png|width=550| align=center]]
+[[attachments/riak-data-distribution.png|width=550| align=center]]
 
 * [[Configuring Replication in Riak|RIAK:Replication]]
 

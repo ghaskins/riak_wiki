@@ -1,0 +1,213 @@
+To avoid downtime of a Riak cluster we suggest performing upgrades in a rolling fashion. This process involves stopping, upgrading, and restarting one node at a time. This process is known to work as of Riak 0.12 (i.e. upgrading 0.12 to 0.13).
+
+
+<div id="toc"></div>
+
+
+h2. Debian/Ubuntu
+
+The following example demonstrates upgrading a Riak node that has been installed with the Debian packages provided by Basho.
+
+1. Stop Riak
+
+```bash
+riak stop
+```
+
+
+2. Backup Riak etc and data directories
+
+```bash
+sudo tar -czf riak_backup.tar.gz /var/lib/riak /etc/riak
+```
+
+
+3. Upgrade Riak
+
+```bash
+sudo dpkg -i <riak_package_name>.deb
+```
+
+
+4. Restart Riak
+
+```bash
+riak start
+```
+
+
+5. Verify Riak is running the new version
+
+```bash
+riak-admin status
+```
+
+
+6. Wait for the riak_kv service to start
+
+```bash
+riak-admin wait-for-service riak_kv <target_node>
+```
+
+
+* <target_node> is the node which you have just upgraded (e.g. riak@192.168.1.11)
+
+7. Wait for any hinted handoff transfers to complete
+
+```bash
+riak-admin transfers
+```
+
+
+* While the node was offline other nodes may have accepted writes on it's behalf. This data is transferred to the node when it becomes available.
+
+8. Repeat the process for the remaining nodes in the cluster
+
+
+h2. RHEL/Centos
+
+The following example demonstrates upgrading a Riak node that has been installed with the RHEL/Centos packages provided by Basho.
+
+1. Stop Riak
+
+```bash
+riak stop
+```
+
+
+2. Backup Riak etc and data directories
+
+```bash
+sudo tar -czf riak_backup.tar.gz /var/lib/riak /etc/riak
+```
+
+
+3. Upgrade Riak
+
+```bash
+sudo rpm -Uvh <riak_package_name>.rpm
+```
+
+
+4. Restart Riak
+
+```bash
+riak start
+```
+
+
+5. Verify Riak is running the new version
+
+```bash
+riak-admin status
+```
+
+
+6. Wait for the riak_kv service to start
+
+```bash
+riak-admin wait-for-service riak_kv <target_node>
+```
+
+
+* <target_node> is the node which you have just upgraded (e.g. riak@192.168.1.11)
+
+7. Wait for any hinted handoff transfers to complete
+
+```bash
+riak-admin transfers
+```
+
+
+* While the node was offline other nodes may have accepted writes on it's behalf. This data is transferred to the node when it becomes available.
+
+8. Repeat the process for the remaining nodes in the cluster
+
+
+h2. Solaris/OpenSolaris
+
+The following example demonstrates upgrading a Riak node that has been installed with the Solaris/OpenSolaris packages provided by Basho.
+
+1. Stop Riak
+
+```bash
+riak stop
+```
+
+
+
+<div class="note">If you are using the service management facility (SMF) to manage Riak you will have to stop Riak via "svcadm" instead of using "riak stop":
+
+```bash
+sudo svcadm disable riak
+```
+</div>
+
+
+2. Backup Riak etc and data directories
+
+```bash
+sudo gtar -czf riak_backup.tar.gz /opt/riak/data /opt/riak/etc
+```
+
+
+3. Uninstall Riak
+
+```bash
+sudo pkgrm BASHOriak
+```
+
+
+4. Install the new version of Riak
+
+```bash
+sudo pkgadd -d <riak_package_name>.pkg
+```
+
+
+
+<div class="note">If you are upgrading from Riak 0.12 you will have to restore the etc directory from the backups made in step 2. The 0.12 package removes the etc files when uninstalled.</div>
+
+
+4. Restart Riak
+
+```bash
+riak start
+```
+
+
+
+<div class="note">If you are using the SMF you should start Riak via "svcadm":
+
+```bash
+sudo svcadm enable riak
+```
+</div>
+
+
+5. Verify Riak is running the new version
+
+```bash
+riak-admin status
+```
+
+
+6. Wait for the riak_kv service to start
+
+```bash
+riak-admin wait-for-service riak_kv <target_node>
+```
+
+
+* <target_node> is the node which you have just upgraded (e.g. riak@192.168.1.11)
+
+7. Wait for any hinted handoff transfers to complete
+
+```bash
+riak-admin transfers
+```
+
+
+* While the node was offline other nodes may have accepted writes on it's behalf. This data is transferred to the node when it becomes available.
+
+8. Repeat the process for the remaining nodes in the cluster

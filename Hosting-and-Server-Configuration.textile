@@ -1,6 +1,8 @@
 {excerpt}These are some recommendations for how to design and configure your hosting setup for Riak.{excerpt}
 
-{toc}
+
+<div id="toc"></div>
+
 
 h2. Operating System
 

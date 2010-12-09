@@ -1,4 +1,6 @@
-{toc}
+
+<div id="toc"></div>
+
 
 h5. What is the Riak Fast Track?
 

@@ -3,7 +3,7 @@ _This is a list of companies, projects, organizations and consultancies (that we
 ----
 
 {section}
-{column:width=25%}[[/images/mozilla-foundation.png|align=center|width=110]]
+{column:width=25%}[[attachments/mozilla-foundation.png|align=center|width=110]]
 {column}
 
 {column:width=75%}
@@ -20,7 +20,7 @@ The Test Pilot Team is running multiple Riak clusters to gather user data and pe
 ----
 
 {section}
-{column:width=25%}[[/images/ws.png|align=center|vspace=35px]]
+{column:width=25%}[[attachments/ws.png|align=center|vspace=35px]]
 {column}
 
 {column:width=75%}
@@ -36,7 +36,7 @@ The Test Pilot Team is running multiple Riak clusters to gather user data and pe
 ----
 
 {section}
-{column:width=25%}[[/images/hitta.png|align=center|width=110]]
+{column:width=25%}[[attachments/hitta.png|align=center|width=110]]
 {column}
 
 {column:width:75%}
@@ -49,7 +49,7 @@ nodes and tolerates eventual consistency.
 	
 ----
 {section}
-{column:width=25%}[[/images/swingvine-dark.png|align=center|width=110]]
+{column:width=25%}[[attachments/swingvine-dark.png|align=center|width=110]]
 {column}
 
 {column:width=75%}
@@ -63,12 +63,10 @@ Based in Seatlle, [[SwingVine|http://swingvine.com]] helps you discover new musi
 {column}
 {section}
 
-
 ----
 
-
 {section}
-{column:width=25%}[[/images/rigel_group.png|align=center|width=175|vspace=35px]]
+{column:width=25%}[[attachments/rigel_group.png|align=center|width=175|vspace=35px]]
 {column}
 
 {column:width=75%}
@@ -85,7 +83,7 @@ Based in Seatlle, [[SwingVine|http://swingvine.com]] helps you discover new musi
 
 
 {section}
-{column:width=25%}[[/images/gastown_white.png|align=center|width=110|vspace=20px]]
+{column:width=25%}[[attachments/gastown_white.png|align=center|width=110|vspace=20px]]
 
 {column}
 
@@ -100,7 +98,7 @@ Gastown uses Riak behind their various web APIs to provide iPhone applications w
 ----
 
 {section}
-{column:width=25%}[[/images/wescom-logo-small.png|align=center|vspace=35px]]
+{column:width=25%}[[attachments/wescom-logo-small.png|align=center|vspace=35px]]
 {column}
 
 {column:width=75%}
@@ -114,7 +112,7 @@ Gastown uses Riak behind their various web APIs to provide iPhone applications w
 ----
 
 {section}
-{column:width=25%}[[/images/inagist.gif|align=center|width=110|vspace=45px]]
+{column:width=25%}[[attachments/inagist.gif|align=center|width=110|vspace=45px]]
 {column}
 
 {column:width:75%}
@@ -132,7 +130,7 @@ inagist uses Riak for archiving tweets and analyzing trends. With Riak, they are
 
 
 {section}
-{column:width=25%}[[/images/sensi-soft.png|align=center|width=100]]
+{column:width=25%}[[attachments/sensi-soft.png|align=center|width=100]]
 {column}
 
 {column:width=75%}
@@ -147,7 +145,7 @@ SensiSoft uses Riak as the datastore for its Web Archive application, used to st
 ----
 
 {section}
-{column:width=25%}[[/images/tma.png|align=center|width=200|vspace=60px]]
+{column:width=25%}[[attachments/tma.png|align=center|width=200|vspace=60px]]
 {column}
 
 {column:width=75%}
@@ -166,7 +164,7 @@ TMA currently uses Riak for two internal applications with plans to roll out a t
 
 
 {section}
-{column:width=25%}[[/images/dayfindr.png|align=center|width=200|vspace=35px]]
+{column:width=25%}[[attachments/dayfindr.png|align=center|width=200|vspace=35px]]
 {column}
 
 {column:width:75%}
@@ -179,7 +177,7 @@ TMA currently uses Riak for two internal applications with plans to roll out a t
 ----
 
 {section}
-{column:width=25%}[[/images/rock_of_gainesville.png|align=center|width=150|vspace=30px]]
+{column:width=25%}[[attachments/rock_of_gainesville.png|align=center|width=150|vspace=30px]]
 {column}
 
 {column:width=75%}
@@ -195,7 +193,7 @@ The Rock used Riak to build an SMS-ready, distributed sign-up system that enable
 ----
 
 {section}
-{column:width=25%}[[/images/Wegeo.png|align=center|width=180|vspace=30px]]
+{column:width=25%}[[attachments/Wegeo.png|align=center|width=180|vspace=30px]]
 {column}
 
 {column:width=75%}
@@ -207,10 +205,26 @@ We Geo uses Riak in its service layer to store a user's location-specific check-
 {column}
 {section}
 
+
 ----
 
 {section}
-{column:width=25%}[[/images/overnothing_logo.png|align=center|width=100|vspace=70px]]
+{column:width=25%}[[attachments/zaymobile.png|align=center|width=180|vspace=30px]]
+{column}
+
+{column:width=75%}
+
+[[ZayMobile Technology|http://zaymobiletech.com/]] is a technology-enabler based in Kuala Lumpur, Malaysia.  They provide Web, WAP and Mobile solutions with a particular focus in Mobile Messaging.  
+
+*From Principal Partner Zafua Adian Yahaya*: "Our messaging gateway currently connected to the three main local mobile network operators uses Riak extensively for all our internal transactions. Riak is also used in our specialized, telco-grade, mission-critical systems in the Operational Support Systems (OSS), as well as in the Business Support Systems (BSS) areas."
+
+{column}
+{section}
+----
+
+
+{section}
+{column:width=25%}[[attachments/overnothing_logo.png|align=center|width=100|vspace=70px]]
 {column}
 
 {column:width=75%}
@@ -224,6 +238,38 @@ There are a several web and API applications that run off of the Postgresql data
 
 There are many background processes (some services, some run run as cronjobs) which query the Postgresql database server in order to extract data sets, potentially very large.  These extracted data sets are stored in Riak. After the data sets are stored in the Riak system, there are several reporting / aggregating (long running) processes which load the data sets from Riak. The processes compute their results and then store them back in Riak either for further processing or for retrieval. Riak keys for the results are sent to the Postgresql system thus linking the Riak result sets with the Entities they are related to in Postgresql."
 
+
+{column}
+{section}
+
+----
+
+{section}
+{column:width=25%}[[attachments/excel59logo.png|align=center|width=100]]
+{column}
+
+{column:width=75%}
+
+[[Excel Collaborations & Communications (or XL59)|http://xl59.com]] is a hosted collaborations and communications platform service provider based in China. 
+
+XL59 uses Riak as a distributed data store in its cloud-based data distribution model. The data access layer of the XL59 Platform is formed by a Riak cluster playing the role of edge data servers that interact with centralized PostgreSQL servers.
+
+
+{column}
+{section}
+
+----
+
+
+{section}
+{column:width=25%}[[attachments/ask_logo.gif|align=center|width=180|vspace=20px]]
+{column}
+
+{column:width=75%}
+
+[[Ask Sponsored Listings|http://sponsoredlistings.ask.com/]] is the search engine marketing extension of Ask.com, a top tier search engine.  
+
+*From VP of Technology David Weldon* : "We are currently using Riak to store publisher configuration data and click statistics for our direct navigation products. I sleep well at night knowing that my system is fault-tolerant."
 
 {column}
 {section}

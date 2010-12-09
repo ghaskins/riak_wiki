@@ -2,10 +2,12 @@ The following steps should get you up and running with Riak on Centos or Redhat.
 
 h2. From our custom .rpm package
 
-{code}
+
+```bash
 $ wget http://downloads.basho.com/riak/riak-0.13/riak-0.13.0-2.el5.x86_64.rpm
 $ sudo rpm -Uvh riak-0.13.0-2.el5.x86_64.rpm
-{code}
+```
+
 
 h2. From source
 
@@ -19,18 +21,22 @@ make
 
 You can install these with yum:
 
-{code}
+
+```bash
 $ sudo yum install gcc gcc-c++ glibc-devel make
-{code}
+```
+
 
 Now we can download and install Riak:
 
-{code}
+
+```bash
 $ wget http://downloads.basho.com/riak/riak-0.13/riak-0.13.0.tar.gz
 $ tar zxvf riak-0.13.0.tar.gz
 $ cd riak
 $ make rel
-{code}
+```
+
 
 There should now be a fresh build of Riak in the rel/riak directory.
 

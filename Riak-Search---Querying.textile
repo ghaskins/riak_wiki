@@ -4,6 +4,10 @@ Riak Search follows the same query syntax as Lucene, detailed here:
 
    http://lucene.apache.org/java/2_4_0/queryparsersyntax.html
 
+
+<div class="info"><div class="title">A Note on Integer Padding</div>With the current defaults, Search pads all integers to 10 characters during indexing, and you must manually pad integers to 10 characters in your queries.</div>
+
+
 h4. Terms and Phrases
 
 A query can be as simple as a single term (ie: "red") or a series of terms surrounded by quotes called a phrase ("See spot run"). The term (or phrase) is analyzed using the default analyzer for the index.
@@ -14,27 +18,39 @@ h4. Fields
 
 You can specify a field to search by putting it in front of the term or phrase to search. For example:
 
-{code:none} 
+
+```bash
+ 
 color:red
-{code}
+```
+
 
 Or:
 
-{code:none} 
+
+```bash
+ 
 title:"See spot run"
-{code}
+```
+
 
 You can further specify an index by prefixing the field with the index name. For example:
 
-{code:none} 
+
+```bash
+ 
 products.color:red
-{code}
+```
+
 
 Or:
 
-{code:none} 
+
+```bash
+ 
 books.title:"See spot run"
-{code}
+```
+
 
 h4. Wildcard Searches
 
@@ -49,21 +65,29 @@ For example:
 
 h4. Fuzzy Searches
 
-*NOTE:* Fuzzy Searches are not yet supported.
+
+<div class="note">Fuzzy Searches are not yet supported.</div>
+
 
 Fuzzy searching allows you to find terms with similar spelling. To specify a fuzzy search, use the tilde operator on a single term with an optional fuzziness argument. (If no fuzziness argument is specified, then 0.5 is used by default.)
 
 For example:
 
-{code:none} 
+
+```bash
+ 
 bass~
-{code}
+```
+
 
 Is equivalent to:
 
-{code:none} 
+
+```bash
+ 
 bass~0.5
-{code}
+```
+
 
 And will match "bass" as well as "bask", "bats", "bars", etc. The fuzziness argument is a number between 0.0 and 1.0. Values close to 0.0 result in more fuzziness, values close to 1.0 result in less fuzziness.
 
@@ -73,9 +97,12 @@ Proximity searching allows you to find terms that are within a certain number of
 
 For example:
 
-{code:none} 
+
+```bash
+ 
 "See spot run"~20
-{code}
+```
+
 
 Will find documents that have the words "see", "spot", and "run" all within the same block of 20 words.
 
@@ -85,15 +112,21 @@ Range searches allow you to find documents with terms in between a specific rang
 
 The following example will return documents with words containing "red" and "rum", plus any words in between.
 
-{code:none} 
+
+```bash
+ 
 "field:[[red TO rum]]"
-{code}
+```
+
 
 The following example will return documents with words in between "red" and "rum":
 
-{code:none} 
+
+```bash
+ 
 "field:{red TO rum}"
-{code}
+```
+
 
 h4. Boosting a Term
 
@@ -101,9 +134,12 @@ A term (or phrase) can have its score boosted using the caret operator along wit
 
 In the following example, documents with the term "red" will have their score boosted:
 
-{code:none} 
+
+```bash
+ 
 red^5 OR blue
-{code}
+```
+
 
 h4. Boolean Operators - AND, OR, NOT
 
@@ -111,31 +147,43 @@ Queries can use the boolean operators AND, OR, and NOT. The boolean operators mu
 
 The following example return documents containing the words "red" and "blue" but not "yellow".
 
-{code:none} 
+
+```bash
+ 
 red AND blue AND NOT yellow
-{code}
+```
+
 
 The required ( + ) operator can be used in place of "AND", and the prohibited ( - ) operator can be used in place of "AND NOT". For example, the query above can be rewritten as:
 
-{code:none} 
+
+```bash
+ 
 +red +blue -yellow
-{code}
+```
+
 
 h4. Grouping
 
 Clauses in a query can be grouped using parentheses. The following query returns documents that contain the terms "red" or "blue", but not "yellow":
 
-{code:none} 
+
+```bash
+ 
 (red OR blue) AND NOT yellow
-{code}
+```
+
 
 h3. Querying via the Search Shell
 
 The Search Shell is the easiest way to run interactive queries against Riak Search. To start the shell, run:
 
-{code:bash} 
+
+```bash
+ 
 bin/search-cmd shell [[INDEX]]
-{code}
+```
+
 
 This launches an interactive console into which you can type search commands. For help, type {{h()}}.
 
@@ -144,35 +192,50 @@ h3. Querying via the Command Line
 
 To run a single query from the command line, use:
 
-{code:bash} 
+
+```bash
+ 
 bin/search-cmd search [[INDEX]] QUERY
-{code}
+```
+
 
 For example:
 
-{code:bash} 
+
+```bash
+ 
 bin/search-cmd search books "title:\"See spot run\""
-{code}
+```
+
 
 This will display a list of Document ID values matching the query. To conduct a document search, use the {{search\_doc}} command. For example:
 
-{code:bash} 
+
+```bash
+ 
 bin/search-cmd search_doc books "title:\"See spot run\""
-{code}
+```
+
 
 h3. Querying via the Erlang Command Line
 
 To run a query from the Erlang shell, use {{search:search(Query)}} or {{search:search(Index, Query)}}. For example:
 
-{code} 
+
+```bash
+ 
 search:search(<<"books">>, <<"author:joyce">>).
-{code}
+```
+
 
 This will display a list of Document ID values matching the query. To conduct a document search, use {{search:search_doc(Query)}} or {{search:search_doc(Index, Query)}}. For example:
 
-{code} 
+
+```bash
+ 
 search:search_doc(<<"books">>, <<"author:joyce">>).
-{code}
+```
+
 
 h3. Querying via the Solr Interface
 
@@ -193,13 +256,18 @@ The following parameters are supported:
 
 To query data in the system with Curl:
 
-{code:bash} 
+
+```bash
+ 
 curl "http://localhost:8098/solr/books/select?start=0&rows=10000&q=prog*"
-{code}
+```
+
 
 h3. Faceted Queries via the Solr Interfae
 
-*NOTE:* Facet querying through the Solr interface is not yet supported.
+
+<div class="note">Facet querying through the Solr interface is not yet supported.</div>
+
 
 Faceted search allows you to generate keywords (plus counts) to display to a user to drill down into search results.
 
@@ -234,24 +302,28 @@ Developers who are using a language without an official Riak API or prefer to us
 
 The syntax is fairly simple.  In the {{inputs}} section of your map/reduce query, use the new {{modfun}} specification, naming {{riak\_search}} as your module, {{mapred\_search}} as your function, and your index and query as the arguments.
  
-For example, if you wanted to search the "article" bucket for objects that had the word "seven" in their "text" field, you would normally issue a Solr query like:
+For example, if you wanted to search the "customers" bucket for objects that had the text "john" in their "first_name" field, you would normally issue a Solr query like:
  
-{code:bash}
-$ curl http://localhost:8098/solr/article/select?q=text:seven
-{code}
+
+```bash
+$ curl http://localhost:8098/solr/customers/select?q=first_name:john
+```
+
 
 Kicking off a map/reduce query with the same result set over HTTP would use a POST body like this:
 
-{code:javascript}
+
+```javascript
 {
   "inputs": {
              "module":"riak_search",
              "function":"mapred_search",
-             "arg":["article","text:seven"]
+             "arg":["customers","first_name:john"]
             },
   "query":...
  }
-{code}
+```
+
 
 The phases in the "query" field should be exactly the same as usual.  An initial map phase will be given each object matching the search for processing, but an initial link phase or reduce phase will also work.
 

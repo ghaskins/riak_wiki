@@ -2,7 +2,9 @@
 
 This page is a listing of people who have contributed or are currently contributing to our code base and our wiki. We just wanted to say "Thanks!"
 
-{toc}
+
+<div id="toc"></div>
+
 
 For more information on how to contribute, have a look at [[Code Submission and Integration]] and [[Contributing to the Riak Wiki]].
 
@@ -45,7 +47,7 @@ h3. Code Contributors
 * Scott Lystig Fritchie
 * John Lynch
 * Misha Gorodnitzky
-* Nicolas Fouché
+* Nicolas FouchÃ©
 * Ashley Woodard
 * Shay Frendt
 * Duff OMelia
@@ -59,7 +61,7 @@ h3. Community Editors
 Community Editors are non-basho hackers who have write access to the Riak Wiki. 
 
 * [[Scott Gonyea|http://twitter.com/acts_as]]
-* [[Mårten Gustafson|http://twitter.com/martengustafson]]
+* [[MÃ¥rten Gustafson|http://twitter.com/martengustafson]]
 * [[Seth Falcon|http://twitter.com/sfalcon]]
 * [[Alexander Sicular|http://twitter.com/siculars]]
 

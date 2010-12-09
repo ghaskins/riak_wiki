@@ -11,22 +11,28 @@ h2. {anchor:startup} Starting up
 
 To start up a Riak node, change directory as necessary to where you installed Riak (in the source directory, it's {{rel/riak/bin}}) and run the {{riak}} command like so:
 
-{code}
+
+```bash
 $ riak start
-{code}
+```
+
 
 To run Riak with an interactive Erlang console:
 
-{code}
+
+```bash
 $ riak console
-{code}
+```
+
 
 Once your node has started, you can double-check that it is running using:
 
-{code}
+
+```bash
 $ riak ping
 pong
-{code}
+```
+
 
 The command will respond with {{pong}} if the node is running, or {{pang}} if it is not.
 
@@ -34,13 +40,16 @@ h2. {anchor:doesitwork} Does it work?
 
 The easiest way to test whether Riak is working is to use the {{curl}} command-line tool.  Now that you have Riak running on your local machine, run this command:
 
-{code}
+
+```bash
 $ curl -v http://127.0.0.1:8098/riak/test
-{code}
+```
+
 
 You should get a response that looks like this:
 
-{code}
+
+```bash
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected
 * Connected to 127.0.0.1 (127.0.0.1) port 8098 (#0)
@@ -58,12 +67,14 @@ You should get a response that looks like this:
 <
 * Connection #0 to host 127.0.0.1 left intact
 * Closing connection #0
-{"props":{"name":"test","allow_mult":false,"big_vclock":50,"chash_keyfun":{"mod":"riak_util","fun":"chash_std_keyfun"},"linkfun":{"mod":"raw_link_walker_resource","fun":"mapreduce_linkfun"},"n_val":3,"old_vclock":86400,"small_vclock":10,"young_vclock":20},"keys":[]}{code}
+{"props":{"name":"test","allow_mult":false,"big_vclock":50,"chash_keyfun":{"mod":"riak_util","fun":"chash_std_keyfun"},"linkfun":{"mod":"raw_link_walker_resource","fun":"mapreduce_linkfun"},"n_val":3,"old_vclock":86400,"small_vclock":10,"young_vclock":20},"keys":[]}
+```
+
 
 h2. Now what?
 
 You have a working Riak system\!  From here you might want to check out:
-* [[Client Libraries for connecting Riak to your favorite programming language|Client Libraries]]
+* [[Client Libraries for connecting Riak to your favorite programming language|Client Libraries and Community Code]]
 * [[Add more nodes to your Riak cluster|RIAK:Basic Cluster Setup]]
 * [[The high level overview of the Riak design and functionality|RIAK:An Introduction to Riak]]
 * [[The more in depth look at how Riak works|How Things Work]].

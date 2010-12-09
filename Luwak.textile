@@ -1,4 +1,6 @@
-{toc:maxlevel=3|indent=1.5em}
+
+<div id="toc"></div>
+
 
 h2. About Luwak
 
@@ -7,24 +9,30 @@ Luwak is an application built on top of Riak that provides functionality for man
 h2. Enabling Luwak
 
 Luwak can be enabled in Riak's {{app.config}} file. As of version 0.13 a new section has been added to the {{app.config}} file for Luwak:
-{code}
+
+```bash
 {luwak, [{enabled, false}]}
-{code}
+```
+
 
 To enable Luwak set the {{enabled}} property to {{true}} and restart Riak:
-{code}
+
+```bash
 {luwak, [{enabled, true}]}
-{code}
+```
+
 
 h2. Configuring Luwak
 
 Luwak, by default, is accessible from the {{/luwak}} endpoint of Riak (i.e. http://127.0.0.1:8098/luwak). This endpoint is configurable via the {{prefix}} property in the Luwak section of {{app.config}};
-{code}
+
+```bash
 {luwak,
  [{enabled, true},
   {prefix, "different_luwak_prefix"}
 ]}
-{code}
+```
+
 
 h2. Luwak Operations
 
@@ -36,9 +44,11 @@ Reads a Luwak file
 
 h4. Request
 
-{code}
+
+```bash
 GET /luwak/key
-{code}
+```
+
 
 Important headers:
 * {{Range}} \- request a portion of the object, i.e. a range of bytes
@@ -63,7 +73,8 @@ Important headers:
 The body of the response will be the contents of the file.
 
 h4. Simple Example
-{code}
+
+```bash
 $ curl -i http://localhost:8098/luwak/key
 HTTP/1.1 200 OK
 X-Riak-Meta-Test: test
@@ -75,7 +86,8 @@ Date: Mon, 11 Oct 2010 09:13:16 GMT
 Content-Type: application/json
 
 Hello World
-{code}
+```
+
 
 h3. Store a file without a key
 
@@ -83,9 +95,11 @@ Stores a new file with a random Luwak-assigned key.
 
 h4. Request
 
-{code}
+
+```bash
 POST /luwak
-{code}
+```
+
 
 Important headers:
 * {{Content-Type}} must be set for the stored object. Set what you expect to receive back when next requesting it.
@@ -106,7 +120,8 @@ Important headers:
 
 h4. Example
 
-{code}
+
+```bash
 $ curl -i -d 'this is a test' -H "Content-Type: text/plain" http://127.0.0.1:8098/luwak
 HTTP/1.1 201 Created
 Vary: Accept-Encoding
@@ -116,7 +131,8 @@ Date: Mon, 11 Oct 2010 09:19:57 GMT
 Content-Type: application/json
 Content-Length: 0
 
-{code}
+```
+
 
 h3. Store a new or existing file with a key
 
@@ -124,9 +140,11 @@ Stores a file with an existing or user-defined key.
 
 h4. Request
 
-{code}
+
+```bash
 PUT /luwak/key
-{code}
+```
+
 
 {{POST}} is also a valid verb, for compatibility's sake.
 
@@ -144,7 +162,8 @@ Typical error codes:
 
 h4. Example
 
-{code}
+
+```bash
 $ curl -i -X PUT -d '{"bar":"baz"}' -H "Content-Type: application/json" http://127.0.0.1:8098/luwak/file.json
 HTTP/1.1 204 No Content
 Vary: Accept-Encoding
@@ -153,7 +172,8 @@ Date: Mon, 11 Oct 2010 09:22:21 GMT
 Content-Type: application/json
 Content-Length: 0
 
-{code}
+```
+
 
 h3. Delete file
 
@@ -161,9 +181,11 @@ Deletes a file.
 
 h4. Request
 
-{code}
+
+```bash
 DELETE /luwak/key
-{code}
+```
+
 
 h4. Response
 
@@ -176,7 +198,8 @@ Typical error codes:
 
 h4. Example
 
-{code}
+
+```bash
 $ curl -i -X DELETE http://127.0.0.1:8098/luwak/file.json
 file.jsonHTTP/1.1 204 No Content
 Vary: Accept-Encoding
@@ -185,4 +208,4 @@ Date: Mon, 11 Oct 2010 09:23:38 GMT
 Content-Type: application/json
 Content-Length: 0
 
-{code}
+```

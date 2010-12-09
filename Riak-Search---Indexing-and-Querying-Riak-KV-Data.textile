@@ -6,17 +6,21 @@ Riak Search indexing of KV data must be enabled on a per-KV-bucket basis.  To en
 
 Adding the Search precommit hook to a bucket from the command line is easy:
 
-{code:bash}
+
+```bash
 bin/search-cmd install my_bucket_name
-{code}
+```
+
 
 Any other method you would normally use to set bucket properties can also be used to enable the Search precommit hook as well.  For example, using curl to install over HTTP:
 
-{code:bash}
+
+```bash
 curl -X PUT -H "content-type:application/json" http://localhost:8098/riak/demo2 --data @-
 {"props":{"precommit":[{"mod":"riak_search_kv_hook","fun":"precommit"}]}}
 ^D
-{code}
+```
+
 
 Note, though, that you may want to read the bucket properties first, so you don't clobber any precommit hook already in place.
 
@@ -30,11 +34,13 @@ h4. JSON Encoded Data
 
 If your data is in JSON format, set your Content-Type to "application/json", "application/x-javascript", "text/javascript", "text/x-javascript", or "text/x-json".
 
-Specifying that your data is in JSON format will cause Riak Search to use the field names of the JSON object as index field names.  Nested objects will use underscore ('_') as a field name separator.
+Specifying that your data is in JSON format will cause Riak Search to use the field names of the JSON object as index field names.  Nested objects will use underscore ('_') as a field name separator. (The underscore was chosen because the character is not currently reserved by Lucene syntax. People have suggested using a period, but we have that reserved for other things.)
+
 
 For example, storing the following JSON object in a Search-enabled bucket:
 
-{code:javascript}
+
+```javascript
 {
  "name":"Alyssa P. Hacker"
  "bio":"I'm an engineer, making awesome things."
@@ -43,7 +49,8 @@ For example, storing the following JSON object in a Search-enabled bucket:
               "album":"Magical Mystery Tour",
              }
 }
-{code}
+```
+
 
 Would cause four fields to be indexed: "name", "bio", "favorites_book", and "favorites_album".  You could later query this data with queries like, "bio:enginer AND favorites_album:mystery".
 
@@ -55,7 +62,8 @@ Specifying that your data is in plain-text format will cause Riak Search to use 
 
 For example, storing the following XML object in a Search-enabled bucket:
 
-{code:xml}
+
+```xml
 <?xml version="1.0"?>
 <person>
    <name>Alyssa P. Hacker</name>
@@ -65,7 +73,8 @@ For example, storing the following XML object in a Search-enabled bucket:
       <item type="album">Magical Mystery Tour</item>
    </favorites>
 </person>
-{code}
+```
+
 
 Would cause four fields to be indexed: "person_name", "person_bio", "person_favorites_item", and "person_favorite_item@type".  The values of the "..._item" and "..._item@type" fields will be the concatenation of the two distinct elements in the object ("The Moon is a Harsh Mistress Magical Mystery Tour" and "book album", respectively).  You could later query this data with queries like, "person_bio:enginer AND person_favorites_item:mystery".
 
@@ -99,21 +108,25 @@ Any of the extractor forms must name a function that takes two arguments.  The f
 
 The extractor function is expected to produce a list of field-name:value pairs.  Erlang functions should do this with a list of 2-tuples, with each element being a binary, as in:
 
-{code:javascript}
+
+```javascript
 [
  {<<"field1">>,<<"value1">>},
  {<<"field2">>,<<"value2">>}
 ]
-{code}
+```
+
 
 Javascript functions should return their results with an object, as in:
 
-{code:javascript}
+
+```javascript
 {
  "field1":"value1",
  "field2":"value2"
 }
-{code}
+```
+
 
 The modules riak_search_kv_json_extractor, riak_search_kv_xml_extractor, and riak_search_kv_raw_extractor should be referred to for examples.
 

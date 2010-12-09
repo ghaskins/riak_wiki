@@ -1,20 +1,24 @@
 This is an overview of the operations you can perform over the HTTP interface to Riak, and can be used as a guide for developing a compliant client.  All URLs assume the default configuration values where applicable.  All examples use curl.
 
-{note:title=Client ID}
-All requests should include the {{X-Riak-ClientId}} header, which can be any string that uniquely identifies the client, for purposes of tracing object modifications in the [[vector clock|Riak Glossary#Vector Clock]].
-{note}
 
-{note:title=URL Escaping}Buckets, keys, and link specifications may not contain unescaped slashes. Use a URL-escaping library or replace slashes with %2F.{note}
+<div class="note"><div class="title">Client ID</div>All requests should include the {{X-Riak-ClientId}} header, which can be any string that uniquely identifies the client, for purposes of tracing object modifications in the [[vector clock|Riak Glossary#Vector Clock]].</div>
 
-{toc:maxlevel=3|indent=1.5em}
+
+
+<div class="note"><div class="title">URL Escaping</div>Buckets, keys, and link specifications may not contain unescaped slashes. Use a URL-escaping library or replace slashes with %2F.</div>
+
+
+
+<div id="toc"></div>
+
 
 h2. Bucket operations
 
 Buckets in Riak are a virtual concept. They exist primarily as a namespace mechanism and as a mechanism to isolate specific behavior changes that deviate from the default bucket settings. For example, you may augment the number of replicas, the specific file store backend and commit hooks at the bucket level. Currently, Buckets come with virtually no cost except for when you modify the default bucket properties. Modified Bucket properties are gossiped around the cluster and therefore add to the amount of data sent around the network. 
 
-{note:title=Delete Buckets}
-At the moment there is no straightforward way to delete an entire Bucket. There is, however, an open ticket for the feature. To delete all the keys in a bucket, you'll need to delete them all individually.
-{note}
+
+<div class="note"><div class="title">Delete Buckets</div>At the moment there is no straightforward way to delete an entire Bucket. There is, however, an open ticket for the feature. To delete all the keys in a bucket, you'll need to delete them all individually.</div>
+
 
 h3. Read bucket information
 
@@ -22,9 +26,11 @@ Reads the bucket properties and/or keys.
 
 h4. Request
 
-{code}
+
+```bash
 GET /riak/bucket
-{code}
+```
+
 
 Optional query parameters:
 * {{props=\[[true\|false\]]}} \- whether to return the bucket properties ({{true}} is the default)
@@ -44,7 +50,8 @@ If {{keys=stream}}, the response will be transferred using chunked-encoding, whe
 
 h4. Example
 
-{code}
+
+```bash
 $ curl -v http://127.0.0.1:8098/riak/test
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected
@@ -64,7 +71,8 @@ $ curl -v http://127.0.0.1:8098/riak/test
 * Connection #0 to host 127.0.0.1 left intact
 * Closing connection #0
 {"props":{"name":"test","n_val":3,"allow_mult":false,"last_write_wins":false,"precommit":[],"postcommit":[],"chash_keyfun":{"mod":"riak_core_util","fun":"chash_std_keyfun"},"linkfun":{"mod":"riak_kv_wm_link_walker","fun":"mapreduce_linkfun"},"old_vclock":86400,"young_vclock":20,"big_vclock":50,"small_vclock":10,"r":"quorum","w":"quorum","dw":"quorum","rw":"quorum"}}
-{code}
+```
+
 
 h3. Set bucket properties
 
@@ -72,9 +80,11 @@ Sets bucket properties like {{n_val}} and {{allow_mult}}.
 
 h4. Request
 
-{code}
+
+```bash
 PUT /riak/bucket
-{code}
+```
+
 
 Important headers:
 * {{Content-Type}} \- {{application/json}}
@@ -110,7 +120,8 @@ If successful, no content will be returned in the response body.
 
 h4. Example
 
-{code}
+
+```bash
 $ curl -v -X PUT -H "Content-Type: application/json" -d '{"props":{"n_val":5}}' http://127.0.0.1:8098/riak/test
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected
@@ -131,7 +142,8 @@ $ curl -v -X PUT -H "Content-Type: application/json" -d '{"props":{"n_val":5}}' 
 <
 * Connection #0 to host 127.0.0.1 left intact
 * Closing connection #0
-{code}
+```
+
 
 h2. Object/Key operations
 
@@ -141,9 +153,11 @@ Reads an object from a bucket.
 
 h4. Request
 
-{code}
+
+```bash
 GET /riak/bucket/key
-{code}
+```
+
 
 Important headers:
 * {{Accept}} \- When "multipart/mixed" is the preferred content-type, objects with siblings will return all siblings in single request. See [[#Get all siblings in one request]] example. See also RFC 2616 - [[Accept header definition|http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1]].
@@ -177,17 +191,18 @@ Important headers:
 
 The body of the response will be the contents of the object except when [[#siblings]] are present.
 
-{note:title=Siblings}
-{anchor:siblings}
+
+<div class="note"><div class="title">Siblings</div>{anchor:siblings}
 When {{allow_mult}} is set to true in the [[bucket properties|#Set bucket properties]], concurrent updates are allowed to create "sibling" objects, meaning that the object has any number of different values that are related to one another by the vector clock.  This allows your application to use its own conflict resolution technique.
 
 An object with multiple values will result in a {{300 Multiple Choices}} response.  If the {{Accept}} header prefers "multipart/mixed", all siblings will be returned in a single request as chunks of the "mulitpart/mixed" response body.  Otherwise, a list of "vtags" will be given in a simple text format. You can request individual siblings by adding the {{vtag}} query parameter. See the [[#Siblings examples]] for more information.
 
-To resolve the conflict, [[store|#Store a new or existing object with a key]] the resolved version with the {{X-Riak-Vclock}} given in the response.
-{note}
+To resolve the conflict, [[store|#Store a new or existing object with a key]] the resolved version with the {{X-Riak-Vclock}} given in the response.</div>
+
 
 h4. Simple Example
-{code}
+
+```bash
 $ curl -v http://127.0.0.1:8098/riak/test/doc2
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected
@@ -211,12 +226,14 @@ $ curl -v http://127.0.0.1:8098/riak/test/doc2
 * Connection #0 to host 127.0.0.1 left intact
 * Closing connection #0
 {"foo":"bar"}
-{code}
+```
+
 
 h4. Siblings examples
 
 h5. Manually requesting siblings
-{code}
+
+```bash
 $ curl -v http://127.0.0.1:8098/riak/test/doc
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected
@@ -265,10 +282,12 @@ $ curl -v http://127.0.0.1:8098/riak/test/doc?vtag=16vic4eU9ny46o4KPiDz1f
 * Connection #0 to host 127.0.0.1 left intact
 * Closing connection #0
 {"bar":"baz"}
-{code}
+```
+
 
 h5. Get all siblings in one request
-{code}
+
+```bash
 $ curl -v http://127.0.0.1:8098/riak/test/doc -H "Accept: multipart/mixed"
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected
@@ -318,7 +337,8 @@ Last-Modified: Wed, 10 Mar 2010 17:55:03 GMT
 --YinLMzyUR9feB17okMytgKsylvh--
 * Connection #0 to host 127.0.0.1 left intact
 * Closing connection #0
-{code}
+```
+
 
 h3. Store a new object without a key
 
@@ -326,9 +346,11 @@ Stores a new object in a bucket with a random Riak-assigned key.
 
 h4. Request
 
-{code}
+
+```bash
 POST /riak/bucket
-{code}
+```
+
 
 Important headers:
 * {{Content-Type}} must be set for the stored object. Set what you expect to receive back when next requesting it.
@@ -358,7 +380,8 @@ If {{returnbody=true}}, any of the response headers expected from [[#Read object
 
 h4. Example
 
-{code}
+
+```bash
 $ curl -v -d 'this is a test' -H "Content-Type: text/plain" http://127.0.0.1:8098/riak/test
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected
@@ -380,7 +403,8 @@ $ curl -v -d 'this is a test' -H "Content-Type: text/plain" http://127.0.0.1:809
 <
 * Connection #0 to host 127.0.0.1 left intact
 * Closing connection #0
-{code}
+```
+
 
 h3. Store a new or existing object with a key
 
@@ -388,9 +412,11 @@ Stores an object in a bucket with an existing or user-defined key.
 
 h4. Request
 
-{code}
+
+```bash
 PUT /riak/bucket/key
-{code}
+```
+
 
 {{POST}} is also a valid verb, for compatibility's sake.
 
@@ -424,7 +450,8 @@ If {{returnbody=true}}, any of the response headers expected from [[#Read object
 
 h4. Example
 
-{code}
+
+```bash
 $ curl -v -X PUT -d '{"bar":"baz"}' -H "Content-Type: application/json" -H "X-Riak-Vclock: a85hYGBgzGDKBVIszMk55zKYEhnzWBlKIniO8mUBAA==" http://127.0.0.1:8098/riak/test/doc?returnbody=true
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected
@@ -449,7 +476,8 @@ $ curl -v -X PUT -d '{"bar":"baz"}' -H "Content-Type: application/json" -H "X-Ri
 * Connection #0 to host 127.0.0.1 left intact
 * Closing connection #0
 {"bar":"baz"}
-{code}
+```
+
 
 h3. Delete object
 
@@ -457,9 +485,11 @@ Deletes an object from a bucket.
 
 h4. Request
 
-{code}
+
+```bash
 DELETE /riak/bucket/key
-{code}
+```
+
 
 Optional query parameters:
 * {{rw}} \- quorum for both operations (get and put) involved in deleting an object. ([[default is defined by the bucket|#Set bucket properties]])
@@ -477,7 +507,8 @@ Typical error codes:
 
 h4. Example
 
-{code}
+
+```bash
 $ curl -v -X DELETE http://127.0.0.1:8098/riak/test/test2
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected
@@ -496,7 +527,8 @@ $ curl -v -X DELETE http://127.0.0.1:8098/riak/test/test2
 <
 * Connection #0 to host 127.0.0.1 left intact
 * Closing connection #0
-{code}
+```
+
 
 h2. Query operations
 
@@ -506,19 +538,21 @@ Link walking finds and returns objects by following links attached to them, star
 
 h4. Request
 
-{code}
-GET /riak/bucket/key/[[link specs+]]
-{code}
 
-{info:title=Link specifications}
-A link specification within the request URL is made of three parts:
+```bash
+GET /riak/bucket/key/[[link specs+]]
+```
+
+
+
+<div class="info"><div class="title">Link specifications</div>A link specification within the request URL is made of three parts:
 
 * Bucket - a bucket name to limit the links to
 * Tag - a "riaktag" to limit the links to
 * Keep - 0 or 1, whether to return results from this phase
 
-Any of the three parts may be replaced with "{_}", signifying that any value is valid. Multiple phases of links can be followed by adding additional path segments to the URL, separating the link specifications by slashes. The final phase in the link-walking query implicitly returns its results.
-{info}
+Any of the three parts may be replaced with "{_}", signifying that any value is valid. Multiple phases of links can be followed by adding additional path segments to the URL, separating the link specifications by slashes. The final phase in the link-walking query implicitly returns its results.</div>
+
 
 h4. Response
 
@@ -532,13 +566,14 @@ Typical error codes:
 Important headers:
 * {{Content-Type}} \- always {{multipart/mixed}}, with a boundary specified
 
-{note:title=Understanding the response body}
-The response body will always be multipart/mixed, with each chunk representing a single phase of the link-walking query.  Each phase will also be encoded in {{multipart/mixed}}, with each chunk representing a single object that was found. If no objects were found or "keep" was not set on the phase, no chunks will be present in that phase.  Objects inside phase results will include {{Location}} headers that can be used to determine bucket and key. In fact, you can treat each object-chunk similarly to a complete response from [[#Read object]], without the status code.
-{note}
+
+<div class="note"><div class="title">Understanding the response body</div>The response body will always be multipart/mixed, with each chunk representing a single phase of the link-walking query.  Each phase will also be encoded in {{multipart/mixed}}, with each chunk representing a single object that was found. If no objects were found or "keep" was not set on the phase, no chunks will be present in that phase.  Objects inside phase results will include {{Location}} headers that can be used to determine bucket and key. In fact, you can treat each object-chunk similarly to a complete response from [[#Read object]], without the status code.</div>
+
 
 h4. Example
 
-{code}
+
+```bash
 $ curl -v http://127.0.0.1:8098/riak/test/doc3/test,_,1/_,next,1
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected
@@ -587,7 +622,8 @@ Last-Modified: Wed, 10 Mar 2010 18:11:41 GMT
 --JZi8W8pB0Z3nO3odw11GUB4LQCN--
 * Connection #0 to host 127.0.0.1 left intact
 * Closing connection #0
-{code}
+```
+
 
 h3. MapReduce
 
@@ -595,9 +631,11 @@ MapReduce is a generic way to query Riak by specifying inputs and constructing a
 
 h4. Request
 
-{code}
+
+```bash
 POST /mapred
-{code}
+```
+
 
 Important headers:
 * {{Content-Type}} \- must always be {{application/json}}.  The format of the request body is described in detail on the [[MapReduce]] page.
@@ -618,7 +656,8 @@ Important headers:
 
 h4. Example
 
-{code}
+
+```bash
 $ curl -v -d '{"inputs":"test", "query":[{"link":{"bucket":"test"}},{"map":{"language":"javascript","name":"Riak.mapValuesJson"}}]}' -H "Content-Type: application/json" http://127.0.0.1:8098/mapred
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected
@@ -639,7 +678,8 @@ $ curl -v -d '{"inputs":"test", "query":[{"link":{"bucket":"test"}},{"map":{"lan
 * Connection #0 to host 127.0.0.1 left intact
 * Closing connection #0
 [{"foo":"bar"},{"riak":"CAP"}]
-{code}
+```
+
 
 h2. Other operations
 
@@ -649,9 +689,11 @@ Check if the server is alive.
 
 h4. Request
 
-{code}
+
+```bash
 GET /ping
-{code}
+```
+
 
 h4. Response
 
@@ -660,7 +702,8 @@ Normal status codes:
 
 h4. Example
 
-{code}
+
+```bash
 curl -v http://127.0.0.1:8098/ping
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected
@@ -679,7 +722,8 @@ curl -v http://127.0.0.1:8098/ping
 * Connection #0 to host 127.0.0.1 left intact
 * Closing connection #0
 OK
-{code}
+```
+
 
 h3. Server status
 
@@ -687,9 +731,11 @@ Reports about the performance and configuration of the Riak node to which it was
 
 h4. Request
 
-{code}
+
+```bash
 GET /stats
-{code}
+```
+
 
 Important headers:
 * {{Accept}} \- determines whether the response will be formatted in {{application/json}} or {{text/plain}}.
@@ -702,7 +748,8 @@ Normal status codes:
 
 h4. Example
 
-{code}
+
+```bash
 $ curl -v http://127.0.0.1:8098/stats -H "Accept: text/plain"
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected
@@ -788,4 +835,4 @@ $ curl -v http://127.0.0.1:8098/stats -H "Accept: text/plain"
 * Connection #0 to host 127.0.0.1 left intact
 * Closing connection #0
 }
-{code}
+```

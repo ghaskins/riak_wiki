@@ -12,22 +12,26 @@ h3. Installing from source package
 
 Download the Riak source package from the [[Download Center|http://downloads.basho.com/riak]] and build:
 
-{code:bash}
+
+```bash
 $ curl -O http://downloads.basho.com/riak/riak-0.13/riak-0.13.0.tar.gz
 $ tar zxvf riak-0.13.0.tar.gz
 $ cd riak-0.13.0
 $ make rel
-{code}
+```
+
 
 h3. Installing from Bitbucket
 
 Clone the repository using [[Mercurial|http://mercurial.selenic.com/]] and build:
 
-{code:bash}
+
+```bash
 $ hg clone http://hg.basho.com/riak
 $ cd riak
 $ make rel
-{code}
+```
+
 
 h2. Platform Specific Instructions
 

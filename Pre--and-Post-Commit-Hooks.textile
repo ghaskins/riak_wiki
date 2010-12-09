@@ -38,14 +38,16 @@ Errors that occur when processing Erlang pre-commit hooks will be reported in th
 
 *Erlang Pre-commit Example*:
 
-{code:none}
+
+```bash
 %% Limits object values to 5MB or smaller
 precommit_limit_size(Object) ->
   case erlang:byte_size(riak_object:get_value(Object)) of
     Size when Size > 5242880 -> {fail, "Object is larger than 5MB."};
     _ -> Object
   end.
-{code}
+```
+
 
 Javascript pre-commit functions should also take a single argument, the JSON encoded version of the riak_object being modified. The JSON format is exactly the same as Riak's map/reduce. Javascript pre-commit functions are allowed three possible return values:
 
@@ -56,7 +58,8 @@ same as #1 for Erlang functions. Riak will automatically convert it back to it's
 
 *Javascript Pre-commit Example*
 
-{code:javascript}
+
+```javascript
 // Makes sure the object has JSON contents
 function precommitMustBeJSON(object){
   try {
@@ -66,7 +69,8 @@ function precommitMustBeJSON(object){
     return {"fail":"Object is not JSON"};
   }
 }
-{code}
+```
+
 
 h3. Chaining
 
@@ -74,7 +78,8 @@ The default value of the bucket {{precommit}} property is an empty list. Adding 
 
 h3. Pre-commit Validation Example
 Pre-commit hooks can be used in many ways in Riak. One such way to use pre-commmit hooks is to validate data before it is written to Riak.  Below is an example that uses Javascript to validate a JSON object before it is written to Riak.
-{code}
+
+```bash
 //Sample Object
 {
   "user_info": {
@@ -128,7 +133,8 @@ function validateData(data){
     throw( "Invalid data" );
   }
 }
-{code}
+```
+
 
 
 h1. Post\-Commit Hooks
@@ -139,7 +145,8 @@ Post-commit hooks are run after the write has completed successfully. Specifical
 
 *Post-commit Example (Erlang)*:
 
-{code:none}
+
+```bash
 %% Creates a naive secondary index on the email field of a JSON object
 postcommit_index_on_email(Object) ->
     %% Determine the target bucket name
@@ -163,7 +170,8 @@ postcommit_index_on_email(Object) ->
     {ok, C} = riak:local_client(),
     %% Store the object
     C:put(IndexObj).
-{code}
+```
+
 
 h3. Chaining
 

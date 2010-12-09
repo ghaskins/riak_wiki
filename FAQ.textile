@@ -1,4 +1,6 @@
-{toc}
+
+<div id="toc"></div>
+
 
 h5. Why did you build Yet Another Data Store?
 
@@ -18,7 +20,7 @@ We believe that the current explosion of choice in data  storage software is a h
 
 h5. Do I have to know how to write distributed Erlang code to use Riak?
 
-I believe you don't, Bob.  Riak provides a simple and convenient programming interface over HTTP and JSON. This, combined with our [[rapidly expanding suite of client libraries|RIAK:Client Libraries]] , makes Riak accessible to nearly every programmer on the Web.
+I believe you don't, Bob.  Riak provides a simple and convenient programming interface over HTTP and JSON. This, combined with our [[rapidly expanding suite of client libraries|Client Libraries and Community Code]] , makes Riak accessible to nearly every programmer on the Web.
 
 h5. Is Version 0.x ready for my production data?
 

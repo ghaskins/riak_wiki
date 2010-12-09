@@ -13,40 +13,48 @@ h4. Working with Links
 
 Links live in the metadata of an object and are attached to it via the "Link" header. Here is what the link header looks like:
 
-{code}
+
+```bash
 Link: </riak/people/dhh>; riaktag="friend"
-{code}
+```
+
 
 So what's actually happening here? In the angle brackets, we have the URL the link points to. The prefix "riak" is followed by the bucket name, "people," and the key, "dhh." Next comes the 'riaktag.' Contained in the riaktag field is an identifier that describes the relationship you are wishing to capture with your link. In this case the riaktag is "friend."
 
 Here is what a full PUT request through CURL with the link header would look like:
 
-{code}
+
+```bash
 $ curl -v -X PUT -H 'Link: </riak/people/dhh>; riaktag="friend"' -H "content-type: text/plain" http://127.0.0.1:8091/riak/people/timoreilly -d 'I am an excellent public speaker.'
-{code}
+```
+
 
 In this request we are attaching 'Link: </riak/people/dhh>; riaktag="friend"' to the key "timoreilly" located in the "people" bucket.
 
 Try it. It's easy, right? You've just attached a link to an object in Riak!
 
-{info}
-To remove a link from an object, it's straightforward, too: read (GET) the object, remove the link information, and write it back into Riak.
-{info}
+
+<div class="info">To remove a link from an object, it's straightforward, too: read (GET) the object, remove the link information, and write it back into Riak.</div>
+
 
 
 To retrieve that object to see the attached link, simply to do the following:
 
-{code}
+
+```bash
 $ curl -v http://127.0.0.1:8091/riak/people/timoreilly
-{code}
+```
+
 
 Look for the "Link" field in the response headers. This will show you your link information. 
 
 Alright. We've stored the "timoreilly" object with a "friend" tag pointing to the "dhh" object. Now we need to store the "dhh" object to which "timoreilly" is linked:
 
-{code}
+
+```bash
 $ curl -v -X PUT -H "content-type: text/plain" http://127.0.0.1:8091/riak/people/dhh -d 'I drive a Zonda.'
-{code}
+```
+
 
 Great. Now we have the "timoreilly" in the "people" bucket stored with a link that points to the "dhh" object that is also in the "people" bucket.
 
@@ -58,9 +66,11 @@ Once you have tagged objects in Riak with links, you can then traverse them with
 
 To continue with the example from above, the "timoreilly" object is now pointer to the "dhh" object located in the "people" bucket. We can us a link walking query to follow the link from "timoreilly" to "dhh." Here is what that query would look like:
 
-{code}
+
+```bash
 $ curl -v http://127.0.0.1:8093/riak/people/timoreilly/people,friend,1
-{code}
+```
+
 
 You'll notice that at the end of that request we've tacked on "/people,friend,1" That is the link specification. It's composed of three parts:
 
@@ -72,9 +82,11 @@ If all went well, the response body from the above request should include the re
 
 You can replace both the "bucket" and the "tag" fields in the link spec with an underscore. This will tell the query to match any bucket or tag name. For instance, the following request should return the same data as the fully-specified request above:
 
-{code}
+
+```bash
 $ curl -v http://127.0.0.1:8093/riak/people/timoreilly/_,friend,1
-{code}
+```
+
 
 
 So, let's review what we just did: 
@@ -100,7 +112,7 @@ In the above screencast, Sean makes use of several scripts to demonstrate some d
 {attachments:patterns=.*sh}
 
 If you watched the video, it's apparent how these scripts are used to demonstrate link walking. For those of you who didn't watch or who want to run and tweak the scripts themselves, check out this graphic:
-[[/images/circle-of-friends.png]]
+[[attachments/circle-of-friends.png]]
 
 "load_people.sh" will automatically load data into your running three node Riak Cluster that pertains to the the above graphic and has the requisite links attached.
 
@@ -108,43 +120,52 @@ If you watched the video, it's apparent how these scripts are used to demonstrat
 
 To use "load_people.sh" download it to your "dev" directory and run 
 
-{code}
+
+```bash
 $ chmod +x load_people.sh
-{code} 
+```
+ 
 
 followed by
 
-{code}
+
+```bash
 $ ./load_people.sh
-{code}
+```
+
 
 After the several lines of output finish, do the same for "people_queries.sh":
 
-{code}
+
+```bash
 $ chmod +x people_queries.sh
-{code} 
+```
+ 
 
 followed by
 
-{code}
+
+```bash
 $ ./people_queries.sh
-{code}
+```
+
 
 You should then see:
 
-{code}
+
+```bash
 Press [[Enter]] after each query description to execute.
 Q: Get Sean's friends (A:Mark, Kevin)
-{code}
+```
+
 
 Have fun!
 
 *What's Next? ---> Congratulations. You can now tell your friends that you've done distributed MapReduce AND Link Walking Queries in Riak! Now it's time to bring it all home with a brief overview of [[Tunable CAP controls in Riak]].* 
 
-{info:title=Additional Reading for this Section}
 
+<div class="info"><div class="title">Additional Reading for this Section</div>
 * [[More on Links|http://wiki.basho.com/display/RIAK/Links]]
 * [[Link Walking By Example|http://blog.basho.com/2010/02/24/link-walking-by-example]]
 * [[Link-Map-Reduce with Riak at inagist.com|http://blog.inagist.com/link-map-reduce-in-riak-an-example-from-inagi]]
-* [IETF "Web Linking" Draft|http://tools.ietf.org/html/draft-nottingham-http-link-header-10]
-{info}
+* [IETF "Web Linking" Draft|http://tools.ietf.org/html/draft-nottingham-http-link-header-10]</div>

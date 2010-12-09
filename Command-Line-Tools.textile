@@ -1,80 +1,100 @@
 This is a description of the Riak command-line tools and their subcommands. They are in {{bin/}} of an embedded node, and the path when installed from a package (usually {{/usr/sbin}} or {{/usr/local/sbin}}).
 
-{toc:maxLevel=3|indent=1.5em}
+
+<div id="toc"></div>
+
 
 h2. riak
 
 This is the primary script for controlling the Riak node process.
 
-{code}
+
+```bash
 Usage: riak { start | stop | restart | reboot | ping | console | attach }
-{code}
+```
+
 
 h3. start
 
 Starts the Riak node in the background. If the node is already started, you will get the message "Node is already running!" If the node is not already running, no output will be given.
 
-{code}
+
+```bash
 riak start
-{code}
+```
+
 
 h3. stop
 
 Stops the running Riak node. Prints "ok" when successful, "Node 'riak@127.0.0.1' not responding to pings." when the node is already stopped or not responding.
 
-{code}
+
+```bash
 riak stop
-{code}
+```
+
 
 h3. restart
 
 Stops and then starts the running Riak node without exiting the Erlang VM. Prints "ok" when successful, "Node 'riak@127.0.0.1' not responding to pings." when the node is already stopped or not responding.
 
-{code}
+
+```bash
 riak restart
-{code}
+```
+
 
 h3. reboot
 
 Stops and then starts the running Riak node, exiting the Erlang VM. Prints "ok" when successful, "Node 'riak@127.0.0.1' not responding to pings." when the node is already stopped or not responding.
 
-{code}
+
+```bash
 riak reboot
-{code}
+```
+
 
 h3. ping
 
 Checks that the Riak node is running. Prints "pong" when successful, "Node 'riak@127.0.0.1' not responding to pings." when the node is stopped or not responding.
 
-{code}
+
+```bash
 riak ping
-{code}
+```
+
 
 h3. console
 
 Starts the Riak node in the foreground, giving access to the Erlang shell and runtime messages. Prints "Node is already running - use 'riak attach' instead" when the node is running in the background.
 
-{code}
+
+```bash
 riak console
-{code}
+```
+
 
 h3. attach
 
 Attaches to the console of a Riak node running in the background, giving access to the Erlang shell and runtime messages. Prints "Node is not running!" when the node cannot be reached.
 
-{code}
+
+```bash
 riak attach
-{code}
+```
+
 
 h2. riak-admin
 
 This script performs operations not related to node-liveness, including node membership, backup, and basic status reporting.  The node must be running for most of these commands to work.
 
-{code:none}
+
+```bash
 Usage: riak-admin { join | leave | backup | restore | test | status | 
                     reip | js_reload | wait-for-service | ringready | 
                     transfers }
-{code}
+```
+
 
 h3. join
 
@@ -82,17 +102,21 @@ Joins the running node to another running node so that they participate in the s
 
 * {{<node>}} is the other node to connect to.
 
-{code}
+
+```bash
 riak-admin join <node>
-{code}
+```
+
  
 h3. leave
 
 Causes the node to leave the cluster it participates in.
 
-{code}
+
+```bash
 riak-admin leave
-{code}
+```
+
 
 h3. backup
 
@@ -103,9 +127,11 @@ Backs up the data from the node or entire cluster into a file.
 * {{<filename>}} is the file where the backup will be stored.
 * {{\[[node|all\]]}} specifies whether the data on this node or the entire cluster will be backed up, respectively.
 
-{code}
+
+```bash
 riak-admin backup <node> <cookie> <filename> [[node|all]]
-{code}
+```
+
 
 h3. restore
 
@@ -115,70 +141,87 @@ Restores data to the node or cluster from a previous backup.
 * {{<cookie>}} is the Erlang cookie/shared secret used to connect to the node. This is "riak" in the [[default configuration|Configuration Files#\-setcookie]].
 * {{<filename>}} is the file where the backup is stored.
 
-{code}
+
+```bash
 riak-admin restore <node> <cookie> <filename>
-{code}
+```
+
 
 h3. test
 
 Runs a test of a few standard Riak operations against the running node.
 
-{code}
+
+```bash
 riak-admin test
-{code}
+```
+
 
 h3. status 
 
 Prints status information, including performance statistics, system health information, and version numbers. The statistics-aggregator must be enabled in the [[configuration|Configuration Files#riak_kv_stat]] for this to work.
 
-{code}
+
+```bash
 riak-admin status
-{code}
+```
+
 
 h3. reip
 
 Renames a node.  The current ring state will be backed up in the process. *The node must NOT be running for this to work.*
 
-{code}
+
+```bash
 riak-admin reip <old nodename> <new nodename>
-{code}
+```
+
 
 h3. js_reload
 
 Forces the embedded Javascript virtual machines to be restarted. This is useful when deploying new custom built-in [[MapReduce]] functions.
 
-{code}
+
+```bash
 riak-admin js_reload
-{code}
+```
+
 
 h3. wait-for-service
 
 Waits on a specific watchable service to be available (typically {{riak_kv}}). This is useful when (re-)starting a node while the cluster is under load. Use [[#services]] to see what services are available on a running node.
 
-{code:none}
+
+```bash
 riak-admin wait-for-service <service> <nodename>
-{code}
+```
+
 
 h3. services
 
 Lists available services on the node (e.g. {{riak_kv}}).
 
-{code:none}
+
+```bash
 riak-admin services
-{code}
+```
+
 
 h3. ringready
 
 Checks whether all nodes in the cluster agree on the ring state. Prints "FALSE" if the nodes do not agree. This is useful after changing cluster membership to make sure that ring state has settled.
 
-{code:none}
+
+```bash
 riak-admin ringready
-{code}
+```
+
 
 h3. transfers
 
 Identifies nodes that are awaiting transfer of one or more partitions. This usually occurs when partition ownership has changed (after adding or removing a node) or after node recovery.
 
-{code:none}
+
+```bash
 riak-admin transfers
-{code}
+```

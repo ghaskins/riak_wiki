@@ -1,4 +1,6 @@
-{toc}
+
+<div id="toc"></div>
+
 
 h2. Summary
 
@@ -16,9 +18,9 @@ Riak's client interface speaks of ["buckets"|Riak Glossary#Bucket] and ["keys"|R
 
 The nodes of a Riak cluster each attempt to run roughly an equal number of vnodes.  In the general case, this means that each node in the cluster is responsible for 1/(number of nodes) of the ring, or (number of partitions)/(number of nodes) vnodes.  For example, if two nodes define a 16-partition cluster, then each node will run 8 vnodes. Nodes claim their partitions at random intervals around the ring, in an attempt at even distribution.
 
-{note}
-Currently, the distribution of partitions among the nodes of the cluster may result in object replicas not being placed on N distinct nodes. This issue has been reported and discussed in [[Bug #228|https://issues.basho.com/show_bug.cgi?id=228]]. The discussion includes an operational workaround that involves setting the "riak_core" parameter "target_n_val" to "4" to ensure object replicas will be placed on distinct nodes when N=3. More information is available in the comments section of the bug.
-{note}
+
+<div class="note">Currently, the distribution of partitions among the nodes of the cluster may result in object replicas not being placed on N distinct nodes. This issue has been reported and discussed in [[Bug #228|https://issues.basho.com/show_bug.cgi?id=228]]. The discussion includes an operational workaround that involves setting the "riak_core" parameter "target_n_val" to "4" to ensure object replicas will be placed on distinct nodes when N=3. More information is available in the comments section of the bug.</div>
+
 
 When a value is being stored in the cluster, any node may participate as the coordinator for the request.  The coordinating node consults the ring state to determine which vnode owns the partition in which the value's key belongs, then sends the "put" request to that vnode, as well as the vnodes responsible for the next N-1 partitions in the ring, where N is a bucket-configurable parameter that describes how many copies of the value to store.  The put request may also specify that at least W (=< N) of those vnodes reply with success, and that DW (=< W) reply with success only after durably storing the value.
 

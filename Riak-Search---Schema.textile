@@ -14,24 +14,27 @@ The default field is named *value*.
 
 h3. Defining a Schema
 
-The schema definition for an index is stored in the Riak bucket {{_rs_schema}}, with a key of the same name as the index. For example, the schema for the "books" index is stored under {{_rs_schema/books}}.
+The schema definition for an index is stored in the Riak bucket {{_rs_schema}}, with a key of the same name as the index. For example, the schema for the "books" index is stored under {{_rs_schema/books}}. Writing to the {{_rs_schema}} bucket is highly discouraged. 
 
 Alternatively, you can set or retrieve the schema for an index
 using command line tools:
 
-{code:bash}
+
+```bash
 # Set an index schema.
 bin/search-cmd set_schema Index SchemaFile
 
 # View the schema for an Index.
 bin/search-cmd show_schema Index
-{code}
+```
+
 
 Note that changes to the Schema File *will not* affect previously indexed data. It is recommended that if you change field definitions, especially settings such as {{type}}, that you re-index your documents.
 
 Below is an example schema file. The schema is formatted as an Erlang term. Spacing does not matter, but it is important to match opening and closing brackets and braces, to include commas between all list items, and to include the final period after the last brace:
 
-{code:javascript}
+
+```javascript
 {
     schema,
     [
@@ -74,7 +77,8 @@ Below is an example schema file. The schema is formatted as an Erlang term. Spac
         ]}
     ]
 }.
-{code}
+```
+
 
 h4. Schema-level properties:
 
@@ -92,9 +96,9 @@ Fields can either by static or dynamic. A static field is denoted with {{field}}
 
 The difference is that a static field will perform an exact string match on a field name, and a dynamic field will perform a wildcard match on the string name. The wildcard can appear anywhere within the field, but it usually occurs at the beginning or end. (The default schema, described above, uses dynamic fields, allowing you to use fieldname suffixes to create fields of different data types.)
 
-{info}
-Field matching occurs in the order of appearance in the schema definition. This allows you to create a number of static fields followed by a dynamic field as a "catch all" to match the rest.
-{info}
+
+<div class="info">Field matching occurs in the order of appearance in the schema definition. This allows you to create a number of static fields followed by a dynamic field as a "catch all" to match the rest.</div>
+
 
 The following properties are defined at a field level, and apply to both static and dynamic fields:
 

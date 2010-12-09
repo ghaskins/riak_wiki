@@ -1,5 +1,6 @@
 
-{toc}
+<div id="toc"></div>
+
 h3. Introduction
 
 Riak Search is a distributed, easily-scalable, failure-tolerant, real-time, full-text search engine built around Riak Core and tightly integrated with Riak KV.
@@ -7,6 +8,10 @@ Riak Search is a distributed, easily-scalable, failure-tolerant, real-time, full
 Riak Search allows you to find and retrieve your Riak objects using the objects' values. When a Riak KV bucket has been enabled for Search integration (by installing the Search pre-commit hook), any objects stored in that bucket are also indexed seamlessly in Riak Search.
  
 The Riak Client API can then be used to perform Search queries that return a list of bucket/key pairs matching the query. Alternatively, the query results can be used as the input to a Riak map/reduce operation. Currently the PHP, Python, Ruby, and Erlang APIs support integration with Riak Search.
+
+
+<div class="info"><div class="title">Riak KV and Riak Search</div>Riak Search is a superset of Riak KV, so if you are running Riak Search, then you are automatically running a Riak KV cluster. You don't need to set up a separate Riak KV cluster to use Riak Search. Downloading a Riak Search binary will give you both Riak KV and Riak Search.</div>
+
  
 h4. Operations
 
@@ -42,7 +47,7 @@ Riak Search is comprised of:
 * *Riak KV* - Distributed Key/Value store inspired by Amazon's Dynamo.
 ** *Bitcask* -  Default storage backend used by Riak KV.
 * *Riak Search* - Distributed index and full-text search engine.
-** *Merge Index* - Storage backend used by Riak Search.
+** *Merge Index* - Storage backend used by Riak Search. This is a pure Erlang storage format based roughly on ideas borrowed from other storage formats including log structured merge trees, sstables, bitcask, and the Lucene file format.
 ** *Qilr* - Library for parsing queries into execution plans and documents into terms.
 ** *Riak Solr* - Adds a subset of Solr HTTP interface capabilities to Riak Search.
 

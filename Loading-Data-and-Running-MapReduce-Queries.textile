@@ -4,7 +4,8 @@ h3. Sample Data
 
 This Erlang script will load historical stock-price data for Google (ticker symbol "GOOG") into your existing Riak cluster so we can use it.  Paste the code below into a file called {{load_data}} inside the {{dev}} directory (or download it below).
 
-{code:title=load_data}
+
+```bash
 #!/usr/bin/env escript
 %% -*- erlang -*-
 main([[Filename]]) ->
@@ -17,13 +18,16 @@ format_and_insert(Line) ->
     Command = io_lib:format("curl -X PUT http://127.0.0.1:8091/riak/goog/~s -d '~s' -H 'content-type: application/json'", [hd(Line),JSON]),
     io:format("Inserting: ~s~n", [[hd(Line)]]),
     os:cmd(Command).
-{code}
+```
+
 
 Make the script executable:
 
-{code}
+
+```bash
 $ chmod +x load_data
-{code}
+```
+
 
 Download the CSV file of stock data linked below and place it in the {{dev}} directory where we've been working.
 
@@ -31,9 +35,11 @@ Download the CSV file of stock data linked below and place it in the {{dev}} dir
 
 Now load the data into Riak.
 
-{code}
+
+```bash
 $ ./load_data goog.csv
-{code}
+```
+
 
 \\
 
@@ -82,21 +88,27 @@ Function source can be specified directly in the query by using the "source" spe
 
 For example:
 
-{code}
+
+```bash
 {"map":{"language":"javascript","source":"function(v) { return [[v]]; }","keep":true}}
-{code}
+```
+
 
 would run the Javascript function given in the spec, and include the results in the final output of the m/r query.
 
-{code}
+
+```bash
 {"map":{"language":"javascript","bucket":"myjs","key":"mymap","keep":false}}
-{code}
+```
+
 
 would run the Javascript function declared in the content of the Riak object under {{mymap}} in the {{myjs}} bucket, and the results of the function would not be included in the final output of the m/r query.
 
-{code}
+
+```bash
 {"map":{"language":"erlang","module":"riak_mapreduce","function":"map_object_value"}}
-{code}
+```
+
 
 would run the Erlang function {{riak_mapreduce:map_object_value/3}}.
 
@@ -106,9 +118,9 @@ h5. Reduce
 
 Reduce phases look exactly like map phases, but are labeled "reduce".
 
-{info}
-For more information on map and reduce functions please refer to the [[MapReduce|MapReduce#Phasefunctions]] section of the wiki which includes a description of the arguments passed to these functions.
-{info}
+
+<div class="info">For more information on map and reduce functions please refer to the [[MapReduce|MapReduce#Phasefunctions]] section of the wiki which includes a description of the arguments passed to these functions.</div>
+
 
 h5. Link
 
@@ -116,9 +128,11 @@ Link phases accept {{bucket}} and {{tag}} fields that specify which links match 
 
 For example:
 
-{code}
+
+```bash
 {"link":{"bucket":"foo","keep":false}}
-{code}
+```
+
 
 would follow all links pointing to objects in the {{foo}} bucket, regardless of their tag.
 
@@ -143,20 +157,23 @@ So you've seen us run some MapReduce jobs. Now it's time to try your hand at it.
 
 Based on the sample data we loaded in the last section, here are some functions that should work for you. Take a few minutes to run them and, if you're feeling daring, modify them based on what you know about MapReduce in Riak to see if you can manipulate the results.
 
-{info:title=Submitting [[MapReduce]] queries from the shell}
-To run a query from the shell, here's the curl command to use:
-{code}
-curl -X POST http://127.0.0.1:8091/mapred -H "Content-Type: application/json" -d @-
-{code}
 
-After pressing return, paste your job in and then press Ctrl-D to submit it.
-{info}
+<div class="info"><div class="title">Submitting [[MapReduce]] queries from the shell</div>To run a query from the shell, here's the curl command to use:
+
+```bash
+curl -X POST http://127.0.0.1:8091/mapred -H "Content-Type: application/json" -d @-
+```
+
+
+After pressing return, paste your job in and then press Ctrl-D to submit it.</div>
+
 
 h4. Map: find the days where the high was over $600.00
 
 *Phase Function*
 
-{code:javascript}
+
+```javascript
 function(value, keyData, arg) {
   var data = Riak.mapValuesJson(value)[[0]];
   if(data.High && data.High > 600.00)
@@ -164,17 +181,20 @@ function(value, keyData, arg) {
   else
     return [];
 }
-{code}
+```
+
 
 *Complete Job*
 
-{code:javascript}
+
+```javascript
 {"inputs":"goog",
  "query":[{"map":{"language":"javascript",
                   "source":"function(value, keyData, arg) { var data = Riak.mapValuesJson(value)[[0]]; if(data.High && parseFloat(data.High) > 600.00) return [[value.key]]; else return [];}",
                   "keep":true}}]
 }
-{code}
+```
+
 
 {attachments:patterns=sample-highs-over-600\.json}
 
@@ -182,7 +202,8 @@ h4. Map: find the days where the close is lower than open
 
 *Phase Function*
 
-{code:javascript}
+
+```javascript
 function(value, keyData, arg) {
   var data = Riak.mapValuesJson(value)[[0]];
   if(data.Close < data.Open)
@@ -190,17 +211,20 @@ function(value, keyData, arg) {
   else
     return [];
 }
-{code}
+```
+
 
 *Complete Job*
 
-{code:javascript}
+
+```javascript
 {"inputs":"goog",
  "query":[{"map":{"language":"javascript",
                   "source":"function(value, keyData, arg) { var data = Riak.mapValuesJson(value)[[0]]; if(data.Close < data.Open) return [[value.key]]; else return [];}",
                   "keep":true}}]
 } 
-{code}
+```
+
 
 {attachments:patterns=sample-close-lt-open\.json}
 
@@ -208,7 +232,8 @@ h4. Map and Reduce: find the maximum daily variance in price by month
 
 *Phase functions*
 
-{code:javascript}
+
+```javascript
 /* Map function to compute the daily variance and key it by the month */
 function(value, keyData, arg){
   var data = Riak.mapValuesJson(value)[[0]];
@@ -229,11 +254,13 @@ function(values, arg){
             })
          ];
 }
-{code}
+```
+
 
 *Complete Job*
 
-{code:javascript}
+
+```javascript
 {"inputs":"goog",
  "query":[{"map":{"language":"javascript",
                   "source":"function(value, keyData, arg){ var data = Riak.mapValuesJson(value)[[0]]; var month = value.key.split('-').slice(0,2).join('-'); var obj = {}; obj[[month]] = data.High - data.Low; return [[ obj ]];}"}},
@@ -242,7 +269,8 @@ function(values, arg){
                     "keep":true}}
          ]
 } 
-{code}
+```
+
 
 {attachments:patterns=sample-max-variance-by-month\.json}
 
@@ -250,11 +278,11 @@ h3. A MapReduce Challenge
 
 Here is a scenario involving the data you already have loaded up. If you have a moment, try to solve it using what you've just learned about MapReduce:
 
-{note:title=MapReduce Challenge}
-Find the largest day for each month in terms of dollars traded, and subsequently the largest overall day.
 
-*Hint*: You will need at least one each of map and reduce phases.
-{note}
+<div class="note"><div class="title">MapReduce Challenge</div>Find the largest day for each month in terms of dollars traded, and subsequently the largest overall day.
+
+*Hint*: You will need at least one each of map and reduce phases.</div>
+
 \\
 \\
 
@@ -262,10 +290,9 @@ Find the largest day for each month in terms of dollars traded, and subsequently
 
 \\
 
-{info:title=Additional Reading for this Section}
-* [[MapReduce In Depth|MapReduce]]
+
+<div class="info"><div class="title">Additional Reading for this Section</div>* [[MapReduce In Depth|MapReduce]]
 * [[Erlang MapReduce|MapReduce#MapReduce via the Erlang API]]
 * [[A Longer MapReduce Screencast|http://blog.basho.com/2010/02/03/the-release-riak-0.8-and-javascript-map/reduce/]]
 * [[A list of prebuilt JavaScript MapReduce Functions that ship with Riak|http://hg.basho.com/riak_kv/src/tip/priv/mapred_builtins.js]]
-* [[Google's Original MapReduce Paper|http://labs.google.com/papers/mapreduce.html]]
-{info}
+* [[Google's Original MapReduce Paper|http://labs.google.com/papers/mapreduce.html]]</div>

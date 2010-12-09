@@ -12,9 +12,11 @@ h2. Setting the N value ({{n_val}})
 
 To change the N value for a bucket issue a PUT request to the bucket with the new value:
 
-{code:none}
-$ curl -X PUT -d '{"props":{"n_val":5}}' http://riak-host:8098/riak/bucket
-{code}
+
+```bash
+$ curl -X PUT -H "Content-Type: application/json" -d '{"props":{"n_val":5}}' http://riak-host:8098/riak/bucket
+```
+
 
 Changing the N value after a bucket has data in it is _not recommended_.  If you do change the value, especially increasing it, you might need to [[force read repair|#Forcing Read Repair]]. Overwritten objects and newly stored objects will automatically be replicated to the correct number of nodes.
 
@@ -53,7 +55,8 @@ h3. Routing an object to a set of partitions
 
 
 With only 8 partitions our ring will look approximately as follows (response from riak_core_ring_manager:get_my_ring/0 truncated for clarity):
-{code}
+
+```bash
 (dev1@127.0.0.1)3> {ok,Ring} = riak_core_ring_manager:get_my_ring().
 [{0,'dev1@127.0.0.1'},
 {182687704666362864775460604089535377456991567872, 'dev2@127.0.0.1'},
@@ -63,24 +66,30 @@ With only 8 partitions our ring will look approximately as follows (response fro
 {913438523331814323877303020447676887284957839360, 'dev3@127.0.0.1'},
 {1096126227998177188652763624537212264741949407232, 'dev1@127.0.0.1'},
 {1278813932664540053428224228626747642198940975104, 'dev2@127.0.0.1'}]
-{code}
+```
+
 
 The node handling this request hashes the Bucket/Key combination:
-{code}
+
+```bash
 (dev1@127.0.0.1)4> DocIdx = riak_core_util:chash_key({<<"my_bucket">>, <<"my_key">>}).
 <<183,28,67,173,80,128,26,94,190,198,65,15,27,243,135,127,121,101,255,96>>
-{code}
+```
+
 
 The DocIdx hash is a 160 bit integer:
-{code}
+
+```bash
 (dev1@127.0.0.1)5> <<I:160/integer>> = DocIdx.
 <<183,28,67,173,80,128,26,94,190,198,65,15,27,243,135,127,121,101,255,96>>
 (dev1@127.0.0.1)6> I.
 1045375627425331784151332358177649483819648417632
-{code}
+```
+
 
 The node looks up the hashed key in the ring which returns a list of "preferred" partitions for the given key.
-{code}
+
+```bash
 (node1@127.0.0.1)> Preflist = riak_core_ring:preflist(DocIdx, Ring).
 [{1096126227998177188652763624537212264741949407232, 'dev1@127.0.0.1'},
 {1278813932664540053428224228626747642198940975104, 'dev2@127.0.0.1'},
@@ -90,10 +99,12 @@ The node looks up the hashed key in the ring which returns a list of "preferred"
 {548063113999088594326381812268606132370974703616, 'dev1@127.0.0.1'},
 {730750818665451459101842416358141509827966271488, 'dev2@127.0.0.1'},
 {913438523331814323877303020447676887284957839360, 'dev3@127.0.0.1'}]
-{code}
+```
+
 
 The node chooses the first N partitions from the list, the remaining partitions of the "preferred" list are retained as fallbacks to use if any of the target partitions are unavailable.
-{code}
+
+```bash
 (dev1@127.0.0.1)9> {Targets, Fallbacks} = lists:split(N, Preflist).
 {[{1096126227998177188652763624537212264741949407232, 'dev1@127.0.0.1'},
 {1278813932664540053428224228626747642198940975104, 'dev2@127.0.0.1'},
@@ -103,32 +114,41 @@ The node chooses the first N partitions from the list, the remaining partitions 
 {548063113999088594326381812268606132370974703616, 'dev1@127.0.0.1'},
 {730750818665451459101842416358141509827966271488, 'dev2@127.0.0.1'},
 {913438523331814323877303020447676887284957839360, 'dev3@127.0.0.1'}]}
-{code}
+```
+
 
 
 The partition information returned from the ring contains a partition identifier and the parent node of that partition:
-{code}
+
+```bash
 {1096126227998177188652763624537212264741949407232, 'dev1@127.0.0.1'}
-{code}
+```
+
 
 The requesting node sends a message to each parent node with the object and partition identifier (pseudo-code for clarity):
-{code}
+
+```bash
 'dev1@127.0.0.1' ! {put, Object, 1096126227998177188652763624537212264741949407232}
 'dev2@127.0.0.1' ! {put, Object, 1278813932664540053428224228626747642198940975104}
 'dev1@127.0.0.1' ! {put, Object, 0}
-{code}
+```
+
 
 If any of the target partitions fail the node sends the object to one of the fallbacks. When the message is sent to the fallback node the message references the object and original partition identifier.&nbsp;For example, if 'dev2@127.0.0.1' were unavailable the requesting node would then try each of the fallbacks. The fallbacks in this example are:
-{code}
+
+```bash
 {182687704666362864775460604089535377456991567872, 'dev2@127.0.0.1'}
 {365375409332725729550921208179070754913983135744, 'dev3@127.0.0.1'}
 {548063113999088594326381812268606132370974703616, 'dev1@127.0.0.1'}
-{code}
+```
+
 
 The next available fallback node would be 'dev3@127.0.0.1'. The requesting node would send a message to the fallback node with the object and original partition identifier:
-{code}
+
+```bash
 'dev3@127.0.0.1' ! {put, Object, 1278813932664540053428224228626747642198940975104}
-{code}
+```
+
 
 Note that the partition identifier in the message is the same that was originally sent to 'dev2@127.0.0.1' only this time it is being sent to 'dev3@127.0.0.1'. Even though 'dev3@127.0.0.1' is not the parent node of that partition, it is smart enough to hold on to the object until 'dev2@127.0.0.1' returns to the cluster.
 

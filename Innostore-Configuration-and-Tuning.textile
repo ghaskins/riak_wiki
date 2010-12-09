@@ -1,70 +1,84 @@
 {excerpt}Innostore is a powerful backend that works for many production scenarios, but it has many tuning parameters that can affect the performance of your Riak cluster.  Here are some generally acceptable settings and practices that should provide good performance and reliability.{excerpt}
 
-{toc:maxLevel=2}
+
+<div id="toc"></div>
+
 
 
 h2. Configuration settings
 
-{info}
-All of the settings go in the {{innostore}} section of {{app.config}}. See [[Configuration files]] for more information about {{app.config}}.
-{info}
+
+<div class="info">All of the settings go in the {{innostore}} section of {{app.config}}. See [[Configuration files]] for more information about {{app.config}}.</div>
+
 
 h3. buffer_pool_size (integer, # of bytes)
 
 Set this to be 60-80% of available RAM (after subtracting RAM consumed by other services).  For example, on a 12GB machine you might set it to 8GB:
 
-{code}
+
+```bash
 {buffer_pool_size, 8589934592} %% 8 * 1024 * 1024 * 1024
-{code}
+```
+
 
 h3. flush_method (string)
 
 On Linux and other Unix-like platforms, setting this to "O_DIRECT" will bypass a layer of filesystem buffering provided by the operating system.  It is generally not necessary since Innostore does its own buffering. Example:
 
-{code}
+
+```bash
 {flush_method, "O_DIRECT"}
-{code}
+```
+
 
 h3. open_files (integer)
  
 Innostore opens a file for each partition/bucket combination, plus several files for its binary logs.    Each of these count against the total number of files any one program may have open.  As a result, you may need to adjust this number up or down from its default to accommodate a lower limit, or more open buckets.  The default is {{300}}.  Example:
 
-{code}
-{open_files, 100} %% accommodate a lower limit
-{code}
 
-{note:title=ulimit}
-To adjust the open files limit in your operating system, use the {{ulimit -n}} command.
-{note}
+```bash
+{open_files, 100} %% accommodate a lower limit
+```
+
+
+
+<div class="note"><div class="title">ulimit</div>To adjust the open files limit in your operating system, use the {{ulimit -n}} command.</div>
+
 
 h3. log_group_home_dir &amp; data_home_dir
 
 For best performance, we recommend putting Innostore's log data on a separate hard disk from the actual data.  This will also make its data more resilient to hardware failure -- corrupted writes to the data files can often be recovered from the binary logs.  Example:
 
-{code}
+
+```bash
 {log_group_home_dir, "/data/innodb-log"}, %% mounted from /dev/hda1
 {data_home_dir, "/data/riak/innodb"} %% mounted from /dev/hdb1
-{code}
+```
+
 
 
 h3. innodb log amount and size
  
 When storing binary objects or working with a cluster the number of log files as well as their size should be increased to handle the additional amount of data being stored in Innostore. The following error exemplifies the log messages that will be seen if your log setup can't cope with the amount of data.
 
-{code}
+
+```bash
 InnoDB: ERROR: the age of the last checkpoint is 30209814,
 InnoDB: which exceeds the log group capacity 30195303.
 InnoDB: If you are using big BLOB or TEXT rows, you must set the
 InnoDB: combined size of log files at least 10 times bigger than the
 InnoDB: largest such row.
-{code}
+```
+
 
 To fix this issue the following log settings will work for most environments:
 
-{code}
-{log_files_in_group, 6},  % How many files you need — usually, 3 < x < 6
-{log_file_size, 268435456},  % No bigger than 256MB — otherwise recovery takes too long
-{code}
+
+```bash
+{log_files_in_group, 6},  % How many files you need â€” usually, 3 < x < 6
+{log_file_size, 268435456},  % No bigger than 256MB â€” otherwise recovery takes too long
+```
+
 
 h2. Other tuning techniques
 
@@ -72,10 +86,12 @@ h3. noatime
 
 Innostore is very aggressive at reading and writing files.  As such, you can get a big speed boost by adding the {{noatime}} mounting option to {{/etc/fstab}} (or wherever your platform defines the mounted devices.  This will disable the recording of the "last accessed time" for all files. Example:
 
-{code}
+
+```bash
 /dev/sda5    /data           ext3    noatime  1 1
 /dev/sdb1    /data/inno-log  ext3    noatime  1 2
-{code}
+```
+
 
 h2. Miscellaneous 
 

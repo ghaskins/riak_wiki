@@ -2,12 +2,15 @@ Riak has two configuration files located in {{etc/}} if you are using a source i
 
 The {{app.config}} file is used to set various attributes for the node such as the backend the node will use to store data. The {{vm.args}} file is used to pass parameters to the Erlang node such as the name or cookie of the Erlang node.
 
-{toc:maxlevel=2|indent=1.5em}
+
+<div id="toc"></div>
+
 
 h2. app.config
 
 Riak and the Erlang applications it depends on are configured by settings in the {{app.config}} file in the {{etc}} directory of the Riak node.  The format of the file is similar to Erlang's ".app" files:
-{code}
+
+```bash
    [
     {riak_core, [
                  {ring_state_dir, "data/ring"}
@@ -21,18 +24,19 @@ Riak and the Erlang applications it depends on are configured by settings in the
            ]}
     %% Other application configurations...
    ].
-{code}
+```
 
-{note:title=Configuration changes in 0.10}
-Many configuration settings changed names and sections in the 0.10 release.  Please backup your {{app.config}} file when upgrading and then copy your previous customizations to the proper places in the new file. See [[the transition notes|http://hg.basho.com/riak/raw/efc290fd9c23/TRANSITION]] for more information.
-{note}
 
-{note:title=Configuration changes in 0.12}
-The settings related to handoff moved from {{riak_kv}} to {{riak_core}} in the 0.12 release.  These are:
+
+<div class="note"><div class="title">Configuration changes in 0.10</div>Many configuration settings changed names and sections in the 0.10 release.  Please backup your {{app.config}} file when upgrading and then copy your previous customizations to the proper places in the new file. See [[the transition notes|http://hg.basho.com/riak/raw/efc290fd9c23/TRANSITION]] for more information.</div>
+
+
+
+<div class="note"><div class="title">Configuration changes in 0.12</div>The settings related to handoff moved from {{riak_kv}} to {{riak_core}} in the 0.12 release.  These are:
 * {{handoff_ip}}
 * {{handoff_port}}
-* {{handoff_concurrency}}
-{note}
+* {{handoff_concurrency}}</div>
+
 
 h3. {{riak_core}} settings
 
@@ -48,7 +52,8 @@ Properties used for buckets that have not been explicitly defined (see also [[Se
 * the quorum values for get, put and delete requests ({{r, w, dw, rw}})
 * global pre- and post-commit hooks ({{precommit, postcommit}})
 
-{code:language=erlang|title=default}
+
+```erlang
 {default_bucket_props, [{n_val,3},
 			{allow_mult,false},
 			{last_write_wins,false},
@@ -57,7 +62,8 @@ Properties used for buckets that have not been explicitly defined (see also [[Se
 			{chash_keyfun, {riak_core_util, chash_std_keyfun}},
 			{linkfun, {modfun, riak_kv_wm_link_walker, mapreduce_linkfun}}
 ]}
-{code}
+```
+
 
 h4. gossip_interval
 
@@ -88,7 +94,9 @@ The number of partitions to divide the hash space into (default: {{64}})
 
 By default, each Riak node will own {{ring_creation_size}}/(number of nodes in the cluster) partitions.  It is generally a good idea to specify a {{ring_creation_size}} a few times the number of nodes in your cluster (e.g. specify 64-256 partitions for a 4-node cluster).  This gives you room to expand the number of nodes in the cluster, without worrying about under-use due to owning too few partitions. This number should be a power of 2 (64, 128, 256, etc.).
 
-{note}The "ring_creation_size" should be established before your cluster is live and running and should not be changed thereafter.{note}
+
+<div class="note">The "ring_creation_size" should be established before your cluster is live and running and should not be changed thereafter.</div>
+
 
 h4. target_n_val
 
@@ -188,7 +196,9 @@ Format of each backend specification is {{\{BackendName, BackendModule, BackendC
 ** {{riak_kv_cache_backend_ttl}}:  amount by which to extend an object's expiry lease on each access, in seconds (default: {{600}})
 ** {{riak_kv_cache_backend_max_ttl}}: maximum allowed lease time (default: {{3600}})
 
-{note:title= Dynamically Changing ttl}There is currently no way to dynamically change the ttl per bucket. The current work around would be to define multiple {{riak_cache_backends}} under {{riak_multi_backend}} with different ttl values.{note}
+
+<div class="note"><div class="title"> Dynamically Changing ttl</div>There is currently no way to dynamically change the ttl per bucket. The current work around would be to define multiple {{riak_cache_backends}} under {{riak_multi_backend}} with different ttl values.</div>
+
 
 h3. vnode_mr_timeout
 
@@ -246,6 +256,5 @@ h2. Rebar Overlays
 
 If you are going to be rebuilding Riak often, you will want to edit the {{vm.args}} and {{app.config}} files in the {{rel/files}} directory. These files are used whenever a new release is generated using {{make rel}} or {{rebar generate}}. Each time a release is generated any existing release must first be destroyed. Changes made to release files ({{rel/riak/etc/vm.args}}, {{rel/riak/etc/app.config}}, etc.) would be lost when the release is destroyed.
 
-{note}
-In versions of Riak prior to 0.12, overlay files were stored in the {{rel/overlay}} directory instead of {{rel/files}}.
-{note}
+
+<div class="note">In versions of Riak prior to 0.12, overlay files were stored in the {{rel/overlay}} directory instead of {{rel/files}}.</div>

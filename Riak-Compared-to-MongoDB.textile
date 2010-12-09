@@ -1,6 +1,8 @@
 This is intended to be a brief, objective and technical comparison of Riak and MongoDB. (_This comparison is current as of the 1.6 release of MongoDB._)
 
-{toc}
+
+<div id="toc"></div>
+
 
 h2. High Level Differences
 

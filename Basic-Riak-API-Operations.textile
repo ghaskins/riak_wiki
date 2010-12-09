@@ -8,13 +8,16 @@ For this tutorial, we are going to work with the HTTP Interface and use {{curl}}
 
 h2. HTTP API Operations
 
-{toc:minlevel=3|indent=1.5em}
+
+<div id="toc"></div>
+
 
 \\
-{note:title=Required Knowledge}
-* *Client ID* \- All requests should include the {{X-Riak-ClientId}} header, which can be any string that uniquely identifies the client, for purposes of tracing object modifications in the [[vector clock|Riak Glossary#Vector Clock]].
 
-* *URL Escaping* \- Buckets, keys, and link specifications may not contain unescaped slashes. Use a URL-escaping library or replace slashes with %2F.{note}
+<div class="note"><div class="title">Required Knowledge</div>* *Client ID* \- All requests should include the {{X-Riak-ClientId}} header, which can be any string that uniquely identifies the client, for purposes of tracing object modifications in the [[vector clock|Riak Glossary#Vector Clock]].
+
+* *URL Escaping* \- Buckets, keys, and link specifications may not contain unescaped slashes. Use a URL-escaping library or replace slashes with %2F.</div>
+
 
 \\
 
@@ -30,9 +33,11 @@ Here is the basic command formation for retrieving a specific key from a bucket.
 
 
 
-{code}
+
+```bash
 GET /riak/bucket/key
-{code}
+```
+
 
 The body of the response will be the contents of the object (if it exists).  Simple, right?
 
@@ -47,9 +52,11 @@ Typical error codes: {{404 Not Found}}
 
 So, with that in mind, try this command. This will request (GET) the key "doc2" from the bucket "test."
 
-{code}
+
+```bash
 $ curl -v http://127.0.0.1:8091/riak/test/doc2
-{code}
+```
+
 
 This should return a "404 Not Found" as the key "doc2" does not exist, but that's not a bad thing. This is the response we wanted to receive.
 
@@ -60,11 +67,15 @@ h5. Store an object with existing or user-defined key
 
 Your application will often have its own method of generating the keys for its data.  If so, storing that data is easy.  The basic request looks like this.
 
-{code}
-PUT /riak/bucket/key
-{code}
 
-{info}{{POST}} is also a valid verb, for compatibility's sake.{info}
+```bash
+PUT /riak/bucket/key
+```
+
+
+
+<div class="info">{{POST}} is also a valid verb, for compatibility's sake.</div>
+
 
 Some request headers are required for PUTs:
 * {{Content-Type}} must be set for the stored object. Set what you expect to receive back when next requesting it.
@@ -86,9 +97,11 @@ If {{returnbody=true}}, any of the response headers expected from [[#Read object
 
 Let's give it a shot. Try running this in a terminal.
 
-{code}
+
+```bash
 $ curl -v -X PUT -d '{"bar":"baz"}' -H "Content-Type: application/json" -H "X-Riak-Vclock: a85hYGBgzGDKBVIszMk55zKYEhnzWBlKIniO8mUBAA==" http://127.0.0.1:8091/riak/test/doc?returnbody=true
-{code}
+```
+
 
 
 
@@ -96,9 +109,11 @@ h5. Store a new object and assign random key
 
 If your application would rather leave key-generation up to Riak, issue a POST request to the bucket URL instead of a PUT to a bucket/key pair:
 
-{code}
+
+```bash
 POST /riak/bucket
-{code}
+```
+
 
 If you don't pass Riak a "key" name after the bucket, it will know to create one for you.
 
@@ -108,9 +123,11 @@ Normal status codes: {{201 Created}}
 
 This command will store an object, in the bucket "test" and assign it a key:
 
-{code}
+
+```bash
 $ curl -v -d 'this is a test' -H "Content-Type: text/plain" http://127.0.0.1:8091/riak/test
-{code}
+```
+
 
 In the output, the "Location" header will give the you key for that object. To view the newly created object, go to "http://127.0.0.1:8091/<Location>" in your browser.
 
@@ -123,9 +140,11 @@ Lastly, you'll need to know how to delete keys.
 
 The command, as you can probably guess, follows a predictable pattern and looks like this:
 
-{code}
+
+```bash
 DELETE /riak/bucket/key
-{code}
+```
+
 
 
 The normal response codes for a DELETE operations are {{204 No Content}} and {{404 Not Found}}
@@ -134,9 +153,11 @@ The normal response codes for a DELETE operations are {{204 No Content}} and {{4
 
 Try this:
 
-{code}
+
+```bash
 $ curl -v -X DELETE http://127.0.0.1:8091/riak/test/test2
-{code}
+```
+
 
 
 
@@ -153,9 +174,11 @@ However, in addition to providing a namespace for keys, the properties of a buck
 
 To set these properties, issue a PUT to the bucket's URL:
 
-{code}
+
+```bash
 PUT /riak/bucket
-{code}
+```
+
 
 
 The body of the request should be a JSON object with a single entry "props."  Unmodified bucket properties may be omitted.
@@ -171,9 +194,11 @@ The most important properties to consider for your bucket are:
 
 Let's go ahead and alter the properties of a Bucket. The following PUT will create a new bucket called "test" with a modified n_val of 5.
 
-{code}
+
+```bash
 $ curl -v -X PUT -H "Content-Type: application/json" -d '{"props":{"n_val":5}}' http://127.0.0.1:8091/riak/test
-{code}
+```
+
 
 
 \\
@@ -183,9 +208,11 @@ h5. GET Buckets
 Here is how you use the HTTP API to retrieve (or "GET") the bucket properties and/or keys:
 
 
-{code}
+
+```bash
 GET /riak/bucket_name
-{code}
+```
+
 
 Again, quite simple. (Are you starting to see a pattern?)
 
@@ -196,9 +223,11 @@ The optional query parameters are:
 
 With that in mind, go ahead and run this command. This will GET the bucket information that we just set with the sample command above:
 
-{code}
+
+```bash
 $ curl -v http://127.0.0.1:8091/riak/test
-{code}
+```
+
 
 You can also view this Bucket information through any browser by going to "http://127.0.0.1:8091/riak/test"
 
@@ -213,10 +242,10 @@ So, that's how the REST API works. There are more nuances to what you can do wit
 
 \\
 
-{info:title=Additional Reading for this Section}
-* [[The REST API In Depth|REST API]]
+
+<div class="info"><div class="title">Additional Reading for this Section</div>* [[The REST API In Depth|REST API]]
 * [[Protocol Buffers API|PBC API]]
 * [[Replication in Depth|Replication]]
 * [[Why Vector Clocks are Easy|http://blog.basho.com/2010/01/29/why-vector-clocks-are-easy/]] (from the Basho Blog)
-* [[Why Vector Clocks are Hard|http://blog.basho.com/2010/04/05/why-vector-clocks-are-hard/]] (from the Basho Blog)
-{info}
+* [[Why Vector Clocks are Hard|http://blog.basho.com/2010/04/05/why-vector-clocks-are-hard/]] (from the Basho Blog)</div>
+

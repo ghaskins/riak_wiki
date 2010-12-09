@@ -11,7 +11,8 @@ Each operation consists of a request message and one or more response messages. 
 
 h4. Example
 
-{code}
+
+```bash
 00 00 00 07 09 0A 01 62 12 01 6B
 |----Len---|MC|----Message-----|
 
@@ -22,7 +23,8 @@ RpbGetReq Message = 0x0A 0x01 0x62 0x12 0x01 0x6B
 Decoded Message:
 bucket: "b"
 key: "k"
-{code}
+```
+
 
 h3. Message Codes
 
@@ -53,19 +55,21 @@ h3. Message Codes
 | 23 | RpbMapRedReq |
 | 24 | RpbMapRedResp |
 
-{info:title=Message Definitions}
-All Protocol Buffers messages can be found defined in the [[riakclient.proto|http://github.com/basho/riak-erlang-client/blob/master/src/riakclient.proto]] file in the Erlang client.
-{info}
+
+<div class="info"><div class="title">Message Definitions</div>All Protocol Buffers messages can be found defined in the [[riakclient.proto|http://github.com/basho/riak-erlang-client/blob/master/src/riakclient.proto]] file in the Erlang client.</div>
+
 
 h3. Error Response
 
 If the server experiences an error processing a request it will return an RpbErrorResp message instead of the response expected for the given request (e.g. RbpGetResp is the expected response to RbpGetReq).  Error messages contain an error string and an error code.
-{code}
+
+```bash
 message RpbErrorResp {
     required bytes errmsg = 1;
     required uint32 errcode = 2;
 }
-{code}
+```
+
 
 Values:
 * {{errmsg}} \- a string representation of what went wrong
@@ -79,9 +83,9 @@ h3. List Buckets
 
 List all of the bucket names available
 
-{note:title=Caution}
-This call can be expensive for the server - do not use in performance sensitive code
-{note}
+
+<div class="note"><div class="title">Caution</div>This call can be expensive for the server - do not use in performance sensitive code</div>
+
 
 h4. Request
 
@@ -89,11 +93,13 @@ Only the message code is required.
 
 h4. Response
 
-{code}
+
+```bash
 message RpbListBucketsResp {
     repeated bytes buckets = 1;
 }
-{code}
+```
+
 
 Values:
 * {{buckets}} \- buckets on the server
@@ -101,15 +107,18 @@ Values:
 h4. Example
 
 Request
-{code}
+
+```bash
 Hex      00 00 00 01 0F
 Erlang <<0,0,0,1,15>>
 
 RpbListBucketsReq - only message code defined
-{code}
+```
+
 
 Response
-{code}
+
+```bash
 Hex      00 00 00 2A 10 0A 02 62 31 0A 02 62 35 0A 02 62
          34 0A 02 62 38 0A 02 62 33 0A 03 62 31 30 0A 02
          62 39 0A 02 62 32 0A 02 62 36 0A 02 62 37
@@ -128,7 +137,8 @@ buckets: "b2"
 buckets: "b6"
 buckets: "b7"
 
-{code}
+```
+
 
 h3. List keys
 
@@ -136,23 +146,27 @@ List all of the keys in a bucket. This is a streaming call, with multiple respon
 
 h4. Request
 
-{code}
+
+```bash
 message RpbListKeysReq {
     required bytes bucket = 1;
 }
-{code}
+```
+
 
 Optional Parameters:
 * {{bucket}} \- bucket to get keys from
 
 h4. Response
 
-{code}
+
+```bash
 message RpbListKeysResp {
     repeated bytes keys = 1;
     optional bool done = 2;
 }
-{code}
+```
+
 
 Values:
 * {{keys}} \- batch of keys in the bucket.
@@ -161,44 +175,52 @@ Values:
 h4. Example
 
 Request
-{code}
+
+```bash
 Hex      00 00 00 0B 11 0A 08 6C 69 73 74 6B 65 79 73
 Erlang <<0,0,0,11,17,10,8,108,105,115,116,107,101,121,115>>
 
 RpbListKeysReq protoc decode:
 bucket: "listkeys"
 
-{code}
+```
+
 
 Response Pkt 1
-{code}
+
+```bash
 Hex      00 00 00 04 12 0A 01 34
 Erlang <<0,0,0,4,18,10,1,52>>
 
 RpbListKeysResp protoc decode:
 keys: "4"
 
-{code}
+```
+
 
 Response Pkt 2
-{code}
+
+```bash
 Hex      00 00 00 08 12 0A 02 31 30 0A 01 33
 Erlang <<0,0,0,8,18,10,2,49,48,10,1,51>>
 
 RpbListKeysResp protoc decode:
 keys: "10"
 keys: "3"
-{code}
+```
+
 
 Response Pkt 3
-{code}
+
+```bash
 Hex      00 00 00 03 12 10 01
 Erlang <<0,0,0,3,18,16,1>>
 
 RpbListKeysResp protoc decode:
 done: true
 
-{code}
+```
+
 
 h3. Get Bucket Properties
 
@@ -206,18 +228,21 @@ Get the properties for a bucket
 
 h4. Request
 
-{code}
+
+```bash
 message RpbGetBucketReq {
     required bytes bucket = 1;
 }
-{code}
+```
+
 
 Required Parameters:
 * {{bucket}} \- bucket to retrieve properties for
 
 h4. Response
 
-{code}
+
+```bash
 message RpbGetBucketResp {
     required RpbBucketProps props = 1;
 }
@@ -226,7 +251,8 @@ message RpbBucketProps {
     optional uint32 n_val = 1;
     optional bool allow_mult = 2;
 }
-{code}
+```
+
 
 Values:
 * {{n_val}} \- current n_val for the bucket
@@ -235,17 +261,20 @@ Values:
 h4. Example
 
 Request
-{code}
+
+```bash
 Hex      00 00 00 0B 13 0A 08 6D 79 62 75 63 6B 65 74
 Erlang <<0,0,0,11,19,10,8,109,121,98,117,99,107,101,116>>
 
 RpbGetBucketReq protoc decode:
 bucket: "mybucket"
 
-{code}
+```
+
 
 Response
-{code}
+
+```bash
 Hex      00 00 00 07 14 0A 04 08 05 10 01
 Erlang <<0,0,0,7,20,10,4,8,5,16,1>>
 
@@ -255,19 +284,21 @@ props {
   allow_mult: true
 }
 
-{code}
+```
+
 
 h3. Set Bucket Properties
 
 Set the properties for a bucket
 
-{note}
-The PBC interface does not currently support all bucket properties. It is currently limited to {{allow_mult}} and {{n_val}}; other bucket properties would need to be set with the [[REST API|REST API#Set bucket properties]].
-{note}
+
+<div class="note">The PBC interface does not currently support all bucket properties. It is currently limited to {{allow_mult}} and {{n_val}}; other bucket properties would need to be set with the [[REST API|REST API#Set bucket properties]].</div>
+
 
 h4. Request
 
-{code}
+
+```bash
 message RpbSetBucketReq {
     required bytes bucket = 1;
     required RpbBucketProps props = 2;
@@ -277,7 +308,8 @@ message RpbBucketProps {
     optional uint32 n_val = 1;
     optional bool allow_mult = 2;
 }
-{code}
+```
+
 
 Required Parameters:
 * {{bucket}} \- bucket to set properties for
@@ -294,7 +326,8 @@ h4. Example
 Change allow_mult to true for bucket "friends"
 
 Request
-{code}
+
+```bash
 Hex      00 00 00 0E 15 0A 07 66 72 69 65 6E 64 73 12 02
          10 01
 Erlang <<0,0,0,14,21,10,7,102,114,105,101,110,100,115,18,2,16,1>>
@@ -305,15 +338,18 @@ props {
   allow_mult: true
 }
 
-{code}
+```
+
 
 Response
-{code}
+
+```bash
 Hex      00 00 00 01 16
 Erlang <<0,0,0,1,22>>
 
 RpbSetBucketResp - only message code defined
-{code}
+```
+
 
 h2. Object/Key Operations
 
@@ -323,25 +359,29 @@ Read an object from Riak
 
 h4. Request
 
-{code}
+
+```bash
 message RpbGetReq {
-    required bytes bucket = 1;
-    required bytes key = 2;
-    optional uint32 r = 3;
+Â Â  Â required bytes bucket = 1;
+Â Â  Â required bytes key = 2;
+Â Â  Â optional uint32 r = 3;
 }
-{code}
+```
+
 
 Optional Parameters:
 * {{r}} \- (read quorum) how many replicas need to agree when retrieving the object; possible values include 'default', 'one', 'quorum', 'all', or any integer <= N ([[default is defined per the bucket|#Set Bucket Properties]])
 
 h4. Response
 
-{code}
+
+```bash
 message RpbGetResp {
-    repeated RpbContent content = 1;
-    optional bytes vclock = 2;
+Â Â  Â repeated RpbContent content = 1;
+Â Â  Â optional bytes vclock = 2;
 }
-{code}
+```
+
 
 Values:
 * {{content}} \- value+metadata entries for the object. If there are siblings there will be more than one entry. If the key is not found, content will be empty.
@@ -349,61 +389,70 @@ Values:
 
 The content entries hold the object value and any metadata
 
-{code}
+
+```bash
 // Content message included in get/put responses
 /message RpbContent {
-    required bytes value = 1;
-    optional bytes content_type = 2;     // the media type/format
-    optional bytes charset = 3;
-    optional bytes content_encoding = 4;
-    optional bytes vtag = 5;
-    repeated RpbLink links = 6;          // links to other resources
-    optional uint32 last_mod = 7;
-    optional uint32 last_mod_usecs = 8;
-    repeated RpbPair usermeta = 9;       // user metadata stored with the object
+Â Â  Â required bytes value = 1;
+Â Â  Â optional bytes content_type = 2;     // the media type/format
+Â Â  Â optional bytes charset = 3;
+Â Â  Â optional bytes content_encoding = 4;
+Â Â  Â optional bytes vtag = 5;
+Â Â  Â repeated RpbLink links = 6;          // links to other resources
+Â Â  Â optional uint32 last_mod = 7;
+Â Â  Â optional uint32 last_mod_usecs = 8;
+Â Â  Â repeated RpbPair usermeta = 9;       // user metadata stored with the object
 }
-{code}
+```
+
 
 Each object can contain user-supplied metadata (X-Riak-Meta-\* in the HTTP interface) consisting
 of a key/value pair. e.g. key=X-Riak-Meta-ACL value=users:r,administrators:f would allow an application to store access control information for it to enforce (*not* Riak).
 
-{code}
+
+```bash
 // Key/value pair - used for user metadata
 message RpbPair {
-    required bytes key = 1;
-    optional bytes value = 2;
+Â Â  Â required bytes key = 1;
+Â Â  Â optional bytes value = 2;
 }
-{code}
+```
+
 
 Links store references to related bucket/keys and can be accessed through link walking in map/reduce.
 
-{code}
+
+```bash
 // Link metadata
 message RpbLink {
-    optional bytes bucket = 1;
-    optional bytes key = 2;
-    optional bytes tag = 3;
+Â Â  Â optional bytes bucket = 1;
+Â Â  Â optional bytes key = 2;
+Â Â  Â optional bytes tag = 3;
 }
-{code}
+```
 
-{note:title=Missing keys}
-Remember - if a key is not stored in Riak an RpbGetResp without content and vclock fields will be returned. This should be mapped to whatever convention the client language uses to return not found, e.g. the erlang client returns an atom {{\{error, notfound\}}}
-{note}
+
+
+<div class="note"><div class="title">Missing keys</div>Remember - if a key is not stored in Riak an RpbGetResp without content and vclock fields will be returned. This should be mapped to whatever convention the client language uses to return not found, e.g. the erlang client returns an atom {{\{error, notfound\}}}</div>
+
 
 h4. Example
 
 Request
-{code}
+
+```bash
 Hex      00 00 00 07 09 0A 01 62 12 01 6B
 Erlang <<0,0,0,7,9,10,1,98,18,1,107>>
 
 RpbGetReq protoc decode:
 bucket: "b"
 key: "k"
-{code}
+```
+
 
 Response
-{code}
+
+```bash
 Hex      00 00 00 4A 0A 0A 26 0A 02 76 32 2A 16 33 53 44
          6C 66 34 49 4E 4B 7A 38 68 4E 64 68 79 49 6D 4B
          49 72 75 38 BB D7 A2 DE 04 40 E0 B9 06 12 1F 6B
@@ -422,7 +471,8 @@ content {
   last_mod_usecs: 105696
 }
 vclock: "k\\316a```\\314`\\312\\005R,\\254\\302[?e0%2\\345\\2612\\354V\\267=\\312\\227\\005\\000"
-{code}
+```
+
 
 
 h3. Store a new or existing object with a key
@@ -431,7 +481,8 @@ Store a new or updated object under the bucket/key provided.
 
 h4. Request
 
-{code}
+
+```bash
 message RpbPutReq {
     required bytes bucket = 1;
     required bytes key = 2;
@@ -441,7 +492,8 @@ message RpbPutReq {
     optional uint32 dw = 6;
     optional bool return_body = 7;
 }
-{code}
+```
+
 
 Required Parameters:
 * {{bucket}} \- bucket key resides in
@@ -456,23 +508,26 @@ Optional Parameters:
 
 h4. Response
 
-{code}
+
+```bash
 message RpbPutResp {
     repeated RpbContent contents = 1;
     optional bytes vclock = 2;        // the opaque vector clock for the object
 }
-{code}
+```
+
 
 If returnbody is set to true on the put request, the RpbPutResp will contain the current object after the put completes.
 
-{note:text="Check for siblings"}
-N.B. this could contain siblings just like an RpbGetResp does.
-{note}
+
+<div class="note">N.B. this could contain siblings just like an RpbGetResp does.</div>
+
 
 h4. Example
 
 Request
-{code}
+
+```bash
 Hex      00 00 00 1C 0B 0A 01 62 12 01 6B 22 0F 0A 0D 7B
          22 66 6F 6F 22 3A 22 62 61 72 22 7D 28 02 38 01
 Erlang <<0,0,0,28,11,10,1,98,18,1,107,34,15,10,13,123,34,102,111,111,34,58,34,
@@ -487,10 +542,12 @@ content {
 w: 2
 return_body: true
 
-{code}
+```
+
 
 Response
-{code}
+
+```bash
 Hex      00 00 00 62 0C 0A 31 0A 0D 7B 22 66 6F 6F 22 3A
          22 62 61 72 22 7D 2A 16 31 63 61 79 6B 4F 44 39
          36 69 4E 41 68 6F 6D 79 65 56 6A 4F 59 43 38 AF
@@ -513,7 +570,8 @@ contents {
 }
 vclock: "k\\316a```\\312`\\312\\005R,,\\351\\014\\206\\031L\\211\\214y\\254\\014Z!\\266G\\371 \\302l\\315I\\254\\rw|\\240\\022\\372 \\211,\\000"
 
-{code}
+```
+
 
 
 h3. Delete object
@@ -522,13 +580,15 @@ Delete an object from a bucket
 
 h4. Request
 
-{code}
+
+```bash
 message RpbDelReq {
     required bytes bucket = 1;
     required bytes key = 2;
     optional uint32 rw = 3;
 }
-{code}
+```
+
 
 Optional Parameters:
 * {{rw}} \- how many replicas to delete before returning a successful response; possible values include 'default', 'one', 'quorum', 'all', or any integer <= N ([[default is defined per the bucket|#Set Bucket Properties]])
@@ -540,7 +600,8 @@ Only the message code is returned.
 h4. Example
 
 Request
-{code}
+
+```bash
 Hex      00 00 00 12 0D 0A 0A 6E 6F 74 61 62 75 63 6B 65
          74 12 01 6B 18 01
 Erlang <<0,0,0,18,13,10,10,110,111,116,97,98,117,99,107,101,116,18,1,107,24,1>>
@@ -550,15 +611,18 @@ bucket: "notabucket"
 key: "k"
 rw: 1
 
-{code}
+```
+
 
 Response
-{code}
+
+```bash
 Hex      00 00 00 01 0E
 Erlang <<0,0,0,1,14>>
 
 RpbDelResp - only message code defined
-{code}
+```
+
 
 h2. Querying
 
@@ -568,12 +632,14 @@ Execute a MapReduce job.
 
 h4. Request
 
-{code}
+
+```bash
 message RpbMapRedReq {
     required bytes request = 1;
     required bytes content_type = 2;
 }
-{code}
+```
+
 
 Required Parameters:
 * {{request}} \- MapReduce job
@@ -589,13 +655,15 @@ h4. Response
 
 The results of the MapReduce job is returned for each phase that generates a result, encoded in the same format the job was submitted in. Multiple response messages will be returned followed by a final message at the end of the job.
 
-{code}
+
+```bash
 message RpbMapRedResp {
     optional uint32 phase = 1;
     optional bytes response = 2;
     optional bool done = 3;
 }
-{code}
+```
+
 
 Values:
 * {{phase}} \- phase number of the MapReduce job
@@ -605,7 +673,8 @@ Values:
 h4. Example
 
 Here is how submitting a JSON encoded job to sum up a bucket full of JSON encoded values.
-{code}
+
+```bash
 {"inputs": "bucket_501653",
  "query":
     [{"map": {"arg": null,
@@ -616,10 +685,12 @@ Here is how submitting a JSON encoded job to sum up a bucket full of JSON encode
                    "name": "Riak.reduceSum",
                    "language": "javascript",
                    "keep": true}}]}"
-{code}
+```
+
 
 Request
-{code}
+
+```bash
 Hex      00 00 00 F8 17 0A E2 01 7B 22 69 6E 70 75 74 73
          22 3A 20 22 62 75 63 6B 65 74 5F 35 30 31 36 35
          33 22 2C 20 22 71 75 65 72 79 22 3A 20 5B 7B 22
@@ -657,10 +728,12 @@ request: "{\"inputs\": \"bucket_501653\", \"query\": [{\"map\": {\"arg\": null, 
 \"javascript\", \"keep\": true}}]}"
 content_type: "application/json"
 
-{code}
+```
+
 
 Response 1 - result from phase 1
-{code}
+
+```bash
 Hex      00 00 00 08 18 08 01 12 03 5B 39 5D
 Erlang <<0,0,0,8,24,8,1,18,3,91,57,93>>
 
@@ -668,17 +741,20 @@ RpbMapRedResp protoc decode:
 phase: 1
 response: "[[9]]"
 
-{code}
+```
+
 
 Response 2 - end of MapReduce job
-{code}
+
+```bash
 Hex      00 00 00 03 18 18 01
 Erlang <<0,0,0,3,24,24,1>>
 
 RpbMapRedResp protoc decode:
 done: true
 
-{code}
+```
+
 
 h2. Other Operations
 
@@ -697,16 +773,20 @@ Just the RpbPingResp message code. No response message defined.
 h4. Example
 
 Request
-{code}
+
+```bash
 Hex    00 00 00 01 01
 Erlang <<0,0,0,1,1>>
-{code}
+```
+
 
 Response
-{code}
+
+```bash
 Hex    00 00 00 01 02
 Erlang <<0,0,0,1,2>>
-{code}
+```
+
 
 h3. Get Client Id
 
@@ -718,30 +798,36 @@ Just the RpbGetClientIdReq message code. No request message defined.
 
 h4. Response
 
-{code}
+
+```bash
 // Get ClientId Request - no message defined, just send RpbGetClientIdReq message code
 message RpbGetClientIdResp {
     required bytes client_id = 1; // Client id in use for this connection
 }
-{code}
+```
+
 
 h4. Example
 
 Request
-{code}
+
+```bash
 Hex     00 00 00 01 03
 Erlang  <<0,0,0,1,3>>
-{code}
+```
+
 
 Response
-{code}
+
+```bash
 Hex     00 00 00 07 04 0A 04 01 65 01 B5
 Erlang <<0,0,0,7,4,10,4,1,101,1,181>>
 
 RpbGetClientIdResp protoc decode:
 client_id: "\\001e\\001\\265"
 
-{code}
+```
+
 
 
 h3. Set Client Id
@@ -750,11 +836,13 @@ Set the client id for this connection.  A library may want to set the client id 
 
 h4. Request
 
-{code}
+
+```bash
 message RpbSetClientIdReq {
     required bytes client_id = 1; // Client id to use for this connection
 }
-{code}
+```
+
 
 h4. Response
 
@@ -763,22 +851,26 @@ Just the RpbSetClientIdResp message code.
 h4. Example
 
 Request
-{code}
+
+```bash
 Hex      00 00 00 07 05 0A 04 01 65 01 B6
 Erlang <<0,0,0,7,5,10,4,1,101,1,182>>
 
 RpbSetClientIdReq protoc decode:
 client_id: "\\001e\\001\\266"
 
-{code}
+```
+
 
 Response
-{code}
+
+```bash
 Hex      00 00 00 01 06
 Erlang <<0,0,0,1,6>>
 
 RpbSetClientIdResp - only message code defined
-{code}
+```
+
 
 
 h3. Server Info
@@ -789,25 +881,30 @@ Just the RpbGetServerInfoReq message code. No request message defined.
 
 h4. Response
 
-{code}
+
+```bash
 message RpbGetServerInfoResp {
     optional bytes node = 1;
     optional bytes server_version = 2;
 }
-{code}
+```
+
 
 h4. Example
 
 Request
-{code}
+
+```bash
 Hex      00 00 00 01 07
 Erlang <<0,0,0,1,7>>
 
 RpbGetServerInfoReq - only message code defined
-{code}
+```
+
 
 Response
-{code}
+
+```bash
 Hex      00 00 00 17 08 0A 0E 72 69 61 6B 40 31 32 37 2E
          30 2E 30 2E 31 12 04 30 2E 31 30
 Erlang <<0,0,0,23,8,10,14,114,105,97,107,64,49,50,55,46,48,46,48,46,49,18,4,48,
@@ -816,4 +913,4 @@ Erlang <<0,0,0,23,8,10,14,114,105,97,107,64,49,50,55,46,48,46,48,46,49,18,4,48,
 RpbGetServerInfoResp protoc decode:
 node: "riak@127.0.0.1"
 server_version: "0.10"
-{code}
+```

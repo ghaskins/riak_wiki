@@ -1,6 +1,8 @@
 Below is a list of terms and their applicability within the context of Riak:
 
-{toc}
+
+<div id="toc"></div>
+
 
 h5. Bucket
 
@@ -50,6 +52,13 @@ An object is another name for a [[#Value]].
 h5. Partition
 
 Partitions are the spaces into which a Riak cluster is divided. Each vnode in Riak is responsible for a partition, and data will be stored on a set number of partitions determined statically based on an object's key.
+
+h5. Quorum
+
+Quorum in Riak has two meanings:
+
+# The quantity of replicas that must respond to a read or write request before it is considered successful. This is defined as a bucket property or as one of the relevant parameters to a single request (R,W,DW,RW).
+# A symbolic quantity for the above, "quorum", which is equivalent to {{n_val / 2 + 1}}. With Riak's default settings, this is {{2}}.
 
 h5. Read Repair
 
