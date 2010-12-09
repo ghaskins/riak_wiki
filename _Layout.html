@@ -162,16 +162,18 @@
             jQuery("#sidebar").find("li").each(function(){
                 var item;
                 if ( jQuery(this).has("ul").length ) {
-                    item = jQuery("<a class=\"toggler\" href=\"#\">"+expand+"</a>").click(function(e){
+                    var hide = jQuery(this).has("a[href=\"{{ page.link }}\"]").length == 0;
+                    var action = hide ? expand : contract
+                    item = jQuery("<a class=\"toggler\" href=\"#\">"+action+"</a>").click(function(e){
                         jQuery(this)
                             .text( jQuery(this).text() === expand ? contract : expand )
                             .parent().children("ul").toggle();
                         return false;
                     });
 
-                    jQuery(this).find("ul").filter(function(){
-                        return jQuery(this).find("a[href=\"{{ page.link }}\"]").length == 0
-                    }).hide();
+                    if ( hide ) {
+                        jQuery(this).find("ul").hide();
+                    }
 
                 }
 
