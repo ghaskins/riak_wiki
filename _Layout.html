@@ -196,28 +196,40 @@
     </div>
       <style type="text/css">
         #sidebar ul {
-        list-style: none;
-        text-align: left;
-        margin-left: 15px;
+            list-style: none;
+            text-align: left;
+            margin-left: 21px; // should match image width
         }
-        .toggler {
-        margin-right: 3px;
-        }
+#sidebar li {
+    list-style-image: url("/images/arrow-spacer.png");
+}
+#sidebar li.collapsed {
+    list-style-image: url("/images/collapsed-arrow.png");
+}
+#sidebar li.expanded {
+    list-style-image: url("/images/expanded-arrow.png");
+}
       </style>
       <script type="text/javascript">
         $(document).ready(function()
         {
-            var expand = "<img src='/images/collapsed-arrow.png' />";
-            var contract = "<img src='/images/expanded-arrow.png' />";
             jQuery("#sidebar").find("li").each(function(){
-                var item;
-                if ( jQuery(this).has("ul").length ) {
-                    var hide = jQuery(this).has("a[href=\"{{ page.link }}\"]").length == 0;
-                    var action = hide ? expand : contract
-                    item = jQuery("<a class=\"toggler\" href=\"#\">"+action+"</a>").click(function(e){
-                        jQuery(this)
-                            .text( jQuery(this).text() === expand ? contract : expand )
-                            .parent().children("ul").toggle();
+                var item = jQuery(this);
+                if ( item.has("ul").length ) {
+                    var hide = item.has("a[href=\"/Home.html\"]").length == 0;
+
+                    if ( hide ) {
+                        item.addClass("collapsed");
+                    } else {
+                        item.addClass("expanded");
+                    }
+
+                    item.click(function(){
+                        item1 = jQuery(this);
+                        var collapsed = item1.hasClass("collapsed");
+                        item1.removeClass("expanded collapsed")
+                            .addClass(collapsed ? "expanded" : "collapsed")
+                            .children("ul").toggle();
                         return false;
                     });
 
@@ -226,8 +238,6 @@
                     }
 
                 }
-
-                jQuery(this).prepend( item );
             });
         });
       </script>
