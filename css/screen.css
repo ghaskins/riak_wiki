@@ -105,12 +105,45 @@ div.fixwidth {
     min-height: 70px;
 }
 
+#footer table {
+	margin-top: 20px;
+    margin-left:105px;
+    margin-bottom: 30px;
+	width:90%;
+}
+
+#footer td {
+    vertical-align: top;
+    width: 30%;
+}
+
+#footer ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+#footer li {
+    padding-top: 5px;
+}
+#footer li.maphead {
+    font-weight: bold;
+    padding-top: 15px;
+}
+
 #footer #address {
     width: 100%;
     text-align: center;
     margin-top: 15px;
     margin-bottom: 15px;
 	margin-left:60px;
+}
+
+#footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+#footer a:hover {
+    text-decoration: underline;
 }
 
 table {
