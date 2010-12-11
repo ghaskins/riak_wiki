@@ -195,20 +195,24 @@ document.onclick = mclose;
     </div>
     </div>
     <style type="text/css">
-#sidebar ul {
+    #sidebar ul {
         list-style: none;
-    text-align: left;
-    margin-left: 21px; // should match image width
-}
-#sidebar li {
-    list-style-image: url("{{ wiki.base_path }}images/arrow-spacer.png");
-}
-#sidebar li.collapsed {
-    list-style-image: url("{{ wiki.base_path}}images/collapsed-arrow.png");
-}
-#sidebar li.expanded {
-    list-style-image: url("{{ wiki.base_path }}images/expanded-arrow.png");
-}
+        text-align: left;
+        margin:0px;
+        padding:0px;
+    }
+    #sidebar ul ul {
+        padding-left:20px;
+    }
+    #sidebar li {
+        list-style-image: url("{{ wiki.base_path }}images/arrow-spacer.png");
+    }
+    #sidebar li.collapsed {
+        list-style-image: url("{{ wiki.base_path}}images/collapsed-arrow.png");
+    }
+    #sidebar li.expanded {
+        list-style-image: url("{{ wiki.base_path }}images/expanded-arrow.png");
+    }
 </style>
     <script type="text/javascript">
     $(document).ready(function()
