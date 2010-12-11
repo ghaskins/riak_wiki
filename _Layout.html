@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 
-<html>
-  <head>
+    <html>
+    <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta content="Basho Riak" name="description"/>
     <meta content="Basho, Riak, Web Database, fault tolerance, efficient scaling" name="keywords"/>
@@ -10,236 +10,238 @@
     <link rel="stylesheet" href="{{ wiki.base_path }}css/gollum.css" type="text/css" charset="utf-8" />
     <link rel="stylesheet" href="{{ wiki.base_path }}css/syntax.css" type="text/css" charset="utf-8" />
     <style type="text/css">
-      img { behavior: url(iepngfix.htc) }
-    </style>
+    img { behavior: url(iepngfix.htc) }
+</style>
     <script src="{{ wiki.base_path }}javascript/jquery-1.4.2.min.js" type="text/javascript"></script>
     <script src="{{ wiki.base_path }}javascript/jquery.text_selection-1.0.0.min.js" type="text/javascript"></script>
     <script src="{{ wiki.base_path }}javascript/jquery.previewable_comment_form.js" type="text/javascript"></script>
     <script src="{{ wiki.base_path }}javascript/jquery.tabs.js" type="text/javascript"></script>
     <script src="{{ wiki.base_path }}javascript/gollum.js" type="text/javascript"></script>
     <script src="{{ wiki.base_path }}javascript/MathJax/MathJax.js" type="text/javascript">
-      MathJax.OutputJax.fontDir = "http://github-assets.s3.amazonaws.com/javascripts/MathJax/fonts"
-      MathJax.Hub.Config({
-      jax: ["input/TeX", "output/HTML-CSS"]
-      })
-    </script>
+    MathJax.OutputJax.fontDir = "http://github-assets.s3.amazonaws.com/javascripts/MathJax/fonts"
+MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"]
+})
+</script>
     <script type="text/javascript">
-      var timeout = 500;
-      var closetimer = 0;
-      var ddmenuitem = 0;
+    var timeout = 500;
+var closetimer = 0;
+var ddmenuitem = 0;
 
-      // open hidden layer
-      function mopen(id){
-      // cancel close timer
-      mcancelclosetime();
+// open hidden layer
+function mopen(id){
+    // cancel close timer
+    mcancelclosetime();
 
-      // close old layer
-      if (ddmenuitem)
-      ddmenuitem.style.visibility = 'hidden';
+    // close old layer
+    if (ddmenuitem)
+        ddmenuitem.style.visibility = 'hidden';
 
-      // get new layer and show it
-      ddmenuitem = document.getElementById(id);
-      ddmenuitem.style.visibility = 'visible';
-      }
+    // get new layer and show it
+    ddmenuitem = document.getElementById(id);
+    ddmenuitem.style.visibility = 'visible';
+}
 
-      // close showed layer
-      function mclose(){
-      if (ddmenuitem)
-      ddmenuitem.style.visibility = 'hidden';
-      }
+// close showed layer
+function mclose(){
+    if (ddmenuitem)
+        ddmenuitem.style.visibility = 'hidden';
+}
 
-      // go close timer
-      function mclosetime(){
-      closetimer = window.setTimeout(mclose, timeout);
-      }
+// go close timer
+function mclosetime(){
+    closetimer = window.setTimeout(mclose, timeout);
+}
 
-      // cancel close timer
-      function mcancelclosetime(){
-      if (closetimer) {
-      window.clearTimeout(closetimer);
-      closetimer = null;
-      }
-      }
+// cancel close timer
+function mcancelclosetime(){
+    if (closetimer) {
+        window.clearTimeout(closetimer);
+        closetimer = null;
+    }
+}
 
-      // close layer when click-out
-      document.onclick = mclose;
-    </script>
-  </head>
+// close layer when click-out
+document.onclick = mclose;
+</script>
+    </head>
 
-  <body>
+    <body>
     <div id="head">
-      <div class="fixwidth">
-        <a href="#"><img id="logo" src="images/basho-portrait.png" alt="Basho Technologies" width="100" height="102" /></a>
-        <div id="nav">
-          <div class="menu">
-            <div><a href="http://www.basho.com">Home</a></div>
-          </div>
-          <div class="menu">
-            <div><a href="http://www.basho.com/Riak.html" onmouseover="mopen('m1')" onmouseout="mclosetime()">Products</a></div>
-            <div class="rest" id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()" style="width:11em;">
-              <a href="http://www.basho.com/Riak.html">Overview</a>
-              <a href="http://www.basho.com/enterpriseds.html">Riak EnterpriseDS</a>
-              <a href="http://www.basho.com/startups.html">EnterpriseDS for Startups</a>
-              <a href="http://www.basho.com/riaksearch.html">Riak Search</a>
-              <a href="http://www.basho.com/Scalability.html">For Scalability</a>
-              <a href="http://www.basho.com/fault_tolerance.html">For Fault-Tolerance</a>
-              <a href="http://www.basho.com/high_availability.html">For High Availability</a>
-              <a href="http://www.basho.com/replication.html">For Replication</a>
-              <a href="http://www.basho.com/monitoring.html">For Monitoring</a>
-            </div>
-          </div>
-          <div class="menu">
-            <div><a href="http://www.basho.com/developers.html">Open Source</a></div>
-          </div>
-          <div class="menu">
-            <div><a href="#" onmouseover="mopen('m2')" onmouseout="mclosetime()">Support</a></div>
-            <div class="rest" id="m2" onmouseover="mcancelclosetime()" onmouseout="mclosetime()" style="width:11em;">
-              <a href="http://wiki.basho.com">Support Wiki</a>
-              <a href="http://help.basho.com">Knowledge Base</a>
-              <a href="http://http://contrib.basho.com">Function Contrib</a>
-              <a href="http://lists.basho.com/mailman/listinfo/riak-users_lists.basho.com">Mailing Lists</a>
-          </div>
-          </div>
-          <div class="menu">
-            <div><a href="http://www.basho.com/aboutus.html" onmouseover="mopen('m3')" onmouseout="mclosetime()">Company</a></div>
-            <div class="rest" id="m3" onmouseover="mcancelclosetime()" onmouseout="mclosetime()" style="width:7em;">
-              <a href="http://www.basho.com/aboutus.html">About Us</a>
-              <a href="http://www.basho.com/bios.html">Our Team</a>
-              <a href="http://www.basho.com/board_of_directors.html">Our Board</a>
-              <a href="http://www.basho.com/customers.html">Customers</a>
-              <a href="http://www.basho.com/partners.html">Partners</a>
-              <a href="http://www.basho.com/news.html">News</a>
-              <a href="http://www.basho.com/contact.html">Contact Us</a>
-            </div>
-          </div>
-          <div class="menu">
-            <div><a href="#" onmouseover="mopen('m4')" onmouseout="mclosetime()">Blogs</a></div>
-            <div class="rest" id="m4" onmouseover="mcancelclosetime()" onmouseout="mclosetime()" style="width:7em;">
-              <a href="http://blog.basho.com/">Basho Blog</a>
-              <a href="http://releases.basho.com">Release Blog</a>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="fixwidth">
+    <a href="#"><img id="logo" src="images/basho-portrait.png" alt="Basho Technologies" width="100" height="102" /></a>
+    <div id="nav">
+    <div class="menu">
+    <div><a href="http://www.basho.com">Home</a></div>
+    </div>
+    <div class="menu">
+    <div><a href="http://www.basho.com/Riak.html" onmouseover="mopen('m1')" onmouseout="mclosetime()">Products</a></div>
+    <div class="rest" id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()" style="width:11em;">
+    <a href="http://www.basho.com/Riak.html">Overview</a>
+    <a href="http://www.basho.com/enterpriseds.html">Riak EnterpriseDS</a>
+    <a href="http://www.basho.com/startups.html">EnterpriseDS for Startups</a>
+    <a href="http://www.basho.com/riaksearch.html">Riak Search</a>
+    <a href="http://www.basho.com/Scalability.html">For Scalability</a>
+    <a href="http://www.basho.com/fault_tolerance.html">For Fault-Tolerance</a>
+    <a href="http://www.basho.com/high_availability.html">For High Availability</a>
+    <a href="http://www.basho.com/replication.html">For Replication</a>
+    <a href="http://www.basho.com/monitoring.html">For Monitoring</a>
+    </div>
+    </div>
+    <div class="menu">
+    <div><a href="http://www.basho.com/developers.html">Open Source</a></div>
+    </div>
+    <div class="menu">
+    <div><a href="#" onmouseover="mopen('m2')" onmouseout="mclosetime()">Support</a></div>
+    <div class="rest" id="m2" onmouseover="mcancelclosetime()" onmouseout="mclosetime()" style="width:11em;">
+    <a href="http://wiki.basho.com">Support Wiki</a>
+    <a href="http://help.basho.com">Knowledge Base</a>
+    <a href="http://http://contrib.basho.com">Function Contrib</a>
+    <a href="http://lists.basho.com/mailman/listinfo/riak-users_lists.basho.com">Mailing Lists</a>
+    </div>
+    </div>
+    <div class="menu">
+    <div><a href="http://www.basho.com/aboutus.html" onmouseover="mopen('m3')" onmouseout="mclosetime()">Company</a></div>
+    <div class="rest" id="m3" onmouseover="mcancelclosetime()" onmouseout="mclosetime()" style="width:7em;">
+    <a href="http://www.basho.com/aboutus.html">About Us</a>
+    <a href="http://www.basho.com/bios.html">Our Team</a>
+    <a href="http://www.basho.com/board_of_directors.html">Our Board</a>
+    <a href="http://www.basho.com/customers.html">Customers</a>
+    <a href="http://www.basho.com/partners.html">Partners</a>
+    <a href="http://www.basho.com/news.html">News</a>
+    <a href="http://www.basho.com/contact.html">Contact Us</a>
+    </div>
+    </div>
+    <div class="menu">
+    <div><a href="#" onmouseover="mopen('m4')" onmouseout="mclosetime()">Blogs</a></div>
+    <div class="rest" id="m4" onmouseover="mcancelclosetime()" onmouseout="mclosetime()" style="width:7em;">
+    <a href="http://blog.basho.com/">Basho Blog</a>
+    <a href="http://releases.basho.com">Release Blog</a>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
 
     <div id="main">
-      <div class="site">
-        <div id="sidebar">
-         {{ site.pages["toc"].content }}
-        </div>
-        <div id="guides">
-          <div class="guide">
-            <div class="main">
-              <h1>{{ page.title }}</h1>
-              <div class="content wikistyle gollum {{ page.format }}">
-                {{ page.content }}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="clearfix"></div>
-      </div>
+    <div class="site">
+    <div id="sidebar">
+    {{ site.pages["toc"].content }}
+</div>
+    <div id="guides">
+    <div class="guide">
+    <div class="main">
+    <h1>{{ page.title }}</h1>
+    <div class="content wikistyle gollum {{ page.format }}">
+    {{ page.content }}
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="clearfix"></div>
+    </div>
     </div>
     <div id="footer">
-      <div class="fixwidth">
-        <table cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <td>
-              <ul>
-                <li class="maphead">Products</li>
-                <li><a href="http://www.basho.com/Riak.html">Overview</a></li>
-                <li><a href="http://www.basho.com/enterpriseds.html"><strong>Riak EnterpriseDS</strong></a></li>
-                <li><a href="http://www.basho.com/startups.html"><strong>EnterpriseDS for Startups</strong></a></li>
-                <li><a href="http://www.basho.com/riaksearch.html">Riak Search</a></li>
-                <li><a href="http://www.basho.com/Scalability.html">For Scalability</a></li>
-                <li><a href="http://www.basho.com/fault_tolerance.html">For Fault-tolerance</a></li>
-                <li><a href="http://www.basho.com/high_availability.html">For High Availability</a></li>
-                <li><a href="http://www.basho.com/replication.html">For Replication</a></li>
-                <li><a href="http://www.basho.com/monitoring.html">For Monitoring</a></li>
-              </ul>
-            </td>
-            <td>
-              <ul>
-                <li class="maphead"><a href="developers.html">Open Source</a></li>
-                <li class="maphead">Support<li>
-                <li><a href="http://wiki.basho.com">Documentation Wiki</a></li>
-                <li><a href="http://help.basho.com">Knowledge Base</a></li>
-                <li><a href="http://contrib.basho.com">Function Contrib</a></li>
-                <li><a href="http://lists.basho.com/mailman/listinfo/riak-users_lists.basho.com">Mailing Lists</a></li>
-              </ul>
-            </td>
-            <td style="width:10%">
-              <ul>
-                <li class="maphead"><a href="http://www.basho.com/aboutus.html">Company</a></li>
-                <li><a href="http://www.basho.com/bios.html">Our Team</a></li>
-                <li><a href="http://www.basho.com/board_of_directors.html">Our Board</a></li>
-                <li><a href="http://www.basho.com/partners.html">Partners</a></li>
-                <li><a href="http://www.basho.com/customers.html">Customers</a></li>
-                <li><a href="http://www.basho.com/news.html">News</a></li>
-                <li><a href="http://www.basho.com/contact.html">Contact Us</a></li>
-                <li class="maphead">Basho Blogs</li>
-                <li><a href="http://blog.basho.com/">The Basho Blog</a></li>
-                <li><a href="http://releases.basho.com">Release Blog</a></li>
+    <div class="fixwidth">
+    <table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+    <td>
+    <ul>
+    <li class="maphead">Products</li>
+    <li><a href="http://www.basho.com/Riak.html">Overview</a></li>
+    <li><a href="http://www.basho.com/enterpriseds.html"><strong>Riak EnterpriseDS</strong></a></li>
+    <li><a href="http://www.basho.com/startups.html"><strong>EnterpriseDS for Startups</strong></a></li>
+    <li><a href="http://www.basho.com/riaksearch.html">Riak Search</a></li>
+    <li><a href="http://www.basho.com/Scalability.html">For Scalability</a></li>
+    <li><a href="http://www.basho.com/fault_tolerance.html">For Fault-tolerance</a></li>
+    <li><a href="http://www.basho.com/high_availability.html">For High Availability</a></li>
+    <li><a href="http://www.basho.com/replication.html">For Replication</a></li>
+    <li><a href="http://www.basho.com/monitoring.html">For Monitoring</a></li>
+    </ul>
+    </td>
+    <td>
+    <ul>
+    <li class="maphead"><a href="developers.html">Open Source</a></li>
+    <li class="maphead">Support<li>
+    <li><a href="http://wiki.basho.com">Documentation Wiki</a></li>
+    <li><a href="http://help.basho.com">Knowledge Base</a></li>
+    <li><a href="http://contrib.basho.com">Function Contrib</a></li>
+    <li><a href="http://lists.basho.com/mailman/listinfo/riak-users_lists.basho.com">Mailing Lists</a></li>
+    </ul>
+    </td>
+    <td style="width:10%">
+    <ul>
+    <li class="maphead"><a href="http://www.basho.com/aboutus.html">Company</a></li>
+    <li><a href="http://www.basho.com/bios.html">Our Team</a></li>
+    <li><a href="http://www.basho.com/board_of_directors.html">Our Board</a></li>
+    <li><a href="http://www.basho.com/partners.html">Partners</a></li>
+    <li><a href="http://www.basho.com/customers.html">Customers</a></li>
+    <li><a href="http://www.basho.com/news.html">News</a></li>
+    <li><a href="http://www.basho.com/contact.html">Contact Us</a></li>
+    <li class="maphead">Basho Blogs</li>
+    <li><a href="http://blog.basho.com/">The Basho Blog</a></li>
+    <li><a href="http://releases.basho.com">Release Blog</a></li>
 
-              </ul>
-            </td>
-          </tr>
-        </table>
-        <div id="address">
-          <p>Basho Technologies, Inc.<br />
-          196 Broadway, Cambridge, MA 02139<br />
-          <br />
-          <strong>Call us: (617) 714-1700</strong></p>
-          <p>Copyright &copy; 2010 Basho Technologies, Inc. All Rights Reserved.</p>
-        </div>
+</ul>
+    </td>
+    </tr>
+    </table>
+    <div id="address">
+    <p>Basho Technologies, Inc.<br />
+    196 Broadway, Cambridge, MA 02139<br />
+    <br />
+    <strong>Call us: (617) 714-1700</strong></p>
+    <p>Copyright &copy; 2010 Basho Technologies, Inc. All Rights Reserved.</p>
     </div>
-      <style type="text/css">
-        #sidebar ul {
-            list-style: none;
-            text-align: left;
-            margin-left: 21px; // should match image width
-        }
+    </div>
+    <style type="text/css">
+#sidebar ul {
+        list-style: none;
+    text-align: left;
+    margin-left: 21px; // should match image width
+}
 #sidebar li {
-    list-style-image: url("/images/arrow-spacer.png");
+    list-style-image: url("{{ wiki.base_path }}images/arrow-spacer.png");
 }
 #sidebar li.collapsed {
-    list-style-image: url("/images/collapsed-arrow.png");
+    list-style-image: url("{{ wiki.base_path}}images/collapsed-arrow.png");
 }
 #sidebar li.expanded {
-    list-style-image: url("/images/expanded-arrow.png");
+    list-style-image: url("{{ wiki.base_path }}images/expanded-arrow.png");
 }
-      </style>
-      <script type="text/javascript">
-        $(document).ready(function()
-        {
-            jQuery("#sidebar").find("li").each(function(){
-                var item = jQuery(this);
-                if ( item.has("ul").length ) {
-                    var hide = item.has("a[href=\"/Home.html\"]").length == 0;
+</style>
+    <script type="text/javascript">
+    $(document).ready(function()
+                      {
+                          jQuery("#sidebar").find("li").each(function(){
+                              var item = jQuery(this);
+                              if ( item.has("ul").length ) {
+                                  var hide = item.has("a[href=\"{{ page.link }}\"]").length == 0;
 
-                    if ( hide ) {
-                        item.addClass("collapsed");
-                    } else {
-                        item.addClass("expanded");
-                    }
+                                  if ( hide ) {
+                                      item.addClass("collapsed");
+                                  } else {
+                                      item.addClass("expanded");
+                                  }
 
-                    item.click(function(){
-                        item1 = jQuery(this);
-                        var collapsed = item1.hasClass("collapsed");
-                        item1.removeClass("expanded collapsed")
-                            .addClass(collapsed ? "expanded" : "collapsed")
-                            .children("ul").toggle();
-                        return false;
-                    });
+                                  item.click(function(event){
+                                      if ( this == event.target ) {
+                                          item1 = jQuery(this);
+                                          var collapsed = item1.hasClass("collapsed");
+                                          item1.removeClass("expanded collapsed")
+                                              .addClass(collapsed ? "expanded" : "collapsed")
+                                              .children("ul").toggle();
+                                          return false;
+                                      }
+                                  });
 
-                    if ( hide ) {
-                        jQuery(this).find("ul").hide();
-                    }
+                                  if ( hide ) {
+                                      item.find("ul").hide();
+                                  }
 
-                }
-            });
-        });
+                              }
+                          });
+                      });
       </script>
   </body>
 </html>
