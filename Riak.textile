@@ -1,9 +1,9 @@
-h1. {color:#F68C11}Riak: An Open Source Scalable Data Store{color}
+h1. Riak: An Open Source Scalable Data Store
 
 
-{color:#595c61}*Riak is a Dynamo-inspired key/value store that scales predictably and easily. Riak also simplifies development by giving developers the ability to quickly prototype, test, and deploy their applications.*{color}
+*Riak is a Dynamo-inspired key/value store that scales predictably and easily. Riak also simplifies development by giving developers the ability to quickly prototype, test, and deploy their applications.*
 
-{color:#595c61}*A truly fault-tolerant system, Riak has no single point of failure. No machines are special or central in Riak, so developers and operations professionals can decide exactly how fault-tolerant they want and need their applications to be.*{color}
+*A truly fault-tolerant system, Riak has no single point of failure. No machines are special or central in Riak, so developers and operations professionals can decide exactly how fault-tolerant they want and need their applications to be.*
 
 
 {section}
