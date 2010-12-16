@@ -258,7 +258,7 @@ For example:
 would follow all links pointing to objects in the {{foo}} bucket, regardless of their tag.
 
 
-<div class="info"> Riak comes with some prebuilt JavaScript Functions. You can check them out at: [[http://hg.basho.com/riak_kv/src/tip/priv/mapred_builtins.js|http://hg.basho.com/riak_kv/src/tip/priv/mapred_builtins.js]] </div>
+<div class="info"> Riak comes with some prebuilt JavaScript Functions. You can check them out at: [[https://github.com/basho/riak_kv/blob/master/priv/mapred_builtins.js|https://github.com/basho/riak_kv/blob/master/priv/mapred_builtins.js]] </div>
 
 
 
@@ -335,7 +335,7 @@ Link phases are expressed in the following form:
 {{Bucket}} is either a binary name of a bucket to match, or the atom {{'\_'}}, which matches any bucket. {{Tag}} _is either a binary tag to match, or the atom {{'\_'}}, which matches any tag. {{Keep}} has the same meaning as in map and reduce phases.
 
 
-<div class="info">There is a small group of prebuilt Erlang MapReduce functions available with Riak. Check them out here: [[http://bitbucket.org/basho/riak_kv/src/tip/src/riak_kv_mapreduce.erl|http://bitbucket.org/basho/riak_kv/src/tip/src/riak_kv_mapreduce.erl]]</div>
+<div class="info">There is a small group of prebuilt Erlang MapReduce functions available with Riak. Check them out here: [[https://github.com/basho/riak_kv/blob/master/src/riak_kv_mapreduce.erl|https://github.com/basho/riak_kv/blob/master/src/riak_kv_mapreduce.erl]]</div>
 
 
 h2. Phase functions
