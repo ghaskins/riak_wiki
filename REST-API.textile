@@ -192,7 +192,7 @@ Important headers:
 The body of the response will be the contents of the object except when [[#siblings]] are present.
 
 
-<div class="note"><div class="title">Siblings</div>{anchor:siblings}
+<div class="note"><div class="title">Siblings</div>
 When {{allow_mult}} is set to true in the [[bucket properties|#Set bucket properties]], concurrent updates are allowed to create "sibling" objects, meaning that the object has any number of different values that are related to one another by the vector clock.  This allows your application to use its own conflict resolution technique.
 
 An object with multiple values will result in a {{300 Multiple Choices}} response.  If the {{Accept}} header prefers "multipart/mixed", all siblings will be returned in a single request as chunks of the "mulitpart/mixed" response body.  Otherwise, a list of "vtags" will be given in a simple text format. You can request individual siblings by adding the {{vtag}} query parameter. See the [[#Siblings examples]] for more information.

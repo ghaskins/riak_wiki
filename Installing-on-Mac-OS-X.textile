@@ -33,7 +33,7 @@ $ tar xzvf riak-0.12.0-osx-i386.tar.gz
 
 After the release is untared you will be able to cd into the riak directory and execute bin/riak start to start the Riak node.
 
-h2. {anchor:homebrew} Homebrew
+h2(#homebrew).  Homebrew
 
 Installing with Homebrew is easy:
 

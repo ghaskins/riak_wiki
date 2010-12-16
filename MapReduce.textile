@@ -166,7 +166,7 @@ function(v) {
 looks at each JSON object in the input list.  It steps through each key in each object, and produces a new object. That new object has a key for each key in every other object, the value of that key being the sum of the values of that key in the other objects.  It returns this new object in a list, because is may be run a second time on a list including that object and more inputs from the map phase.
 # The final output is a list with one element: a JSON object with a key for each word in all of the documents (unique), with the value of that key being the number of times the word appeared in the documents.
 
-h3. {anchor:rest}REST Query Syntax
+h3(#rest). REST Query Syntax
 
 Map/Reduce queries are issued over HTTP via a {{POST}} to the {{/mapred}} resource.  The body should be {{application/json}} of the form {{\{"inputs":\[[...inputs...\]],"query":\[[...query...\]]}}}.
 
@@ -262,7 +262,7 @@ would follow all links pointing to objects in the {{foo}} bucket, regardless of 
 
 
 
-h2. {anchor:erlang}MapReduce via the Erlang API
+h2(#erlang). MapReduce via the Erlang API
 
 Riak also supports invoking MapReduce queries via the Erlang API.
 

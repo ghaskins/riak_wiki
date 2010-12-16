@@ -1,4 +1,4 @@
-h2. {anchor:installation} Installation
+h2(#installation).  Installation
 
 Click the link for your operating system to see instructions on how to install Riak:
 
@@ -7,7 +7,7 @@ Click the link for your operating system to see instructions on how to install R
 * [[Installing on Mac OS X]]
 * [[Installing from source|RIAK:Installing Riak from Source]]
 
-h2. {anchor:startup} Starting up
+h2(#startup).  Starting up
 
 To start up a Riak node, change directory as necessary to where you installed Riak (in the source directory, it's {{rel/riak/bin}}) and run the {{riak}} command like so:
 
@@ -36,7 +36,7 @@ pong
 
 The command will respond with {{pong}} if the node is running, or {{pang}} if it is not.
 
-h2. {anchor:doesitwork} Does it work?
+h2(#doesitwork).  Does it work?
 
 The easiest way to test whether Riak is working is to use the {{curl}} command-line tool.  Now that you have Riak running on your local machine, run this command:
 

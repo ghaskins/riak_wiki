@@ -45,7 +45,7 @@ h2. Installing on Mac OS/X
 
 You can install Erlang in several ways on OS/X, from [[source|#osx-source]], with [[Homebrew|#osx-brew]] or [[MacPorts|#osx-ports]].
 
-h3. {anchor:osx-source} Source
+h3(#osx-source).  Source
 
 To build from source, you must have XCode tools installed from the CD that came with your Mac or from Apple's [[Developer website|http://developer.apple.com/]].
 
@@ -86,7 +86,7 @@ $ make && sudo make install
 
 You will be prompted for your sudo password.
 
-h3. {anchor:osx-brew} Homebrew
+h3(#osx-brew).  Homebrew
 
 If you intend to [[install Riak with Homebrew|Installing on Mac OS X#homebrew]], simply follow those instructions and Erlang will be installed automatically. To install it separately:
 
@@ -96,7 +96,7 @@ $ brew install erlang
 ```
 
 
-h3. {anchor:osx-ports} MacPorts
+h3(#osx-ports).  MacPorts
 
 Installing with MacPorts is easy:
 

@@ -87,8 +87,7 @@ The directory on-disk in which to store the ring state (default: {{"data/ring"}}
 
 Riak's ring state is stored on-disk by each node, such that each node may be restarted at any time (purposely, or via automatic failover) and know what its place in the cluster was before it terminated, without needing immediate access to the rest of the cluster.
 
-{anchor:ring_creation_size}
-h4. ring_creation_size
+h4(#ring_creation_size). ring_creation_size
 
 The number of partitions to divide the hash space into (default: {{64}})
 

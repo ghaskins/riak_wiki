@@ -1,8 +1,8 @@
-h2. {anchor:overview} Setting Up Innostore
+h2(#overview).  Setting Up Innostore
 
 Innostore is distributed separately from Riak and will need to be compiled prior to installing.  You will need to have [[Erlang installed|RIAK:Installing Erlang]] to compile Innostore.
 
-h2. {anchor:downloading_deb} Downloading & Installing Innostore on Debian/Ubuntu
+h2(#downloading_deb).  Downloading & Installing Innostore on Debian/Ubuntu
 
 h3. 64-bit
 
@@ -22,7 +22,7 @@ $ sudo dpkg -i innostore_1.0.1-2_i386.deb
 ```
 
 
-h2. {anchor:downloading_rpm} Downloading & Installing Innostore on RHEL/CentOS
+h2(#downloading_rpm).  Downloading & Installing Innostore on RHEL/CentOS
 
 
 h3. 64-bit
@@ -43,7 +43,7 @@ $ sudo rpm -Uvh innostore-1.0.1-2.fc12.x86_64.rpm
 ```
 
 
-h2. {anchor:downloading_source} Downloading & Installing Innostore from Source
+h2(#downloading_source).  Downloading & Installing Innostore from Source
 
 You can download Innostore [[here|http://downloads.basho.com/innostore/innostore-1.0.1/innostore-1.0.1.tar.gz]].  A simple way to do this would be using wget:
 
@@ -97,7 +97,7 @@ $ ./rebar install target=/usr/lib/riak
 ```
 
 
-h2. {anchor:configuration} Configuring Innostore
+h2(#configuration).  Configuring Innostore
 
 The last step in setting up Innostore is to configure the Riak node to use Innostore as its storage backend by editing your {{app.config}} file located in your Riak installs {{$RIAK/etc/}} directory or {{/etc/riak/app.config}}.  If your Riak node is running issue it the stop command.
 
