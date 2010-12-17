@@ -227,6 +227,8 @@ html {overflow-y: scroll;}
 	color:white;	
 	margin-left: 45px;
 	margin-bottom:5px;
+	text-align:center;
+	
 }
 
 #comment_footer a {color:#E5810c;}
