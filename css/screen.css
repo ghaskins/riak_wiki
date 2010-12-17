@@ -222,12 +222,10 @@ html {overflow-y: scroll;}
 }
 
 #comment_footer {
-	height:30px;
-	background-color:#525c61;
-	width:685px;
-	color:white;
-	text-align:center;
-	padding:5px;
+	height:60px;
+	background-color:#374042;
+	color:white;	
+	margin-left: 45px;
 	font-weight: bold;
 }
 
