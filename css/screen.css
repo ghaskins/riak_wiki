@@ -226,6 +226,9 @@ html {overflow-y: scroll;}
 	background-color:#525c61;
 	width:685px;
 	color:white;
+	text-align:center;
+	padding:5px;
+	font-weight: bold;
 }
 
 /****************************************************************************/
