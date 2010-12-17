@@ -221,7 +221,11 @@ html {overflow-y: scroll;}
   padding: 0 15px;
 }
 
-#comment_footer {height:100px; background-color:#525c61;}
+#comment_footer {
+	height:100px;
+	background-color:#525c61;
+	width:685px;
+	font-color:white;
 
 
 /****************************************************************************/
