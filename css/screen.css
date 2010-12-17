@@ -226,7 +226,7 @@ html {overflow-y: scroll;}
 	background-color:#374042;
 	color:white;	
 	margin-left: 45px;
-	font-weight: bold;
+	margin-bottom:5px;
 }
 
 #comment_footer a {color:#E5810c;}
