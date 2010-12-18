@@ -70,7 +70,11 @@ Riak is a Dynamo-inspired database that scales predictably and easily. Riak also
 
 A truly fault-tolerant system, Riak has no single point of failure. No machines are special or central in Riak, so developers and operations professionals can decide exactly how fault-tolerant they want and need their applications to be.
 
-## Where to Start
+### Downloads
+* [Download a Riak Package](http://downloads.basho.com/riak/CURRENT/)
+* [Build Riak on your preferred Operating System](Installation-and-Setup)
+* [Get the Riak Source on GitHub](https://github.com/basho/riak)
+
 
 
 
