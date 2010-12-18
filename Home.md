@@ -68,4 +68,4 @@
 
 ### This is another heading, too. 
 
-![Riak Logo][images/riaklogo.png]
+![Riak Logo](images/riaklogo.png)
