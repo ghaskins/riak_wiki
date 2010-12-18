@@ -64,8 +64,15 @@
 
 # Welcome to the Riak Wiki
 
-## This is another heading 
-
-### This is another heading, too. 
-
 ![Riak Logo](images/riaklogo.png)
+
+Riak is a Dynamo-inspired database that scales predictably and easily. Riak also simplifies development by giving developers the ability to quickly prototype, test, and deploy their applications.
+
+A truly fault-tolerant system, Riak has no single point of failure. No machines are special or central in Riak, so developers and operations professionals can decide exactly how fault-tolerant they want and need their applications to be.
+
+## Where to Start
+
+
+
+
+
