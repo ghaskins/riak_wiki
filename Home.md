@@ -67,3 +67,5 @@
 ## This is another heading 
 
 ### This is another heading, too. 
+
+![Riak Logo][images/riaklogo.png]
