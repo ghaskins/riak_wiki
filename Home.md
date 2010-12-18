@@ -61,3 +61,9 @@
 * [[Contact Basho]]
 * [[Sample Data]]
 * [[Benchmarking with Basho Bench]]
+
+# Welcome to the Riak Wiki
+
+## This is another heading 
+
+### This is another heading, too. 
