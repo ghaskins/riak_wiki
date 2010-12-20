@@ -1,8 +1,8 @@
-Links are metadata that establish one-way relationships between objects in Riak.
+Links are metadata that establish one-way relationships between objects in Riak. They can be used to loosely model graph like relationships between objects in Riak.
 
-h2. The {{Link}} Header
+h2. The Link Header
 
-The essential way to read and modify links via the [[REST API]] is the [[HTTP Link header|http://www.martinpayne.me.uk/experiments/HTTP/Link-Header/HTTP-Link-example.html]].  This header emulates the purpose of {{<link>}} tags in HTML, that is, establishing relationships to other HTTP resources.  The format that Riak uses is like so:
+The essential way to read and modify links via the [[REST API]] is the [[HTTP Link header|http://www.martinpayne.me.uk/experiments/HTTP/Link-Header/HTTP-Link-example.html]].  This header emulates the purpose of &lt;link&gt; tags in HTML, that is, establishing relationships to other HTTP resources.  The format that Riak uses is like so:
 
 
 ```bash
@@ -10,7 +10,7 @@ Link: </riak/bucket/key>; riaktag="tag"
 ```
 
 
-Inside the angle-brackets ({{<}}, {{>}}) is a relative URL to another object in Riak. The "tag" portion in double-quotes is any string identifier that has a meaning relevant to your application.
+Inside the angle-brackets (<,>) is a relative URL to another object in Riak. The "tag" portion in double-quotes is any string identifier that has a meaning relevant to your application.
 
 Objects can have multiple links by separating them with commas. For example, if an object was a participant in a doubly-linked list of objects, it might look like this:
 
@@ -32,7 +32,7 @@ Links in the Erlang API are stored as tuples in the object metadata of this form
 ```
 
 
-To access the links, use [{{riak_object:get_metadata/1}}|http://riak.basho.com/edoc/riak_object.html#get_metadata-1] to retrieve the metadata {{dict}}, and then retrieve the {{<<"Links">>}} key from that dict.  Example:
+To access the links, use "riak_object:get_metadata/1" to retrieve the metadata "dict", and then retrieve the {{<<"Links">>}} key from that dict.  Example:
 
 
 ```bash
@@ -57,4 +57,5 @@ h2. Link-walking
 
 Link-walking (traversal) is a special case of [[MapReduce|MapReduce#Link phases]] querying, and can be accessed through the [[REST API|REST API#Link-walking]].  Link-walks start at a single input object and follow links on that object to find other objects that match the submitted specifications.  More than one traversal may be specified in a single request, with any number of the intermediate results returned.  The final traversal in a link-walking request always returns results.
 
-* See also [Blog post "Link-walking by Example"|http://blog.basho.com/2010/02/24/link-walking-by-example/]
+* [[Link-walking by Example|http://blog.basho.com/2010/02/24/link-walking-by-example/]] on the Basho Blog
+* [[Links and Link Walking]] on the Riak Fast Track

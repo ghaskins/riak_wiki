@@ -72,8 +72,8 @@ message RpbErrorResp {
 
 
 Values:
-* {{errmsg}} \- a string representation of what went wrong
-* {{errcode}} \- a numeric code. Currently only RIAKC_ERR_GENERAL=1 is defined.
+* *errmsg* - a string representation of what went wrong
+* *errcode* - a numeric code. Currently only RIAKC_ERR_GENERAL=1 is defined.
 
 h1. Operations
 
@@ -102,7 +102,7 @@ message RpbListBucketsResp {
 
 
 Values:
-* {{buckets}} \- buckets on the server
+* *buckets* - buckets on the server
 
 h4. Example
 
@@ -155,7 +155,7 @@ message RpbListKeysReq {
 
 
 Optional Parameters:
-* {{bucket}} \- bucket to get keys from
+* *bucket* - bucket to get keys from
 
 h4. Response
 
@@ -169,8 +169,8 @@ message RpbListKeysResp {
 
 
 Values:
-* {{keys}} \- batch of keys in the bucket.
-* {{done}} \- set true on the last response packet
+* *keys* - batch of keys in the bucket.
+* *done* - set true on the last response packet
 
 h4. Example
 
@@ -237,7 +237,7 @@ message RpbGetBucketReq {
 
 
 Required Parameters:
-* {{bucket}} \- bucket to retrieve properties for
+* *bucket* - bucket to retrieve properties for
 
 h4. Response
 
@@ -255,8 +255,8 @@ message RpbBucketProps {
 
 
 Values:
-* {{n_val}} \- current n_val for the bucket
-* {{allow_mult}} \- set allow_mult to true if conflicts should be returned to clients
+* *n_val* - current n_val for the bucket
+* *allow_mult* - set allow_mult to true if conflicts should be returned to clients
 
 h4. Example
 
@@ -292,7 +292,7 @@ h3. Set Bucket Properties
 Set the properties for a bucket
 
 
-<div class="note">The PBC interface does not currently support all bucket properties. It is currently limited to {{allow_mult}} and {{n_val}}; other bucket properties would need to be set with the [[REST API|REST API#Set bucket properties]].</div>
+<div class="note">The PBC interface does not currently support all bucket properties. It is currently limited to *allow_mult* and *n_val*; other bucket properties would need to be set with the [[REST API|REST API#Set bucket properties]].</div>
 
 
 h4. Request
@@ -312,10 +312,10 @@ message RpbBucketProps {
 
 
 Required Parameters:
-* {{bucket}} \- bucket to set properties for
-* {{props}} \- updated properties - only set properties to change
-* {{n_val}} \- current n_val for the bucket
-* {{allow_mult}} \- allow_mult set true if conflicts are returned to clients
+* *bucket* - bucket to set properties for
+* *props* - updated properties - only set properties to change
+* *n_val* - current n_val for the bucket
+* *allow_mult* - allow_mult set true if conflicts are returned to clients
 
 h4. Response
 
@@ -370,7 +370,7 @@ message RpbGetReq {
 
 
 Optional Parameters:
-* {{r}} \- (read quorum) how many replicas need to agree when retrieving the object; possible values include 'default', 'one', 'quorum', 'all', or any integer <= N ([[default is defined per the bucket|#Set Bucket Properties]])
+* *r* - (read quorum) how many replicas need to agree when retrieving the object; possible values include 'default', 'one', 'quorum', 'all', or any integer <= N ([[default is defined per the bucket|#Set Bucket Properties]])
 
 h4. Response
 
@@ -384,8 +384,8 @@ message RpbGetResp {
 
 
 Values:
-* {{content}} \- value+metadata entries for the object. If there are siblings there will be more than one entry. If the key is not found, content will be empty.
-* {{vclock}} \- vclock Opaque vector clock that must be included in {{RpbPutReq}} to resolve the siblings.
+* *content* - value+metadata entries for the object. If there are siblings there will be more than one entry. If the key is not found, content will be empty.
+* *vclock* - vclock Opaque vector clock that must be included in *RpbPutReq* to resolve the siblings.
 
 The content entries hold the object value and any metadata
 
@@ -406,7 +406,7 @@ The content entries hold the object value and any metadata
 ```
 
 
-Each object can contain user-supplied metadata (X-Riak-Meta-\* in the HTTP interface) consisting
+Each object can contain user-supplied metadata (X-Riak-Meta-* in the HTTP interface) consisting
 of a key/value pair. e.g. key=X-Riak-Meta-ACL value=users:r,administrators:f would allow an application to store access control information for it to enforce (*not* Riak).
 
 
@@ -433,7 +433,8 @@ message RpbLink {
 
 
 
-<div class="note"><div class="title">Missing keys</div>Remember - if a key is not stored in Riak an RpbGetResp without content and vclock fields will be returned. This should be mapped to whatever convention the client language uses to return not found, e.g. the erlang client returns an atom {{\{error, notfound\}}}</div>
+<div class="note"><div class="title">Missing keys</div>Remember - if a key is not stored in Riak an RpbGetResp without content and vclock fields will be returned. This should be mapped to whatever convention the client language uses to return not found, e.g. the erlang client returns an atom 
+@{error, notfound}@</div>
 
 
 h4. Example
@@ -470,7 +471,7 @@ content {
   last_mod: 1271442363
   last_mod_usecs: 105696
 }
-vclock: "k\\316a```\\314`\\312\\005R,\\254\\302[?e0%2\\345\\2612\\354V\\267=\\312\\227\\005\\000"
+vclock: "k316a```314`312005R,254302[?e0%23452612354V267=312227005000"
 ```
 
 
@@ -496,15 +497,15 @@ message RpbPutReq {
 
 
 Required Parameters:
-* {{bucket}} \- bucket key resides in
-* {{key}} \- key to create/update
-* {{content}} \- new/updated content for object - uses the same RpbContent message RpbGetResp returns data in and consists of metadata and a value.
+* *bucket* - bucket key resides in
+* *key* - key to create/update
+* *content* - new/updated content for object - uses the same RpbContent message RpbGetResp returns data in and consists of metadata and a value.
 
 Optional Parameters:
-* {{vclock}} \- opaque vector clock provided by an earlier RpbGetResp message. Omit if this is a new key or you deliberately want to create a sibling
-* {{w}} \- (write quorum) how many replicas to write to before returning a successful response; possible values include 'default', 'one', 'quorum', 'all', or any integer <= N ([[default is defined per the bucket|#Set Bucket Properties]])
-* {{dw}} \- how many replicas to commit to durable storage before returning a successful response; possible values include 'default', 'one', 'quorum', 'all', or any integer <= N ([[default is defined per the bucket|#Set Bucket Properties]])
-* {{return_body}} \- whether to return the contents of the stored object. Defaults to false.
+* *vclock* - opaque vector clock provided by an earlier RpbGetResp message. Omit if this is a new key or you deliberately want to create a sibling
+* *w* - (write quorum) how many replicas to write to before returning a successful response; possible values include 'default', 'one', 'quorum', 'all', or any integer <= N ([[default is defined per the bucket|#Set Bucket Properties]])
+* *dw* - how many replicas to commit to durable storage before returning a successful response; possible values include 'default', 'one', 'quorum', 'all', or any integer <= N ([[default is defined per the bucket|#Set Bucket Properties]])
+* *return_body* - whether to return the contents of the stored object. Defaults to false.
 
 h4. Response
 
@@ -537,7 +538,7 @@ RpbPutReq protoc decode:
 bucket: "b"
 key: "k"
 content {
-  value: "{\\"foo\\":\\"bar\\"}"
+  value: "{"foo":"bar"}"
 }
 w: 2
 return_body: true
@@ -563,12 +564,12 @@ Erlang <<0,0,0,98,12,10,49,10,13,123,34,102,111,111,34,58,34,98,97,114,34,125,
 
 RpbPutResp protoc decode:
 contents {
-  value: "{\\"foo\\":\\"bar\\"}"
+  value: "{"foo":"bar"}"
   vtag: "1caykOD96iNAhomyeVjOYC"
   last_mod: 1271453743
   last_mod_usecs: 406416
 }
-vclock: "k\\316a```\\312`\\312\\005R,,\\351\\014\\206\\031L\\211\\214y\\254\\014Z!\\266G\\371 \\302l\\315I\\254\\rw|\\240\\022\\372 \\211,\\000"
+vclock: "k316a```312`312005R,,351014206031L211214y254014Z!266G371 302l315I254rw|240022372 211,000"
 
 ```
 
@@ -591,7 +592,7 @@ message RpbDelReq {
 
 
 Optional Parameters:
-* {{rw}} \- how many replicas to delete before returning a successful response; possible values include 'default', 'one', 'quorum', 'all', or any integer <= N ([[default is defined per the bucket|#Set Bucket Properties]])
+* *rw* - how many replicas to delete before returning a successful response; possible values include 'default', 'one', 'quorum', 'all', or any integer <= N ([[default is defined per the bucket|#Set Bucket Properties]])
 
 h4. Response
 
@@ -642,12 +643,12 @@ message RpbMapRedReq {
 
 
 Required Parameters:
-* {{request}} \- MapReduce job
-* {{content_type}} \- encoding for MapReduce job
+* *request* - MapReduce job
+* *content_type* - encoding for MapReduce job
 
 Mapreduce jobs can be encoded in two different ways
-* {{application/json}} \- JSON-encoded map/reduce job
-* {{application/x-erlang-binary}} \- Erlang external term format
+* *application/json* - JSON-encoded map/reduce job
+* *application/x-erlang-binary* - Erlang external term format
 
 The JSON encoding is the same as [[REST API|MapReduce#rest]] and the external term format is the same as the [[local Erlang API|MapReduce#erlang]]
 
@@ -666,9 +667,9 @@ message RpbMapRedResp {
 
 
 Values:
-* {{phase}} \- phase number of the MapReduce job
-* {{response}} \- response encoded with the content_type submitted
-* {{done}} \- set true on the last response packet
+* *phase* - phase number of the MapReduce job
+* *response* - response encoded with the content_type submitted
+* *done* - set true on the last response packet
 
 h4. Example
 
@@ -722,10 +723,10 @@ Erlang <<0,0,0,248,23,10,226,1,123,34,105,110,112,117,116,115,34,58,32,34,98,
          112,112,108,105,99,97,116,105,111,110,47,106,115,111,110>>
 
 RpbMapRedReq protoc decode:
-request: "{\"inputs\": \"bucket_501653\", \"query\": [{\"map\": {\"arg\": null, \
-\"name\": \"Riak.mapValuesJson\", \"language\": \"javascript\", \"keep\": false}}, \
- {\"reduce\": {\"arg\": null, \"name\": \"Riak.reduceSum\", \"language\": \
-\"javascript\", \"keep\": true}}]}"
+request: "{"inputs": "bucket_501653", "query": [{"map": {"arg": null, 
+"name": "Riak.mapValuesJson", "language": "javascript", "keep": false}}, 
+ {"reduce": {"arg": null, "name": "Riak.reduceSum", "language": 
+"javascript", "keep": true}}]}"
 content_type: "application/json"
 
 ```
@@ -824,7 +825,7 @@ Hex     00 00 00 07 04 0A 04 01 65 01 B5
 Erlang <<0,0,0,7,4,10,4,1,101,1,181>>
 
 RpbGetClientIdResp protoc decode:
-client_id: "\\001e\\001\\265"
+client_id: "001e001265"
 
 ```
 
@@ -857,7 +858,7 @@ Hex      00 00 00 07 05 0A 04 01 65 01 B6
 Erlang <<0,0,0,7,5,10,4,1,101,1,182>>
 
 RpbSetClientIdReq protoc decode:
-client_id: "\\001e\\001\\266"
+client_id: "001e001266"
 
 ```
 

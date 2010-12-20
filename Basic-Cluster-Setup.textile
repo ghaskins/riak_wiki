@@ -1,8 +1,8 @@
-The configuration of a Riak cluster requires configuring a node to listen on a non-local interface (i.e., not {{127.0.0.1}}), and then joining nodes together.
+The configuration of a Riak cluster requires configuring a node to listen on a non-local interface (i.e., not @127.0.0.1@), and then joining nodes together.
 
-Begin by editing your {{etc/app.config}} file. The [{{app.config}}|Configuration Files#app.config] file will be located in your {{rel/riak/etc/}} directory if you compiled from source, and {{/etc/riak/}} if you used a binary install of Riak.
+Begin by editing your @etc/app.config@ file. The [@app.config@|Configuration Files#app.config] file will be located in your @rel/riak/etc/@ directory if you compiled from source, and @/etc/riak/@ if you used a binary install of Riak.
 
-The commands below assume you are running from a source install, but if you have installed Riak with one of our binary installs you can substitute the usage of {{bin/riak}} with {{sudo /usr/sbin/riak}} and {{bin/riak-admin}} with {{sudo /usr/sbin/riak-admin}}.
+The commands below assume you are running from a source install, but if you have installed Riak with one of our binary installs you can substitute the usage of @bin/riak@ with @sudo /usr/sbin/riak@ and @bin/riak-admin@ with @sudo /usr/sbin/riak-admin@.
 
 
 <div id="toc"></div>
@@ -19,37 +19,37 @@ $ bin/riak stop
 ```
 
 
-Change the following line in your {{etc/app.config}} to have the node listen on the network interface you want your cluster to operate on, such as 192.168.1.10:
+Change the following line in your @etc/app.config@ to have the node listen on the network interface you want your cluster to operate on, such as 192.168.1.10:
 
-{section}
-{column}
+
+
 ```bash
 {web_ip, "127.0.0.1"},
 ```
-{column}
-{column}becomes{column}
-{column}
+
+becomes
+
 ```bash
 {web_ip, "192.168.1.10"},
 ```
-{column}
-{section}
 
-Next edit the {{etc/vm.args}} file and change the {{\-name}} to your new IP:
 
-{section}
-{column}
+
+Next edit the @etc/vm.args@ file and change the @-name@ to your new IP:
+
+
+
 ```bash
 -name riak@127.0.0.1
 ```
-{column}
-{column}becomes{column}
-{column}
+
+becomes
+
 ```bash
 -name riak@192.168.1.10
 ```
-{column}
-{section}
+
+
 
 
 <div class="info"><div class="title">Node Names</div>You may also use hostnames rather than IP addresses for node names, "riak@my.domain.com" rather than "riak@192.168.1.10".</div>
@@ -103,7 +103,7 @@ $ riak attach
 You can repeat the above steps to add more nodes to your cluster.
 
 
-<div class="note"><div class="title">Ring Creation Size</div>Nodes must have the same initial {{ring_creation_size}} setting in order to join together into a cluster.  This setting can be adjusted in [[app.config|Configuration Files#ring_creation_size]].
+<div class="note"><div class="title">Ring Creation Size</div>Nodes must have the same initial @ring_creation_size@ setting in order to join together into a cluster.  This setting can be adjusted in [[app.config|Configuration Files#ring_creation_size]].
 
 Check the value of both nodes if you receive a message like this:
 
@@ -118,15 +118,15 @@ h2. Running Multiple Nodes on One Host
 
 If you have built Riak from source code, or if you are using the Mac OSX pre-built package, then you can easily run multiple Riak nodes on the same machine. The most common scenario for doing this is to experiment with running a Riak cluster. (Note: if you have installed the .deb or .rpm package, then you will need to download and build Riak source to follow the directions below.)
 
-To run multiple nodes, make copies of the {{riak}} directory.
+To run multiple nodes, make copies of the @riak@ directory.
 
-* If you have run {{make all rel}}, then this can be found in {{./rel/riak}} under the root Riak source directory.
+* If you have run @make all rel@, then this can be found in @./rel/riak@ under the root Riak source directory.
 * If you are running Mac OSX, then this is the directory where you unzipped the .tar.gz file.
 
-Now, assuming that you made copied {{./rel/riak}} into {{./rel/riak1}}, {{./rel/riak2}}, {{./rel/riak3}}, etc.:
+Now, assuming that you made copied @./rel/riak@ into @./rel/riak1@, @./rel/riak2@, @./rel/riak3@, etc.:
 
-* In riakN/etc/app.config, change the {{web_port}}, {{handoff_port}}, and {{pb_port}} to unique ports for each node..
-* In {{riakN/etc/vm.args}}, change the line that says {{\-name riak@127.0.0.1}} to a unique name for each node, for example: {{\-name riak1@127.0.0.1}}.
+* In riakN/etc/app.config, change the @web_port@, @handoff_port@, and @pb_port@ to unique ports for each node..
+* In @riakN/etc/vm.args@, change the line that says @-name riak@127.0.0.1@ to a unique name for each node, for example: @-name riak1@127.0.0.1@.
 
 Now, start the nodes, changing path names and nodes as appropriate:
 
@@ -148,7 +148,7 @@ Next, join the nodes into a cluster:
 ```
 
 
-Alternatively, you can run {{make all devrel}}, which will create three copies of Riak under the directories {{./dev/dev1}}, {{./dev/dev2}}, and {{./dev/dev3}}, with the configuration pre-set to allow you to run the nodes simultaneously. (Note: The Web port for the three nodes is 8091, 8092, and 8093, which is different from the default of 8098 that you get when you run "make all rel".)
+Alternatively, you can run @make all devrel@, which will create three copies of Riak under the directories @./dev/dev1@, @./dev/dev2@, and @./dev/dev3@, with the configuration pre-set to allow you to run the nodes simultaneously. (Note: The Web port for the three nodes is 8091, 8092, and 8093, which is different from the default of 8098 that you get when you run "make all rel".)
 
 You can start each of them and join them together using the commands shown above, substituting directory names as appropriate.
 

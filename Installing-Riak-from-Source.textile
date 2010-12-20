@@ -2,15 +2,15 @@ Riak should be installed from source if you are building on a platform for which
 
 h2. Dependencies
 
-Riak requires [[Erlang|http://www.erlang.org/]] R13B04 or later. If you do not have Erlang already installed, see [[Installing Erlang]]. Don't worry, it's easy\!
+Riak requires [[Erlang|http://www.erlang.org/]] R13B04 or later. If you do not have Erlang already installed, see [[Installing Erlang]]. Don't worry, it's easy!
 
 h2. Installation
 
-The following instructions generate a complete, self-contained build of Riak in {{$RIAK/rel/riak}} where {{$RIAK}} is the location of the unpacked or cloned source.
+The following instructions generate a complete, self-contained build of Riak in @$RIAK/rel/riak@ where "$RIAK" is the location of the unpacked or cloned source.
 
 h3. Installing from source package
 
-Download the Riak source package from the [[Download Center|http://downloads.basho.com/riak]] and build:
+Download the Riak source package from the [[Download Center|http://downloads.basho.com/riak/CURRENT/]] and build:
 
 
 ```bash
@@ -41,7 +41,7 @@ For instructions about specific platforms, see:
 * [[Installing on Mac OS X]]
 * [[Installing on RHEL and CentOS]]
 
-If you are running Riak on a platform not in the list above, let us know by sending an email to [[mailto:riak@basho.com]].
+If you are running Riak on a platform not in the list above and need some help getting it up and running, join [[The Riak Mailing List|http://lists.basho.com/mailman/listinfo/riak-users_lists.basho.com]] and inquire about it there. We'll get you straightened out.
 
 h3. Windows
 

@@ -8,14 +8,14 @@ Luwak is an application built on top of Riak that provides functionality for man
 
 h2. Enabling Luwak
 
-Luwak can be enabled in Riak's {{app.config}} file. As of version 0.13 a new section has been added to the {{app.config}} file for Luwak:
+Luwak can be enabled in Riak's @app.config@ file. As of version 0.13 a new section has been added to the @app.config@ file for Luwak:
 
 ```bash
 {luwak, [{enabled, false}]}
 ```
 
 
-To enable Luwak set the {{enabled}} property to {{true}} and restart Riak:
+To enable Luwak set the "enabled" property to "true" and restart Riak:
 
 ```bash
 {luwak, [{enabled, true}]}
@@ -24,7 +24,7 @@ To enable Luwak set the {{enabled}} property to {{true}} and restart Riak:
 
 h2. Configuring Luwak
 
-Luwak, by default, is accessible from the {{/luwak}} endpoint of Riak (i.e. http://127.0.0.1:8098/luwak). This endpoint is configurable via the {{prefix}} property in the Luwak section of {{app.config}};
+Luwak, by default, is accessible from the @/luwak@ endpoint of Riak (i.e. http://127.0.0.1:8098/luwak). This endpoint is configurable via the "prefix" property in the Luwak section of @app.config@:
 
 ```bash
 {luwak,
@@ -32,7 +32,6 @@ Luwak, by default, is accessible from the {{/luwak}} endpoint of Riak (i.e. http
   {prefix, "different_luwak_prefix"}
 ]}
 ```
-
 
 h2. Luwak Operations
 
@@ -44,31 +43,30 @@ Reads a Luwak file
 
 h4. Request
 
-
 ```bash
 GET /luwak/key
 ```
 
 
 Important headers:
-* {{Range}} \- request a portion of the object, i.e. a range of bytes
+* *Range* - request a portion of the object, i.e. a range of bytes
 
 h4. Response
 
 Normal response codes:
-* {{200 OK}}
-* {{206 Partial Content}}
+* 200 OK
+* 206 Partial Content
 
 Typical error codes:
-* {{400 Bad Request}}
-* {{404 Not Found}} \- the object could not be found
-* {{416 Requested Range Not Satisfiable}}
-* {{503 Service Unavailable}} \- the request timed out internally
+* 400 Bad Request
+* 404 Not Found - the object could not be found
+* 416 Requested Range Not Satisfiable
+* 503 Service Unavailable - the request timed out internally
 
 Important headers:
-* {{Content-Type}} \- the media type/format
-* {{X-Riak-Meta-\*}} \- any user-defined metadata defined when storing the object
-* {{Last-Modified}} \- a timestamp for when the object was last written, in HTTP datetime format
+* *Content-Type* - the media type/format
+* *X-Riak-Meta* - any user-defined metadata defined when storing the object
+* *Last-Modified* - a timestamp for when the object was last written, in HTTP datetime format
 
 The body of the response will be the contents of the file.
 
@@ -88,7 +86,6 @@ Content-Type: application/json
 Hello World
 ```
 
-
 h3. Store a file without a key
 
 Stores a new file with a random Luwak-assigned key.
@@ -102,21 +99,21 @@ POST /luwak
 
 
 Important headers:
-* {{Content-Type}} must be set for the stored object. Set what you expect to receive back when next requesting it.
-* {{X-Riak-Meta-\*}} any additional metadata headers that should be stored with the object.
+* *Content-Type* must be set for the stored object. Set what you expect to receive back when next requesting it.
+* *X-Riak-Meta-* any additional metadata headers that should be stored with the object.
 
-*This request must include a body (entity).*
+_+This request must include a body (entity).+_
 
 h4. Response
 
 Normal status codes:
-* {{201 Created}}
+* 201 Created
 
 Typical error codes:
-* {{400 Bad Request}}
+* 400 Bad Request
 
 Important headers:
-* {{Location}} a relative URL to the newly-created object
+* *Location* - a relative URL to the newly-created object
 
 h4. Example
 
@@ -146,19 +143,19 @@ PUT /luwak/key
 ```
 
 
-{{POST}} is also a valid verb, for compatibility's sake.
+*POST* is also a valid verb, for compatibility's sake.
 
 Important headers:
-* {{Content-Type}} must be set for the stored object. Set what you expect to receive back when next requesting it.
-* {{X-Riak-Meta-\*}} any additional metadata headers that should be stored with the object.
+* *Content-Type* must be set for the stored object. Set what you expect to receive back when next requesting it.
+* *X-Riak-Meta-* any additional metadata headers that should be stored with the object.
 
 h4. Response
 
 Normal status codes:
-* {{204 No Content}}
+* 204 No Content
 
 Typical error codes:
-* {{400 Bad Request}}
+* 400 Bad Request
 
 h4. Example
 
@@ -190,11 +187,11 @@ DELETE /luwak/key
 h4. Response
 
 Normal response codes:
-* {{204 No Content}}
-* {{404 Not Found}}
+* 204 No Content
+* 404 Not Found
 
 Typical error codes:
-* {{400 Bad Request}}
+* 400 Bad Request
 
 h4. Example
 

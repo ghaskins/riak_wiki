@@ -9,7 +9,7 @@ Click the link for your operating system to see instructions on how to install R
 
 h2(#startup).  Starting up
 
-To start up a Riak node, change directory as necessary to where you installed Riak (in the source directory, it's {{rel/riak/bin}}) and run the {{riak}} command like so:
+To start up a Riak node, change directory as necessary to where you installed Riak (in the source directory, it's @rel/riak/bin@ and run the *riak* command like so:
 
 
 ```bash
@@ -34,11 +34,11 @@ pong
 ```
 
 
-The command will respond with {{pong}} if the node is running, or {{pang}} if it is not.
+The command will respond with *pong* if the node is running, or *pang* if it is not.
 
 h2(#doesitwork).  Does it work?
 
-The easiest way to test whether Riak is working is to use the {{curl}} command-line tool.  Now that you have Riak running on your local machine, run this command:
+The easiest way to test whether Riak is working is to use the *curl* command-line tool.  Now that you have Riak running on your local machine, run this command:
 
 
 ```bash
@@ -73,8 +73,9 @@ You should get a response that looks like this:
 
 h2. Now what?
 
-You have a working Riak system\!  From here you might want to check out:
+You have a working Riak system! From here you might want to check out:
 * [[Client Libraries for connecting Riak to your favorite programming language|Client Libraries and Community Code]]
-* [[Add more nodes to your Riak cluster|RIAK:Basic Cluster Setup]]
-* [[The high level overview of the Riak design and functionality|RIAK:An Introduction to Riak]]
+* Get some [[Sample Data]]
+* [[Add more nodes to your Riak cluster|Basic Cluster Setup]]
+* [[The high level overview of the Riak design and functionality|An Introduction to Riak]]
 * [[The more in depth look at how Riak works|How Things Work]].

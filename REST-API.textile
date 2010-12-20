@@ -1,7 +1,7 @@
 This is an overview of the operations you can perform over the HTTP interface to Riak, and can be used as a guide for developing a compliant client.  All URLs assume the default configuration values where applicable.  All examples use curl.
 
 
-<div class="note"><div class="title">Client ID</div>All requests should include the "X-Riak-ClientId" header, which can be any string that uniquely identifies the client, for purposes of tracing object modifications in the [[vector clock|Riak Glossary#Vector Clock]].</div>
+<div class="note"><div class="title">Client ID</div>All requests should include the "X-Riak-ClientId" header, which can be any string that uniquely identifies the client, for purposes of tracing object modifications in the [[vector clock|Riak Glossary]].</div>
 
 
 
@@ -33,8 +33,8 @@ GET /riak/bucket
 
 
 Optional query parameters:
-* props=[true|false] - whether to return the bucket properties (true is the default)
-* keys=[true|false|stream] - whether to return the keys stored in the bucket. (false is the default)
+* *props=[true|false]* - whether to return the bucket properties (true is the default)
+* *keys=[true|false|stream]* - whether to return the keys stored in the bucket. (false is the default)
 
 h4. Response
 
@@ -70,7 +70,7 @@ $ curl -v http://127.0.0.1:8098/riak/test
 <
 * Connection #0 to host 127.0.0.1 left intact
 * Closing connection #0
-{"props":{"name":"test","n_val":3,"allow_mult":false,"last_write_wins":false,"precommit":[],"postcommit":[],"chash_keyfun":{"mod":"riak_core_util","fun":"chash_std_keyfun"},"linkfun":{"mod":"riak_kv_wm_link_walker","fun":"mapreduce_linkfun"},"old_vclock":86400,"young_vclock":20,"big_vclock":50,"small_vclock":10,"r":"quorum","w":"quorum","dw":"quorum","rw":"quorum"}}
+{"props":{"name":"test","n_val":3,"allow_mult":false,"last_write_wins":false,"precommit":[],"postcommit":[],"chash_keyfun":{"mod":"riak_core_util","fun":"chash_std_keyfun"},"linkfun":{"mod":"riak_kv_wm_link_walker","fun":"mapreduce_linkfun"},"old_vclock":86400,"young_vclock":20,"big_vclock":50,"small_vclock":10,"r":"quorum","w":"quorum","dw":"quorum","rw":"quorum"
 ```
 
 
@@ -93,17 +93,17 @@ The body of the request should be a JSON object with a single entry "props".  Un
 
 Useful properties:
 
-* n_val (integer > 0) - the number of replicas for objects in this bucket
-* allow_mult (true or false) - whether to allow sibling objects to be created (concurrent updates)
-* last_write_wins (true or false) - whether to ignore object history (vector clock) when writing
-* precommit - [[precommit hooks|Pre- and Post-Commit Hooks]]
-* postcommit - [[postcommit hooks|Pre- and Post-Commit Hooks]]
-* r, w, dw, rw - default quorum values for operations on keys in the bucket. Valid values are:
-** all - all nodes must respond
-** quorum - (n_val/2) + 1 nodes must respond. *This is the default.*
-** one - equivalent to 1
+* *n_val* (integer > 0) - the number of replicas for objects in this bucket
+* *allow_mult* (true or false) - whether to allow sibling objects to be created (concurrent updates)
+* *last_write_wins* (true or false) - whether to ignore object history (vector clock) when writing
+* *precommit* - [[precommit hooks|Pre- and Post-Commit Hooks]]
+** postcommit* - [[postcommit hooks|Pre- and Post-Commit Hooks]]
+* *r, w, dw, rw* - default quorum values for operations on keys in the bucket. Valid values are:
+** _all_ - all nodes must respond
+** _quorum_ - (n_val/2) + 1 nodes must respond. *This is the default.*
+** _one_ - equivalent to 1
 ** _Any integer_ - must be less than or equal to n_val
-* backend - when using riak_kv_multi_backend, which named backend to use for the bucket
+* *backend* - when using riak_kv_multi_backend, which named backend to use for the bucket
 
 Other valid properties may be inferred from [[reading the properties|#Read bucket information]], but are less-frequently changed.
 
@@ -113,8 +113,8 @@ Normal status codes:
 * 204 No Content
 
 Typical error codes:
-* 400 Bad Request if the submitted JSON is invalid
-* 415 Unsupported Media Type if the Content-Type was not set to application/json in the request
+* "400 Bad Request" if the submitted JSON is invalid
+* "415 Unsupported Media Type" if the Content-Type was not set to application/json in the request
 
 If successful, no content will be returned in the response body.
 
@@ -151,7 +151,7 @@ h3. Read object
 
 Reads an object from a bucket.
 
-h4. Request
+h3. Request
 
 
 ```bash
@@ -163,44 +163,44 @@ Important headers:
 * *Accept* - When "multipart/mixed" is the preferred content-type, objects with siblings will return all siblings in single request. See [[#Get all siblings in one request]] example. See also RFC 2616 - [[Accept header definition|http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1]].
 
 Optional headers:
-* *If-None-Match* and *If-Modified-Since* invoke conditional request semantics, matching on the *ETag *and *Last-Modified* of the object, respectively.  If the object fails one of the tests (that is, if the ETag is equal or the object is unmodified since the supplied timestamp), Riak will return a 304 Not Modified}} response. See also RFC 2616 - [[304 Not Modified|http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.5]].
+* *If-None-Match* and *If-Modified-Since* invoke conditional request semantics, matching on the *ETag *and *Last-Modified* of the object, respectively.  If the object fails one of the tests (that is, if the ETag is equal or the object is unmodified since the supplied timestamp), Riak will return a "304 Not Modified" response. See also RFC 2616 - [[304 Not Modified|http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.5]].
 
 Optional query parameters:
 * *r* - (read quorum) how many replicas need to agree when retrieving the object ([[default is defined by the bucket|#Set bucket properties]])
-* *vtag=...* - when accessing an object with siblings, which sibling to retrieve. See [[#Manually requesting siblings]] example.
+* *vtag=...* - when accessing an object with siblings, which sibling to retrieve. Scroll down to the "Manually requesting siblings" example for more information.
 
-h4. Response
+h3. Response
 
 Normal response codes:
-* 200 OK}}
-* 300 Multiple Choices}}
-* 304 Not Modified}}
+* 200 OK
+* 300 Multiple Choices
+* 304 Not Modified
 
 Typical error codes:
-* 400 Bad Request}} - e.g. when r}} parameter is invalid (> N)
-* 404 Not Found}} - the object could not be found on enough partitions
-* 503 Service Unavailable}} - the request timed out internally
+* 400 Bad Request - e.g. when r parameter is invalid (> N)
+* 404 Not Found - the object could not be found on enough partitions
+* 503 Service Unavailable - the request timed out internally
 
 Important headers:
-* Content-Type}} - the media type/format
-* X-Riak-Vclock}} - the opaque vector clock for the object
-* X-Riak-Meta-*}} - any user-defined metadata defined when storing the object
-* ETag}} - the entity tag for the object, useful for conditional GET operations and validation-based caching
-* Last-Modified}} - a timestamp for when the object was last written, in HTTP datetime format
-* Link}} - user- and system-defined links to other resources. [[Read more about Links|Links]]
+* *Content-Type* - the media type/format
+* *X-Riak-Vclock* - the opaque vector clock for the object
+* *X-Riak-Meta* - any user-defined metadata defined when storing the object
+* *ETag* - the entity tag for the object, useful for conditional GET operations and validation-based caching
+* *Last-Modified* - a timestamp for when the object was last written, in HTTP datetime format
+* *Link* - user- and system-defined links to other resources. [[Read more about Links|Links]]
 
-The body of the response will be the contents of the object except when [[#siblings]] are present.
+The body of the response will be the contents of the object except when siblings are present.
 
 
 <div class="note"><div class="title">Siblings</div>
-When allow_mult}} is set to true in the [[bucket properties|#Set bucket properties]], concurrent updates are allowed to create "sibling" objects, meaning that the object has any number of different values that are related to one another by the vector clock.  This allows your application to use its own conflict resolution technique.
+When "allow_mult" is set to true in the bucket properties, concurrent updates are allowed to create "sibling" objects, meaning that the object has any number of different values that are related to one another by the vector clock.  This allows your application to use its own conflict resolution technique.
 
-An object with multiple values will result in a 300 Multiple Choices}} response.  If the Accept}} header prefers "multipart/mixed", all siblings will be returned in a single request as chunks of the "mulitpart/mixed" response body.  Otherwise, a list of "vtags" will be given in a simple text format. You can request individual siblings by adding the vtag}} query parameter. See the [[#Siblings examples]] for more information.
+An object with multiple values will result in a 300 Multiple Choices response.  If the Accept header prefers "multipart/mixed", all siblings will be returned in a single request as chunks of the "mulitpart/mixed" response body.  Otherwise, a list of "vtags" will be given in a simple text format. You can request individual siblings by adding the vtag query parameter. Scroll down to the "Manually requesting siblings" example for more information.
 
-To resolve the conflict, [[store|#Store a new or existing object with a key]] the resolved version with the X-Riak-Vclock}} given in the response.</div>
+To resolve the conflict, store the resolved version with the X-Riak-Vclock given in the response.</div>
 
 
-h4. Simple Example
+h3. Simple Example
 
 ```bash
 $ curl -v http://127.0.0.1:8098/riak/test/doc2
@@ -229,9 +229,9 @@ $ curl -v http://127.0.0.1:8098/riak/test/doc2
 ```
 
 
-h4. Siblings examples
+h3. Siblings examples
 
-h5. Manually requesting siblings
+h4. Manually requesting siblings
 
 ```bash
 $ curl -v http://127.0.0.1:8098/riak/test/doc
@@ -353,30 +353,30 @@ POST /riak/bucket
 
 
 Important headers:
-* Content-Type}} must be set for the stored object. Set what you expect to receive back when next requesting it.
-* X-Riak-Meta-*}} any additional metadata headers that should be stored with the object.
-* Link}} - user- and system-defined links to other resources. [[Read more about Links|Links]]
+* *Content-Type* must be set for the stored object. Set what you expect to receive back when next requesting it.
+* *X-Riak-Meta* - any additional metadata headers that should be stored with the object.
+* *Link* - user and system-defined links to other resources. [[Read more about Links|Links]]
 
 
 Optional query parameters:
-* w}} (write quorum) how many replicas to write to before returning a successful response ([[default is defined by the bucket|#Set bucket properties]]).
-* dw}} how many replicas to commit to durable storage before returning a successful response ([[default is defined by the bucket|#Set bucket properties]])
-* returnbody=[[true|false]]}} whether to return the contents of the stored object.
+* *w* (write quorum) how many replicas to write to before returning a successful response (default is defined by the bucket level)
+* *dw* how many replicas to commit to durable storage before returning a successful response (default is defined at the bucket level)
+* *returnbody=[true|false]* whether to return the contents of the stored object.
 
-*This request must include a body (entity).*
+_+This request must include a body (entity).+_
 
 h4. Response
 
 Normal status codes:
-* 201 Created}}
+* 201 Created
 
 Typical error codes:
-* 400 Bad Request}} - e.g. when r}}, w}}, or dw}} parameters are invalid (> N)
+* "400 Bad Request" - e.g. when r, w, or dw parameters are invalid (> N)
 
 Important headers:
-* Location}} a relative URL to the newly-created object
+* "Location" a relative URL to the newly-created object
 
-If returnbody=true}}, any of the response headers expected from [[#Read object]] may be present.
+If "returnbody=true", any of the response headers expected from Read object may be present.
 
 h4. Example
 
@@ -418,35 +418,35 @@ PUT /riak/bucket/key
 ```
 
 
-POST}} is also a valid verb, for compatibility's sake.
+POST is also a valid verb, for compatibility's sake.
 
 Important headers:
-* Content-Type}} must be set for the stored object. Set what you expect to receive back when next requesting it.
-* X-Riak-Vclock}} if the object already exists, the vector clock attached to the object when read
-* X-Riak-Meta-*}} any additional metadata headers that should be stored with the object.
-* Link}} - user- and system-defined links to other resources. [[Read more about Links|Links]]
+* *Content-Type* must be set for the stored object. Set what you expect to receive back when next requesting it.
+* *X-Riak-Vclock* if the object already exists, the vector clock attached to the object when read
+* *X-Riak-Meta* any additional metadata headers that should be stored with the object.
+* *Link* - user and system-defined links to other resources. [[Read more about Links|Links]]
 
 Optional headers:
-* If-None-Match}}, If-Match}}, If-Modified-Since}}, and If-Unmodified-Since}} invoke conditional request semantics, matching on the ETag}} and Last-Modified}} of the existing object.  These can be used to prevent overwriting a modified object.  If the test fails, you will receive a 412 Precondition Failed}} response. This does not prevent concurrent writes, it is possible for the condition to evaluate to true for multiple requests if the requests occur at the same time.
+* *If-None-Match*, *If-Match*, *If-Modified-Since*, and *If-Unmodified-Since* invoke conditional request semantics, matching on the *ETag* and *Last-Modified* of the existing object.  These can be used to prevent overwriting a modified object.  If the test fails, you will receive a 412 Precondition Failed response. This does not prevent concurrent writes, it is possible for the condition to evaluate to true for multiple requests if the requests occur at the same time.
 
 Optional query parameters:
-* r}} (read quorum) how many replicas need to agree when retrieving an existing object before the write ([[default is defined by the bucket|#Set bucket properties]])
-* w}} (write quorum) how many replicas to write to before returning a successful response ([[default is defined by the bucket|#Set bucket properties]]).
-* dw}} how many replicas to commit to durable storage before returning a successful response ([[default is defined by the bucket|#Set bucket properties]])
-* returnbody=[[true|false]]}} whether to return the contents of the stored object.
+* *r* (read quorum) how many replicas need to agree when retrieving an existing object before the write (default is defined by the bucket|#Set bucket properties)
+* *w* (write quorum) how many replicas to write to before returning a successful response (default is defined by the bucket|#Set bucket properties).
+* *dw* how many replicas to commit to durable storage before returning a successful response (default is defined by the bucket|#Set bucket properties)
+* *returnbody=[true|false]* whether to return the contents of the stored object.
 
 h4. Response
 
 Normal status codes:
-* 200 OK}}
-* 204 No Content}}
-* 300 Multiple Choices}}
+* 200 OK
+* 204 No Content
+* 300 Multiple Choices
 
 Typical error codes:
-* 400 Bad Request}} - e.g. when r}}, w}}, or dw}} parameters are invalid (> N)
-* 412 Precondition Failed}} if one of the conditional request headers failed to match (see above)
+* *400 Bad Request* - e.g. when r, w, or dw parameters are invalid (> N)
+* *412 Precondition Failed* if one of the conditional request headers failed to match (see above)
 
-If returnbody=true}}, any of the response headers expected from [[#Read object]] may be present. Like [[#Read object]], 300 Multiple Choices}} may be returned if siblings existed or were created as part of the operation, and the response can be dealt with similarly.
+If "returnbody=true", any of the response headers expected from Read object may be present. Like Read object, "300 Multiple Choices" may be returned if siblings existed or were created as part of the operation, and the response can be dealt with similarly.
 
 h4. Example
 
@@ -492,16 +492,16 @@ DELETE /riak/bucket/key
 
 
 Optional query parameters:
-* rw}} - quorum for both operations (get and put) involved in deleting an object. ([[default is defined by the bucket|#Set bucket properties]])
+* *rw* - quorum for both operations (get and put) involved in deleting an object. (default is set at the bucket level)
 
 h4. Response
 
 Normal response codes:
-* 204 No Content}}
-* 404 Not Found}}
+* 204 No Content
+* 404 Not Found
 
 Typical error codes:
-* 400 Bad Request}} - e.g. when rw}} parameter is invalid (> N)
+* 400 Bad Request - e.g. when rw parameter is invalid (> N)
 
 404 responses are "normal" in the sense that DELETE operations are idempotent and not finding the resource has the same effect as deleting it.
 
@@ -534,7 +534,7 @@ h2. Query operations
 
 h3. Link-walking
 
-Link walking finds and returns objects by following links attached to them, starting from the object specified by the bucket and key portion.  It is a special case of [[#MapReduce]], and can be expressed more verbosely as such. [[Read more about Links|Links]].
+Link walking finds and returns objects by following links attached to them, starting from the object specified by the bucket and key portion.  It is a special case of [[MapReduce]], and can be expressed more verbosely as such. [[Read more about Links|Links]].
 
 h4. Request
 
@@ -557,17 +557,17 @@ Any of the three parts may be replaced with "{_}", signifying that any value is 
 h4. Response
 
 Normal status codes:
-* 200 OK}}
+* 200 OK
 
 Typical error codes:
-* 400 Bad Request}} - if the format of the query in the URL is invalid
-* 404 Not Found}} - if the origin object of the walk was missing
+* 400 Bad Request - if the format of the query in the URL is invalid
+* 404 Not Found - if the origin object of the walk was missing
 
 Important headers:
-* Content-Type}} - always multipart/mixed}}, with a boundary specified
+* Content-Type - always multipart/mixed, with a boundary specified
 
 
-<div class="note"><div class="title">Understanding the response body</div>The response body will always be multipart/mixed, with each chunk representing a single phase of the link-walking query.  Each phase will also be encoded in multipart/mixed}}, with each chunk representing a single object that was found. If no objects were found or "keep" was not set on the phase, no chunks will be present in that phase.  Objects inside phase results will include Location}} headers that can be used to determine bucket and key. In fact, you can treat each object-chunk similarly to a complete response from [[#Read object]], without the status code.</div>
+<div class="note"><div class="title">Understanding the response body</div>The response body will always be multipart/mixed, with each chunk representing a single phase of the link-walking query.  Each phase will also be encoded in multipart/mixed, with each chunk representing a single object that was found. If no objects were found or "keep" was not set on the phase, no chunks will be present in that phase.  Objects inside phase results will include Location headers that can be used to determine bucket and key. In fact, you can treat each object-chunk similarly to a complete response from [[#Read object]], without the status code.</div>
 
 
 h4. Example
@@ -638,27 +638,27 @@ POST /mapred
 
 
 Important headers:
-* Content-Type}} - must always be application/json}}.  The format of the request body is described in detail on the [[MapReduce]] page.
+* *Content-Type* - must always be application/json.  The format of the request body is described in detail on the [[MapReduce]] page.
 
 Optional query parameters:
-* chunked}} - when set to true}}, results will be returned one at a time in multipart/mixed}} format using chunked-encoding.
+* *chunked* - when set to true, results will be returned one at a time in multipart/mixed format using chunked-encoding.
 
 h4. Response
 
 Normal status codes:
-* 200 OK}}
+* 200 OK
 
 Typical error codes:
-* 400 Bad Request}} - if an invalid job is submitted.
+* 400 Bad Request - if an invalid job is submitted.
 
 Important headers:
-* Content-Type}} - application/json}} when chunked}} is not true}}, otherwise multipart/mixed}} with application/json}} parts
+* Content-Type - application/json when chunked is not true, otherwise multipart/mixed with application/json parts
 
 h4. Example
 
 
 ```bash
-$ curl -v -d '{"inputs":"test", "query":[{"link":{"bucket":"test"}},{"map":{"language":"javascript","name":"Riak.mapValuesJson"}}]}' -H "Content-Type: application/json" http://127.0.0.1:8098/mapred
+$ curl -v -d '{"inputs":"test", "query":[{"link":{"bucket":"test",{"map":{"language":"javascript","name":"Riak.mapValuesJson"]}' -H "Content-Type: application/json" http://127.0.0.1:8098/mapred
 * About to connect() to 127.0.0.1 port 8098 (#0)
 *   Trying 127.0.0.1... connected
 * Connected to 127.0.0.1 (127.0.0.1) port 8098 (#0)
@@ -698,7 +698,7 @@ GET /ping
 h4. Response
 
 Normal status codes:
-* 200 OK}}
+* 200 OK
 
 h4. Example
 
@@ -727,7 +727,7 @@ OK
 
 h3. Server status
 
-Reports about the performance and configuration of the Riak node to which it was requested.  You must have the {riak_kv_stat,true}}} configuration setting in app.config}} for this endpoint to be active.
+Reports about the performance and configuration of the Riak node to which it was requested.  You must have the {riak_kv_stat,true} configuration setting in app.config for this endpoint to be active.
 
 h4. Request
 
@@ -738,13 +738,13 @@ GET /stats
 
 
 Important headers:
-* Accept}} - determines whether the response will be formatted in application/json}} or text/plain}}.
-* Content-Type}} - application/json}} or text/plain}} (JSON with added line-breaks)
+* Accept - determines whether the response will be formatted in application/json or text/plain.
+* Content-Type - application/json or text/plain (JSON with added line-breaks)
 
 h4. Response
 
 Normal status codes:
-* 200 OK}}
+* 200 OK
 
 h4. Example
 

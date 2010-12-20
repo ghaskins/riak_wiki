@@ -49,13 +49,15 @@ Each node may be configured with a different Erlang module for doing the simple 
 
 The following backends are packaged with Riak:
 
-# {{riak_kv_bitcask_backend}} - stores data to bitcask (*this is the default backend*)
-# {{riak_kv_fs_backend}} - stores data directly to files in a nested directory structure on disk
-# {{riak_kv_ets_backend}} - stores data in ETS tables (which makes it volatile storage, but great for debugging)
-# {{riak_kv_dets_backend}} - stores data on-disk in DETS tables
-# {{riak_kv_gb_trees_backend}} - stores data using Erlang gb_trees
-# {{riak_kv_cache_backend}} - turns a bucket into a memcached-type memory cache, and ejects the least recently used objects either when the cache becomes full or the object's lease expires
-# {{riak_kv_multi_backend}} - configure per-bucket backends
+# *riak_kv_bitcask_backend* - stores data to bitcask (_this is the default backend_)
+# *riak_kv_fs_backend* - stores data directly to files in a nested directory structure on disk
+# *riak_kv_ets_backend* - stores data in ETS tables (which makes it volatile storage, but great for debugging)
+# *riak_kv_dets_backend* - stores data on-disk in DETS tables
+# *riak_kv_gb_trees_backend* - stores data using Erlang gb_trees
+# *riak_kv_cache_backend* - turns a bucket into a memcached-type memory cache, and ejects the least recently used objects either when the cache becomes full or the object's lease expires
+# *riak_kv_multi_backend* - configure per-bucket backends
+
+<div class ="info">The Innostore backend is not packaged with Riak for licensing reasons. See [[Setting Up Innostore]] if you would like to use this backend.</div>
 
 h2. More reading
 

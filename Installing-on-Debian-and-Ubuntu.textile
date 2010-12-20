@@ -21,10 +21,9 @@ $ wget http://downloads.basho.com/riak/riak-0.13/riak_0.13.0-2_i386.deb
 $ sudo dpkg -i riak_0.13.0-2_i386.deb
 ```
 
-
 h2. From source
 
-Riak requires [[Erlang|http://www.erlang.org/]] R13B04 or later. If you do not have Erlang already installed, see [[Installing Erlang]]. Don't worry, it's easy\!
+Riak requires [[Erlang|http://www.erlang.org/]] R13B04 or later. If you do not have Erlang already installed, see [[Installing Erlang]]. Don't worry, it's easy!
 
 Let's install the dependencies that we can from apt:
 
@@ -33,11 +32,9 @@ Let's install the dependencies that we can from apt:
 $ sudo apt-get install build-essential libc6-dev-i386
 ```
 
-
 If you do not have Erlang installed, please [[do so|Installing Erlang]].
 
 Now we can download and install Riak:
-
 
 ```bash
 $ wget http://downloads.basho.com/riak/riak-0.13/riak-0.13.0.tar.gz
@@ -46,9 +43,7 @@ $ cd riak-0.13.0
 $ make rel
 ```
 
-
 There should now be a fresh build of Riak in the rel/riak directory.
 
-\\
 
-Next Steps: [[*Basic Cluster Setup*|Basic Cluster Setup]] will show you how to go from one node to bigger than Google
+Next Steps: [[Basic Cluster Setup|Basic Cluster Setup]] will show you how to go from one node to bigger than Google.

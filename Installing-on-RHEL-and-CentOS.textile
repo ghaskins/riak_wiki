@@ -11,13 +11,13 @@ $ sudo rpm -Uvh riak-0.13.0-2.el5.x86_64.rpm
 
 h2. From source
 
-Riak requires [[Erlang|http://www.erlang.org/]] R13B04 or later. If you do not have Erlang already installed, see [[Installing Erlang]]. Don't worry, it's easy\!
+Riak requires [[Erlang|http://www.erlang.org/]] R13B04 or later. If you do not have Erlang already installed, see [[Installing Erlang]]. Don't worry, it's easy!
 
 Building from source will require the following packages:
-gcc
-gcc-c++
-glibc-devel
-make
+* gcc
+* gcc-c++
+* glibc-devel
+* make
 
 You can install these with yum:
 
@@ -40,4 +40,4 @@ $ make rel
 
 There should now be a fresh build of Riak in the rel/riak directory.
 
-Next Steps: [[*Basic Cluster Setup*|Basic Cluster Setup]] will show you how to go from one node to bigger than Yahoo!
+Next Steps: [[Basic Cluster Setup|Basic Cluster Setup]] will show you how to go from one node to bigger than Yahoo!

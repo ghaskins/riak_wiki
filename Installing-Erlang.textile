@@ -1,20 +1,13 @@
 Riak requires [[Erlang|http://erlang.org]] R13B03 or later (R13B04 for Riak 0.10 and later). Riak versions prior to 0.12 will not function on the R14 series of Erlang. For Erlang to build and install, you must have a GNU-compatible build system, and the development bindings of {{ncurses}} and {{openssl}}.
 
-
-<div class="info">The Riak binary packages for [[Debian and Ubuntu|RIAK:Installing on Debian and Ubuntu]], [[Mac OS X|RIAK:Installing on Mac OS X]] and [[RHEL and CentOS|RIAK:Installing on RHEL and CentOS]] do not require that you build Erlang from source. *You will have to download and install Erlang, however, if you're planning on completing [[The Riak Fast Track]].*</div>
-
-
-\\
-
-
-<div id="toc"></div>
+<div class="info">The Riak binary packages for Debian and Ubuntu, Mac OS X,  and RHEL and CentOS do not require that you build Erlang from source. *You will have to download and install Erlang, however, if you're planning on completing [[The Riak Fast Track]].*</div>
 
 
 h2. Installing on GNU/Linux
 
 Most distributions _do not_ have the most recent Erlang release available, *so you will need to install from source*.
 
-First, make sure you have a compatible build system and the {{ncurses}} and {{openssl}} development libraries installed.  On Debian/Ubuntu use this command:
+First, make sure you have a compatible build system and the @ncurses@ and @openssl@ development libraries installed.  On Debian/Ubuntu use this command:
 
 
 ```bash
@@ -43,9 +36,9 @@ $ ./configure && make && sudo make install
 
 h2. Installing on Mac OS/X
 
-You can install Erlang in several ways on OS/X, from [[source|#osx-source]], with [[Homebrew|#osx-brew]] or [[MacPorts|#osx-ports]].
+You can install Erlang in several ways on OS/X: from source, with Homebrew, or with MacPorts.
 
-h3(#osx-source).  Source
+h3. Source
 
 To build from source, you must have XCode tools installed from the CD that came with your Mac or from Apple's [[Developer website|http://developer.apple.com/]].
 
@@ -86,17 +79,16 @@ $ make && sudo make install
 
 You will be prompted for your sudo password.
 
-h3(#osx-brew).  Homebrew
+h3.  Homebrew
 
-If you intend to [[install Riak with Homebrew|Installing on Mac OS X#homebrew]], simply follow those instructions and Erlang will be installed automatically. To install it separately:
-
+If you intend to install Riak with Homebrew, simply follow those instructions [[here|Installing on Mac OS X]] and Erlang will be installed automatically. To install it separately:
 
 ```bash
 $ brew install erlang
 ```
 
 
-h3(#osx-ports).  MacPorts
+h3.  MacPorts
 
 Installing with MacPorts is easy:
 

@@ -1,7 +1,4 @@
-This is a description of the Riak command-line tools and their subcommands. They are in {{bin/}} of an embedded node, and the path when installed from a package (usually {{/usr/sbin}} or {{/usr/local/sbin}}).
-
-
-<div id="toc"></div>
+This is a description of the Riak command-line tools and their subcommands. They are in @bin/@ of an embedded node, and the path when installed from a package (usually @/usr/sbin@ or @/usr/local/sbin@).
 
 
 h2. riak
@@ -100,7 +97,7 @@ h3. join
 
 Joins the running node to another running node so that they participate in the same cluster.
 
-* {{<node>}} is the other node to connect to.
+* &lt;node&gt; is the other node to connect to.
 
 
 ```bash
@@ -122,10 +119,10 @@ h3. backup
 
 Backs up the data from the node or entire cluster into a file. 
 
-* {{<node>}} is the node from which to perform the backup.
-* {{<cookie>}} is the Erlang cookie/shared secret used to connect to the node. This is "riak" in the [[default configuration|Configuration Files#\-setcookie]].
-* {{<filename>}} is the file where the backup will be stored.
-* {{\[[node|all\]]}} specifies whether the data on this node or the entire cluster will be backed up, respectively.
+* &lt;node&gt; is the node from which to perform the backup.
+* &lt;cookie&gt; is the Erlang cookie/shared secret used to connect to the node. This is "riak" in the [[default configuration|Configuration Files#\-setcookie]].
+* &lt;filename&gt; is the file where the backup will be stored.
+* [node|all] specifies whether the data on this node or the entire cluster will be backed up, respectively.
 
 
 ```bash
@@ -137,9 +134,9 @@ h3. restore
 
 Restores data to the node or cluster from a previous backup.
 
-* {{<node>}} is the node which will perform the restore.
-* {{<cookie>}} is the Erlang cookie/shared secret used to connect to the node. This is "riak" in the [[default configuration|Configuration Files#\-setcookie]].
-* {{<filename>}} is the file where the backup is stored.
+* &lt;node&gt; is the node which will perform the restore.
+* &lt;cookie&gt; is the Erlang cookie/shared secret used to connect to the node. This is "riak" in the [[default configuration|Configuration Files]].
+* &lt;filename&gt; is the file where the backup is stored.
 
 
 ```bash
@@ -189,7 +186,7 @@ riak-admin js_reload
 
 h3. wait-for-service
 
-Waits on a specific watchable service to be available (typically {{riak_kv}}). This is useful when (re-)starting a node while the cluster is under load. Use [[#services]] to see what services are available on a running node.
+Waits on a specific watchable service to be available (typically _riak_kv_). This is useful when (re-)starting a node while the cluster is under load. Use "services" to see what services are available on a running node.
 
 
 ```bash
@@ -199,7 +196,7 @@ riak-admin wait-for-service <service> <nodename>
 
 h3. services
 
-Lists available services on the node (e.g. {{riak_kv}}).
+Lists available services on the node (e.g. _riak_kv_).
 
 
 ```bash

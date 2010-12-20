@@ -99,7 +99,7 @@ $ ./rebar install target=/usr/lib/riak
 
 h2(#configuration).  Configuring Innostore
 
-The last step in setting up Innostore is to configure the Riak node to use Innostore as its storage backend by editing your {{app.config}} file located in your Riak installs {{$RIAK/etc/}} directory or {{/etc/riak/app.config}}.  If your Riak node is running issue it the stop command.
+The last step in setting up Innostore is to configure the Riak node to use Innostore as its storage backend by editing your @app.config@ file located in your Riak installs @$RIAK/etc/@ directory or @/etc/riak/app.config@.  If your Riak node is running issue it the stop command.
 
 First change the configured storage engine to use Innostore:
 {section}
@@ -116,7 +116,7 @@ First change the configured storage engine to use Innostore:
 {column}
 {section}
 
-You will also need to append the Innostore configuration to the end of your {{app.config}} file. A good place for this is after the {{SASL}} section (you will need to add a comma after the existing {{SASL}} section:
+You will also need to append the Innostore configuration to the end of your @app.config@ file. A good place for this is after the @SASL@ section (you will need to add a comma after the existing @SASL@ section:
 
 ```bash
 #Binary Install
@@ -160,7 +160,7 @@ Innostore will either fail to function or function erratically without the flag.
 ```
 
 
-Riak will fail to find the modules to use innostore otherwise.  Riak will fail to startup with an {{invalid_storage_backend}} error.</div>
+Riak will fail to find the modules to use innostore otherwise.  Riak will fail to startup with an @invalid_storage_backend@ error.</div>
 
 
 Now that you have configured Innostore you can test your install by running to following command:

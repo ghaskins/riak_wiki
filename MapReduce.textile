@@ -1,9 +1,5 @@
 Riak's primary querying and data-processing system is an implementation of the MapReduce programming paradigm popularized by [[Google|http://labs.google.com/papers/mapreduce.html]].
 
-
-<div id="toc"></div>
-
-
 h2. Why MapReduce?
 
 Key-value stores like Riak generally have very little functionality beyond just storing and fetching objects.  MapReduce adds the capability to perform more powerful queries over the data stored in Riak.  It also fits nicely with the functional programming orientation of Riak's core code and the distributed nature of the data storage.
@@ -17,6 +13,10 @@ One step type is called "map".  Map functions take one piece of data as input, a
 Another step type is called "reduce".  The purpose of a "reduce" step is to combine the output of many "map" step evaluations, into one result.
 
 The common example of a map/reduce query involves a "map" step that takes a body of text as input, and produces a word count for that body of text.  A reduce step then takes the word counts produced from many bodies of text and either sums them to provide a word count for the corpus, or filters them to produce a list of documents containing only certain counts.
+
+<div class ="info"><div class ="title">Hands On Resources</div> If you're new to MapReduce in Riak, check out the 
+* [[Loading Data and Running MapReduce Queries]] on [[The Riak Fast Track]]
+* [[Riak Function Contrib|http://contrib.basho.com]]</div>
 
 h3. How Riak Spreads Processing
 
@@ -46,8 +46,7 @@ Reduce phases accept any list of data as input, and produce any list of data as 
 
 The important thing to understand is that the function defining the reduce phase may be evaluated multiple times, and the input of later evaluations will include the input of earlier evaluations.
 
-For example, a reduce phase may implement the "set-union" function.  In that case, the first set of inputs might be
-{{\[1,2,2,3\]}}, and the output would be {{\[1,2,3\]}}.  When the phase receives more inputs, say {{\[3,4,5\]}}, the function will be called with the concatentation of the two lists: {{\[1,2,3,4,5\]}}.
+For example, a reduce phase may implement the "set-union" function.  In that case, the first set of inputs might be @[1,2,2,3]@, and the output would be @[1,2,3]@.  When the phase receives more inputs, say @[3,4,5]@, the function will be called with the concatentation of the two lists: @[1,2,3,4,5]@.
 
 Other systems refer to the second application of the reduce function as a "re-reduce".  There are at least a couple of reduce-query implementation strategies that work with Riak's model.
 
@@ -128,7 +127,7 @@ h4. Explanation
 
 For more details about what each bit of syntax means, and other syntax options, read the following sections.  As a quick explanation of how this example map/reduce query worked, though:
 
-# The objects named {{p1}}, {{p2}}, and {{p5}} from the =alice= bucket were given as inputs to the query.
+# The objects named *p1*, *p2*, and *p5* from the @=alice=@ bucket were given as inputs to the query.
 # The map function from the phase was run on each object.  The function:
 
 ```javascript
@@ -168,21 +167,21 @@ looks at each JSON object in the input list.  It steps through each key in each 
 
 h3(#rest). REST Query Syntax
 
-Map/Reduce queries are issued over HTTP via a {{POST}} to the {{/mapred}} resource.  The body should be {{application/json}} of the form {{\{"inputs":\[[...inputs...\]],"query":\[[...query...\]]}}}.
+Map/Reduce queries are issued over HTTP via a *POST* to the @/mapred@ resource.  The body should be @application/json@ of the form @{"inputs":[[...inputs...]],"query":[[...query...]}@.
 
-Map/Reduce queries have a default timeout of 60000 milliseconds (60 seconds). The default timeout can be overridden by supplying a different value, in milliseconds, in the JSON document {{\{"inputs":\[[...inputs...\]],"query":\[[...query...\]],"timeout": 90000}}}
+Map/Reduce queries have a default timeout of 60000 milliseconds (60 seconds). The default timeout can be overridden by supplying a different value, in milliseconds, in the JSON document @{"inputs":[[...inputs...]],"query":[[...query...]],"timeout": 90000}@
 
 h4. Inputs
 
-The list of input objects is given as a list of 2-element lists of the form {{\[Bucket,Key\]}} or 3-element lists of the form {{\[Bucket,Key,KeyData\]}}.
+The list of input objects is given as a list of 2-element lists of the form @[Bucket,Key]@ or 3-element lists of the form @[Bucket,Key,KeyData]@.
 
-You may also pass just the name of a bucket ({{\{"inputs":"mybucket",...}}}), which is equivalent to passing all of the keys in that bucket as inputs (i.e. "a map/reduce across the whole bucket").  You should be aware that this triggers the somewhat expensive "list keys" operation, so you should use it sparingly.
+You may also pass just the name of a bucket @({"inputs":"mybucket",...})@, which is equivalent to passing all of the keys in that bucket as inputs (i.e. "a map/reduce across the whole bucket").  You should be aware that this triggers the somewhat expensive "list keys" operation, so you should use it sparingly.
 
 h4. Query
 
-The query is given as a list of phases, each phase being of the form {{\{PhaseType:{...spec...}}}}.  Valid {{PhaseType}} values are "map", "reduce", and "link".
+The query is given as a list of phases, each phase being of the form @{PhaseType:{...spec...}}@.  Valid @{PhaseType}@ values are "map", "reduce", and "link".
 
-Every phase spec may include a {{keep}} field, which must have a boolean value: {{true}} means that the results of this phase should be included in the final result of the map/reduce, {{false}} means the results of this phase should be used only by the next phase. Omitting the {{keep}} field accepts its default value, which is {{false}} for all phases except the final phase (Riak assumes that you were most interested in the results of the last phase of your map/reduce query).
+Every phase spec may include a *keep}} field, which must have a boolean value: *true}} means that the results of this phase should be included in the final result of the map/reduce, *false}} means the results of this phase should be used only by the next phase. Omitting the *keep}} field accepts its default value, which is *false}} for all phases except the final phase (Riak assumes that you were most interested in the results of the last phase of your map/reduce query).
 
 h5. Map
 
@@ -206,15 +205,14 @@ would run the Javascript function given in the spec, and include the results in 
 ```
 
 
-would run the Javascript function declared in the content of the Riak object under {{mymap}} in the {{myjs}} bucket, and the results of the function would not be included in the final output of the m/r query.
+would run the Javascript function declared in the content of the Riak object under *mymap* in the @myjs@ bucket, and the results of the function would not be included in the final output of the m/r query.
 
 
 ```bash
 {"map":{"language":"erlang","module":"riak_mapreduce","function":"map_object_value"}}
 ```
 
-
-would run the Erlang function {{riak_mapreduce:map_object_value/3}}.
+would run the Erlang function @riak_mapreduce:map_object_value/3@.
 
 Map phases may also be passed static arguments by using the "arg" spec field.
 
@@ -245,7 +243,7 @@ Reduce phases look exactly like map phases, but are labeled "reduce".
 
 h5. Link
 
-Link phases accept {{bucket}} and {{tag}} fields that specify which links match the link query.  The string {{"\_"}} (underscore) in each field means "match all", while any other string means "match exactly this string".  If either field is left out, it is considered to be set to {{"\_"}} (match all).
+Link phases accept *bucket}} and *tag}} fields that specify which links match the link query.  The string "\_"}} (underscore) in each field means "match all", while any other string means "match exactly this string".  If either field is left out, it is considered to be set to "_"}} (match all).
 
 For example:
 
@@ -255,7 +253,7 @@ For example:
 ```
 
 
-would follow all links pointing to objects in the {{foo}} bucket, regardless of their tag.
+would follow all links pointing to objects in the @foo@ bucket, regardless of their tag.
 
 
 <div class="info"> Riak comes with some prebuilt JavaScript Functions. You can check them out at: [[https://github.com/basho/riak_kv/blob/master/priv/mapred_builtins.js|https://github.com/basho/riak_kv/blob/master/priv/mapred_builtins.js]] </div>
@@ -267,7 +265,7 @@ h2(#erlang). MapReduce via the Erlang API
 Riak also supports invoking MapReduce queries via the Erlang API.
 
 
-<div class="note"><div class="title">Distributing Erlang MapReduce Code</div>Any modules and functions you use in your Erlang MapReduce calls must be available on all nodes in the cluster.  You can add them in Erlang applications in the {{rel/overlay/lib}} directory, by specifying the {{\-pz}} option in [{{vm.args}}|Configuration Files#vm.args], or by adding the path to the [{{add_paths}}|Configuration Files#add_paths] setting in {{app.config}}.</div>
+<div class="note"><div class="title">Distributing Erlang MapReduce Code</div>Any modules and functions you use in your Erlang MapReduce calls must be available on all nodes in the cluster.  You can add them in Erlang applications in the @rel/overlay/lib@ directory, by specifying the *-pz* option in [[vm.args|Configuration Files]], or by adding the path to the *add_paths* setting in @app.config@.</div>
 
 
 h3. Erlang Example
@@ -294,15 +292,16 @@ If you have a Riak client hanging around, you can execute MapReduce queries on i
 ```
 
 
-If the "mine" and "yours" objects in the groceries bucket had values of {{\["bread", "cheese"\], \["bread", "butter"\]}}, the sequence of commands above would result in L being bound to {{\[\{"bread", 2},\{"cheese",1},\{"butter",1}\]}}.
+If the "mine" and "yours" objects in the groceries bucket had values of 
+["bread", "cheese"], ["bread", "butter"], the sequence of commands above would result in L being bound to @[{"bread", 2},{"cheese",1},{"butter",1}]@.
 
 h3. Erlang Query Syntax
 
-{{riak_client:mapred/2}} takes two lists as arguments.  The first list contains bucket-key pairs, inputs to the MapReduce query.  The second list contains the phases of the query.
+@riak_client:mapred/2@ takes two lists as arguments.  The first list contains bucket-key pairs, inputs to the MapReduce query.  The second list contains the phases of the query.
 
 h4. Inputs
 
-The input objects are given as a list of tuples in the format {{\{Bucket, Key\}}} or {{\{\{Bucket, Key\}, KeyData\}}}. {{Bucket}} and {{Key}} should be binaries, and {{KeyData}} can be any Erlang term.  The former form is equivalent to {{\{\{Bucket,Key\},undefined\}}}.
+The input objects are given as a list of tuples in the format {Bucket, Key} or @{{Bucket, Key}, KeyData}@. @{Bucket}@ and @{Key}@ should be binaries, and @{KeyData}@ can be any Erlang term.  The former form is equivalent to {{Bucket,Key},undefined}}.
 
 h4. Query
 
@@ -314,15 +313,15 @@ The query is given as a list of map, reduce and link phases. Map and reduce phas
 ```
 
 
-{{Type}} is an atom, either {{map}} or {{reduce}}. {{Arg}} is a static argument (any Erlang term) to pass to each execution of the phase. {{Keep}} is either {{true}} or {{false}} and determines whether results from the phase will be included in the final value of the query.  Riak assumes the final phase will return results.
+*Type* is an atom, either *map* or *reduce*. *Arg* is a static argument (any Erlang term) to pass to each execution of the phase. *Keep* is either *true* or *false* and determines whether results from the phase will be included in the final value of the query.  Riak assumes the final phase will return results.
 
-{{FunTerm}} is a reference to the function that the phase will execute and takes any of the following forms:
+*FunTerm* is a reference to the function that the phase will execute and takes any of the following forms:
 
-* {{\{modfun, Module, Function\}}} where {{Module}} and {{Function}} are atoms that name an Erlang function in a specific module.
-* {{\{qfun,Fun\}}} where {{Fun}} is a callable fun term (closure or anonymous function).
-* {{\{jsfun,Name\}}} where {{Name}} is a binary that, when evaluated in Javascript, points to a built-in Javascript function.
-* {{\{jsanon, Source\}}} where {{Source}} is a binary that, when evaluated in Javascript is an anonymous function.
-* {{\{jsanon, {Bucket, Key\}\}}} where the object at {{\{Bucket, Key\}}} contains the source for an anonymous Javascript function.
+* @{modfun, Module, Function}@ where *Module* and *Function* are atoms that name an Erlang function in a specific module.
+* @{qfun,Fun}@ where *Fun* is a callable fun term (closure or anonymous function).
+* @{jsfun,Name}@ where *Name* is a binary that, when evaluated in Javascript, points to a built-in Javascript function.
+* @{jsanon, Source}@ where *Source* is a binary that, when evaluated in Javascript is an anonymous function.
+* {jsanon, {Bucket, Key}} where the object at @{Bucket, Key}@ contains the source for an anonymous Javascript function.
 
 Link phases are expressed in the following form:
 
@@ -332,7 +331,7 @@ Link phases are expressed in the following form:
 ```
 
 
-{{Bucket}} is either a binary name of a bucket to match, or the atom {{'\_'}}, which matches any bucket. {{Tag}} _is either a binary tag to match, or the atom {{'\_'}}, which matches any tag. {{Keep}} has the same meaning as in map and reduce phases.
+*Bucket* is either a binary name of a bucket to match, or the atom *'_'*, which matches any bucket. *Tag* is either a binary tag to match, or the atom *'_'*, which matches any tag. *Keep* has the same meaning as in map and reduce phases.
 
 
 <div class="info">There is a small group of prebuilt Erlang MapReduce functions available with Riak. Check them out here: [[https://github.com/basho/riak_kv/blob/master/src/riak_kv_mapreduce.erl|https://github.com/basho/riak_kv/blob/master/src/riak_kv_mapreduce.erl]]</div>
@@ -346,7 +345,7 @@ h3. Map phase functions
 
 *Map functions take three arguments* (in Erlang, arity-3 is required).  Those arguments are:
 
-# {{Value}} : the value found at a key.  This will be a Riak object, which in Erlang is defined and manipulated by the {{riak_object}} module.  In Javascript, a Riak object looks like this:
+# *Value* : the value found at a key.  This will be a Riak object, which in Erlang is defined and manipulated by the *riak_object* module.  In Javascript, a Riak object looks like this:
 
 ```javascript
 {
@@ -367,17 +366,17 @@ h3. Map phase functions
 }
 ```
 
-# {{KeyData}} : key data that was submitted with the inputs to the query or phase.
-# {{Arg}} : a static argument for the entire phase that was submitted with the query.
+# *KeyData* : key data that was submitted with the inputs to the query or phase.
+# *Arg* : a static argument for the entire phase that was submitted with the query.
 
-*A map phase should produce a list of results.* You will see errors if the output of your map function is not a list.  Return the empty list if your map function chooses not to produce output. If your map phase is followed by another map phase, the output of the function must be compatible with the input to a map phase - a list of bucket-key pairs or bucket-key-keydata triples.
+*A map phase should produce a list of results.* You will see errors if the output of your map function is not a list.  Return the empty list if your map function chooses not to produce output. If your map phase is followed by another map phase, the output of the function must be compatible with the input to a map phase - a list of bucket-key pairs or @bucket-key-keydata@ triples.
 
 h4. Map function examples
 
 These map functions return the value (data) of the object being mapped:
 
-{section}
-{column:width=50%}
+
+
 
 ```bash
 fun(Value, _KeyData, _Arg) ->
@@ -385,8 +384,8 @@ fun(Value, _KeyData, _Arg) ->
 end.
 ```
 
-{column}
-{column:width=50%}
+
+
 
 ```javascript
 function(value, keydata, arg){
@@ -394,13 +393,8 @@ function(value, keydata, arg){
 }
 ```
 
-{column}
-{section}
-
 These map functions filter their inputs based on the arg and return bucket-key pairs for a subsequent map phase:
 
-{section}
-{column:width=50%}
 
 ```bash
 fun(Value, _KeyData, Arg) ->
@@ -414,8 +408,8 @@ fun(Value, _KeyData, Arg) ->
 end.
 ```
 
-{column}
-{column:width=50%}
+
+
 
 ```javascript
 function(value, keydata, arg){
@@ -426,17 +420,17 @@ function(value, keydata, arg){
 }
 ```
 
-{column}
-{section}
+
+
 
 h3. Reduce phase functions
 
 *Reduce functions take two arguments.* Those arguments are:
 
-# {{ValueList}}: the list of values produced by the preceding phase in the MapReduce query.
-# {{Arg}} : a static argument for the entire phase that was submitted with the query.
+# *ValueList*: the list of values produced by the preceding phase in the MapReduce query.
+# *Arg* : a static argument for the entire phase that was submitted with the query.
 
-*A reduce function should produce a list of values*, but it must also be true that the function is commutative, associative, and idempotent. That is, if the input list {{\[a,b,c,d\]}} is valid for a given F, then all of the following must produce the same result:
+*A reduce function should produce a list of values*, but it must also be true that the function is commutative, associative, and idempotent. That is, if the input list @[a,b,c,d]@ is valid for a given F, then all of the following must produce the same result:
 
 
 ```bash
@@ -450,8 +444,8 @@ h4. Reduce function examples
 
 These reduce functions assume the values in the input are numbers and sum them:
 
-{section}
-{column:width=50%}
+
+
 
 ```bash
 fun(ValueList, _Arg) ->
@@ -459,8 +453,8 @@ fun(ValueList, _Arg) ->
 end.
 ```
 
-{column}
-{column:width=50%}
+
+
 
 ```javascript
 function(valueList, arg){
@@ -471,13 +465,13 @@ function(valueList, arg){
 }
 ```
 
-{column}
-{section}
+
+
 
 These reduce functions sort their inputs:
 
-{section}
-{column:width=50%}
+
+
 
 ```bash
 fun(ValueList, _Arg) ->
@@ -485,8 +479,8 @@ fun(ValueList, _Arg) ->
 end.
 ```
 
-{column}
-{column:width=50%}
+
+
 
 ```javascript
 function(valueList, arg){
@@ -494,11 +488,12 @@ function(valueList, arg){
 }
 ```
 
-{column}
-{section}
+
+
 
 h2. Debugging Javascript Map Reduce Phases
-There are currently two facilities for debugging map reduce phases. If there was an exception in the Javascript VM you can view the error in the log/sasl-error.log file. In addition to viewing exceptions you can write to a specific log file from your map or reduce phases using the ejsLog function.
+
+There are currently two facilities for debugging map reduce phases. If there was an exception in the Javascript VM you can view the error in the @log/sasl-error.log @file. In addition to viewing exceptions you can write to a specific log file from your map or reduce phases using the ejsLog function.
 
 ```javascript
 ejsLog('/tmp/map_reduce.log', JSON.stringify(value))
@@ -517,18 +512,18 @@ If you load larger JSON objects in your buckets there is a possibility you might
 
 
 You can increase the amount of memory allocated to the Javascript VM stack by editing your app.config. The follwing will increase the stack size from 8MB to 32MB:
-{section}
-{column}
+
+
 ```bash
 {js_thread_stack, 8}
 ```
-{column}
-{column}becomes{column}
-{column}
+
+becomes
+
 ```bash
 {js_thread_stack, 32},
 ```
-{column}
-{section}
 
-In addition to increasing the amount of memory allocated to the stack you can increase the heap size as well by increasing the js_max_vm_mem from the default of 8MB. If you are collecting a large amount of results in a reduce phase you may need to increase this setting.
+
+
+In addition to increasing the amount of memory allocated to the stack you can increase the heap size as well by increasing the @js_max_vm_mem@ from the default of 8MB. If you are collecting a large amount of results in a reduce phase you may need to increase this setting.
