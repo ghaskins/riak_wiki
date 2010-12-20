@@ -1,10 +1,7 @@
 
-<div id="toc"></div>
-
-
 h2. Summary
 
-Riak is a distributed key-value store, strongly influenced by the [[Dynamo Paper|http://s3.amazonaws.com/AllThingsDistributed/sosp/amazon-dynamo-sosp2007.pdf]] and the [[CAP Theorem|http://portal.acm.org/citation.cfm?doid=564585.564601]].  It supports high availability by allowing tunable levels of guarantees for durability and eventual&nbsp;consistency.
+Riak is a distributed database, strongly influenced by the [[Dynamo Paper|http://s3.amazonaws.com/AllThingsDistributed/sosp/amazon-dynamo-sosp2007.pdf]] and the [[CAP Theorem|http://portal.acm.org/citation.cfm?doid=564585.564601]].  It supports high availability by allowing tunable levels of guarantees for durability and eventual&nbsp;consistency.
 
 A Riak cluster is generally run on a set of well-connected physical hosts.  Each host in the cluster runs one Riak node.  Each Riak node runs a set of virtual nodes, or "vnodes", that are each responsible for storing a separate portion of the key space.
 
@@ -46,22 +43,20 @@ Riak attempts to move data toward a consistent state across nodes, but it doesn'
 
 h2. Backends
 
-Sharing data among nodes, on rings, etc. is all well and good, but at some point, it has to actually be stored somewhere - like on disk\! Because Riak is relevant to a wide variety of applications, its "backend" storage system is a pluggable one.
+Sharing data among nodes, on rings, etc. is all well and good, but at some point, it has to actually be stored somewhere - like on disk! Because Riak is relevant to a wide variety of applications, its "backend" storage system is a pluggable one.
 
 Each node may be configured with a different Erlang module for doing the simple storage, at the vnode level, below all of the interconnected cluster details.  At the backend level, a module only needs to define "get", "put", "delete", and "keys list" functions that receive a key and value which are both Erlang binaries.  The backend can consider these binaries completely opaque data, or examine them to make decisions about how best to store them.
 
 The following backends are packaged with Riak:
 
-# {{riak_kv_bitcask_backend}} \- stores data to bitcask
-# {{riak_kv_fs_backend}} \- stores data directly to files in a nested directory structure on disk
-# {{riak_kv_ets_backend}} \- stores data in ETS tables (which makes it volatile storage, but great for debugging)
-# {{riak_kv_dets_backend}} \- stores data on-disk in DETS tables
-# {{riak_kv_gb_trees_backend}} \- stores data using Erlang gb_trees
-# {{riak_kv_cache_backend}} \- turns a bucket into a memcached-type memory cache, and ejects the least recently used objects either when the cache becomes full or the object's lease expires
-# {{riak_kv_multi_backend}} \- configure per-bucket backends
+# {{riak_kv_bitcask_backend}} - stores data to bitcask (*this is the default backend*)
+# {{riak_kv_fs_backend}} - stores data directly to files in a nested directory structure on disk
+# {{riak_kv_ets_backend}} - stores data in ETS tables (which makes it volatile storage, but great for debugging)
+# {{riak_kv_dets_backend}} - stores data on-disk in DETS tables
+# {{riak_kv_gb_trees_backend}} - stores data using Erlang gb_trees
+# {{riak_kv_cache_backend}} - turns a bucket into a memcached-type memory cache, and ejects the least recently used objects either when the cache becomes full or the object's lease expires
+# {{riak_kv_multi_backend}} - configure per-bucket backends
 
 h2. More reading
 
 More detailed information about aspects of how Riak works can be found on these pages:
-
-{children}

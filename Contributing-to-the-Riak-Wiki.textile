@@ -1,36 +1,22 @@
-{excerpt}The goal of this document is to establish a transparent and living process by which any community member can be granted wiki editing and contributing rights.{excerpt}
+Basho maintains all of the content in the Riak Wiki in a public GitHb repo. What this means is that if you have a change you think needs to be made, all you need to do is fork the [[Riak Wiki Repo|#]] and send a pull request with your changes. Chances are we will merge them in short order. If we have any questions, we'll comment on the pull request. 
 
-As of late we have received several inquiries as to how someone can make changes to the Riak Wiki directly. We recognize that not all of the knowledge of Riak is contained within the Basho Brain Trust. We also know that bringing in more participants to help edit and expand the wiki will ultimately make it a more robust resource for all Riak Users. 
+h3. Who Maintains the Wiki?
 
-The Riak Wiki is maintained primary by the Basho Development and Support Teams. However, we do invite developers from outside Basho to contribute to the wiki if certain criteria are met. 
+The Riak Wiki is maintained primarily by the Basho Development and Support Teams. However, we do invite developers from outside Basho to have commit access to the Riak Wiki Repo on GitHub. (You can still contribute if you don't have commit access. You'll just need a committer to review your changes.)
 
-So, in response to these inquiries, we have established a process by which community members will be granted access to edit and contribute to the wiki directly. Those who are granted access will join a group called the "Community Editors."
+There is a process by which community members will be granted commit access to the Riak wiki directly. Those who are granted access will join a group called the "Community Wiki Committers."
 
- 
+h5. Who will be considered for being a Community Wiki Committers?
 
-h3. Process 
-
-h5. Who will be considered for being a Community Editor?
-
-* Those who come forward and ask for privileges. To do this, simply send an email to _wiki@basho.com_ and tell us why you want to edit the wiki and where precisely you can shine as a Community Editor.
-* Community Members who are nominated by a member of the Riak Dev. or Support teams
+* Those who come forward and ask for privileges. To do this, simply send an email to _+wiki@basho.com+_ and tell us why you want to edit the wiki and where precisely you can shine as a Community Editor.
+* Community Members who are nominated by a member of the Riak Development or Support teams
 
 h5. How will individuals be evaluated?
 
-* Those who come forward and ask to commit will be evaluated on their Riak knowledge and previous contributions to the Riak Community including, but not limited to, Mailing List and IRC activity, Libraries and Projects created, and patches and code submissions.
+* Those who come forward and ask for commit rights will be evaluated on their Riak knowledge and previous contributions to the Riak Community including, but not limited to, Mailing List and IRC activity, Libraries and Projects created, and patches and code submissions.
 
-* In the case of a member of the Riak team nominating a community member, the nominator should outline their reason for said nomination.
+* In the case of a member of the Riak team nominating a community member, the nominator will outline their reason for said nomination.
 
-In both cases, members of the Basho Development and Support teams will hold a vote, via email, to approve the nominee. 
+In both cases, members of the Basho Development and Support teams will hold a vote, via email, to approve the nominee.   Upon acceptance, the nominee will be notified via email.
 
-Upon acceptance, the nominee will be notified via email.
-
-h5. A Brief Note on Access Levels
-
-Here is an overview of the differing levels of access to the Riak Wiki:
-
-* +Anonymous+ - This essentially amounts to Read Only Access. First time visitors and those who wish not to register will be viewing as Anonymous.
-* +Registered+ - Users who register will have the ability to view all pages and use the full commenting functionality.
-* +Community Editor+ - Community Editors will have the ability to edit and create content on the Riak wiki.
-* +Admin+ - Members of the core Basho team have Admin access. In other words, if you mess with the bull, you'll probably get the horns. 
-
+* [[See a list of current Community Wiki Committers|Contributors]]

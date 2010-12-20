@@ -185,7 +185,7 @@ bin/search-cmd shell [[INDEX]]
 ```
 
 
-This launches an interactive console into which you can type search commands. For help, type {{h()}}.
+This launches an interactive console into which you can type search commands. For help, type @h()@.
 
 
 h3. Querying via the Command Line
@@ -208,7 +208,7 @@ bin/search-cmd search books "title:\"See spot run\""
 ```
 
 
-This will display a list of Document ID values matching the query. To conduct a document search, use the {{search\_doc}} command. For example:
+This will display a list of Document ID values matching the query. To conduct a document search, use the @search_doc@ command. For example:
 
 
 ```bash
@@ -219,7 +219,7 @@ bin/search-cmd search_doc books "title:\"See spot run\""
 
 h3. Querying via the Erlang Command Line
 
-To run a query from the Erlang shell, use {{search:search(Query)}} or {{search:search(Index, Query)}}. For example:
+To run a query from the Erlang shell, use @search:search(Query)@ or @search:search(Index, Query)@. For example:
 
 
 ```bash
@@ -247,8 +247,8 @@ The following parameters are supported:
 
 * *index=INDEX* - Specifies the default index name.
 * *q=QUERY* - Run the provided query.
-* *df=FIELDNAME* - Use the provided field as the default. Overrides the {{default_field}} setting in the schema file.
-* *q.op=OPERATION* - Allowed settings are either "and" or "or". Overrides the {{default_op}} setting in the schema file. Default is "or".
+* *df=FIELDNAME* - Use the provided field as the default. Overrides the "default_field" setting in the schema file.
+* *q.op=OPERATION* - Allowed settings are either "and" or "or". Overrides the "default_op" setting in the schema file. Default is "or".
 * *start=N* - Specify the starting result of the query. Useful for paging. Default is 0.
 * *rows=N* - Specify the maximum number of results to return. Default is 10.
 * *sort=FIELDNAME* - Sort on the specified field name. Default is "none", which causes the results to be sorted in descending order by score.
@@ -298,9 +298,10 @@ The Riak Client APIs that integrate with Riak Search also support using a search
 
 h4. Querying via HTTP/Curl
  
+
 Developers who are using a language without an official Riak API or prefer to use the pure HTTP API can still execute a search-based map/reduce operation.
 
-The syntax is fairly simple.  In the {{inputs}} section of your map/reduce query, use the new {{modfun}} specification, naming {{riak\_search}} as your module, {{mapred\_search}} as your function, and your index and query as the arguments.
+The syntax is fairly simple.  In the "inputs" section of your map/reduce query, use the new "modfun" specification, naming "riak_search" as your module, "mapred_search" as your function, and your index and query as the arguments.
  
 For example, if you wanted to search the "customers" bucket for objects that had the text "john" in their "first_name" field, you would normally issue a Solr query like:
  

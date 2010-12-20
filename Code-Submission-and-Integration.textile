@@ -1,16 +1,13 @@
-{excerpt} So what happens when you have a great piece of code that you want to see integrated into the Riak codebase? {excerpt} 
-
-
 h3. How do I submit my code to Basho?
 
 There are several ways to submit a piece of code to the core Basho Team:
 
-# Basho hosts its code on [[*GitHub*|http://github.com/basho]]. We also have a [[*mirror on BitBucket*|http://bitbucket.org/basho]]. We will accept pull requests from either of these repos.
-# You can also send a patch as an attachment to the [[*Riak Mailing List*|http://lists.basho.com/mailman/listinfo/riak-users_lists.basho.com]]. Be sure to include any additional information we'll need to asses and integrate your code.
+# Basho hosts its code on [[GitHub|http://github.com/basho]]. We also have a [[mirror on BitBucket|http://bitbucket.org/basho]]. We will accept pull requests from either of these repos.
+# You can also send a patch as an attachment to the [[Riak Mailing List|http://lists.basho.com/mailman/listinfo/riak-users_lists.basho.com]]. Be sure to include any additional information we'll need to asses and integrate your code.
 
 h3. What happens after my code is submitted?
 
-If it's more than a simple patch which can be integrated quickly, we will create a ticket in our [[bug tracker|https://issues.basho.com/]] so that we can give it the attention it needs to be integrated. Making it a ticket will also enable you to track the state of the patch. You'll receive an email or comment from someone on the Riak development team letting you know we are working on integrating it. If needed, a link to the ticket pertaining to your code will also be included so that you can track its progress. 
+If it's more than a simple patch (documentation or typo fixes, for example), we will create a ticket in our [[bug tracker|https://issues.basho.com/]] so that we can give it the attention it needs to be integrated. Making it a ticket will also enable you to track the state of the patch. You'll receive an email or comment from someone on the Riak development team letting you know we are working on integrating it. If needed, a link to the ticket pertaining to your code will also be included so that you can track its progress. 
 
 h3. Which code will be integrated into Riak?
 

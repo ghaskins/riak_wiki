@@ -1,67 +1,63 @@
-
-<div id="toc"></div>
-
-
-h5. Why did you build Yet Another Data Store?
+h3. Why did you build Yet Another Data Store?
 
 We built the first incarnation of Riak in late 2007 for  our own use, and we have nurtured it ever since in order to satisfy our  operational needs.  There wasn't an alternative that suited us at the  time, and since then we have developed something that solves a unique  combination of problems.
 
-h5. How do you pronounce "Riak"?
+h3.  How do you pronounce "Riak"?
 
 REE-ahk
 
-h5. How fast is it?
+h3.  How fast is it?
 
-Performance depends on many factors, including hardware and network parameters as well as a great many tunable parameters in the  way you set up your cluster and the way that you use Riak from an  application.  We've found it to be fast enough for our purposes, and our  goal is not to be "fastest" but rather to stay "fast enough" as the  system grows, as hosts fail, and so on.  That said, have a look at [[Basho bench|RIAK:Benchmarking with Basho Bench]]. Basho bench is our performance testing and benchmarking tool for Riak.
+Performance depends on many factors, including hardware and network parameters as well as a great many tunable parameters in the  way you set up your cluster and the way that you use Riak from an  application.  We've found it to be fast enough for our purposes, and our  goal is not to be "fastest" but rather to stay "fast enough" as the  system grows, as hosts fail, and so on.  That said, have a look at [[Basho Bench|Benchmarking with Basho Bench]]. Basho bench is our performance testing and benchmarking tool for Riak.
 
-h5. But what about (insert favorite "nosql" system here)?
+h3.  But what about (insert favorite "nosql" system here)?
 
 We believe that the current explosion of choice in data  storage software is a healthy thing.  Each of the different datastores  out there has its own strengths and weaknesses and will be best suited  to a different class of problems.  We hope to not only contribute a  strong system that works well for us and others, but also to work with  friends in the open source community to improve the state of the art.
 
-h5. Do I have to know how to write distributed Erlang code to use Riak?
+h3.  Do I have to know how to write distributed Erlang code to use Riak?
 
 I believe you don't, Bob.  Riak provides a simple and convenient programming interface over HTTP and JSON. This, combined with our [[rapidly expanding suite of client libraries|Client Libraries and Community Code]] , makes Riak accessible to nearly every programmer on the Web.
 
-h5. Is Version 0.x ready for my production data?
+h3.  Is Version 0.x ready for my production data?
 
 That kind of decision depends on many factors, most of  which cannot be answered in general but depend on your business.  We  gave it a low version number befitting a first public appearance, but  Riak has robustly served the needs of multiple revenue-generating  applications for nearly two years now.
 
-h5. What type of data can I store in Riak?
+h3.  What type of data can I store in Riak?
 
 Riak stores value as opaque BLOBS (binary large objects). This means that virtually any type of data is suitable for Riak.
 
-h5. What operating systems are best for Riak?
+h3.  What operating systems are best for Riak?
 
 Riak is currently well-suited for Mac OS X and nearly all flavors of Linux. There is currently no support for Riak on Windows.
 
-h5. How large of a file can one store in Riak? Any guidelines or recommendations?
+h3.  How large of a file can one store in Riak? Any guidelines or recommendations?
 
 At the moment, the largest file size we recommend for storage in Riak is 50 MB.  However, other factors may limit the size of your upload, including the number of replicas and the backend being used.  For example, if you use the default {{n_val}} of 3, you will need RAM over 3 times the size of your largest upload, not including any RAM claimed by the backend.  If you need to store really large files, consider breaking them up into smaller pieces. 
 
 As of Riak 0.13, the [[Luwak|RIAK:Luwak]] module provides support for large files but is disabled by default.
 
-h5. I wrote a great piece of code for Riak. How do I contribute it?
+h3.  I wrote a great piece of code for Riak. How do I contribute it?
 
 See [[Code Submission and Integration]].
 
-h5. What is the maximum number of partitions allowable in a Riak cluster?
+h3.  What is the maximum number of partitions allowable in a Riak cluster?
 
 Theoretically, the maximum number of partitions is 2^160, the size of the consistent-hashing keyspace, but that number is not practical.  We recommend around 10 partitions per physical node, but up to 50 is acceptable.  The default number of partitions is 64.  For larger clusters, choose 512 or 1024 (keeping in powers of 2).
 
 * [[Learn more about setting up your cluster|Basic Cluster Setup]]
 
-h5. What is the largest cluster currently running?
+h3.  What is the largest cluster currently running?
 
 The most computers (nodes) in a single cluster that we have seen is about 60.  The software performed as expected from the first through sixtieth hosts, and we expect that it would continue to do so with even larger clusters.
 
-h5. Why did you chose to support JavaScript (in addition to Erlang) for MapReduce?
+h3.  Why did you chose to support JavaScript (in addition to Erlang) for MapReduce?
 
 JavaScript hit enough sweet spots that it made sense to start there: trivial dynamic loading of code, VMs meant for embedding, native handling of a common serialization format (JSON), and wide-spread developer familiarity (among other things).  That said, support for other languages in MapReduce queries has not been ruled out at all.  In fact, the attachment points for evaluating MapReduce functions are simple enough that we'd expect a determined community member could probably put together a good patch to support a new one.
 
-h5. Can I delete an entire bucket?
+h3.  Can I delete an entire bucket?
 
 There is no standard operation for deleting a bucket. (Remember, buckets are essentially a flat namespace in Riak and have little significance beyond their ability to allow the same key name to exist in multiple buckets and to provide some per-bucket configurability.)  Though it can be a costly operation, you can do a list keys operation on the bucket and delete all the keys individually.
 
-h5. How can I authenticate users who are accessing Riak?
+h3.  How can I authenticate users who are accessing Riak?
 
 Riak has no built-in authentication or authorization mechanism, as it was designed to be used in private networks and to be simple to configure.  If you are using the [[REST API]], we recommend inserting a reverse-proxy between Riak and the client that can handle the authentication.  Members of the community have used nginx and Apache for this purpose.

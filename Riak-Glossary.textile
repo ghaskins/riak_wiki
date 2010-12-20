@@ -1,90 +1,87 @@
 Below is a list of terms and their applicability within the context of Riak:
 
+h4. Bucket
 
-<div id="toc"></div>
+A Bucket is a container and keyspace for data stored in Riak, with a set of common properties for its contents (the number of replicas, for instance).  Buckets are accessed at the top of the URL hierarchy under "riak", e.g. @/riak/bucket@.
+* [[Take a more in depth look at Bucket Operations|REST API]]
 
+h4. Consistent Hashing
 
-h5. Bucket
-
-A Bucket is a container and [[keyspace|#Key]] for data stored in Riak, with a set of common properties for its contents (the number of [[replicas|#Replica]], for instance).  Buckets are accessed at the top of the URL hierarchy under "riak", e.g. {{/riak/bucket}}.
-* [[Take a more in depth look at Bucket Operations|RIAK:REST API#Bucket Operation]]
-
-h5. Consistent Hashing
-
-Consistent hashing is a technique used to limit the reshuffling of keys when a hash-table data structure is rebalanced (when slots are added or removed). Riak uses consistent hashing to organize its data storage and replication. A Riak cluster is a 160-bit integer space which is divided into equally-sized partitions. Each [[vnode|#Vnodes]] in the [[Riak ring|#Ring]] is responsible for one of these partitions, and the location on the ring responsible for storing each object in Riak is determined using the consistent hashing technique.
+Consistent hashing is a technique used to limit the reshuffling of keys when a hash-table data structure is rebalanced (when slots are added or removed). Riak uses consistent hashing to organize its data storage and replication. A Riak cluster is a 160-bit integer space which is divided into equally-sized partitions. Each vnode in the Riak Ring is responsible for one of these partitions, and the location on the ring responsible for storing each object in Riak is determined using the consistent hashing technique.
 * [[More on Consistent Hashing|http://en.wikipedia.org/wiki/Consistent_hashing]]
 
-h5. Gossiping
+h4. Gossiping
 
 Riak uses a "gossip protocol" to share and communicate ring state and bucket properties around the cluster.  Whenever a node changes its claim on the ring, it announces its change via this protocol.  Each node also periodically sends its current view of the ring state to a randomly-selected peer, in case any nodes missed previous updates.
 
-h5. Hinted Handoff
+h4. Hinted Handoff
 
 Hinted handoff is a technique for dealing with node failure in the Riak cluster in which neighboring nodes temporarily takeover storage operations for the failed node.  When the failed node returns to the cluster, the updates received by the neighboring nodes are handed off to it.
 
 Hinted handoff allows Riak to ensure database availability.  When a node fails, Riak can continue to handle requests as if the node were still there.
 
-h5. Key
+h4. Key
 
-Keys are unique object identifiers in Riak and are scoped within [[buckets|#Bucket]].
+Keys are unique object identifiers in Riak and are scoped within buckets.
 
-h5. Links
+h4. Links
 
 Links are metadata attached to objects in Riak. These links make establishing relationships between objects in Riak as simple as adding a Link header to the request when storing the object.
 
 * [[More about Riak's Links|Links]]
 * [[More on the Link header|http://www.martinpayne.me.uk/experiments/HTTP/Link-Header/HTTP-Link-example.html]]
 
-h5. Merkle Tree
+h4. Merkle Tree
 
 Merkle Trees are used in Riak to determine which objects on a node need updating. Nodes will exchange a Merkle Tree to determine what has changed instead of comparing every object on every node.
 
 * [[More information on Merkle Trees|http://en.wikipedia.org/wiki/Merkle_tree]]
 
-h5. Node
+h4. Node
 
-A node is analogous to a physical server. Nodes run a certain number of [[vnodes|#Vnode]], which in turn claim a set number of [[partitions|#partition]] in the Riak [[ring|#Ring]] key space.
+A node is analogous to a physical server. Nodes run a certain number of vnodes, which in turn claim a set number of partition in the Riak Ring key space.
 
-h5. Object
+h4. Object
 
-An object is another name for a [[#Value]].
+An object is another name for a value.
 
-h5. Partition
+h4. Partition
 
 Partitions are the spaces into which a Riak cluster is divided. Each vnode in Riak is responsible for a partition, and data will be stored on a set number of partitions determined statically based on an object's key.
 
-h5. Quorum
+h4. Quorum
 
 Quorum in Riak has two meanings:
 
 # The quantity of replicas that must respond to a read or write request before it is considered successful. This is defined as a bucket property or as one of the relevant parameters to a single request (R,W,DW,RW).
-# A symbolic quantity for the above, "quorum", which is equivalent to {{n_val / 2 + 1}}. With Riak's default settings, this is {{2}}.
+# A symbolic quantity for the above, "quorum", which is equivalent to *n_val / 2 + 1*. With Riak's default settings, this is *2*.
 
-h5. Read Repair
+h4. Read Repair
 
 Read repair is an anti-entropy mechanism used by Riak to optimistically update stale replicas when they reply to a read request with stale data.
 
-* [[More about Read Repair|Replication#Read Repair]]
+* [[More about Read Repair|Replication]]
 
-h5. Replica
+h4. Replica
 
 Replicas are copies of data stored in Riak. The number of replicas required for both successful reads and writes is configurable in Riak and should be set based on your application's consistency and availability requirements.
 
-h5. Ring
+h4. Ring
 
-The Riak Ring is a 160-bit integer space. This space is equally divided into [[partitions|#Partition]], which are claimed by [[vnodes|#Vnode]], which reside on actual physical server [[nodes|#Node]].
+The Riak Ring is a 160-bit integer space. This space is equally divided into partitions, which are claimed by vnodes, which reside on actual physical server nodes.
 
-h5. Value
+h4. Value
 
 Riak is most-easily described as a key/value store. In Riak, "values" are opaque BLOBS (binary large objects), identified with a unique key, that can be any type of data, though some programming advantages are gained by using JSON.
 
-h5. Vector Clock
+h4. Vector Clock
 
-Riak utilizes vector clocks (short: {{vclock}}) to handle version control. Since any node in a Riak cluster is able to handle a request, and not all nodes need to participate, data versioning is required to keep track of a current value. When a value is stored in Riak, it is tagged with a vector clock and establishes the initial version. When it is updated, the client provides the vector clock of the object being modified so that this vector clock can be extended to reflect the update.  Riak can then compare vector clocks on different versions of the object and determine certain attributes of the data.
+Riak utilizes vector clocks (or _vclock_) to handle version control. Since any node in a Riak cluster is able to handle a request, and not all nodes need to participate, data versioning is required to keep track of a current value. When a value is stored in Riak, it is tagged with a vector clock and establishes the initial version. When it is updated, the client provides the vector clock of the object being modified so that this vector clock can be extended to reflect the update.  Riak can then compare vector clocks on different versions of the object and determine certain attributes of the data.
 
 * [[Read more on Vector Clocks|http://en.wikipedia.org/wiki/Vector_clock]]
-* [Blog post "Why Vector Clocks are Easy"|http://blog.basho.com/2010/01/29/why-vector-clocks-are-easy/]
+* [[Why Vector Clocks are Easy|http://blog.basho.com/2010/01/29/why-vector-clocks-are-easy/]]
+* [[Why Vector Clocks are Hard|http://blog.basho.com/2010/04/05/why-vector-clocks-are-hard/]]
 
-h5. Vnode
+h4. Vnode
 
-Vnodes, or "virtual nodes" are responsible for claiming a [[partition|#Partition]] in the Riak [[Ring|#Ring]], and they coordinate requests for these partitions. Vnodes map to physical [[nodes|#Node]] in a Riak cluster, and the number of vnodes on each physical node is determined by the number of active physical nodes in the cluster.
+Vnodes, or "virtual nodes" are responsible for claiming a partition in the Riak Ring, and they coordinate requests for these partitions. Vnodes map to physical nodes in a Riak cluster, and the number of vnodes on each physical node is determined by the number of active physical nodes in the cluster.

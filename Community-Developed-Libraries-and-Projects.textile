@@ -5,12 +5,7 @@ The Riak Community is developing at a break-neck pace, and the number of communi
 
 <div class="info">All of these projects and libraries are at various stages of completeness and may not suit your application's needs based on their level of maturity and activity. </div>
 
-
-
-<div id="toc"></div>
-
-
-h6. Client Libraries
+h2. Client Libraries
 
 *Clojure*
 * [[clj-riak|http://github.com/mmcgrana/clj-riak]] - Clojure bindings to the Riak Protocol Buffers API 
@@ -64,18 +59,18 @@ h6. Client Libraries
 Monitoring, Backup and Other
 
 
-h6. Monitoring, Management and GUI Tools 
+h2. Monitoring, Management and GUI Tools 
 
 * [[Gmond Python Modules for Riak|http://github.com/jnewland/gmond_python_modules/tree/master/riak]] - Ganglia Module for connecting to Riak
 * [[Riaktive|http://github.com/WealthyThinker/Riaktive]] - A Riak Management Tool released under the MIT License
 * [[riak-admin|http://bitbucket.org/harmen/riak-admin/]] - A Java program with GUI to browse and update a Riak database
 * [[Riak Admin|http://github.com/frank06/riak-admin]] \- A Futon-like web interface for Riak
 
-h6. Backup Tools
+h2. Backup Tools
 
 * [[Brackup|http://code.google.com/p/brackup/]] - A modern net-based backup system that supports deduplication, intelligent chunking, and gpg-based-encryption.
 
-h6. Other
+h2. Other
 
 * [[Couch to Riak|http://github.com/mattsta/couchdb/tree/couch_file-to-riak]]
 * [[Chimera|http://github.com/benmyles/chimera]] \- An object mapper for Riak and Redis

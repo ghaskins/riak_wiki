@@ -42,7 +42,7 @@ Once you have your node running, pass your Riak server nodename to riakc_pb_sock
 ```
 
 
-Verify connectivity with the server using {{ping/1}}.
+Verify connectivity with the server using *ping/1*.
 
 
 ```bash
@@ -70,8 +70,8 @@ Before storing your data, you must wrap it in a riakc_obj:
 ```
 
 
-The Object refers to a key {{<<"mine">>}} in a bucket named {{<<"groceries">>}} with
-the value {{<<"eggs & bacon">>}}. Using the client you opened earlier, store the object:
+The Object refers to a key <<"mine">> in a bucket named <<"groceries">> with
+the value <<"eggs & bacon">>. Using the client you opened earlier, store the object:
 
 
 ```bash
@@ -80,15 +80,15 @@ ok
 ```
 
 
-If the return value of the last command was anything but the atom {{'ok'}}, then the store failed.  The return value may give you a clue as to why the store failed, but check the Troubleshooting section below if not.
+If the return value of the last command was anything but the atom 'ok', then the store failed.  The return value may give you a clue as to why the store failed, but check the Troubleshooting section below if not.
 
-The object is now stored in Riak. {{put/2}} uses default parameters for storing the object.  There is also a {{put/3}} call that takes a proplist of options.
+The object is now stored in Riak. put/2 uses default parameters for storing the object.  There is also a put/3 call that takes a proplist of options.
 
 || Option || Description ||
-| {{\{w, W\}}} | the minimum number of nodes that must respond \\
+| \{w, W\} | the minimum number of nodes that must respond \\
 with success for the write to be considered successful. \\
 The default is currently set on the server at 2 |
-| {{\{dw, DW\}}} | the minimum number of nodes that must respond \\
+| \{dw, DW\} | the minimum number of nodes that must respond \\
 with success *after durably storing* the object for the \\
 write to be considered successful \\
 The default is currently set on the server at 0. \\
@@ -141,17 +141,17 @@ At some point you'll want that data back.  Using the same bucket and key you use
 ```
 
 
-Like 'put', there is a 'get' functions that takes options, {{get/3}}.
+Like 'put', there is a 'get' functions that takes options, get/3.
 
 || Option || Description ||
-| {{\{r, R\}}} | the minimum number of nodes that must respond \\
+| \{r, R\} | the minimum number of nodes that must respond \\
 with success for the read to be considered successful |
 
 
 h1. Modifying Data
 
 
-Say you had the "grocery list" from the examples above, reminding you to get {{<<"eggs & bacon">>}}, and you want to add {{<<"milk">>}} to it.  The easiest way is:
+Say you had the "grocery list" from the examples above, reminding you to get <<"eggs & bacon">>, and you want to add <<"milk">> to it.  The easiest way is:
 
 
 ```bash
@@ -173,11 +173,11 @@ Say you had the "grocery list" from the examples above, reminding you to get {{<
 ```
 
 
-That is, fetch the object from Riak, modify its value with {{riakc_obj:update_value/2}}, then store the modified object back in Riak.  You can get your updated object to convince yourself that your list is updated:
+That is, fetch the object from Riak, modify its value with *riakc_obj:update_value/2*, then store the modified object back in Riak.  You can get your updated object to convince yourself that your list is updated:
 
 h1. Deleting Data
 
-Throwing away data is quick and simple: just use the {{delete/3}} function.
+Throwing away data is quick and simple: just use the delete/3 function.
 
 
 ```bash
@@ -190,7 +190,7 @@ As with get and put, delete can also take options
 
 || Option || Description ||
 
-| {{\{rw, RW\}}} | the number of nodes to wait for responses from |
+| \{rw, RW\} | the number of nodes to wait for responses from |
 
 Issuing a delete for an object that does not exist returns just returns ok.
 
@@ -262,7 +262,7 @@ riakc_pb_socket:list_keys(Pid, <<"groceries">>).
 
 Note that keylist updates are asynchronous to the object storage primitives, and may not be updated immediately after a put or delete. This function is primarily intended as a debugging aid.
 
-{{list_keys/2}} is just a convenience function around the streaming version of the call stream_list_keys(Pid, Bucket).
+list_keys/2 is just a convenience function around the streaming version of the call stream_list_keys(Pid, Bucket).
 
 
 ```bash
@@ -279,7 +279,7 @@ See riakc_pb_socket:wait_for_listkeys for an example of receiving.
 
 h1. Bucket Properties
 
-Bucket properties can be retrieved and modified using {{get_bucket/2}} and {{set_bucket/3}}. The bucket properties are represented as a proplist. Only a subset of the properties can be retrieved and set using the protocol buffers interface - currently only n_val and allow_mult.
+Bucket properties can be retrieved and modified using get_bucket/2 and set_bucket/3. The bucket properties are represented as a proplist. Only a subset of the properties can be retrieved and set using the protocol buffers interface - currently only n_val and allow_mult.
 
 Here's an example of getting/setting properties
 
@@ -303,4 +303,4 @@ h1. Map/Reduce
 
 h1. Troubleshooting
 
-If {{start/2}} or {{start_link/2}} return {{\{error,econnrefused\}}} the client could not connect to the server - make sure the protocol buffers interface is enabled on the server and the address/port is correct.
+If start/2 or start_link/2 return \{error,econnrefused\} the client could not connect to the server - make sure the protocol buffers interface is enabled on the server and the address/port is correct.

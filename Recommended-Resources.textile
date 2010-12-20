@@ -1,9 +1,6 @@
-
 <div id="toc"></div>
 
-
-
-h5. General Overviews, Tutorials, and Introductions
+h2. General Overviews, Tutorials, and Introductions
 
 * [[Justin Sheehy's Riak Presentation at NoSQL East|https://nosqleast.com/2009/#speaker/sheehy]]
 * [[Riak and Nitrogen by Example - Rusty Klophaus at Erlang User Conf. 2009|http://vimeo.com/8258045]]
@@ -15,17 +12,34 @@ h5. General Overviews, Tutorials, and Introductions
 * [[Schema Design in Riak - An Introduction|http://blog.basho.com/2010/03/19/schema-design-in-riak---introduction//]]
 * [[Schema Design in Riak Pt. 2 - Relationships|http://blog.basho.com/2010/03/25/schema-design-in-riak---relationships/]]
 
-{children:excerpt=true|style=h5}
+h2. Slide Decks
 
-h5. Sample Applications built using Riak:
+This is a sample of the slide decks used in presentations given by Riak Core Developers and Developer Advocates and members of the Riak Community at conferences, meetups, and various other events worldwide.
 
-* [[Slideblast|http://github.com/rklophaus/SlideBlast]] \- share and control slide presentation for the web.
-* [[riak_php_app|http://github.com/schofield/riak_php_app]] \- a small PHP app that shows some basic usage of the Riak PHP library.
-* [[riak-url-shortener|http://github.com/seancribbs/riak-url-shortener]] \- a small Ruby app (with Sinatra) that creates short URLs and stores them in Riak.
+* [[Introducing Riak and Ripple|http://www.slideshare.net/seancribbs/introducing-riak-and-ripple]] - This is a great overview of working with Riak and Ripple from Sean Cribbs, the author of Ripple.
+* [[Getting Started with Riak - Nosql Live 2010 Boston|http://www.slideshare.net/rklophaus/getting-started-with-riak-nosql-live-2010-boston]] - Delivered by Rusty Klophaus, this is a very high level overview of Riak and includes basic Python code snippets.
+* [[Node.js + Riak|http://www.slideshare.net/frank06/nodejs-riak]] - This slide deck was put together by Francisco Treacy, the author of "Riakjs" and one of several developers working with Riak and Node.js at [[Widescript|http://widescript.com]].
+* [[Riak MapReduce|http://www.slideshare.net/dreverri/riak-mapreduce]] - Basho Developer Advocate Dan Reverri built this slide deck to be used with the Riak MapReduce Webinar he delivered recently. This should give you a solid introduction to Riak's MapReduce functionality.
+* [[Introduction to Riak - Red Dirt Ruby Conf Training|http://www.slideshare.net/seancribbs/introduction-to-riak-red-dirt-ruby-conf-training]] - Sean Cribbs headed an extensive Riak training session at the Red Dirt Ruby Conference. These are his slides from that workshop. ([[You can also watch the video here|http://reddirtrubyconf.com/video]])
+* [[Introducing Riak|http://www.slideshare.net/hemulen/introducing-riak]] - This Riak overview clocks in at a whopping 209 slides, but it's well worth it. Why? Because Basho Developer Kevin Smith makes and delivers awesome presentations. 
+* [[Schema Design for Riak|http://www.slideshare.net/seancribbs/schema-design-for-riak]] - Sean Cribbs' slides from the recent "Schema Design for Riak" Webinar. 
+* [[Rolling With Riak|http://www.slideshare.net/johnthethird/rolling-with-riak]] - These are slides used in a short presentation given by Riak Community Member John Llynch.
+* [[Riak in Ten Minutes|http://www.slideshare.net/jonmeredith/riak-in-ten-minutes]] - As the title suggests, this is a whirlwind but worthwhile slide presentation that was delivered in ten minutes and looks at Riak from a very high level. It was originally presented at Gluecon.
+* [[Riak and Ruby|http://www.slideshare.net/gschofield/riak-and-ruby]] - Another great overview slide deck, this one starts with general Riak info and ends with some Ruby code examples courtesy of Developer Advocate Grant Schofield.
+* [[Riak A Friendly Key Value Store for the Web|http://www.slideshare.net/codefluency/riak-a-friendly-keyvalue-store-for-the-web-4726998]] - Used in a presentation by Bruce Williams at the Devnation Conference in Portland, OR, this is not only a great overview of Riak, but the way the slides are put together is exceptional.
+* [[Using Riak with PHP|http://www.slideshare.net/jonmeredith/php-api]] - Want to use Riak with PHP? This presentation from Jon Meredith is a short, straightforward introduction to Riak + PHP using code examples and a sample app.
+* [[Using Basho Bench to Load Test Distributed Applications|http://www.slideshare.net/BashoTechnologies/using-basho-bench-to-load-test-distributed-applications]] - If you're looking for info on how to benchmark Riak and other databases with our open source tool "Basho Bench," this is a great place to start.
+* [[Building Distributed Systems with Riak and Riak Core|http://www.slideshare.net/argv0/riak-coredevnation]] - Coming in at just under 20 slides, this deck is a high level overview of how Riak Key/Value code is differentiated from Riak Core code and what some of the use cases are for building apps and services on Riak Core. 
+
+h2. Sample Applications built using Riak:
+
+* [[Slideblast|http://github.com/rklophaus/SlideBlast]] - share and control slide presentation for the web.
+* [[riak_php_app|http://github.com/schofield/riak_php_app]] - a small PHP app that shows some basic usage of the Riak PHP library.
+* [[riak-url-shortener|http://github.com/seancribbs/riak-url-shortener]] - a small Ruby app (with Sinatra) that creates short URLs and stores them in Riak.
 * [[yakriak|http://github.com/seancribbs/yakriak]] - Riak-powered Ajax-polling chatroom.
 * [[wriaki|http://bitbucket.org/basho/wriaki/src]] - a wiki app backed by Riak.
 
-h5. Screencasts:
+h2. Screencasts:
 
 * [[Introduction to JavaScript MapReduce in Riak|http://blog.basho.com/2010/02/03/the-release-riak-0.8-and-javascript-map/reduce/]]
 * [[Riak in an Embedded Node Using Rebar|http://blog.basho.com/2009/12/17/basho-screencast---dave-smith-introduces-riak-in-an-embedded-node/]]
@@ -35,7 +49,7 @@ h5. Screencasts:
 * [[Tuning CAP Controls in Riak|http://vimeo.com/11172656]] (Used as part of [[The Riak Fast Track]])
 
 
-h5. Influential Papers, Books, and other Publications
+h2. Influential Papers, Books, and other Publications
 
 * [[Amazon's Dynamo Paper|http://www.allthingsdistributed.com/2007/10/amazons_dynamo.html]]
 * [[Distributed Systems: Principles and Paradigms|http://www.amazon.com/Distributed-Systems-Principles-Andrew-Tanenbaum/dp/0130888931]]
@@ -45,7 +59,7 @@ h5. Influential Papers, Books, and other Publications
 * [[Towards Robust Distributed Systems|http://www.cs.berkeley.edu/~brewer/cs262b-2004/PODC-keynote.pdf]]
 * [[Brewer's Conjecture and the Feasibility of Consistent Available Partition-Tolerant Web Services|http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.20.1495]]
 
-h5. Recorded Webinars 
+h2. Recorded Webinars 
 
 * [[Riak in Action: Wriaki|http://vimeo.com/14275191]] - building a Riak-backed wiki. 
 * [[Riak with Rials|http://vimeo.com/13924929]]

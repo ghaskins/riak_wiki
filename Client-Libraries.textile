@@ -2,60 +2,54 @@ The list of Basho supported client libraries is ever-growing. If you don't see w
 
 Basho is currently developing and supporting drivers for:
 
-{toc}
-
 h2. Erlang
 
 The local Erlang client is a tightly-integrated part of Riak and the Riak REST interface uses the Erlang client internally. You can find more information about the Erlang-native driver in the [[edoc API|http://riak.basho.com/edoc/index.html]].
 
 The primary client for code that is not inside Riak is the PBC client:
 
+* [[riak-erlang-client on GitHub|https://github.com/basho/riak-erlang-client]]
 * [[Erlang Protocol Buffers Client Documentation|Erlang Client PBC]]
-* [[http://hg.basho.com/riak-erlang-client]]
+
+We also [[host the generated Erlang Client API Docs on GitHub|http://basho.github.com/riak-erlang-client/]]
+
 
 h2. Javascript
 
 The officially supported Javascript client uses [[jQuery|http://jquery.com]] for communicating with Riak via Ajax.
 
-[[http://hg.basho.com/riak-javascript-client/]]
+The [[riak-javascript-client on GitHub|https://github.com/basho/riak-javascript-client]] is the main location for code and documentation.
 
-{info:title=Sample App}
-[[yakriak - Riak-powered Ajax-polling chatroom|http://github.com/seancribbs/yakriak]]
-{info}
+There is a JavaScript sample app called [[yakriak|http://github.com/seancribbs/yakriak]],a Riak-powered Ajax-polling chatroom.
+
+We also [[host the generated ___ client API Docs on GitHub|http://#]]
+
+<div class="info">There is also a mature, heavily-developed Node.js client for Riak called [[riak.js|http://riakjs.org]]</div>
+
 
 h2. Java
 
-The officially supported Java client was created by Jon Lee.
+The [[riak-java-client repo on GitHub|http://github.com/basho/riak-java-client]] is the home for code and documentation. The README should get you up and and running.
 
-[[http://hg.basho.com/riak-java-client/]]
-[[http://bitbucket.org/jonjlee/riak-java-client/wiki/Home]]
+We also [[host the generated ___ client API Docs on GitHub|http://#]]
 
 h2. PHP
 
-The officially supported PHP driver is available on Bitbucket:
+The [[riak-php-client repo on GitHub|https://github.com/basho/riak-php-client]]. The README should get you up and and running.
 
-[[http://hg.basho.com/riak-php-client/]]
+We also [[host the generated ___ client API Docs on GitHub|http://#]]
 
-
-{info:title=Sample App}
-There is a sample PHP app that you can check out if you want to see the PHP library in action. You can get it [[here.|http://github.com/schofield/riak_php_app]]
-{info}
-
+There is a [[PHP sample app|http://github.com/schofield/riak_php_app]] that you can check out if you want to see the PHP library in action. You can get it 
 
 h2. Python
 
-The officially supported Python driver is available on Bitbucket:
+The [[riak-python-client repo on GitHub|https://github.com/basho/riak-python-client]] is the home for code and documentation. The README should get you up and and running.
 
-[[http://hg.basho.com/riak-python-client]]
-
-You can also find documentation for the Python driver here:
-
-[[http://wiki.basho.com/download/attachments/360504/riak_python.html]]
-
+We also [[host the generated Python client API Docs on GitHub|http://basho.github.com/basho-riak-client]].
 
 h2. Ruby
 
-[[Ripple/riak-client|http://github.com/seancribbs/ripple]] is the officially supported Ruby driver for Riak.  It includes a driver for all major Riak client operations and an optional library for doing rich document-style object modeling.
+[[Ripple|http://github.com/seancribbs/ripple]] is the officially supported Ruby driver for Riak.  It includes a driver for all major Riak client operations and an optional library for doing rich document-style object modeling.
 
 * [[Documentation|http://seancribbs.github.com/ripple]]
 * [[Wiki|http://wiki.github.com/seancribbs/ripple]]

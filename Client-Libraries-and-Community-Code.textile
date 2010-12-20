@@ -2,10 +2,6 @@ The list of Basho supported client libraries is ever-growing. If you don't see w
 
 Basho is currently developing and supporting drivers for:
 
-
-<div id="toc"></div>
-
-
 h2. Erlang
 
 The local Erlang client is a tightly-integrated part of Riak and the Riak REST interface uses the Erlang client internally. You can find more information about the Erlang-native driver in the [[edoc API|http://riak.basho.com/edoc/index.html]].

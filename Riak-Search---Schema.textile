@@ -14,7 +14,7 @@ The default field is named *value*.
 
 h3. Defining a Schema
 
-The schema definition for an index is stored in the Riak bucket {{_rs_schema}}, with a key of the same name as the index. For example, the schema for the "books" index is stored under {{_rs_schema/books}}. Writing to the {{_rs_schema}} bucket is highly discouraged. 
+The schema definition for an index is stored in the Riak bucket @_rs_schema@, with a key of the same name as the index. For example, the schema for the "books" index is stored under @_rs_schema/books@. Writing to the @_rs_schema@ bucket is highly discouraged. 
 
 Alternatively, you can set or retrieve the schema for an index
 using command line tools:
@@ -29,7 +29,7 @@ bin/search-cmd show_schema Index
 ```
 
 
-Note that changes to the Schema File *will not* affect previously indexed data. It is recommended that if you change field definitions, especially settings such as {{type}}, that you re-index your documents.
+Note that changes to the Schema File *will not* affect previously indexed data. It is recommended that if you change field definitions, especially settings such as "type", that you re-index your documents.
 
 Below is an example schema file. The schema is formatted as an Erlang term. Spacing does not matter, but it is important to match opening and closing brackets and braces, to include commas between all list items, and to include the final period after the last brace:
 
@@ -80,7 +80,7 @@ Below is an example schema file. The schema is formatted as an Erlang term. Spac
 ```
 
 
-h4. Schema-level properties:
+h3. Schema-level properties:
 
 The following properties are defined at a schema level:
 
@@ -90,9 +90,9 @@ The following properties are defined at a schema level:
 * *n\_val* - Optional. Set the number of replicas of search data. Defaults to 3.
 * *analyzer\_factory* - Optional. Defaults to "com.basho.search.analysis.DefaultAnalyzerFactory"
 
-h4. Fields and Field-Level Properties:
+h3. Fields and Field-Level Properties:
 
-Fields can either by static or dynamic. A static field is denoted with {{field}} at the start of the field definition, whereas a dynamic field is denoted with {{dynamic\_field}} at the start of the field definition.
+Fields can either by static or dynamic. A static field is denoted with @field@ at the start of the field definition, whereas a dynamic field is denoted with @dynamic_field@ at the start of the field definition.
 
 The difference is that a static field will perform an exact string match on a field name, and a dynamic field will perform a wildcard match on the string name. The wildcard can appear anywhere within the field, but it usually occurs at the beginning or end. (The default schema, described above, uses dynamic fields, allowing you to use fieldname suffixes to create fields of different data types.)
 
@@ -102,10 +102,10 @@ The difference is that a static field will perform an exact string match on a fi
 
 The following properties are defined at a field level, and apply to both static and dynamic fields:
 
-* *name* - Required. The name of the field. Dynamic fields can use wildcards. Note that the unique field identifying a document *must* be named {{id}}.
+* *name* - Required. The name of the field. Dynamic fields can use wildcards. Note that the unique field identifying a document *must* be named "id".
 * *required* - Optional. Boolean flag indicating whether this field is required in an incoming search document. If missing, then the document will fail validation. Defaults to false.
-* *type* - Optional. The type of field, either {{string}} or {{integer}}. If {{integer}} is specified, and no field-level analyzer\_factory is defined, then the field will use the Whitespace analyzer. Defaults to {{string}}.
-* *analyzer\_factory* - Optional. Specify the analyzer factory to use when parsing the field. If not specified, defaults to the analyzer factory for the schema. (Unless the field is an integer type. See above.)
-* *skip* - Optional. When {{true}}, the field is stored, but not indexed. Defaults to {{false}}.
+* *type* - Optional. The type of field, either "string" or "integer". If "integer" is specified, and no field-level analyzer_factory is defined, then the field will use the Whitespace analyzer. Defaults to "string".
+* *analyzer_factory* - Optional. Specify the analyzer factory to use when parsing the field. If not specified, defaults to the analyzer factory for the schema. (Unless the field is an integer type. See above.)
+* *skip* - Optional. When "true", the field is stored, but not indexed. Defaults to "false".
 * *aliases* - Optional. A list of aliases that should be mapped to the current field definition, effectively indexing multiple fields of different names into the same field. Defaults to an empty list.
-* *padding\_size* - Optional. Values are padded up to this size. Defaults to 0 for string types, 10 for integer types.
+* *padding_size* - Optional. Values are padded up to this size. Defaults to 0 for string types, 10 for integer types.

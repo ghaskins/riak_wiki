@@ -3,9 +3,6 @@ The Riak Recap is a daily(ish) email to the Riak Users Mailing List that summari
 They are listed here, with brief descriptions, for indexing and posterity purposes. 
 
 
-\\
-\\
-
 * [[9/29/2010 - 9/30/2010: Riak in German; Retrieve a certain number of keys in a bucket|http://lists.basho.com/pipermail/riak-users_lists.basho.com/2010-October/002052.html]]
 * [[9/27/2010 - 9/28/2010: Riak Use Case; Riak Replication|http://lists.basho.com/pipermail/riak-users_lists.basho.com/2010-September/002033.html]] 
 * [[9/24/2010 - 9/26/2010: Hosted Riak through Joyent; Using Ripple with Sinatra|http://lists.basho.com/pipermail/riak-users_lists.basho.com/2010-September/002022.html]]

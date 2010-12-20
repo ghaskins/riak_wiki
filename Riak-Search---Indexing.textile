@@ -1,7 +1,3 @@
-
-
-<div id="toc"></div>
-
 h2. Indexing Tasks
 
 Indexing a document is the act of:
@@ -10,7 +6,7 @@ Indexing a document is the act of:
 2. Splitting the document into one or more fields.
 3. Splitting the fields into one or more terms.
 4. Normalizing the terms in each field.
-5. Writing the \{Field, Term, DocumentID} postings to an index.
+5. Writing the {Field, Term, DocumentID} postings to an index.
 
 There are numerous ways to index a document in Riak Search.
 
@@ -19,7 +15,7 @@ h3. Command Line
 
 h4. Indexing
 
-The easiest way to index documents stored on the filesystem is to use the {{search-cmd}} command line tool:
+The easiest way to index documents stored on the filesystem is to use the "search-cmd" command line tool:
 
 
 ```bash
@@ -29,8 +25,8 @@ bin/search-cmd index <INDEX> <PATH>
 
 Parameters:
 
-* *<INDEX>* \- The name of an index.
-* *<PATH>* \- Relative or absolute path to the files or directories to recursively index. Wildcards are permitted.
+* *&lt;INDEX&gt;* - The name of an index.
+* *&lt;PATH&gt;* - Relative or absolute path to the files or directories to recursively index. Wildcards are permitted.
 
 For example:
 
@@ -43,9 +39,9 @@ bin/search-cmd index my_index files/to/index/*.txt
 The documents will be indexed into the default field defined by the Index's schema, using the base filename plus extension as the document ID.
 
 
-h4. Deleting
+h3. Deleting
 
-To remove previously indexed files from the command line, use the {{search-cmd}} command line tool:
+To remove previously indexed files from the command line, use the "search-cmd" command line tool:
 
 
 ```bash
@@ -55,8 +51,8 @@ bin/search-cmd delete <INDEX> <PATH>
 
 Parameters:
 
-* *<INDEX>* \- The name of an index.
-* *<PATH>* \- Relative or absolute path to the files or directories to recursively delete. Wildcards are permitted.
+* *&lt;INDEX&gt;* - The name of an index.
+* *&lt;PATH&gt;* - Relative or absolute path to the files or directories to recursively delete. Wildcards are permitted.
 
 For example:
 
@@ -68,10 +64,10 @@ bin/search-cmd delete my_index files/to/index/*.txt
 
 Any documents matching the base filename plus extension of the files found will be removed from the index. The actual contents of the files are ignored during this operation.
 
-h3. Erlang API
+h2. Erlang API
 
 
-h4. Indexing
+h3. Indexing
 
 The following Erlang functions will index documents stored on the filesystem:
 
@@ -89,8 +85,8 @@ search:index_dir(Index, Path).
 
 Parameters:
 
-* *Index* \- The name of the index.
-* *Path* \- Relative or absolute path to the files or directories to recursively index. Wildcards are permitted.
+* *Index* - The name of the index.
+* *Path* - Relative or absolute path to the files or directories to recursively index. Wildcards are permitted.
 
 For example:
 
@@ -112,9 +108,9 @@ search:index_doc(Index, DocId, Fields)
 
 Parameters:
 
-* *Index* \- The name of the index.
-* *DocId* \- The document ID.
-* *Fields* \- A key/value list of fields to index.
+* *&lt;INDEX&gt;* - The name of the index.
+* *&lt;DocID&gt;* - The document ID.
+* *&lt;Fields&gt;* - A key/value list of fields to index.
 
 For example:
 
@@ -123,9 +119,7 @@ For example:
 search:index_doc(<<"my_index">>, <<"my_doc">>, [{<<"title">>, <<"The Title">>}, {<<"content">>, <<"The Content">>}])
 ```
 
-
-
-h4. Deleting
+h3. Deleting
 
 The following Erlang functions will remove documents from the index:
 
@@ -143,8 +137,8 @@ search:delete_dir(Index, Path).
 
 Parameters:
 
-* *Index* \- The name of the index. Defaults to {{search}}.
-* *Path* \- Relative or absolute path to the files or directories to recursively delete. Wildcards are permitted.
+* *Index* - The name of the index. Defaults to @search@.
+* *Path* - Relative or absolute path to the files or directories to recursively delete. Wildcards are permitted.
 
 For example:
 
@@ -166,13 +160,13 @@ search:delete_doc(<<"my_index">>, <<"my_doc">>).
 
 Parameters:
 
-* *Index* \- The name of the index.
-* *DocID* \- The document ID of the document to delete.
+* *Index* - The name of the index.
+* *DocID* - The document ID of the document to delete.
 
-h3. Solr Interface
+h2. Solr Interface
 
 
-h4. Indexing
+h3. Indexing
 
 Riak Search supports a Solr-compatible interface for indexing documents via HTTP. Documents must be formatted as simple Solr XML documents, for example:
 
@@ -192,9 +186,9 @@ Riak Search supports a Solr-compatible interface for indexing documents via HTTP
 
 Additionally, the Content-Type header must be set to 'text/xml'.
 
-Riak Search currently requires that the field determining the document ID be named {{id}}, and does not support any additional attributes on the {{add}}, {{doc}}, or {{field}} elements. (In other words, things like {{overwrite}}, {{commitWithin}}, and {{boost}} are not yet supported.)
+Riak Search currently requires that the field determining the document ID be named "id", and does not support any additional attributes on the "add", "doc", or "field" elements. (In other words, things like "overwrite", "commitWithin", and "boost" are not yet supported.)
 
-The Solr interface does NOT support the {{<commit />}} nor {{<optimize />}} commands. All data is committed automatically in the following stages:
+The Solr interface does NOT support the &lt;commit /&gt; nor &lt;optimize /&gt; commands. All data is committed automatically in the following stages:
 
 * Incoming Solr XML document is parsed. If XML is invalid, an error is returned.
 * Documents fields are analyzed and broken into terms. If there are any problems, an error is returned.
@@ -221,7 +215,7 @@ bin/search-cmd solr my_index path/to/solrfile.xml
 
 
 
-h4. Deleting
+h3. Deleting
 
 Documents can also be deleted through the Solr interface via two methods, either by Document ID or by Query.
 
