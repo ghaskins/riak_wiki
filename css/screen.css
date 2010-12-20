@@ -221,6 +221,18 @@ html {overflow-y: scroll;}
   padding: 0 15px;
 }
 
+#comment_footer {
+	height:23px;
+	background-color:#374042;
+	color:white;	
+	margin-left: 45px;
+	margin-bottom:5px;
+	text-align:center;
+	
+}
+
+#comment_footer a {color:#E5810c;}
+
 /****************************************************************************/
 /* Guides
 /****************************************************************************/
