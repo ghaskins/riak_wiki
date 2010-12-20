@@ -180,15 +180,21 @@ Reduce phases can perform arbitrary processing on the data retrieved from map or
 
 h3. Query Languages
 
-h4. Erlang
+Map/Reduce queries can be written in Erlang or Javascript.
 
-Map/reduce functions can be written in Erlang. Erlang functions have complete access to the Riak Erlang API.
+<dl>
+<dt>Erlang</dt>
+<dd>
+Erlang functions have complete access to the Riak Erlang API.
+</dd>
 
-h4. Javascript
+<dt>Javascript</dt>
+<dd>
+Mozilla's Spidermonkey engine provides the runtime environment. Pre-defined Javascript functions run almost as fast as Erlang functions. Javascript functions are currently permitted read-only access to Riak.
+</dd>
+</dl>
 
-Riak also supports writing map/reduce functions in Javascript. Mozilla's Spidermonkey engine provides the runtime environment. Pre-defined Javascript functions run almost as fast as Erlang functions. Javascript functions are currently permitted read-only access to Riak.
-
-* [[Watch a screencast overview of MapReduce in Riak\|http://blog.basho.com/2010/02/03/the-release-riak-0.8-and-javascript-map/reduce/]]
+[[Watch a screencast overview of MapReduce in Riak|http://blog.basho.com/2010/02/03/the-release-riak-0.8-and-javascript-map/reduce/]]
 
 
 
