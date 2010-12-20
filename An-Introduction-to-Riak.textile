@@ -1,38 +1,31 @@
 This section is a high level overview of concepts, technology choices, and implementation details that are at work in Riak.
 
-
-
-
 <div id="toc"></div>
-
-
-
-
 
 
 h2. Basics
 
-h6. Languages Used
+h3. Languages Used
 
-Written in [[Erlang|http://erlang.org]] and C primarily with a small amount of Javascript
+Written in [[Erlang|http://erlang.org]] and C primarily with a small amount of Javascript.
 
-h6. Clients
+h3. Clients
 
 Basho supported Drivers are available for Erlang, Python, Java, PHP, Javascript, and Ruby.
 
 * [[Take a more in depth look at the Client Libraries|Client Libraries and Community Code]]
 
-h6. History
+h3. History
 
 
 Riak is based on technology originally developed by Basho Technologies to run a Salesforce automation business. There was more interest in the datastore technology than the applications built on it so Basho decided to build a business around Riak itself.
-* [Learn more about Basho Technologies, the company behind Riak|http://basho.com]
+* [[Learn more about Basho Technologies, the company behind Riak|http://basho.com]]
 
-h6. Influences
+h3. Influences
 
 Riak is heavily influenced by Dr. Eric Brewer's CAP Theorem and Amazon's Dynamo paper. Most of the core team comes from Akamai which also explains their focus on operational ease and fault tolerance.
 
-h6. Enterprise vs. Open Source
+h3. Enterprise vs. Open Source
 
 Riak comes in two flavors: open source and enterprise. Enterprise is a superset of the open source version with a few features added. The current enterprise features are SNMP support, inter-datacenter replication (not to be confused with _intra-datacenter_ replication, which is supported in the open source version), web-based administration interface, and top-tier support.
 
@@ -43,28 +36,31 @@ Riak comes in two flavors: open source and enterprise. Enterprise is a superset 
 h2. Data Storage
 
 
-h6. Buckets and keys
+h3. Buckets and keys
 
 Buckets and keys are the only way to organize data inside of Riak. User data is stored and referenced by bucket/key pairs.
 
-h6. Links and Metadata
+h3. Links and Metadata
 
 Bucket/key entries, hereafter referred to as Riak objects, can store links pointing to other entries. These links can be walked via Riak's HTTP interface directly or as part of a map/reduce job. Riak objects and buckets can store user-defined metadata in addition to the actual data payload. The metadata is exposed as HTTP headers in the HTTP interface and as associative arrays inside map/reduce jobs.
 
-h6. Local Disk Storage
+h3. Local Disk Storage
 
 As of the 0.12 release, Bitcask is the default backend for Riak. Bitcask is a simple yet powerful local key/value store that serves as Riak's low latency, high throughput storage back end.
 
 
-<div class="info"><div class="title">More on Bitcask</div>* [Hello, Bitcask (from the Basho Blog)|http://blog.basho.com/2010/04/27/hello,-bitcask/]
-* [[An Architectural Overview of Bitcask (PDF)|http://downloads.basho.com/papers/bitcask-intro.pdf]]</div>
+<div class="info">
+<div class="title">More on Bitcask</div>
+* [[Hello, Bitcask (from the Basho Blog)|http://blog.basho.com/2010/04/27/hello,-bitcask/]]
+* [[An Architectural Overview of Bitcask (PDF)|http://downloads.basho.com/papers/bitcask-intro.pdf]]
+</div>
 
 
-h6. Pluggable Backends
+h3. Pluggable Backends
 
 Riak uses an API to interact with its storage subsystem. The API allows Riak to support multiple backends which can be "plugged in" as needed. Riak currently ships with backends for Bitcask, dets, ets, Erlang's balanced trees (gb_trees), and writing directly to the filesystem. Riak also supports per-bucket backends. You can read more about configuring backends on the "storage_backends" section of the [[Configuration Files]] page.
 
-h6. Other Backends
+h3. Other Backends
 
 Basho also develops a Riak backend named Innostore based on the embeddable version of InnoDB. It is reputed to be the fastest backend currently available. Due to licensing restrictions, Innostore is provided separately. You can read more about configuring Innostore [[here|Setting Up Innostore]]. 
 
@@ -72,73 +68,73 @@ Basho also develops a Riak backend named Innostore based on the embeddable versi
 h2. Clustering
 
 
-h6. Nodes, Vnodes, and Partitions
+h3. Nodes, Vnodes, and Partitions
 
 Central to any Riak cluster is a 160-bit integer space which is divided into equally-sized partitions.
 
 Physical servers, referred to in the cluster as "nodes," run a certain number of virtual nodes, or "vnodes". Each vnode will claim a partition on the ring. The number of active vnodes is determined by the number of physical nodes in the a cluster at any given time.
 
 As a rule, each node in the cluster is responsible for 1/(total number of physical nodes) of the ring. You can determine the number of vnodes on each node by calculating (number of partitions)/(number of nodes). More simply put, a ring with 32 partitions, composed of four physical nodes, will have approximately eight vnodes per node. This setup is represented in the diagram below.
-[[attachments/riak-ring.png|width=550| align=center]]
+[[attachments/riak-ring.png|width=550px|align=center]]
 
 Nodes can be added and removed from the cluster dynamically and Riak will redistribute the data accordingly.
 
 
-h6. Distribution
+h3. Distribution
 
 Riak is designed, from the ground up, to run in a distributed environment. Core operations, such as read/writing data and executing map/reduce jobs, actually become faster when more Riak nodes are added to a cluster.
 
 
-h6. Riak & CAP Thereom
+h3. Riak & CAP Thereom
 
 Riak's guiding design principle is Dr. Eric Brewer's CAP Theorem. The CAP theorem defines distributed systems in terms of three desired properties: Consistency, Availability, and Partition (failure)  tolerance. The theorem states you can only rely on having two of the  three properties at any time.
 
-Riak chooses to focus on the A and P of CAP. The choice puts Riak in the eventually consistent camp. However, the window for "eventually consistent" is in terms of milliseconds which can be good enough for many applications.
+Riak chooses to focus on the A and P of CAP. This choice puts Riak in the eventually consistent camp. However, the window for "eventually consistent" is in terms of milliseconds which can be good enough for many applications.
 
-h6. No master node
+h3. No master node
 
 All nodes in a Riak cluster are equal. Each node is fully capable of serving any client request. This is possible due to the way Riak uses consistent hashing to distribute data around the cluster.
 
-h6. Storage implications
+h3. Storage implications
 
-Riak communicates bucket information around the cluster using a [[gossip protocol|#RiakGlossary-Gossiping]]. In general, large numbers of buckets within a Riak cluster is not a problem. In practice, there are two potential restrictions on the maxmimum number of buckets a Riak cluster can handle.
+Riak communicates bucket information around the cluster using a [[gossip protocol|Riak-Glossary#Gossiping]]. In general, large numbers of buckets within a Riak cluster is not a problem. In practice, there are two potential restrictions on the maxmimum number of buckets a Riak cluster can handle.
 
 First, buckets which use a non-standard set of properties will force Riak to gossip more data around the cluster. The additional data can slow processing and place an upper limit on performance. Second, some backends, namely Innostore, store each bucket as a separate entity. This can cause a node to run out of resources such as file handles. These resource restrictions might not impact performance but they can represent another limit on the maximum number of buckets.
 
-h6. Replication
+h3. Replication
 
 Riak controls how many replicas of data are kept via a setting called the "N value". This value has a per-node default but can be overridden on each bucket. Riak objects inherit the N value of their parent bucket. All nodes in the same cluster should agree on and use the same N value.
 
-For example, here is a depiction of what happens when n_val = 3 (This is the default setting). When you store a datum in a bucket with an N value of three, the datum will replicated to three separate partitions on the Riak Ring. 
+For example, here is a depiction of what happens when n_val = 3 (This is the default setting). When you store a datum in a bucket with an N value of three, the datum will replicated to three separate partitions on the Riak Ring.
 
-[[attachments/riak-data-distribution.png|width=550| align=center]]
+[[attachments/riak-data-distribution.png|width=550px|align=center]]
 
-* [[Configuring Replication in Riak|RIAK:Replication]]
+* [[Configuring Replication in Riak|Replication]]
 
-h6. Hinted Handoff
+h3. Hinted Handoff
 
 Riak uses a technique called 'hinted handoff' to compensate for failed nodes in a cluster. Neighbors of a failed node will pick up the slack and perform the work of the failed node allowing the cluster to continue processing as usual. This can be considered a form of self-healing.
 
-h6. Dynamic Growth
+h3. Dynamic Growth
 
 Riak will automatically re-balance data as nodes join and leave the cluster.
 
 
 h2. Reading Data
 
-h6. Fetching
+h3. Fetching
 
 Riak objects can be fetched directly if the client knows the bucket and key. This is the fastest way to get data out of Riak.
 
-h6. R Value
+h3. R Value
 
-Riak forces the client to supply a "R value" on each direct fetch. The R value represents the number of Riak nodes which must return results for a read before the read is considered successful. This allows Riak to provide read availability even when nodes are down or laggy.
+Riak allows the client to supply an "R value" on each direct fetch. The R value represents the number of Riak nodes which must return results for a read before the read is considered successful. This allows Riak to provide read availability even when nodes are down or laggy.
 
-h6. Read failure tolerance
+h3. Read failure tolerance
 
 Subtracting R from N will tell you the number of down or laggy nodes a Riak cluster can tolerate before becoming unavailable for reads. For example, an 8 node cluster with an N of 8 and a R of 1 will be able to tolerate up to 7 nodes being down before becoming unavailable for reads.
 
-h6. Link walking
+h3. Link walking
 
 Riak can also return objects based on links stored on the object. Link walking can be used to return a set of related objects from a single request.
 
@@ -146,19 +142,19 @@ Riak can also return objects based on links stored on the object. Link walking c
 
 h2. Writing and Updating Data
 
-h6. Vector clocks
+h3. Vector clocks
 
 Each update to a Riak object is tracked by a vector clock. Vector clocks allow Riak to determine causal ordering and detect conflicts in a distributed system.
 
-h6. Conflict resolution
+h3. Conflict resolution
 
 Riak has two ways of resolving update conflicts on Riak objects. Riak can allow the last update to automatically "win" or Riak can return both versions of the object to the client. This gives the client the opportunity to resolve the conflict on its own.
 
-h6. W Value
+h3. W Value
 
-Riak's API forces the client to supply a "W value" on each update. The W value represents the number of Riak nodes which must report success before an update is considered complete. This allows Riak to provide write availability even when nodes are down or laggy.
+Riak's API allows the client to supply a "W value" on each update. The W value represents the number of Riak nodes which must report success before an update is considered complete. This allows Riak to provide write availability even when nodes are down or laggy.
 
-h6. Write failure tolerance
+h3. Write failure tolerance
 
 Subtracting W from N will tell you the number of down or laggy nodes a Riak cluster can tolerate before becoming unavailable for writes. For example, an 8 node cluster with an N of 8 and a W of 2 will be able to tolerate up to 6 nodes being down before becoming unavailable for writes.
 
@@ -166,42 +162,48 @@ h2. Querying and MapReduce
 
 Querying Riak is performed by map/reduce processing. Riak has a flexible map/reduce mechanism which more closely resembles Hadoop than CouchDB, for instance. Map/Reduce jobs are submitted via HTTP POST to a pre-defined URL which defaults to '/mapred'. Jobs are described in JSON using a set of nested hashes describing the inputs, phases, and timeout for a job. Data is returned in JSON-encoded form.
 
-h6. Phases
+h3. Phases
 
 Map/Reduce jobs are chains of functions. Riak combines the function along with information about what to do with the output and the language the function is written into a 'phase'. The output of one phase becomes the input for the next. Riak can accumulate the output of any phase or set of phases and return the data to the client as part of that job's output.
 
-h6. Map Phase
+h3. Map Phase
 
 Map phases are responsible for gathering data from Riak bucket/key entries. Map phases can operate on entire buckets or lists of bucket/key pairs. The fetching of data is highly parallel and scales with the number of nodes in the cluster. Riak caches the results of map fetches to reduce the load on the storage backends. This means subsequent map fetches for the same data will be faster after the initial fetch.
 
-h6. Link Phase
+h3. Link Phase
 
 Link phases are a specialized version of map phases. A link phase fetches Riak objects based on a link walk. Link phases can be used to perform map/reduce processing on sets of related objects.
 
-h6. Reduce Phase
+h3. Reduce Phase
 
 Reduce phases can perform arbitrary processing on the data retrieved from map or link phases. Unlike CouchDB, Riak reduce phases are not required to return a single answer.
 
-h4. Query Languages
+h3. Query Languages
 
-h6. Erlang
+Map/Reduce queries can be written in Erlang or Javascript.
 
-Map/reduce functions can be written in Erlang. Erlang function have complete access to the Riak Erlang API.
+<dl>
+<dt>Erlang</dt>
+<dd>
+Erlang functions have complete access to the Riak Erlang API.
+</dd>
 
-h6. Javascript
+<dt>Javascript</dt>
+<dd>
+Mozilla's Spidermonkey engine provides the runtime environment. Pre-defined Javascript functions run almost as fast as Erlang functions. Javascript functions are currently permitted read-only access to Riak.
+</dd>
+</dl>
 
-Riak recently added support for writing map/reduce functions in Javascript. Mozilla's Spidermonkey engine provides the runtime environment. Pre-defined Javascript functions run almost as fast as Erlang functions. Javascript functions are currently permitted read-only access to Riak.
-
-* [[Watch a screencast overview of MapReduce in Riak\|http://blog.basho.com/2010/02/03/the-release-riak-0.8-and-javascript-map/reduce/]]
+[[Watch a screencast overview of MapReduce in Riak|http://blog.basho.com/2010/02/03/the-release-riak-0.8-and-javascript-map/reduce/]]
 
 
 
 h2. The Riak API
 
-h6. Data Storage
+h3. Data Storage
 
-The guys who wrote Riak are also responsible for the Erlang REST framework Webmachine, so it's not surprising Riak uses REST for its API. Store operations use HTTP PUTs or POSTs and fetches use HTTP GETs. Storage operations are submitted to a pre-defined URL which defaults to '/riak'.
+The guys who wrote Riak are also responsible for the Erlang REST framework Webmachine, so it's not surprising Riak uses REST for its API. Storage operations use HTTP PUTs or POSTs and fetches use HTTP GETs. Storage operations are submitted to a pre-defined URL which defaults to '/riak'.
 
 Clients can set the Content-Type header for each Riak object. Riak will replay the header when the object is fetched. This is nice since it allows Riak to be content agnostic.
 
-* [[Take an in depth look at the Riak's REST API|RIAK:REST API]]
+* [[Take an in depth look at Riak's REST API|REST API]]
