@@ -378,7 +378,7 @@ html {overflow-y: scroll;}
 /* Start GH Ribbon */
 
 .ribbon {
-	  background-color: #a00;
+	  background-color: #595c61;
 	  overflow: hidden;
 	
 	  /* top left corner */
@@ -397,7 +397,7 @@ html {overflow-y: scroll;}
 	
 .ribbon a {
 	  border: 1px solid #faa;
-	  color: #000;
+	  color: #fff;
 	  display: block;
 	  font: bold 97.25% 'Helvetiva Neue', Helvetica, Arial, sans-serif;
 	  margin: 0.05em 0 0.075em 0;
