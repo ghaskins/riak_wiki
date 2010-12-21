@@ -171,6 +171,26 @@
     <script type="text/javascript">
     $(document).ready(function()
                       {
+                          // Anchor all headers
+                          jQuery(":header").each(function(i) {
+                              var current = jQuery(this);
+                              current.attr("id", current.text());
+                          });
+
+                          // Add h2 headers to #toc
+                          if ( jQuery("#toc").length ) {
+                              var list =jQuery("<ul />");
+                              jQuery("h2").each(function(i) {
+                                  var current = jQuery(this);
+                                  var link = jQuery("<a />");
+                                  link.attr("href", "#" + current.text());
+                                  link.html(current.text());
+                                  var item = jQuery("<li />");
+                                  list.append(item.append(link));
+                              });
+                              jQuery("#toc").append(list);
+                          }
+
                           jQuery("#sidebar").find("li").each(function(){
                               var item = jQuery(this);
                               if ( item.has("ul").length ) {
