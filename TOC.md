@@ -61,3 +61,4 @@
 * [[Contact Basho]]
 * [[Sample Data]]
 * [[Benchmarking with Basho Bench]]
+* [[Logos]]

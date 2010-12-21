@@ -4,12 +4,13 @@ Need a high resolution Basho or Riak Logofor a presentation or slide deck?
 
 Here you go:
 
-h2. PNGs 
+h4. Riak: 
 
-!/images/basho-portrait.png!
-!/images/riaklogo.png!
+* "EPS":https://github.com/schofield/riak_wiki/raw/master/images/riak-logo.eps   
+* "PNG":/images/riaklogo.png
 
-h2. EPS
+h4. Basho 
 
-!/images/basho-portrait.eps!
-!/images/riak-logo.eps!
+* "EPS":https://github.com/schofield/riak_wiki/raw/master/images/basho-logo.eps
+* "PNG":/images/basho-logo.eps
+
