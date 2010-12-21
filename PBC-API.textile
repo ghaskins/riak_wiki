@@ -1,5 +1,7 @@
 This is an overview of the operations you can perform over the Protocol Buffers Client (PBC) interface to Riak, and can be used as a guide for developing a compliant client.
 
+<div id="toc"></div>
+
 h1. Protocol
 
 Riak listens on a TCP port (8087 by default) for incoming connections. Once connected the client can send a stream of requests on the same connection.
@@ -9,7 +11,7 @@ Each operation consists of a request message and one or more response messages. 
 * 8-bit message code to identify the protocol buffer message
 * N-bytes of protocol buffers encoded message
 
-h4. Example
+h3. Example
 
 
 ```bash

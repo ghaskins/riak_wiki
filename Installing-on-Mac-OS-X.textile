@@ -8,8 +8,12 @@ ulimit -n 1024
 ```
 </div>
 
+----
 
-h2. From precompiled tarballs
+*Install Types*
+<div id="toc"></div>
+
+h2. From Precompiled Tarballs
 
 To run Riak from our precompiled tarball, run these commands for the appropriate platform:
 

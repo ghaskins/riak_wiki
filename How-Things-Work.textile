@@ -1,4 +1,5 @@
 
+<div id="toc"></div>
 h2. Summary
 
 Riak is a distributed database, strongly influenced by the [[Dynamo Paper|http://s3.amazonaws.com/AllThingsDistributed/sosp/amazon-dynamo-sosp2007.pdf]] and the [[CAP Theorem|http://portal.acm.org/citation.cfm?doid=564585.564601]].  It supports high availability by allowing tunable levels of guarantees for durability and eventual&nbsp;consistency.

@@ -1,8 +1,7 @@
-h1. Overview
 
-Pre-commit hooks are invoked before a riak_object is persisted. Pre-commit hooks can:
+Pre- and Post- Commit hooks are invoked before or after a riak_object is persisted and can great greatly enhance the functionality of any application. Commit hooks can:
 
-# allow the write to occur with an unmodified object
+# allow a write to occur with an unmodified object
 # modify the object
 # Fail the update and prevent any modifications
 
@@ -10,7 +9,9 @@ Post-commit hooks are notified after the fact and should not modify the riak_obj
 
 Pre- and post-commit hooks are defined on a per-bucket basis and are stored in the target bucket's properties. They are run once per successful response to the client.
 
-h1. Configuration
+<div class ="toc"></div>
+
+h2. Configuration
 
 Configuring either pre- or post-commit hooks is very easy. Simply add a reference to your hook function to the list of functions stored in the correct bucket property. Pre-commit hooks are stored under the bucket property *precommit*. Post-commit hooks use the bucket property *postcommit*.
 
@@ -23,7 +24,7 @@ Post-commit hooks can be implemented in Erlang only. The reason for this restric
 
 See the map/reduce documentation for steps to define your own pre-defined Javascript named functions.
 
-h1. Pre-Commit Hooks
+h2. Pre-Commit Hooks
 
 h3. API & Behavior
 
@@ -137,9 +138,7 @@ function validateData(data){
 }
 ```
 
-
-
-h1. Post-Commit Hooks
+h2. Post-Commit Hooks
 
 h3. API & Behavior
 

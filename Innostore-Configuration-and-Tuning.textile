@@ -1,4 +1,4 @@
-{excerpt}Innostore is a powerful backend that works for many production scenarios, but it has many tuning parameters that can affect the performance of your Riak cluster.  Here are some generally acceptable settings and practices that should provide good performance and reliability.{excerpt}
+Innostore is a powerful backend that works for many production scenarios, but it has many tuning parameters that can affect the performance of your Riak cluster.  Here are some generally acceptable settings and practices that should provide good performance and reliability.
 
 
 <div id="toc"></div>
@@ -7,7 +7,7 @@
 h2. Configuration settings
 
 
-<div class="info">All of the settings go in the {{innostore}} section of {{app.config}}. See [[Configuration files]] for more information about {{app.config}}.</div>
+<div class="info">All of the settings go in the _innostore_ section of [[app.config|Configuration Files#app.config]].</div>
 
 
 h3. buffer_pool_size (integer, # of bytes)
@@ -83,7 +83,7 @@ h2. Other tuning techniques
 
 h3. noatime
 
-Innostore is very aggressive at reading and writing files.  As such, you can get a big speed boost by adding the {{noatime}} mounting option to {{/etc/fstab}} (or wherever your platform defines the mounted devices.  This will disable the recording of the "last accessed time" for all files. Example:
+Innostore is very aggressive at reading and writing files.  As such, you can get a big speed boost by adding the _noatime_ mounting option to @/etc/fstab@ (or wherever your platform defines the mounted devices.  This will disable the recording of the "last accessed time" for all files. Example:
 
 
 ```bash

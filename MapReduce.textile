@@ -1,5 +1,7 @@
 Riak's primary querying and data-processing system is an implementation of the MapReduce programming paradigm popularized by [[Google|http://labs.google.com/papers/mapreduce.html]].
 
+<div id="toc"></div>
+
 h2. Why MapReduce?
 
 Key-value stores like Riak generally have very little functionality beyond just storing and fetching objects.  MapReduce adds the capability to perform more powerful queries over the data stored in Riak.  It also fits nicely with the functional programming orientation of Riak's core code and the distributed nature of the data storage.

@@ -1,8 +1,11 @@
-h3. Why did you build Yet Another Data Store?
+
+<div class ="toc"></div>
+
+h2. Why did you build Yet Another Data Store?
 
 We built the first incarnation of Riak in late 2007 for  our own use, and we have nurtured it ever since in order to satisfy our  operational needs.  There wasn't an alternative that suited us at the  time, and since then we have developed something that solves a unique  combination of problems.
 
-h3.  How do you pronounce "Riak"?
+h2.  How do you pronounce "Riak"?
 
 REE-ahk
 

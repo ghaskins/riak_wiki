@@ -1,4 +1,4 @@
-{excerpt}The following article discusses standard configurations and port settings to use when thinking about how to secure your Riak Cluster.{excerpt}
+The following article discusses standard configurations and port settings to use when thinking about how to secure your Riak Cluster.
 
 There are two classes of access control for Riak:
 

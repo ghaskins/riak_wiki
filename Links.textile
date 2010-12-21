@@ -1,5 +1,7 @@
 Links are metadata that establish one-way relationships between objects in Riak. They can be used to loosely model graph like relationships between objects in Riak.
 
+<div id="toc"></div>
+
 h2. The Link Header
 
 The essential way to read and modify links via the [[REST API]] is the [[HTTP Link header|http://www.martinpayne.me.uk/experiments/HTTP/Link-Header/HTTP-Link-example.html]].  This header emulates the purpose of &lt;link&gt; tags in HTML, that is, establishing relationships to other HTTP resources.  The format that Riak uses is like so:
