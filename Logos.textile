@@ -1,0 +1,15 @@
+h1. Logos
+
+Need a high resolution Basho or Riak Logofor a presentation or slide deck?
+
+Here you go:
+
+h2. PNGs 
+
+!/images/basho-portrait.png!
+!/images/riaklogo.png!
+
+h2. EPS
+
+!/images/basho-portrait.eps!
+!/images/riak-logo.eps!
