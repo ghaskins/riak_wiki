@@ -890,3 +890,17 @@ table.commits {
             color: #aaa;
             cursor: pointer;
           }
+
+/****************************************************************************/
+/* Sidebar
+/****************************************************************************/
+
+          #sidebar ul {
+              list-style: none;
+              text-align: left;
+              margin:0px;
+              padding:0px;
+          }
+          #sidebar ul ul {
+              padding-left:20px;
+          }
