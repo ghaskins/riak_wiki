@@ -5,7 +5,7 @@ Click the link for your operating system to see instructions on how to install R
 * [[Installing on Debian and Ubuntu]]
 * [[Installing on RHEL and CentOS]]
 * [[Installing on Mac OS X]]
-* [[Installing from source|RIAK:Installing Riak from Source]]
+* [[Installing from source|Installing Riak from Source]]
 
 h2(#startup).  Starting up
 
