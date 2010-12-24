@@ -38,7 +38,7 @@ The command will respond with *pong* if the node is running, or *pang* if it is 
 
 h2(#doesitwork).  Does it work?
 
-The easiest way to test whether Riak is working is to use the *curl* command-line tool.  Now that you have Riak running on your local machine, run this command:
+The easiest way to test whether Riak is working is to use the @curl@ command-line tool.  Now that you have Riak running on your local machine, run this command:
 
 
 ```bash
