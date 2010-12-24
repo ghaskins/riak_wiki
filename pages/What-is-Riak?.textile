@@ -62,7 +62,7 @@ Physical servers, referred to in the cluster as "nodes," run a certain number of
 
 As a rule, each node in the cluster is responsible for 1/(total number of physical nodes) of the ring. You can determine the number of vnodes on each node by calculating (number of partitions)/(number of nodes). More simply put, a ring with 32 partitions, composed of four physical nodes, will have approximately eight vnodes per node. This setup is represented in the diagram below.
 
-[[attachments/riak-ring.png|width=550px|align=center]]
+[[/attachments/riak-ring.png|width=550px|align=center]]
 
 All nodes in a Riak cluster are equal. Each node is fully capable of serving any client request. This is possible due to the way Riak uses consistent hashing to distribute data around the cluster.
 
@@ -75,7 +75,7 @@ Replication is fundamental and automatic in Riak, providing security that your d
 
 For example, here is a depiction of what happens when n_val = 3 (This is the default setting). When you store a datum in a bucket with an N value of three, the datum will be replicated to three separate partitions on the Riak Ring. 
 
-[[attachments/riak-data-distribution.png|width=550px|align=center]]
+[[/attachments/riak-data-distribution.png|width=550px|align=center]]
 
 h2. Querying and Query Languages
 

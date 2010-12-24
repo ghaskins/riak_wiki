@@ -9,7 +9,7 @@ h1. Riak: An Open Source Scalable Data Store
 {section}
 {column:width=250px}
 h3. Get Riak
-[[attachments/orange1.png|width=10| align=left| hspace=5]] [[Download a Riak Package|http://downloads.basho.com/riak/CURRENT/]][[attachments/orange1.png|width=10| align=left| hspace=5]] [[Build Riak on your preferred Operating System|Installation and Setup]][[attachments/orange1.png|width=10| align=left| hspace=5]] [[Get the source|https://github.com/basho/riak]]
+[[/attachments/orange1.png|width=10| align=left| hspace=5]] [[Download a Riak Package|http://downloads.basho.com/riak/CURRENT/]][[/attachments/orange1.png|width=10| align=left| hspace=5]] [[Build Riak on your preferred Operating System|Installation and Setup]][[/attachments/orange1.png|width=10| align=left| hspace=5]] [[Get the source|https://github.com/basho/riak]]
 
 
 h3. Connect your Code
@@ -21,13 +21,13 @@ There's also a bunch of *[[community contributed code and projects|Community-Dev
 {column:width=400px}
 h3. New to Riak? Get on the Fast Track!
 
-[[attachments/riak_car_300.jpg|width=150| align=right]]|The Riak Fast Track]
+[[/attachments/riak_car_300.jpg|width=150| align=right]]|The Riak Fast Track]
 
 The *[[Fast Track|The Riak Fast Track]]* is a 45-60 minute interactive tutorial that introduces the basics of using and understanding Riak, from building a three node cluster up through MapReduce. 
 
 
 h3. Learn More
-[[attachments/orange1.png|width=10| align=left| hspace=5]] Get a *[[high-level overview|An Introduction to Riak]]* of Riak's architecture.[[attachments/orange1.png|width=10| align=left| hspace=5]] Learn *[[in-depth|How Things Work]]* how Riak functions.[[attachments/orange1.png|width=10| align=left| hspace=5]] See *[screencasts, blog posts, sample applications|Recommended Resources]* and more.[[attachments/orange1.png|width=10| align=left| hspace=5]] Browse the *[[Frequently Asked Questions|FAQ]]*.
+[[/attachments/orange1.png|width=10| align=left| hspace=5]] Get a *[[high-level overview|An Introduction to Riak]]* of Riak's architecture.[[/attachments/orange1.png|width=10| align=left| hspace=5]] Learn *[[in-depth|How Things Work]]* how Riak functions.[[/attachments/orange1.png|width=10| align=left| hspace=5]] See *[screencasts, blog posts, sample applications|Recommended Resources]* and more.[[/attachments/orange1.png|width=10| align=left| hspace=5]] Browse the *[[Frequently Asked Questions|FAQ]]*.
 
 {column}
 {section}

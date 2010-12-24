@@ -2,7 +2,7 @@ _This is a list of companies, projects, organizations and consultancies (that we
 
 ----
 
-[[attachments/mozilla-foundation.png|align=center|width=110]]
+[[/attachments/mozilla-foundation.png|align=center|width=110]]
 
 Mozilla Test Pilot is a platform collecting structured user feedback through Firefox. Test Pilot studies explore how people use their web browser and the Internet - and help us build better products
 
@@ -13,7 +13,7 @@ The Test Pilot Team is running multiple Riak clusters to gather user data and pe
 
 ----
 
-[[attachments/ws.png|align=center|vspace=35px]]
+[[/attachments/ws.png|align=center|vspace=35px]]
 
 [[Widescript|http://www.widescript.com]] is a digital reading application targeted to people who study or make use of reference material. It allows them to interact with their texts, everywhere. The development of the idea started in early 2010 and the application is currently in private beta. 
 
@@ -25,7 +25,7 @@ The Test Pilot Team is running multiple Riak clusters to gather user data and pe
 ----
 
 
-[[attachments/hitta.png|align=center|width=110]]
+[[/attachments/hitta.png|align=center|width=110]]
 
 [[Hitta.se|http://www.hitta.se/]] ("Find.se") is a Swedish search engine that offers telephone directory, addresses and maps. The site was founded in June 2004 and has grown steadily since then. As of 2010 the site averages well above 3 million unique visitors per week and is ranked in the top 10 of the largest sites in Sweden. Revenue comes from different forms of advertising and company marketing products.
 
@@ -34,7 +34,7 @@ nodes and tolerates eventual consistency.
 
 ----
 
-[[attachments/swingvine-dark.png|align=center|width=110]]
+[[/attachments/swingvine-dark.png|align=center|width=110]]
 
 
 Based in Seatlle, [[SwingVine|http://swingvine.com]] helps you discover new music, movies, books, fashion, wines, and more. SwingVine shows you what's hot in each category and then shows you the connections or vines between what you're already looking at and unexplored content that you might enjoy.  SwingVine then lets you personalize your discovery experience by incorporating your friends. 
@@ -46,7 +46,7 @@ Based in Seatlle, [[SwingVine|http://swingvine.com]] helps you discover new musi
 
 ----
 
-[[attachments/rigel_group.png|align=center|width=175|vspace=35px]]
+[[/attachments/rigel_group.png|align=center|width=175|vspace=35px]]
 
 
 [[Rigel Group|http://rigelgroupllc.com]] is a small, high-impact software development company based in Carlsbad, CA. We help clients leverage cutting-edge technologies and cloud-based architectures to build high-performance, large-scale applications at absurdly low costs. 
@@ -59,7 +59,7 @@ Based in Seatlle, [[SwingVine|http://swingvine.com]] helps you discover new musi
 ----
 
 
-[[attachments/gastown_white.png|align=center|width=110|vspace=20px]]
+[[/attachments/gastown_white.png|align=center|width=110|vspace=20px]]
 
 
 Based in Vancouver, [[Gastown Labs|http://www.gastownlabs.com/]] provides managed web and mobile solutions - everything from design, to planning, up through software development and managed hosting on their own proven cloud solution.
@@ -69,7 +69,7 @@ Gastown uses Riak behind their various web APIs to provide iPhone applications w
 
 ----
 
-[[attachments/wescom-logo-small.png|align=center|vspace=35px]]
+[[/attachments/wescom-logo-small.png|align=center|vspace=35px]]
 
 [[Western Communications|http://www.bendbulletin.com/wescom/]] (or "Wescom") is a family-owned corporation founded by renowned editor Robert W. Chandler and headquartered in Bend, Oregon. We have a family of newspapers, magazines and web sites located throughout Oregon and California.
 
@@ -79,7 +79,7 @@ Gastown uses Riak behind their various web APIs to provide iPhone applications w
 ----
 
 
-[[attachments/inagist.gif|align=center|width=110|vspace=45px]]
+[[/attachments/inagist.gif|align=center|width=110|vspace=45px]]
 
 
 
@@ -98,7 +98,7 @@ inagist uses Riak for archiving tweets and analyzing trends. With Riak, they are
 
 
 
-[[attachments/sensi-soft.png|align=center|width=100]]
+[[/attachments/sensi-soft.png|align=center|width=100]]
 
 
 
@@ -113,7 +113,7 @@ SensiSoft uses Riak as the datastore for its Web Archive application, used to st
 ----
 
 
-[[attachments/tma.png|align=center|width=200|vspace=60px]]
+[[/attachments/tma.png|align=center|width=200|vspace=60px]]
 
 
 
@@ -130,7 +130,7 @@ TMA currently uses Riak for two internal applications with plans to roll out a t
 
 
 
-[[attachments/dayfindr.png|align=center|width=200|vspace=35px]]
+[[/attachments/dayfindr.png|align=center|width=200|vspace=35px]]
 
 
 
@@ -143,7 +143,7 @@ TMA currently uses Riak for two internal applications with plans to roll out a t
 ----
 
 
-[[attachments/rock_of_gainesville.png|align=center|width=150|vspace=30px]]
+[[/attachments/rock_of_gainesville.png|align=center|width=150|vspace=30px]]
 
 
 
@@ -159,7 +159,7 @@ The Rock used Riak to build an SMS-ready, distributed sign-up system that enable
 ----
 
 
-[[attachments/Wegeo.png|align=center|width=180|vspace=30px]]
+[[/attachments/Wegeo.png|align=center|width=180|vspace=30px]]
 
 
 
@@ -175,7 +175,7 @@ We Geo uses Riak in its service layer to store a user's location-specific check-
 ----
 
 
-[[attachments/zaymobile.png|align=center|width=180|vspace=30px]]
+[[/attachments/zaymobile.png|align=center|width=180|vspace=30px]]
 
 
 
@@ -190,7 +190,7 @@ We Geo uses Riak in its service layer to store a user's location-specific check-
 
 
 
-[[attachments/overnothing_logo.png|align=center|width=100|vspace=70px]]
+[[/attachments/overnothing_logo.png|align=center|width=100|vspace=70px]]
 
 
 
@@ -211,7 +211,7 @@ There are many background processes (some services, some run run as cronjobs) wh
 ----
 
 
-[[attachments/excel59logo.png|align=center|width=100]]
+[[/attachments/excel59logo.png|align=center|width=100]]
 
 
 
@@ -223,7 +223,7 @@ XL59 uses Riak as a distributed data store in its cloud-based data distribution 
 
 ----
 
-[[attachments/ask_logo.gif|align=center|width=180|vspace=20px]]
+[[/attachments/ask_logo.gif|align=center|width=180|vspace=20px]]
 
 
 
