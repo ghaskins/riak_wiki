@@ -58,8 +58,7 @@ The following backends are packaged with Riak:
 # *riak_kv_cache_backend* - turns a bucket into a memcached-type memory cache, and ejects the least recently used objects either when the cache becomes full or the object's lease expires
 # *riak_kv_multi_backend* - configure per-bucket backends
 
-<div class ="info">The Innostore backend is not packaged with Riak for licensing reasons. See [[Setting Up Innostore]] if you would like to use this backend.</div>
+<div class="info">
+The Innostore backend is not packaged with Riak for licensing reasons. See [[Setting Up Innostore]] if you would like to use this backend.
+</div>
 
-h2. More reading
-
-More detailed information about aspects of how Riak works can be found on these pages:
