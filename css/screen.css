@@ -12,6 +12,12 @@ html, body {
   color: black; 
 }
 
+a, a:visited{
+  color: #f78c11;
+  text-decoration: none;
+}
+
+
 body {
   background-color: #525c61;
   font: 10pt Verdana,Helvetica,Arial,sans-serif;
