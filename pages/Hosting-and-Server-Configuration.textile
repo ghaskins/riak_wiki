@@ -28,7 +28,7 @@ h2. Virtualization
 
 Like most datastores, *Riak will run best when not virtualized.* Virtual machines (VMs) can suffer from poor I/O and network performance, depending on how they are configured and the environment in which they run.  That said, here are some recommendations for running Riak in VPS or cloud environments:
 
-*Choose the largest VM you can afford.* As mentioned in the [[#Hardware]] section, better hardware means better performance.  Additionally, larger instances are less likely to share hardware resources with other customers' virtual machines.
+*Choose the largest VM you can afford.* As mentioned in the [[Hosting and Server Configuration#Hardware]] section, better hardware means better performance.  Additionally, larger instances are less likely to share hardware resources with other customers' virtual machines.
 
 *Deploy VMs within the same datacenter or region where possible.* Some hosting providers allow you to choose the location of your servers when provisioning. Choosing to provision within the same datacenter or region will usually reduce network latency and increase throughput, resulting in greater performance.
 

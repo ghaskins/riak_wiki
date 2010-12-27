@@ -61,7 +61,7 @@ Run basho_bench:
 ```
 
 
-This will generate results in @tests/current/@. You will need to create a configuration file. The recommended approach is to start from a file in the @examples@ directory and modify settings using the [[Configuration|#Configuration]] section below for reference.
+This will generate results in @tests/current/@. You will need to create a configuration file. The recommended approach is to start from a file in the @examples@ directory and modify settings using the [[Configuration|Benchmarking with Basho Bench#Configuration]] section below for reference.
 
 h2. Generating Benchmark Graphs
 
