@@ -1,3 +1,4 @@
+* [[Wiki Home|Home]]
 * [[The Riak Fast Track]]
   * [[What is Riak?]]
   * [[Building a Development Environment]]
