@@ -1,6 +1,6 @@
 h2(#overview).  Setting Up Innostore
 
-Innostore is distributed separately from Riak and will need to be compiled prior to installing.  You will need to have [[Erlang installed|RIAK:Installing Erlang]] to compile Innostore.
+Innostore is distributed separately from Riak and will need to be compiled prior to installing.  You will need to have [[Erlang installed|Installing Erlang]] to compile Innostore.
 
 h2(#downloading_deb).  Downloading & Installing Innostore on Debian/Ubuntu
 

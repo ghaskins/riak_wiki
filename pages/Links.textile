@@ -34,7 +34,7 @@ Links in the Erlang API are stored as tuples in the object metadata of this form
 ```
 
 
-To access the links, use "riak_object:get_metadata/1" to retrieve the metadata "dict", and then retrieve the {{<<"Links">>}} key from that dict.  Example:
+To access the links, use "riak_object:get_metadata/1" to retrieve the metadata "dict", and then retrieve the @<<"Links">>@ key from that dict.  Example:
 
 
 ```bash

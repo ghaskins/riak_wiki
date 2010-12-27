@@ -62,7 +62,7 @@ Riak uses an API to interact with its storage subsystem. The API allows Riak to 
 
 h3. Other Backends
 
-Basho also develops a Riak backend named Innostore based on the embeddable version of InnoDB. It is reputed to be the fastest backend currently available. Due to licensing restrictions, Innostore is provided separately. You can read more about configuring Innostore [[here|Setting Up Innostore]]. 
+Basho also develops a Riak backend named Innostore based on the embeddable version of InnoDB. Due to licensing restrictions, Innostore is provided separately. You can read more about configuring Innostore [[here|Setting Up Innostore]].
 
 
 h2. Clustering

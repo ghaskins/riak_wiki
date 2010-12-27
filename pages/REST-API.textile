@@ -105,7 +105,7 @@ Useful properties:
 ** _Any integer_ - must be less than or equal to n_val
 * *backend* - when using riak_kv_multi_backend, which named backend to use for the bucket
 
-Other valid properties may be inferred from [[reading the properties|#Read bucket information]], but are less-frequently changed.
+Other valid properties may be inferred from [[reading the properties|REST API#Read bucket information]], but are less-frequently changed.
 
 h4. Response
 
@@ -113,8 +113,8 @@ Normal status codes:
 * 204 No Content
 
 Typical error codes:
-* "400 Bad Request" if the submitted JSON is invalid
-* "415 Unsupported Media Type" if the Content-Type was not set to application/json in the request
+* 400 Bad Request - if the submitted JSON is invalid
+* 415 Unsupported Media Type - if the Content-Type was not set to application/json in the request
 
 If successful, no content will be returned in the response body.
 
@@ -160,13 +160,13 @@ GET /riak/bucket/key
 
 
 Important headers:
-* *Accept* - When "multipart/mixed" is the preferred content-type, objects with siblings will return all siblings in single request. See [[#Get all siblings in one request]] example. See also RFC 2616 - [[Accept header definition|http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1]].
+* *Accept* - When "multipart/mixed" is the preferred content-type, objects with siblings will return all siblings in single request. See [[Get all siblings in one request|REST API#Get all siblings in one request]] example. See also RFC 2616 - [[Accept header definition|http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1]].
 
 Optional headers:
 * *If-None-Match* and *If-Modified-Since* invoke conditional request semantics, matching on the *ETag *and *Last-Modified* of the object, respectively.  If the object fails one of the tests (that is, if the ETag is equal or the object is unmodified since the supplied timestamp), Riak will return a "304 Not Modified" response. See also RFC 2616 - [[304 Not Modified|http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.5]].
 
 Optional query parameters:
-* *r* - (read quorum) how many replicas need to agree when retrieving the object ([[default is defined by the bucket|#Set bucket properties]])
+* *r* - (read quorum) how many replicas need to agree when retrieving the object ([[default is defined by the bucket|REST API#Set bucket properties]])
 * *vtag=...* - when accessing an object with siblings, which sibling to retrieve. Scroll down to the "Manually requesting siblings" example for more information.
 
 h3. Response
@@ -567,7 +567,7 @@ Important headers:
 * Content-Type - always multipart/mixed, with a boundary specified
 
 
-<div class="note"><div class="title">Understanding the response body</div>The response body will always be multipart/mixed, with each chunk representing a single phase of the link-walking query.  Each phase will also be encoded in multipart/mixed, with each chunk representing a single object that was found. If no objects were found or "keep" was not set on the phase, no chunks will be present in that phase.  Objects inside phase results will include Location headers that can be used to determine bucket and key. In fact, you can treat each object-chunk similarly to a complete response from [[#Read object]], without the status code.</div>
+<div class="note"><div class="title">Understanding the response body</div>The response body will always be multipart/mixed, with each chunk representing a single phase of the link-walking query.  Each phase will also be encoded in multipart/mixed, with each chunk representing a single object that was found. If no objects were found or "keep" was not set on the phase, no chunks will be present in that phase.  Objects inside phase results will include Location headers that can be used to determine bucket and key. In fact, you can treat each object-chunk similarly to a complete response from [[read object|REST API#Read object]], without the status code.</div>
 
 
 h4. Example

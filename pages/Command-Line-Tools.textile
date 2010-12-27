@@ -1,5 +1,6 @@
 This is a description of the Riak command-line tools and their subcommands. They are in @bin/@ of an embedded node, and the path when installed from a package (usually @/usr/sbin@ or @/usr/local/sbin@).
 
+<div id="toc"></div>
 
 h2. riak
 

@@ -8,7 +8,7 @@ This page is a listing of people who have contributed or are currently contribut
 
 For more information on how to contribute, have a look at [[Code Submission and Integration]] and [[Contributing to the Riak Wiki]].
 
-h3. Code Contributors 
+h3. Code Contributors
 
 
 (Note: This list is not up to date. If you don't see your name, don't fret. It will soon be added.)
@@ -40,7 +40,7 @@ h3. Code Contributors
 * Rajiv M. Ranganath
 * [[Francisco Treacy|http://twitter.com/frank06]]
 * Bruce Lowekamp
-* Dan Reverri 
+* Dan Reverri
 * Scott Lystig Fritchie
 * John Lynch
 * Misha Gorodnitzky
@@ -55,7 +55,7 @@ h3. Code Contributors
 
 h3. Community Wiki Committers
 
-Community Wiki Committers are non-basho hackers who have commits access to the [[Riak Wiki Repo on GitHub|#]]. 
+Community Wiki Committers are non-basho hackers who have commits access to the [[Riak Wiki Repo on GitHub|https://github.com/basho/riak_wiki]].
 
 * [[Scott Gonyea|http://twitter.com/acts_as]]
 * [[Mårten Gustafson|http://twitter.com/martengustafson]]

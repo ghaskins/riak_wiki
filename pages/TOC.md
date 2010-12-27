@@ -51,7 +51,6 @@
   * [[Riak Compared to MongoDB]]
   * [[Riak Compared to Neo4j]]
 * [[Recommended Resources]]
-  * [[Slides]]
 * [[Best Practices]]
   * [[Hosting and Server Configuration]]
   * [[Innostore Configuration and Tuning]]

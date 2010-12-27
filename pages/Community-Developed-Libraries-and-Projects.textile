@@ -45,10 +45,10 @@ h2. Client Libraries
 * [[Riak DataObjects adapter|http://github.com/botanicus/do_riak]]
 * [[Riak_Client|http://github.com/technoweenie/riak_client]]
 * [[Riak Sessions for rack|http://github.com/igorgue/riak_sessions]]
-* [[Riaktor|http://github.com/benmyles/riaktor]] \- Ruby client and object mapper for Riak
+* [[Riaktor|http://github.com/benmyles/riaktor]] - Ruby client and object mapper for Riak
 * [[DataMapper Adapter for Riak|http://github.com/mikeric/dm-riak-adapter]]
 * [[Riak PB Client|http://github.com/aitrus/riak-pbclient]] - Riak Protocol Buffer Client in Ruby
-* [[Devise-Ripple|http://github.com/frank06/devise-ripple]] - An ORM strategy to use Devise with Riak  
+* [[Devise-Ripple|http://github.com/frank06/devise-ripple]] - An ORM strategy to use Devise with Riak
 * [[Ripple-anaf|http://github.com/bkaney/ripple-anaf]]
 * [[Pabst|http://github.com/aitrus/pabst]] - Cross-platform Ruby extension for Protocol Buffers written in both Objective-C and Objective-C++
 
@@ -59,12 +59,12 @@ h2. Client Libraries
 Monitoring, Backup and Other
 
 
-h2. Monitoring, Management and GUI Tools 
+h2. Monitoring, Management and GUI Tools
 
 * [[Gmond Python Modules for Riak|http://github.com/jnewland/gmond_python_modules/tree/master/riak]] - Ganglia Module for connecting to Riak
 * [[Riaktive|http://github.com/WealthyThinker/Riaktive]] - A Riak Management Tool released under the MIT License
 * [[riak-admin|http://bitbucket.org/harmen/riak-admin/]] - A Java program with GUI to browse and update a Riak database
-* [[Riak Admin|http://github.com/frank06/riak-admin]] \- A Futon-like web interface for Riak
+* [[Riak Admin|http://github.com/frank06/riak-admin]] - A Futon-like web interface for Riak
 
 h2. Backup Tools
 
@@ -73,10 +73,10 @@ h2. Backup Tools
 h2. Other
 
 * [[Couch to Riak|http://github.com/mattsta/couchdb/tree/couch_file-to-riak]]
-* [[Chimera|http://github.com/benmyles/chimera]] \- An object mapper for Riak and Redis
+* [[Chimera|http://github.com/benmyles/chimera]] - An object mapper for Riak and Redis
 * [[Riak_Redis Backend|http://github.com/cstar/riak_redis_backend]]
 * [[Riak Homebrew Formula|http://github.com/mattmatt/homebrew]]
-* [[Briak|http://github.com/johnthethird/Briak]] \- A Sinatra-based web front-end browser for Riak
+* [[Briak|http://github.com/johnthethird/Briak]] - A Sinatra-based web front-end browser for Riak
 * [[Using Nginx as a front-end for Riak|http://rigelgroupllc.com/wp/blog/using-nginx-as-a-front-end-for-riak]]
 * [[Riak-fuse - A FUSE Driver for Riak|http://github.com/johnthethird/riak-fuse]]
 * [[RiakAWS - A simple way to deploy a Riak cluster in the Amazon Cloud|http://github.com/roder/riakaws]]

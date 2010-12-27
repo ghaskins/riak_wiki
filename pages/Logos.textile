@@ -1,15 +1,15 @@
 h1. Logos
 
-Need a high resolution Basho or Riak Logofor a presentation or slide deck?
+Need a high resolution Basho or Riak Logo for a presentation or slide deck?
 
 Here you go:
 
-h4. Riak: 
+h4. Riak:
 
-* "EPS":https://github.com/schofield/riak_wiki/raw/master/images/riak-logo.eps   
+* "EPS":https://github.com/schofield/riak_wiki/raw/master/images/riak-logo.eps
 * "PNG":/images/riaklogo.png
 
-h4. Basho 
+h4. Basho
 
 * "EPS":https://github.com/schofield/riak_wiki/raw/master/images/basho-logo.eps
 * "PNG":/images/basho-logo.eps

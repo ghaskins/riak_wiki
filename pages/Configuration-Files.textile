@@ -38,7 +38,7 @@ Riak and the Erlang applications it depends on are configured by settings in the
 * @handoff_concurrency@</div>
 
 
-h3. _riak_core_ settings
+h3. riak_core settings
 
 h4. cluster_name
 

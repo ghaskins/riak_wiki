@@ -32,7 +32,7 @@ Let's install the dependencies that we can from apt:
 $ sudo apt-get install build-essential libc6-dev-i386
 ```
 
-If you do not have Erlang installed, please [[do so|Installing Erlang]].
+If you have not installed Erlang, please [[do so|Installing Erlang]].
 
 Now we can download and install Riak:
 

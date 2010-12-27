@@ -15,7 +15,7 @@ h2. Scaling Out
 
 Riak allows you to elastically grow and shrink your cluster while evenly balancing the load on each machine. Adding a new node to a Riak cluster takes one command 'bin/riak join'. When you add a new node, it immediately begins taking an equal share of the existing data from the other machines in the cluster, as well as an equal share of all new requests and data. This works because the available data space for your cluster is divided into partitions (64 by default). When you add a new node, it claims an equal share of the partitions, meaning that every other node has a few less partitions to worry about. When you remove a node, the reverse happens, with the removed node handing partitions back to the remaining nodes in the cluster evenly.
 
-_[[Adding Nodes to Riak|https://wiki.basho.com/display/RIAK/Basic+Cluster+Setup#BasicClusterSetup-AddaSecondNodetoYourCluster]]_
+_[[Adding Nodes to Riak|Basic Cluster Setup#Add-a-Second-Node-to-Your-Cluster]]_
 
 In contrast, nodes in a Cassandra cluster claim a range of data. When you add a machine to a Cassandra cluster, by default Cassandra will take on half the key range of whichever node has the largest amount of data stored. Alternatively, you can override this by specifying an InitialToken setting, providing more control over which range is claimed. In this case data is moved from the two nodes on the ring adjacent to the new node. As a result, if all nodes in an N-node cluster were overloaded, you would need to add N/2 new nodes. Cassandra also provides a tool ('nodetool loadbalance') that can be run in a rolling manner on each node to rebalance the cluster.
 
@@ -32,7 +32,7 @@ Riak also allows you to query your data using links and Javascript-based Map/Red
 
 * With Javascript-based Map/Reduce you can define a Map/Reduce operation with multiple map and reduce phases, and then pass the operation to a Riak cluster along with a set of starting keys. Riak works like a mini-Hadoop, running the Map/Reduce operation in real time and returning the results. Any data processing happens in parallel across all machines, and any operations that run on a specific piece of data run on the machine that holds that data.
 
-_[[https://wiki.basho.com/display/RIAK/MapReduce|RIAK:MapReduce]]_
+_[[MapReduce]]_
 
 Cassandra on the other hand, allows you to query your data through data ranges or access your data from Hadoop:
 
@@ -50,7 +50,7 @@ h2. Detecting Conflicting Writes
 
 Riak tags each object with a vector clock, which can be used to detect when two processes try to update the same data at the same time, or to ensure that the correct data is stored after a network split.
 
-_[[http://wiki.basho.com/display/RIAK/Riak+Glossary#RiakGlossary-VectorClock]]_
+_[[Vector Clock|Riak Glossary#Vector Clock]]_
 
 In contrast, Cassandra tags data with a timestamp, and compares timestamps to determine which data is newer. If a client's timestamp is out of sync with the rest of the cluster, or if a client waits too long between reading and writing data, then it is possible to lose the data that was written in between.
 
@@ -63,7 +63,7 @@ h2. Flexible Data Model
 
 Riak buckets are created on the fly when they are first accessed. This allows an application to evolve its data model easily.
 
-_[[Data Storage in Riak|https://wiki.basho.com/display/RIAK/An+Introduction+to+Riak#AnIntroductiontoRiak-DataStorage]]_
+_[[Data Storage in Riak|An Introduction to Riak#Data Storage]]_
 
 
 In contrast, the Cassandra Keyspaces and Column Families (akin to Databases and Tables) are defined in an XML file. Changing the data-model at this level requires a rolling reboot of the entire cluster.
@@ -75,7 +75,8 @@ h2. API
 
 Riak offers two primary interfaces to non-Erlang clients:
 
-*HTTP* (_[[https://wiki.basho.com/display/RIAK/REST+API|https://wiki.basho.com/display/RIAK/REST+API]]_) and *Protocol Buffers* (_[[http://wiki.basho.com/display/RIAK/PBC+API|http://wiki.basho.com/display/RIAK/PBC+API]]_)
+_[[HTTP|REST API]]_
+_[[Protocol Buffers|PBC API]]_
 
 Cassandra uses Thrift, which means that all access must be through a Thrift-based client.
 

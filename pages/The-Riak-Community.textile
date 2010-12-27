@@ -1,4 +1,4 @@
-There is a vibrant and fast-growing community forming around Riak. 
+There is a vibrant and fast-growing community forming around Riak.
 
 Want to get involved with Riak? Here's where you can start:
 
@@ -10,21 +10,20 @@ h2. Overview
 
 h3. Mailing List
 
-The [[Riak Developer Mailing List|http://lists.basho.com/mailman/listinfo/riak-users_lists.basho.com]] is highly-trafficked and is a great resource for technical discussions, Riak issues and questions, and community events and announcements. 
+The [[Riak Developer Mailing List|http://lists.basho.com/mailman/listinfo/riak-users_lists.basho.com]] is highly-trafficked and is a great resource for technical discussions, Riak issues and questions, and community events and announcements.
 
 h3. Bug Tracker
 
 Basho uses Bugzilla for its bug tracker. You can file, track and comment on all your favorite bugs [[here|https://issues.basho.com/]].
 
-h3. Riak on IRC 
+h3. Riak on IRC
 
-The Riak IRC room is a great place for real-time help with your Riak issues and questions.
+The #riak IRC room is a great place for real-time help with your Riak issues and questions.
 
-[[irc://irc.freenode.net/#riak|irc://irc.freenode.net/#riak]]
 
 h3. Riak Function Contrib
 
-Riak Function Contrib is a home for community contributed MapReduce, Pre- and Post-Commit Hook, and utility functions.  
+Riak Function Contrib is a home for community contributed MapReduce, Pre- and Post-Commit Hook, and utility functions.
 
 * [[contrib.basho.com|http://contrib.basho.com]]
 * [[Riak Function Contrib Repo on GitHub|https://github.com/basho/riak_function_contrib]]
@@ -32,7 +31,7 @@ Riak Function Contrib is a home for community contributed MapReduce, Pre- and Po
 
 h3. The Basho Blog
 
-Members of the Basho Team blog frequently on [[The Basho Blog|http://blog.basho.com]]. 
+Members of the Basho Team blog frequently on [[The Basho Blog|http://blog.basho.com]].
 
 h3. Basho on Twitter
 

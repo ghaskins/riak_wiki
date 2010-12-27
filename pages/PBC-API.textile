@@ -2,7 +2,7 @@ This is an overview of the operations you can perform over the Protocol Buffers 
 
 <div id="toc"></div>
 
-h1. Protocol
+h2. Protocol
 
 Riak listens on a TCP port (8087 by default) for incoming connections. Once connected the client can send a stream of requests on the same connection.
 
@@ -30,7 +30,6 @@ key: "k"
 
 h3. Message Codes
 
-|| Message Code || Message Type ||
 | 0 | RpbErrorResp |
 | 1 | RpbPingReq |
 | 2 | RpbPingResp |
@@ -76,8 +75,6 @@ message RpbErrorResp {
 Values:
 * *errmsg* - a string representation of what went wrong
 * *errcode* - a numeric code. Currently only RIAKC_ERR_GENERAL=1 is defined.
-
-h1. Operations
 
 h2. Bucket Operations
 
@@ -372,7 +369,7 @@ message RpbGetReq {
 
 
 Optional Parameters:
-* *r* - (read quorum) how many replicas need to agree when retrieving the object; possible values include 'default', 'one', 'quorum', 'all', or any integer <= N ([[default is defined per the bucket|#Set Bucket Properties]])
+* *r* - (read quorum) how many replicas need to agree when retrieving the object; possible values include 'default', 'one', 'quorum', 'all', or any integer <= N ([[default is defined per the bucket|PBC API#Set Bucket Properties]])
 
 h4. Response
 
@@ -394,7 +391,7 @@ The content entries hold the object value and any metadata
 
 ```bash
 // Content message included in get/put responses
-/message RpbContent {
+message RpbContent {
     required bytes value = 1;
     optional bytes content_type = 2;     // the media type/format
     optional bytes charset = 3;
@@ -408,8 +405,7 @@ The content entries hold the object value and any metadata
 ```
 
 
-Each object can contain user-supplied metadata (X-Riak-Meta-* in the HTTP interface) consisting
-of a key/value pair. e.g. key=X-Riak-Meta-ACL value=users:r,administrators:f would allow an application to store access control information for it to enforce (*not* Riak).
+Each object can contain user-supplied metadata (X-Riak-Meta-* in the HTTP interface) consisting of a key/value pair. (e.g. key=X-Riak-Meta-ACL value=users:r,administrators:f would allow an application to store access control information for it to enforce (*not* Riak)).
 
 
 ```bash
@@ -505,8 +501,8 @@ Required Parameters:
 
 Optional Parameters:
 * *vclock* - opaque vector clock provided by an earlier RpbGetResp message. Omit if this is a new key or you deliberately want to create a sibling
-* *w* - (write quorum) how many replicas to write to before returning a successful response; possible values include 'default', 'one', 'quorum', 'all', or any integer <= N ([[default is defined per the bucket|#Set Bucket Properties]])
-* *dw* - how many replicas to commit to durable storage before returning a successful response; possible values include 'default', 'one', 'quorum', 'all', or any integer <= N ([[default is defined per the bucket|#Set Bucket Properties]])
+* *w* - (write quorum) how many replicas to write to before returning a successful response; possible values include 'default', 'one', 'quorum', 'all', or any integer <= N ([[default is defined per the bucket|PBC API#Set Bucket Properties]])
+* *dw* - how many replicas to commit to durable storage before returning a successful response; possible values include 'default', 'one', 'quorum', 'all', or any integer <= N ([[default is defined per the bucket|PBC API#Set Bucket Properties]])
 * *return_body* - whether to return the contents of the stored object. Defaults to false.
 
 h4. Response
@@ -594,7 +590,7 @@ message RpbDelReq {
 
 
 Optional Parameters:
-* *rw* - how many replicas to delete before returning a successful response; possible values include 'default', 'one', 'quorum', 'all', or any integer <= N ([[default is defined per the bucket|#Set Bucket Properties]])
+* *rw* - how many replicas to delete before returning a successful response; possible values include 'default', 'one', 'quorum', 'all', or any integer <= N ([[default is defined per the bucket|PBC API#Set Bucket Properties]])
 
 h4. Response
 

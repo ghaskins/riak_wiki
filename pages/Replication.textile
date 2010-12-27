@@ -16,7 +16,8 @@ To change the N value for a bucket issue a PUT request to the bucket with the ne
 
 
 ```bash
-$ curl -X PUT -H "Content-Type: application/json" -d '{"props":{"n_val":5' http://riak-host:8098/riak/bucket
+$ curl -X PUT -H "Content-Type: application/json" -d '{"props":{"n_val":5}}' \
+  http://riak-host:8098/riak/bucket
 ```
 
 
@@ -39,7 +40,7 @@ For each object that fails read (or the whole bucket, if you like), read the obj
 
 h2. So what does N=3 really mean?
 
-N=3 simply means that three copies of each piece of data will be stored in the cluster.  That is, three different partitions/vnodes will receive copies of the data. *There are no guarantees that the three replicas will go to three separate physical nodes*; however, the built-in functions for determining where replicas go attempts to distribute the data evenly.  
+N=3 simply means that three copies of each piece of data will be stored in the cluster.  That is, three different partitions/vnodes will receive copies of the data. *There are no guarantees that the three replicas will go to three separate physical nodes*; however, the built-in functions for determining where replicas go attempts to distribute the data evenly.
 
 As nodes are added and removed from the cluster, the ownership of partitions changes and _may_ result in an uneven distribution of the data.  On some rare occasions, Riak will also aggressively reshuffle ownership of the partitions to achieve a more even balance.
 
@@ -47,7 +48,7 @@ For cases where the number of nodes is less than the N value, data will likely b
 
 h2. Understanding replication by example
 
-To better understand how data is replicated in Riak let's take a look at a put request for the bucket/key pair <<"my_bucket">>/<<"my_key">>. Specifically we'll focus on two parts of the request, routing an object to a set of partitions and storing an object on a partition.
+To better understand how data is replicated in Riak let's take a look at a put request for the bucket/key pair @<<"my_bucket">>/<<"my_key">>@. Specifically we'll focus on two parts of the request, routing an object to a set of partitions and storing an object on a partition.
 
 h3. Routing an object to a set of partitions
 
