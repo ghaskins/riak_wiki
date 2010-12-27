@@ -156,7 +156,7 @@
                           // Anchor all headers
                           jQuery(":header").each(function(i) {
                               var current = jQuery(this);
-                              current.attr("id", current.text());
+                              current.attr("id", current.text().replace(/[ \/<>]/g, '-'));
                           });
 
                           // Add h2 headers to #toc
