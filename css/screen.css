@@ -13,10 +13,8 @@ html, body {
 }
 
 a, a:visited{
-  color: #f78c11;
   text-decoration: none;
 }
-
 
 body {
   background-color: #525c61;
