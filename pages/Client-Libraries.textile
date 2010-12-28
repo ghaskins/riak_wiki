@@ -50,6 +50,8 @@ The [[riak-python-client repo on GitHub|https://github.com/basho/riak-python-cli
 
 We also [[host the generated Python client API Docs on GitHub|http://basho.github.com/basho-riak-client]].
 
+The Python Client is [[also available in the FreeBSD ports tree|http://www.freshports.org/databases/py-riak]]. 
+
 h2. Ruby
 
 [[Ripple|http://github.com/seancribbs/ripple]] is the officially supported Ruby driver for Riak.  It includes a driver for all major Riak client operations and an optional library for doing rich document-style object modeling.

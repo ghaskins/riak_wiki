@@ -41,6 +41,3 @@ Then navigate to [http://localhost:8000/](http://localhost:8000/) to access a fu
 ## Issues, Questions, Comments, Etc.
 
 Email *mark@basho.com* or post a message to the [Riak Mailing List](http://lists.basho.com/mailman/listinfo/riak-users_lists.basho.com) if you have a questions, comments, or some type of issue.
-
-
-

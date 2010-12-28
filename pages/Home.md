@@ -19,7 +19,7 @@ A truly fault-tolerant system, Riak has no single point of failure. No machines 
 * [[This extensive list of Recommended Resources|Recommended-Resources]] includes everything from slide decks to videos to sample apps
 
 ### Client Code 
-Looking for a specific Riak Driver? Basho currently supports libraries for Erlang, Javascript, Java, PHP, Python and Ruby. There's also a ton of [[community contributed code|Community-Developed-Libraries-and-Projects]], including fully-featured Node.js and Perl drivers, and various monitoring tools. 
+Looking for a specific Riak Driver? Basho [[list of supported libraries|Client Libraries]] includes Erlang, JavaScript, Java, PHP, Python and Ruby. There's also a ton of [[community contributed code|Community-Developed-Libraries-and-Projects]], including fully-featured Node.js and Perl drivers, and various monitoring tools. 
 
 ### Who is Using Riak
 [[Take a look|Who-is-Using-Riak]] at a list of companies, organizations and projects who are using Riak right now. 
