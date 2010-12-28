@@ -1,8 +1,6 @@
-This is intended to be a brief, objective and technical comparison of Riak and Cassandra
-
+This is intended to be a brief, objective and technical comparison of Riak and Cassandra.
 
 <div id="toc"></div>
-
 
 h2. High Level Differences
 
@@ -56,9 +54,6 @@ In contrast, Cassandra tags data with a timestamp, and compares timestamps to de
 
 _[[http://wiki.apache.org/cassandra/DataModel]]_
 
-
-
-
 h2. Flexible Data Model
 
 Riak buckets are created on the fly when they are first accessed. This allows an application to evolve its data model easily.
@@ -84,9 +79,7 @@ _[[http://wiki.apache.org/cassandra/API]]_
 
 h2. Configurable Storage
 
-Riak allows you to choose different storage backends for different buckets. If your application needs to store both small, frequently-accessed user profiles, and large, less-frequently-accessed MP3 files, you can configure Riak to store these things in a way that optimizes performance and accounts for business tradeoffs. You might store three replicas of the profile in our fast, Innostore-based backend, while storing only one copy of the .mp3 in a filesystem-based backend. This makes Riak appropriate for a wide variety of data.
-
-[[http://blog.basho.com/2010/02/02/basho-podcast-three---an-introduction-to-innostore/|http://blog.basho.com/2010/02/02/basho-podcast-three---an-introduction-to-innostore/]]
+Riak allows you to choose different storage backends for different buckets. If your application needs to store both small, frequently-accessed user profiles, and large, less-frequently-accessed MP3 files, you can configure Riak to store these things in a way that optimizes performance and accounts for business tradeoffs. You might store three replicas of the profile in [[Bitcask|https://github.com/basho/bitcask]], the default Riak backed, while storing only one copy of the .mp3 in a filesystem-based backend. This makes Riak appropriate for a wide variety of data and access patterns.
 
 In contrast, as of version 0.5, Cassandra has only one setting for the number of replicas (ReplicationFactor), and persists all data using SSTables. (Cassandra 0.6, currently in beta, will support setting ReplicationFactor at a Keyspace level.)
 
