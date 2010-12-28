@@ -13,17 +13,23 @@ Part of the reason we switched to Gollum and GitHub for the Riak Wiki was to mak
 
 1. [Fork this repo][forking]
 
-2. Create a new Branch:
+2. [Build a local copy][build]
+
+3. Create a new Branch:
 
         git checkout -b <branch-name>
 
-3. [Build a local copy][build]
+4. Add your changes
 
-4. Add your changes and commit
+5. Run the specs and fix any formatting issues
 
-5. [Send us a pull request][pull-req]
+        rake spec
 
-If it's a small or obvious change, we'll most-likely merge it ASAP. If we have questions about your edits, we'll get in touch.
+6. Commit changes to your branch
+
+7. [Send us a pull request][pull-req]
+
+If it's a small or obvious change, we're likely to merge it right away.  If we have questions, we'll communicate with you using the pull request's issue page.
 
 The [Gollum README][gol-read] provides a great introduction to using the wiki system.
 
@@ -48,14 +54,9 @@ If you want to build and view the Riak Wiki locally, here is what you need to do
 
 4. Generate the site and start a local server (This will take a minute. Don't fret.)
 
-    * Using the rake task:
+    * `gollum-site serve      # Will generate + observe file changes, and start the gollum server`
 
-            rake gol
-
-    * Manually:
-
-            gollum-site generate
-            gollum-site serve
+    * `gollum-site generate   # Will simply generate the files`
 
 5. Navigate to <http://localhost:8000/> (Default) to access a fully-functional copy of the Riak Wiki.
 
