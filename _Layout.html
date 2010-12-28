@@ -160,10 +160,15 @@
     <script type="text/javascript">
     $(document).ready(function()
                       {
+                          // cname
+                          var cname = function(name) {
+                              return name.replace(/[ \/<>]/g, '-');
+                          }
+
                           // Anchor all headers
                           jQuery(":header").each(function(i) {
                               var current = jQuery(this);
-                              current.attr("id", current.text().replace(/[ \/<>]/g, '-'));
+                              current.attr("id", cname(current.text()));
                           });
 
                           // Add h2 headers to #toc
@@ -172,7 +177,7 @@
                               jQuery("h2").each(function(i) {
                                   var current = jQuery(this);
                                   var link = jQuery("<a />");
-                                  link.attr("href", "#" + current.text());
+                                  link.attr("href", "#" + cname(current.text()));
                                   link.html(current.text());
                                   var item = jQuery("<li />");
                                   list.append(item.append(link));
