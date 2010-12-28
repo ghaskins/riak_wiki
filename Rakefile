@@ -1,4 +1,4 @@
-require 'bundler'
+require 'bundler/setup'
 
 require 'rspec'
 require 'rspec/core'
