@@ -1,43 +1,82 @@
 # The Riak Wiki
 
-This repo holds all the content (and other bits) for the most-excellent Riak wiki, located at [wiki.basho.com](http://wiki.basho.com).
+This repo holds all the content (and other bits) for the most-excellent Riak wiki, located at [wiki.basho.com][basho-wiki].
 
-We are using [Gollum](https://github.com/github/gollum) and [Gollum-Site](https://github.com/dreverri/gollum-site) to generate the wiki. Gollum is a great piece of open source software released by the GitHub team that lets you maintain and build wikis from the contents of a Git repo.
+We are using [Gollum][gollum] and [Gollum-Site][gol-site] to generate the wiki. Gollum is a great piece of open source software released by the GitHub team that lets you maintain and build wikis from the contents of a Git repo.
 
-Gollum-Site generates html from pages written in any format supported by Gollum (ASCIIDoc, Creole, Markdown, Textile, etc.).
+`gollum-site` generates html from pages written in any format supported by Gollum (ASCIIDoc, Creole, Markdown, Textile, etc.).
 
+<A name="contrib">
 ## How to Contribute
 
 Part of the reason we switched to Gollum and GitHub for the Riak Wiki was to make it easier for people to contribute. So, treat this repo much like you would a code repo: If you have a change (be a minor edit or an entirely new page full of Python client code snippets), simply:
 
-1. Fork this repo
-2. Add your changes
-3. Send us a pull request
+1. [Fork this repo][forking]
+
+2. Create a new Branch:
+
+        git checkout -b <branch-name>
+
+3. [Build a local copy][build]
+
+4. Add your changes and commit
+
+5. [Send us a pull request][pull-req]
 
 If it's a small or obvious change, we'll most-likely merge it ASAP. If we have questions about your edits, we'll get in touch.
 
-The Gollum [README](https://github.com/github/gollum/blob/master/README.md) provides a great introduction to using the wiki system.
+The [Gollum README][gol-read] provides a great introduction to using the wiki system.
 
-*Anyone can contribute to the Riak Wiki via the process outlined above. That said, there is a group of non-Basho developers who have commit access to this repo and can edit it directly. We call them _Community Wiki Committers_. If you're interested in becoming one, [read more here](http://wiki.basho.com/Contributing-to-the-Riak-Wiki.html).*
+**Anyone can contribute to the Riak Wiki via the process outlined above. That said, there is a group of non-Basho developers who have commit access to this repo and can edit it directly. We call them _Community Wiki Committers_. [See this page][day-labor] if you're interested in becoming one.**
 
+<A name="build">
 ## Building the Wiki Locally
 
 If you want to build and view the Riak Wiki locally, here is what you need to do:
 
-1. Install [Gollum-Site](https://github.com/dreverri/gollum-site) (which will get you Gollum) and Markdown and Textile dependencies.
+1. Clone this repo:
 
-	`gem install gollum-site rdiscount RedCloth`
+        git clone git://github.com/basho/riak_wiki.git
 
-2. Clone the Riak Wiki
+2. Ensure that you have [Bundler][bundler] installed:
 
-   `git clone git://github.com/basho/riak_wiki.git`
+        gem install bundler
 
-3. Generate the site and start a local server (This will take a minute. Don't fret.)
+3. Install all pre-requisite gems:
 
-   `gollum-site generate && gollum-site serve`
+        bundle install
 
-Then navigate to [http://localhost:8000/](http://localhost:8000/) to access a fully-functional copy of the Riak Wiki.
+4. Generate the site and start a local server (This will take a minute. Don't fret.)
 
+    * Using the rake task:
+
+            rake gol
+
+    * Manually:
+
+            gollum-site generate
+            gollum-site serve
+
+5. Navigate to <http://localhost:8000/> (Default) to access a fully-functional copy of the Riak Wiki.
+
+<A name="feedback">
 ## Issues, Questions, Comments, Etc.
 
-Email *mark@basho.com* or post a message to the [Riak Mailing List](http://lists.basho.com/mailman/listinfo/riak-users_lists.basho.com) if you have a questions, comments, or some type of issue.
+* Send Email to *[mark@basho.com][phark]*
+
+* Use the [Riak Mailing List][mail-list]
+
+* Create a new [Issue][issues]
+
+[phark]:      mailto:mark@basho.com "Mark"
+[mail-list]:  http://lists.basho.com/mailman/listinfo/riak-users_lists.basho.com "Riak-Users"
+[issues]:     https://github.com/basho/riak_wiki/issues "Riak-Wiki Issues Page"
+[forking]:    http://help.github.com/forking/ "Github Forking Guide"
+[pull-req]:   http://help.github.com/pull-requests/ "Github Pull-Requests Guide"
+[build]:      #build "Building the Wiki"
+[bundler]:    https://github.com/carlhuda/bundler/ "Bundler"
+[gol-read]:   https://github.com/github/gollum/blob/master/README.md "Gollum README"
+[day-labor]:  http://wiki.basho.com/Contributing-to-the-Riak-Wiki.html "Riak Contributors"
+[gollum]:     https://github.com/github/gollum "Gollum Repo"
+[gol-site]:   https://github.com/dreverri/gollum-site "Gollum-Site Repo"
+[basho-wiki]: http://wiki.basho.com "Basho Wiki"
