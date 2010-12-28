@@ -48,14 +48,9 @@ If you want to build and view the Riak Wiki locally, here is what you need to do
 
 4. Generate the site and start a local server (This will take a minute. Don't fret.)
 
-    * Using the rake task:
+    * `gollum-site serve      # Will generate + observe file changes, and start the gollum server`
 
-            rake gol
-
-    * Manually:
-
-            gollum-site generate
-            gollum-site serve
+    * `gollum-site generate   # Will simply generate the files`
 
 5. Navigate to <http://localhost:8000/> (Default) to access a fully-functional copy of the Riak Wiki.
 
