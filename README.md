@@ -32,11 +32,13 @@ If you want to build and view the Riak Wiki locally, here is what you need to do
 
    `gem install gollum-site`
 
-3. Clone the Riak wiki
+3. `gem install rdiscount RedCloth` (This will handle the Markdown and Textile support.)
+
+4. Clone the Riak wiki
 
    `git clone git://github.com/basho/riak_wiki.git`
 
-4. Generate the site and start a local server (This will take a minute. Don't fret.)
+5. Generate the site and start a local server (This will take a minute. Don't fret.)
 
    `gollum-site generate && gollum-site serve`
 
