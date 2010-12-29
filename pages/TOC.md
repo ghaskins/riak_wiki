@@ -13,6 +13,7 @@
   * [[Installing on Debian and Ubuntu]]
   * [[Installing on Mac OS X]]
   * [[Installing on RHEL and CentOS]]
+  * [[Installing on SUSE]]
   * [[Installing Riak from Source]]
   * [[Installing with Chef]]
   * [[Setting Up Innostore]]
