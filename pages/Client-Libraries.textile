@@ -7,7 +7,7 @@ Basho is currently developing and supporting drivers for:
 
 h2. Erlang
 
-The local Erlang client is a tightly-integrated part of Riak and the Riak REST interface uses the Erlang client internally. 
+The local Erlang client is a tightly-integrated part of Riak and the Riak REST interface uses the Erlang client internally.
 
 The primary client for code that is not inside Riak is the PBC client:
 
@@ -42,7 +42,7 @@ The [[riak-php-client repo on GitHub|https://github.com/basho/riak-php-client]].
 
 We also [[host the generated ___ client API Docs on GitHub|http://#]]
 
-There is a [[PHP sample app|http://github.com/schofield/riak_php_app]] that you can check out if you want to see the PHP library in action. You can get it 
+There is a [[PHP sample app|http://github.com/schofield/riak_php_app]] that you can check out if you want to see the PHP library in action. You can get it
 
 h2. Python
 
@@ -50,7 +50,7 @@ The [[riak-python-client repo on GitHub|https://github.com/basho/riak-python-cli
 
 We also [[host the generated Python client API Docs on GitHub|http://basho.github.com/basho-riak-client]].
 
-The Python Client is [[also available in the FreeBSD ports tree|http://www.freshports.org/databases/py-riak]]. 
+The Python Client is [[also available in the FreeBSD ports tree|http://www.freshports.org/databases/py-riak]].
 
 h2. Ruby
 

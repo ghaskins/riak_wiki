@@ -1,4 +1,4 @@
-[[The Riak Fast Track]] is constantly improving thanks to the help of all who review it and send their feedback. This is a list of those people. 
+[[The Riak Fast Track]] is constantly improving thanks to the help of all who review it and send their feedback. This is a list of those people.
 
 So, in no particular order, *Thank You!*
 
@@ -8,7 +8,7 @@ So, in no particular order, *Thank You!*
 * François Beausoleil
 * Kirk Bateman
 * Norman Khine
-* Matthew Pflueger 
+* Matthew Pflueger
 * Alexander Sicular
 * Maxime Garcia
 * Harmen Wessels
@@ -19,10 +19,10 @@ So, in no particular order, *Thank You!*
 * Tyler Weir
 * Dick Davies
 * Seth Falcon
-* Ray Cote 
+* Ray Cote
 * Seth Edwards
 * Rick Thomas
 * Seth Falcon
-* Eric Cestari 
+* Eric Cestari
 * Wilson MacGyver
 * Jacob Swanner

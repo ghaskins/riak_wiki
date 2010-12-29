@@ -1,20 +1,20 @@
 /*************************************************************
  *
  *  MathJax/extensions/TeX/newcommand.js
- *  
+ *
  *  Implements the \newcommand, \newenvironment and \def
  *  macros, and is loaded automatically when needed.
  *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2009 Design Science, Inc.
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,7 +25,7 @@
 MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
   var TEX = MathJax.InputJax.TeX;
   var TEXDEF = TEX.Definitions;
-  
+
   MathJax.Hub.Insert(TEXDEF,{
     macros: {
       newcommand:     'NewCommand',
@@ -49,7 +49,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       if (n != null && !n.match(/^[0-9]+$/)) {TEX.Error("Illegal number of parameters specified in "+name)}
       TEXDEF.macros[cs] = ['Macro',def,n];
     },
-    
+
     /*
      *  Implement \newenvironment{name}[n]{begincmd}{endcmd}
      */
@@ -62,7 +62,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       if (n != null && !n.match(/^[0-9]+$/)) {TEX.Error("Illegal number of parameters specified in "+name)}
       TEXDEF.environment[env] = ['BeginEnv','EndEnv',bdef,edef,n];
     },
-    
+
     /*
      *  Implement \def command
      */
@@ -73,7 +73,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       if (!(params instanceof Array)) {TEXDEF.macros[cs] = ['Macro',def,params]}
         else {TEXDEF.macros[cs] = ['MacroWithTemplate',def,params[0],params[1]]}
     },
-    
+
     /*
      *  Get a CS name or give an error
      */
@@ -83,7 +83,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       var cs = this.trimSpaces(this.GetArgument(cmd));
       return cs.substr(1);
     },
-    
+
     /*
      *  Get a \def parameter template
      */
@@ -106,7 +106,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       }
       TEX.Error("Missing replacement string for definition of "+cmd);
     },
-    
+
     /*
      *  Process a macro with a parameter template
      */
@@ -121,7 +121,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       this.string = this.AddArgs(text,this.string.slice(this.i));
       this.i = 0;
     },
-    
+
     /*
      *  Process a user-defined environment
      */
@@ -140,7 +140,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       this.string = this.AddArgs(begin.edef,this.string.slice(this.i)); this.i = 0
       return row;
     },
-    
+
     /*
      *  Find a single parameter delimited by a trailing template
      */
@@ -160,7 +160,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       }
       TEX.Error("Runaway argument for "+name+"?");
     },
-    
+
     /*
      *  Check if a template is at the current location.
      *  (The match must be exact, with no spacing differences.  TeX is
@@ -171,9 +171,9 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       this.i += param.length;
       return 1;
     }
-    
+
   });
-  
+
   TEX.Environment = function (name) {
     TEXDEF.environment[name] = ['BeginEnv','EndEnv'].concat([].slice.call(arguments,1));
   }

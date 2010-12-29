@@ -7,14 +7,14 @@ h3. The Default Schema
 The default schema treats all fields as strings, unless you suffix your field name as follows:
 
 * *FIELDNAME\_num* - Numeric field. Uses Whitespace analyzer. Values are padded to 10 characters.
-* *FIELDNAME\_dt* - Date field. Uses Whitespace analyzer. 
+* *FIELDNAME\_dt* - Date field. Uses Whitespace analyzer.
 * All other fields are treated as Strings and use the Standard analyzer.
 
 The default field is named *value*.
 
 h3. Defining a Schema
 
-The schema definition for an index is stored in the Riak bucket @_rs_schema@, with a key of the same name as the index. For example, the schema for the "books" index is stored under @_rs_schema/books@. Writing to the @_rs_schema@ bucket is highly discouraged. 
+The schema definition for an index is stored in the Riak bucket @_rs_schema@, with a key of the same name as the index. For example, the schema for the "books" index is stored under @_rs_schema/books@. Writing to the @_rs_schema@ bucket is highly discouraged.
 
 Alternatively, you can set or retrieve the schema for an index
 using command line tools:

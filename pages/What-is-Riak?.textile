@@ -37,7 +37,7 @@ With the 0.10 release, we added support for accessing Riak using a Protocol Buff
 
 *_Versioning_*
 
-Each update to a Riak object is tracked by a vector clock. Vector clocks determine causal ordering and detect conflicts in a distributed system. Each time a key/value pair is created or updated in Riak, a vector clock is generated to keep track of each version and ensure that the proper value can be determined in the event that there are conflicting updates. 
+Each update to a Riak object is tracked by a vector clock. Vector clocks determine causal ordering and detect conflicts in a distributed system. Each time a key/value pair is created or updated in Riak, a vector clock is generated to keep track of each version and ensure that the proper value can be determined in the event that there are conflicting updates.
 
 Riak has two ways of resolving update conflicts on Riak objects. Riak can allow the last update to automatically "win" or Riak can return both versions of the object to the client. This gives the client the opportunity to resolve the conflict on its own.
 
@@ -73,7 +73,7 @@ h2. Data Replication
 
 Replication is fundamental and automatic in Riak, providing security that your data will still be there if a node in your Riak cluster goes down. All data stored in Riak will be replicated to a number of nodes in the cluster according to the n_val property set on the bucket.
 
-For example, here is a depiction of what happens when n_val = 3 (This is the default setting). When you store a datum in a bucket with an N value of three, the datum will be replicated to three separate partitions on the Riak Ring. 
+For example, here is a depiction of what happens when n_val = 3 (This is the default setting). When you store a datum in a bucket with an N value of three, the datum will be replicated to three separate partitions on the Riak Ring.
 
 [[/attachments/riak-data-distribution.png|width=550px|align=center]]
 

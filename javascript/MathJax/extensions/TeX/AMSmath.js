@@ -3,17 +3,17 @@
  *  MathJax/extensions/TeX/AMSmath.js
  *
  *  Implements AMS math environments and macros.
- *  
+ *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2009 Design Science, Inc.
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,45 +26,45 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
   var TEX = MathJax.InputJax.TeX;
   var TEXDEF = TEX.Definitions;
   var STACKITEM = TEX.Stack.Item;
-  
+
   var COLS = function (W) {return W.join("em ") + "em"};
-  
+
   MathJax.Hub.Insert(TEXDEF,{
     macros: {
       mathring:   ['Accent','2DA'],  // or 0x30A
-      
+
       nobreakspace: 'Tilde',
       negmedspace:    ['Spacer',MML.LENGTH.NEGATIVEMEDIUMMATHSPACE],
       negthickspace:  ['Spacer',MML.LENGTH.NEGATIVETHICKMATHSPACE],
-      
+
       intI:       ['Macro','\\mathchoice{\\!}{}{}{}\\!\\!\\int'],
 //    iint:       ['MultiIntegral','\\int\\intI'],          // now in core TeX input jax
 //    iiint:      ['MultiIntegral','\\int\\intI\\intI'],    // now in core TeX input jax
       iiiint:     ['MultiIntegral','\\int\\intI\\intI\\intI'],
       idotsint:   ['MultiIntegral','\\int\\cdots\\int'],
-      
+
       dddot:      ['Macro','\\mathop{#1}\\limits^{\\textstyle \\mathord{.}\\mathord{.}\\mathord{.}}',1],
       ddddot:     ['Macro','\\mathop{#1}\\limits^{\\textstyle \\mathord{.}\\mathord{.}\\mathord{.}\\mathord{.}}',1],
-      
+
       sideset:    ['Macro','\\mathop{\\mathop{\\rlap{\\phantom{#3}}}\\nolimits#1\\!\\mathop{#3}\\nolimits#2}',3],
-      
+
       boxed:      ['Macro','\\fbox{$\\displaystyle{#1}$}',1],
-      
+
       tag:         'HandleTag',
       notag:       'HandleNoTag',
-      
+
       substack:   ['Macro','\\begin{subarray}{c}#1\\end{subarray}',1],
-      
+
       injlim:     ['Macro','\\mathop{\\rm inj\\,lim}'],
       projlim:    ['Macro','\\mathop{\\rm proj\\,lim}'],
       varliminf:  ['Macro','\\mathop{\\underline{\\rm lim}}'],
       varlimsup:  ['Macro','\\mathop{\\overline{\\rm lim}}'],
       varinjlim:  ['Macro','\\mathop{\\underrightarrow{\\rm lim\\Rule{-1pt}{0pt}{1pt}}\\Rule{0pt}{0pt}{.45em}}'],
       varprojlim: ['Macro','\\mathop{\\underleftarrow{\\rm lim\\Rule{-1pt}{0pt}{1pt}}\\Rule{0pt}{0pt}{.45em}}'],
-      
+
       DeclareMathOperator: 'HandleDeclareOp',
       operatorname:        'HandleOperatorName',
-      
+
       genfrac:     'Genfrac',
       frac:       ['Genfrac',"","","",""],
       tfrac:      ['Genfrac',"","","",1],
@@ -72,16 +72,16 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       binom:      ['Genfrac',"(",")","0em",""],
       tbinom:     ['Genfrac',"(",")","0em",1],
       dbinom:     ['Genfrac',"(",")","0em",0],
-      
+
       cfrac:       'CFrac',
-      
+
       shoveleft:  ['HandleShove',MML.ALIGN.LEFT],
       shoveright: ['HandleShove',MML.ALIGN.RIGHT],
-      
+
       xrightarrow: ['xArrow',0x2192,5,6],
       xleftarrow:  ['xArrow',0x2190,7,3]
     },
-    
+
     environment: {
       align:         ['AMSarray',null,true,true,  'rlrlrlrlrlrl',COLS([5/18,2,5/18,2,5/18,2,5/18,2,5/18,2,5/18])],
       'align*':      ['AMSarray',null,false,true, 'rlrlrlrlrlrl',COLS([5/18,2,5/18,2,5/18,2,5/18,2,5/18,2,5/18])],
@@ -90,7 +90,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       split:         ['AMSarray',null,false,false,'rl',COLS([5/18])],
       gather:        ['AMSarray',null,true,true,  'c'],
       'gather*':     ['AMSarray',null,false,true, 'c'],
-      
+
       alignat:       ['AlignAt',null,true,true],
       'alignat*':    ['AlignAt',null,false,true],
       alignedat:     ['AlignAt',null,false,false],
@@ -101,7 +101,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       subarray:      ['Array',null,null,null,null,COLS([0,0,0,0]),"0.1em",'S',1],
       smallmatrix:   ['Array',null,null,null,'c',COLS([1/3]),".2em",'S',1]
     },
-    
+
     delimiter: {
       '\\lvert':     ['2223',{texClass:MML.TEXCLASS.OPEN}],
       '\\rvert':     ['2223',{texClass:MML.TEXCLASS.CLOSE}],
@@ -109,7 +109,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       '\\rVert':     ['2225',{texClass:MML.TEXCLASS.CLOSE}]
     }
   });
-    
+
 
   TEX.Parse.Augment({
 
@@ -127,7 +127,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
     HandleNoTag: function (name) {
       if (this.stack.global.tag) {delete this.stack.global.tag}
     },
-    
+
     /*
      *  Handle \DeclareMathOperator
      */
@@ -143,7 +143,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       op = op.replace(/\*/g,'\\text{*}').replace(/-/g,'\\text{-}');
       TEX.Definitions.macros[cs] = ['Macro','\\mathop{\\rm '+op+'}'+limits];
     },
-    
+
     HandleOperatorName: function (name) {
       var limits = "\\nolimits";
       var op = this.trimSpaces(this.GetArgument(name));
@@ -155,7 +155,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       this.string = '\\mathop{\\rm '+op+'}'+limits+" "+this.string.slice(this.i);
       this.i = 0;
     },
-    
+
     /*
      *  Record presence of \shoveleft and \shoveright
      */
@@ -164,7 +164,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       if (top.type !== "multline" || top.data.length) {TEX.Error(name+" must come at the beginning of the line")}
       top.data.shove = shove;
     },
-    
+
     /*
      *  Handle \cfrac
      */
@@ -179,7 +179,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       if (lr) {frac.numalign = frac.denomalign = lr}
       this.Push(frac);
     },
-    
+
     /*
      *  Implement AMS generalized fraction
      */
@@ -239,7 +239,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
         }
       });
     },
-    
+
     AlignAt: function (begin,numbered,taggable) {
       var n = this.GetArgument("\\begin{"+begin.name+"}");
       if (n.match(/[^0-9]/)) {TEX.Error("Argument to \\begin{"+begin.name+"} must me a positive integer")}
@@ -249,7 +249,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       if (taggable) {return this.AMSarray(begin,numbered,taggable,align,spacing)}
       return this.Array(begin,null,null,align,spacing,".5em",'D');
     },
-    
+
     /*
      *  Handle multiple integrals (make a mathop if followed by limits)
      */
@@ -265,7 +265,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       this.string = integral + " " + this.string.slice(this.i);
       this.i = 0;
     },
-    
+
     xArrow: function (name,chr,l,r) {
       var def = {width: "+"+(l+r)+"mu", lspace: l+"mu"};
       var bot = this.GetBrackets(name),
@@ -281,7 +281,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       }
       this.Push(mml);
     },
-    
+
     /*
      *  Get a delimiter or empty argument
      */
@@ -292,7 +292,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       return this.convertDelimiter(c);
     }
   });
-  
+
   /*
    *  Implement multline environment via a STACKITEM
    */
@@ -325,7 +325,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       }
     }
   });
-  
+
   STACKITEM.AMSarray = STACKITEM.array.Subclass({
     type: "AMSarray",
     Init: function (name,numbered,taggable,stack) {
@@ -348,7 +348,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       this.global.notag = this.save_notag;
     }
   });
-  
+
   //
   //  Look for \tag on a formula and make an mtable to include it
   //
@@ -368,9 +368,9 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       return this.SUPER(arguments).checkItem.call(this,item);
     }
   });
-  
+
   MathJax.Hub.Startup.signal.Post("TeX AMSmath Ready");
-  
+
 });
 
 MathJax.Ajax.loadComplete("[MathJax]/extensions/TeX/AMSmath.js");

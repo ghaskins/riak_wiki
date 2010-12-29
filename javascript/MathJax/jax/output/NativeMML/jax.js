@@ -4,17 +4,17 @@
  *
  *  Implements the NativeMML OutputJax that displays mathematics
  *  using a browser's native MathML capabilities (if any).
- *  
+ *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2010 Design Science, Inc.
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,7 +23,7 @@
  */
 
 (function (MML,nMML) {
-  
+
   nMML.Augment({
     //
     //  User can configure styles
@@ -32,7 +32,7 @@
     Startup: function () {return MathJax.Ajax.Styles(this.config.styles)},
     //
     //  Add a SPAN to use as a container, and render the math into it
-    //  
+    //
     Translate: function (script) {
       var math = script.MathJax.elementJax.root;
       var type = (math.Get("display") === "block" ? "div" : "span");
@@ -56,7 +56,7 @@
     //
     MMLnamespace: "http://www.w3.org/1998/Math/MathML"
   });
-  
+
   MML.mbase.Augment({
     //
     //  Add a MathML tag of the correct type, and set its attributes
@@ -103,7 +103,7 @@
         function (type) {return document.createElementNS(nMML.MMLnamespace,type)}
     )
   });
-  
+
   MML.mrow.Augment({
     //
     //  Make inferred rows not include an mrow tag
@@ -119,7 +119,7 @@
       }
     }
   });
-  
+
   MML.msubsup.Augment({
     //
     //  Use proper version of msub, msup, or msubsup, depending on
@@ -137,7 +137,7 @@
       parent.appendChild(tag);
     }
   });
-  
+
   MML.munderover.Augment({
     //
     //  Use proper version of munder, mover, or munderover, depending on
@@ -155,7 +155,7 @@
       parent.appendChild(tag);
     }
   });
-  
+
   if (MathJax.Hub.Browser.isFirefox) {
     MML.mtable.Augment({
       toNativeMML: function (parent) {
@@ -185,7 +185,7 @@
       }
     });
   }
-  
+
   MML.TeXAtom.Augment({
     //
     //  Convert TeXatom to an mrow
@@ -197,7 +197,7 @@
       parent.appendChild(tag);
     }
   });
-  
+
   MML.chars.Augment({
     //
     //  Add a text node
@@ -206,7 +206,7 @@
       parent.appendChild(document.createTextNode(this.toString()));
     }
   });
-  
+
   MML.entity.Augment({
     //
     //  Add a text node
@@ -215,7 +215,7 @@
       parent.appendChild(document.createTextNode(this.toString()));
     }
   });
-  
+
   MathJax.Hub.Register.StartupHook("TeX mathchoice Ready",function () {
     MML.TeXmathchoice.Augment({
       //
@@ -224,7 +224,7 @@
       toNativeMML: function (parent) {this.Core().toNativeMML(parent)}
     });
   });
-  
+
   nMML.loadComplete("jax.js");
 
 })(MathJax.ElementJax.mml, MathJax.OutputJax.NativeMML);

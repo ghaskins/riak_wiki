@@ -226,17 +226,17 @@ For example, the following map function will perform a regex match on object val
 
 ```bash
 {"map":
-	{"language":"javascript",
-	"source":"function(v, keyData, arg) { 
-		var re = RegExp(arg, \"gi\");
-		var m = v.values[[0]].data.match(re); 
-		if (m == null) {
-			return [{\"key\":v.key, \"count\":0}];
-		} else {
-			return [{\"key\":v.key, \"count\":m.length}];
-		}
-	}",
-	"arg":"static data used in map function"}
+  {"language":"javascript",
+  "source":"function(v, keyData, arg) {
+    var re = RegExp(arg, \"gi\");
+    var m = v.values[[0]].data.match(re);
+    if (m == null) {
+      return [{\"key\":v.key, \"count\":0}];
+    } else {
+      return [{\"key\":v.key, \"count\":m.length}];
+    }
+  }",
+  "arg":"static data used in map function"}
 }
 ```
 

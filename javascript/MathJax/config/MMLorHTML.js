@@ -1,26 +1,26 @@
 /*************************************************************
  *
  *  MathJax/extensions/MMLorHTML.js
- *  
+ *
  *  Chooses between the NativeMML and HTML-CSS output jax depending
  *  on the capabilities of the browser and configuration settings
  *  of the page.
- *  
+ *
  *  This file should be added to the config array when configuring
  *  MathJax.  Note that if you include this, you should NOT include
  *  an output jax in the jax array (it will be added for you by
  *  this file).
  *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2010 Design Science, Inc.
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.

@@ -1,20 +1,20 @@
 /*************************************************************
  *
  *  MathJax/extensions/TeX/boldsymbol.js
- *  
+ *
  *  Implements the \boldsymbol{...} command to make bold
  *  versions of all math characters (not just variables).
  *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2009 Design Science, Inc.
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,7 +26,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
   var MML = MathJax.ElementJax.mml;
   var TEX = MathJax.InputJax.TeX;
   var TEXDEF = TEX.Definitions;
-  
+
   var BOLDVARIANT = {};
   BOLDVARIANT[MML.VARIANT.NORMAL]    = MML.VARIANT.BOLD;
   BOLDVARIANT[MML.VARIANT.ITALIC]    = MML.VARIANT.BOLDITALIC;
@@ -35,9 +35,9 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
   BOLDVARIANT[MML.VARIANT.SANSSERIF] = MML.VARIANT.BOLDSANSSERIF;
   BOLDVARIANT["-tex-caligraphic"]    = "-tex-caligraphic-bold";
   BOLDVARIANT["-tex-oldstyle"]       = "-tex-oldstyle-bold";
-  
+
   TEXDEF.macros.boldsymbol = 'Boldsymbol';
-  
+
   TEX.Parse.Augment({
     mmlToken: function (token) {
       if (this.stack.env.boldsymbol) {
@@ -47,7 +47,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       }
       return token;
     },
-    
+
     Boldsymbol: function (name) {
       var boldsymbol = this.stack.env.boldsymbol,
           font = this.stack.env.font;
@@ -59,7 +59,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       this.Push(mml);
     }
   });
-  
+
 });
 
 MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
@@ -84,11 +84,11 @@ MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
       VARIANT["-Greek-Bold-Italic"] = {fonts:["MathJax_Greek-bold-italic"]};
       FONTS["MathJax_Greek-bold-italic"] = "Greek/BoldItalic/Main.js";
     }
-    
+
     if (MathJax.Hub.Browser.isChrome && !MathJax.Hub.Browser.versionAtLeast("5.0")) {
       VARIANT["-tex-caligraphic-bold"].remap = {0x54: [0xE2F0,"-WinChrome"]};
     }
-    
+
   } else if (HTMLCSS.fontInUse === "STIX") {
     VARIANT["-tex-caligraphic-bold"] = {
       fonts:["STIXGeneral-bold-italic","STIXNonUnicode-bold-italic","STIXNonUnicode","STIXGeneral","STIXSizeOneSym"],
@@ -101,7 +101,7 @@ MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
               0xE26C: 0xE287}
     };
   }
-  
+
   MathJax.Hub.Startup.signal.Post("TeX boldsymbol Ready");
 
 });

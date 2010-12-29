@@ -99,9 +99,9 @@ following example:
     <script type="text/javascript" src="/MathJax/MathJax.js">
       MathJax.Hub.Config({
         extensions: ["tex2jax.js","TeX/noErrors.js"],
-	jax: ["input/TeX","output/HTML-CSS"],
-	tex2jax: {inlineMath: [['$','$'],["\\(","\\)"]]},
-	"HTML-CSS": {availableFonts:["TeX"]}
+  jax: ["input/TeX","output/HTML-CSS"],
+  tex2jax: {inlineMath: [['$','$'],["\\(","\\)"]]},
+  "HTML-CSS": {availableFonts:["TeX"]}
       });
     </script>
 
@@ -114,7 +114,7 @@ HTML/CSS output to use the MathJax TeX fonts (in particular, the STIX
 fonts won't be used.)
 
 If you configure MathJax in this fashion, the MathJax/config/MathJax.js
-file is not loaded, and your in-line configuration is used instead.  
+file is not loaded, and your in-line configuration is used instead.
 Note that you can include any of the parameters from the
 config/MathJax.js file (and in fact any arbitrary JavaScript as well).
 
@@ -133,22 +133,22 @@ to be careful that your mathematics doesn't look like HTML tags to the
 browser (which parses the page before MathJax gets to see it).  In
 particular, that means that you have to be careful about things like
 less-than and greater-than signs (<,>), and ampersands (&), which have
-special meaning to the browsers.  For example, 
+special meaning to the browsers.  For example,
 
-	... when $x<y$ we have ...
+  ... when $x<y$ we have ...
 
 will cause a problem, because the brower will think "<y" is the
 beginning of a tag named "y" (even though there is no such tag in
 HTML).  Usually, it is sufficient to simply put spaces around these
-symbols to cause the browser to avoid them, so 
+symbols to cause the browser to avoid them, so
 
-	... when $x < y$ we have ...
+  ... when $x < y$ we have ...
 
 should work.  Alternatively, you can use the HTML entities &lt;, &gt;
 and &amp; to encode these characters so that the browser will not
-interpret them, but MathJax will.  E.g., 
+interpret them, but MathJax will.  E.g.,
 
-	... when $x &lt; y$ we have ...
+  ... when $x &lt; y$ we have ...
 
 Finally, there are \lt and \gt macros defined to make it easier to
 enter < and > using TeX-like syntax:
@@ -170,7 +170,7 @@ the issues involving less-than, greater-than, and ampersand discussed
 in the section above.
 
 When MathJax processes a page, it looks for mathematics stored in
-special SCRIPT tags.  These are 
+special SCRIPT tags.  These are
 
     <script type="math/tex">...</script>
 
@@ -243,7 +243,7 @@ script, not text), so the preview can be used to show the TeX code up
 until the mathematics is typeset.  (The tex2jax preprocessor does that
 automatically, for example).  To make a preview, include a SPAN with
 CLASS="MathJax_Preview" as the element just before the math SCRIPT
-tag, e.g., 
+tag, e.g.,
 
     ... when <span class="MathJax_Preview">x &lt; y</span><script
           type="math/tex">x < y</script> we have ...
@@ -258,14 +258,14 @@ from the rest of the text.  For example:
     <script type="text/javascript" src="/MathJax/MathJax.js">
       MathJax.Hub.Config({
         ...
-      	styles: {
-	  ".MathJax_Preview": {
-	    color: "red",
-	    border: "1px solid",
-	    padding: "2px"
-	  }
-	},
-	...
+        styles: {
+    ".MathJax_Preview": {
+      color: "red",
+      border: "1px solid",
+      padding: "2px"
+    }
+  },
+  ...
       });
     </script>
 
@@ -287,7 +287,7 @@ MathJax/config/MathJax.js file, or in line, as in the following example:
     <script type="text/javascript" src="/MathJax/MathJax.js">
       MathJax.Hub.Config({
         extensions: ["mml2jax.js"],
-	jax: ["input/MathML","output/HTML-CSS"]
+  jax: ["input/MathML","output/HTML-CSS"]
       });
     </script>
 
@@ -318,7 +318,7 @@ MATHML WITH NO PREPROCESSOR:
 
 Just as there is a way to enter TeX code without a preprocessor, MathJax
 provides a means of specifying MathML without a preprocessor.  In this
-case, you enclose your complete <math> substree within a 
+case, you enclose your complete <math> substree within a
 <script type="math/mml">...</script> tag.  E.g.:
 
     <script type="math/mml">
@@ -351,7 +351,7 @@ MathJax/config/MathJax.js).  For example:
     <script type="text/javascript" src="/MathJax/MathJax.js">
       MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
-	jax: ["input/TeX","output/NativeMML"]
+  jax: ["input/TeX","output/NativeMML"]
       });
     </script>
 
@@ -375,9 +375,9 @@ For example:
 
     <script type="text/javascript" src="/MathJax/MathJax.js">
       MathJax.Hub.Config({
-	config: ["MMLorHTML.js"],
+  config: ["MMLorHTML.js"],
         extensions: ["tex2jax.js"],
-	jax: ["input/TeX"]
+  jax: ["input/TeX"]
       });
     </script>
 
@@ -391,10 +391,10 @@ of your configuration:
 
     <script type="text/javascript" src="/MathJax/MathJax.js">
       MathJax.Hub.Config({
-	config: ["MMLorHTML.js"],
+  config: ["MMLorHTML.js"],
         extensions: ["tex2jax.js"],
-	jax: ["input/TeX"],
-	MMLorHTML: {prefer: "MML"}
+  jax: ["input/TeX"],
+  MMLorHTML: {prefer: "MML"}
       });
     </script>
 
@@ -420,7 +420,7 @@ transition should be fairly straight-forward.  If you are using jsMath's
 easy/load.js, then you should simply switch the line that loads
 jsMath/easy/load.js to
 
-	<script src="path-to-mathjax/MathJax/MathJax.js"></script>
+  <script src="path-to-mathjax/MathJax/MathJax.js"></script>
 
 where "path-to-mathjax" is the path to the MathJax folder on your server.
 This uses the MathJax/config/MathJax.js file to configure MathJax, similar
@@ -447,7 +447,7 @@ extensions array, as in the following example:
     <script type="text/javascript" src="/MathJax/MathJax.js">
       MathJax.Hub.Config({
         extensions: ["jsMath2jax.js"],
-	jax: ["input/TeX", "output/HTML-CSS"]
+  jax: ["input/TeX", "output/HTML-CSS"]
       });
     </script>
 

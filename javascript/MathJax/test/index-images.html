@@ -10,17 +10,17 @@
   MathJax.Hub.Config({
     extensions: ["tex2jax.js"],
     jax: ["input/TeX","output/HTML-CSS"],
-    "HTML-CSS": {availableFonts:[], preferredFont: null, webFont: null} 
+    "HTML-CSS": {availableFonts:[], preferredFont: null, webFont: null}
   });
 
 //
 //  Do NOT include the following in your own pages.  This is only here to
 //  provide an alert rather than MathJax's usual small message in the lower
-//  left-hand corner.  Use sample.html as the example for how to call 
+//  left-hand corner.  Use sample.html as the example for how to call
 //  MathJax in your own pages.
 //
 (function (HUB) {
-  
+
   var MINVERSION = {
     Firefox: 3.0,
     Opera: 9.52,
@@ -30,7 +30,7 @@
     Konqueror: 4.0,
     Unknown: 10000.0 // always disable unknown browsers
   };
-  
+
   if (!HUB.Browser.versionAtLeast(MINVERSION[HUB.Browser]||0.0)) {
     HUB.config.jax = [];          // don't load any Jax
     HUB.config.extensions = [];   // don't load any extensions
@@ -44,7 +44,7 @@
           "so the poor quality rendering on this test page does not indicate a problem\n" +
           "with MathJax.");
   }
-  
+
 })(MathJax.Hub);
 
 </SCRIPT>
@@ -89,13 +89,13 @@ MathJax is not working!
 <p>
 
 If the mathematics does not show up properly, you may not have not
-installed the MathJax web fonts correctly.  Follow the instructions in the 
+installed the MathJax web fonts correctly.  Follow the instructions in the
 <A HREF="../README.txt">README file</A>.
 <p>
 
-The MathJax-webfonts archive is available from the <A 
-HREF="http://sourceforge.net/projects/mathjax/files/">MathJax SourceForge 
-project</A>.  Unpack the archive in the MathJax directory; you should 
+The MathJax-webfonts archive is available from the <A
+HREF="http://sourceforge.net/projects/mathjax/files/">MathJax SourceForge
+project</A>.  Unpack the archive in the MathJax directory; you should
 obtain a fonts directory, with a hierarchy of:
 <PRE>
     MathJax/

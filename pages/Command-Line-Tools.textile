@@ -88,8 +88,8 @@ This script performs operations not related to node-liveness, including node mem
 
 
 ```bash
-Usage: riak-admin { join | leave | backup | restore | test | status | 
-                    reip | js_reload | wait-for-service | ringready | 
+Usage: riak-admin { join | leave | backup | restore | test | status |
+                    reip | js_reload | wait-for-service | ringready |
                     transfers }
 ```
 
@@ -105,7 +105,7 @@ Joins the running node to another running node so that they participate in the s
 riak-admin join <node>
 ```
 
- 
+
 h3. leave
 
 Causes the node to leave the cluster it participates in.
@@ -118,7 +118,7 @@ riak-admin leave
 
 h3. backup
 
-Backs up the data from the node or entire cluster into a file. 
+Backs up the data from the node or entire cluster into a file.
 
 * &lt;node&gt; is the node from which to perform the backup.
 * &lt;cookie&gt; is the Erlang cookie/shared secret used to connect to the node. This is "riak" in the [[default configuration|Configuration Files#\-setcookie]].
@@ -155,7 +155,7 @@ riak-admin test
 ```
 
 
-h3. status 
+h3. status
 
 Prints status information, including performance statistics, system health information, and version numbers. The statistics-aggregator must be enabled in the [[configuration|Configuration Files#riak_kv_stat]] for this to work.
 

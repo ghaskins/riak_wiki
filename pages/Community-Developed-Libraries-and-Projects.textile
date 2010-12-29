@@ -13,8 +13,8 @@ h2. Client Libraries
 * [[Riak C Client|https://github.com/chrisumbel/riakclient]]
 
 *Clojure*
-* [[clj-riak|http://github.com/mmcgrana/clj-riak]] - Clojure bindings to the Riak Protocol Buffers API 
-* [[teriak|http://github.com/dysinger/teriak]] - Riak Clojure Client that uses Riak's Protocol Buffers API 
+* [[clj-riak|http://github.com/mmcgrana/clj-riak]] - Clojure bindings to the Riak Protocol Buffers API
+* [[teriak|http://github.com/dysinger/teriak]] - Riak Clojure Client that uses Riak's Protocol Buffers API
 
 *Go* (Go is a language recently released by Google. Read more about it [[here|http://golang.org/]].)
 * [[riak.go|http://github.com/c141charlie/riak.go]] - a Riak Client for Go
@@ -22,11 +22,11 @@ h2. Client Libraries
 *Griffon*
 * [[Riak Plugin for Griffon|http://docs.codehaus.org/display/GRIFFON/Riak+Plugin]]
 
-*Groovy* 
-* [[spring-riak|https://github.com/jbrisbin/spring-riak]] - Riak support from Groovy and/or Java 
+*Groovy*
+* [[spring-riak|https://github.com/jbrisbin/spring-riak]] - Riak support from Groovy and/or Java
 
 *Java*
-* [[Riak-Java-PB-Client|http://github.com/krestenkrab/riak-java-pb-client]] - Java Client Library for Riak based on the Protocol Buffers API 
+* [[Riak-Java-PB-Client|http://github.com/krestenkrab/riak-java-pb-client]] - Java Client Library for Riak based on the Protocol Buffers API
 
 *JavaScript*
 * [[Riak-js|http://github.com/frank06/riak-js]]

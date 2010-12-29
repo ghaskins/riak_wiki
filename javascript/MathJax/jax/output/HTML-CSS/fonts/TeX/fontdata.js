@@ -1,12 +1,12 @@
 /*************************************************************
  *
  *  MathJax/jax/output/HTML-CSS/fonts/TeX/fontdata.js
- *  
+ *
  *  Initializes the HTML-CSS OutputJax to use the MathJax TeX fonts
  *  for displaying mathematics.
  *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2009 Design Science, Inc.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,7 +23,7 @@
  */
 
 (function (HTMLCSS,MML,AJAX) {
-  
+
   var MAIN   = "MathJax_Main",
       BOLD   = "MathJax_Main-bold",
       ITALIC = "MathJax_Math-italic",
@@ -39,9 +39,9 @@
       TeX_factor: 1,    // TeX em's to font em's
       baselineskip: 1.2,
       lineH: .8, lineD: .2,
-      
+
       hasStyleChar: true,  // char 0xEFFD encodes font style
- 
+
       FONTS: {
         "MathJax_Main":             "Main/Regular/Main.js",
         "MathJax_Main-bold":        "Main/Bold/Main.js",
@@ -62,7 +62,7 @@
         "MathJax_Script":           "Script/Regular/Main.js",
         "MathJax_Typewriter":       "Typewriter/Regular/Main.js"
       },
-      
+
       DEFAULTFAMILY: MAIN,  DEFAULTWEIGHT: "normal", DEFAULTSTYLE: "normal",
 
       VARIANT: {
@@ -86,15 +86,15 @@
         "-largeOp": {fonts:[SIZE2,SIZE1,MAIN]},
         "-smallOp": {fonts:[SIZE1,MAIN]}
       },
-      
+
       RANGES: [
         {name: "alpha", low: 0x61, high: 0x7A, offset: "A", add: 32},
         {name: "number", low: 0x30, high: 0x39, offset: "N"}
       ],
-      
+
       RULECHAR: 0x2212,
-      
-      REMAP: { 
+
+      REMAP: {
         0x203E: 0x2C9,                  // overline
         0x20D0: 0x21BC, 0x20D1: 0x21C0, // combining left and right harpoons
         0x20D6: 0x2190, 0x20E1: 0x2194, // combining left arrow and lef-right arrow
@@ -117,7 +117,7 @@
         0x2758: 0x2223,                 // VerticalSeparator
         0x2A2F: 0xD7                    // cross product
       },
-      
+
       DELIMITERS: {
         0x0028: // (
         {
@@ -331,7 +331,7 @@
       }
     }
   };
-  
+
   MathJax.Hub.Register.StartupHook("TeX Jax Ready", function () {
     var TEX = MathJax.InputJax.TeX;
     TEX.Definitions.mathchar0mi.ell  = ['2113',{mathvariant: MML.VARIANT.NORMAL}];
@@ -344,7 +344,7 @@
       TEX.Definitions.macros.not = ['Macro','\\mathrel{\\rlap{\\notChar}}'];
     }
   });
-  
+
   HTMLCSS.FONTDATA.FONTS['MathJax_Caligraphic'] = {
     directory: 'Caligraphic/Regular',
     family: 'MathJax_Caligraphic',
@@ -1334,20 +1334,20 @@
   if (!HTMLCSS.imgFonts) {
     MathJax.Hub.Browser.Select({
       MSIE: function (browser) {
-        
+
         if (!HTMLCSS.imgFonts && HTMLCSS.config.availableFonts && HTMLCSS.config.availableFonts.length) {
-          
+
           HTMLCSS.FONTDATA.REMAP[0x2C9] = 0xAF; // macron
           HTMLCSS.FONTDATA.REMAP[0x2CA] = 0xB4; // acute
           HTMLCSS.FONTDATA.REMAP[0x2CB] = 0x60; // grave
           HTMLCSS.FONTDATA.REMAP[0x2DA] = 0xB0; // ring above
-          
+
           var testString = HTMLCSS.msieCheckGreek =
             String.fromCharCode(0x393)+" "+String.fromCharCode(0x3A5)+" "+String.fromCharCode(0x39B);
 
           HTMLCSS.FONTDATA.RANGES.push({name: "greek", low: 0x03B1, high: 0x03C9, offset: "G", add: 32});
           HTMLCSS.FONTDATA.RANGES.push({name: "Greek", low: 0x0391, high: 0x03F6, offset: "G"});
-          
+
           if (HTMLCSS.Font.testFont({family:"MathJax_Greek", testString: testString})) {
             HTMLCSS.Augment({
               FONTDATA: {
@@ -1380,9 +1380,9 @@
               0x3A8: [683,0,778,55,722],         // GREEK CAPITAL LETTER PSI
               0x3A9: [704,0,722,44,677]          // GREEK CAPITAL LETTER OMEGA
             };
-            
+
           }
-          
+
           if (HTMLCSS.Font.testFont({family:"MathJax_Greek", weight:"bold", testString: testString})) {
             HTMLCSS.Augment({
               FONTDATA: {
@@ -1414,9 +1414,9 @@
               0x3A8: [686,0,894,64,829],         // GREEK CAPITAL LETTER PSI
               0x3A9: [696,1,831,51,779]          // GREEK CAPITAL LETTER OMEGA
             };
-            
+
           }
-          
+
           if (HTMLCSS.Font.testFont({family:"MathJax_Greek", style:"italic", testString: testString})) {
             HTMLCSS.Augment({
               FONTDATA: {
@@ -1512,12 +1512,12 @@
               0x3F1: [442,194,517,67,510],       // GREEK RHO SYMBOL
               0x3F5: [431,11,406,40,382]         // GREEK LUNATE EPSILON SYMBOL
             };
-            
+
           }
         }
-          
+
         if (HTMLCSS.msieIE6) {
-          
+
           var WinIE6 = "MathJax_WinIE6";
           HTMLCSS.FONTDATA.FONTS[WinIE6] = "WinIE6/Regular/Main.js";
           HTMLCSS.FONTDATA.RANGES.push({name: "arrows", low: 0x2190, high: 0x2199, offset: "AR"});
@@ -1579,14 +1579,14 @@
                 "-smallOp": {fonts:[WinIE6,SIZE1,MAIN],
                              remap: {0x220F:0xE280, 0x2211:0xE281, 0x222B:0xE285, 0x222E:0xE286}},
                 "-WinIE6":  {fonts:[WinIE6]}
-	      },
-	      DELIMITERS: {
-	        0x221A: {
-	          HW:{
+        },
+        DELIMITERS: {
+          0x221A: {
+            HW:{
                     0:[1,WinIE6,null,0xE213], 1:[1.2,WinIE6,null,0xE282], 2:[1.8,WinIE6,null,0xE292],
                     3:[2.4,WinIE6,null,0xE2A2], 4:[3,WinIE6,null,0xE2B2]
                   }
-	        },
+          },
                 0x007C: {stretch:{ext:[0xE217,WinIE6]}},
                 0x2223: {HW:{0:[1,WinIE6,null,0xE217]}, stretch:{ext:[0xE217,WinIE6]}},
                 0x23D0: {HW:{1:[1,WinIE6,null,0xE217]}, stretch:{ext:[0xE217,WinIE6]}},
@@ -1600,11 +1600,11 @@
               }
             }
           });
-          
+
         }
-        
+
       },
-      
+
       Chrome: function (browser) {
         if (browser.isPC && !MathJax.Hub.Browser.versionAtLeast("5.0")) {
           // FIXME:  patch caligraphic bold, too
@@ -1626,7 +1626,7 @@
               }
             }
           });
-        
+
           HTMLCSS.FONTDATA.FONTS['MathJax_WinChrome'] = {
             directory: 'WinChrome/Regular',
             family: 'MathJax_WinChrome',
@@ -1646,13 +1646,13 @@
             0xE2F0: [720,69,644,38,947],       // ??
             0xE2F1: [587,85,894,95,797]        // ??
           };
-          
+
         }
       }
 
     });
   }
-      
+
   //
   //  Create @font-face stylesheet for the declared fonts
   //
@@ -1686,6 +1686,6 @@
   })();
 
   AJAX.loadComplete(HTMLCSS.fontDir + "/fontdata.js");
-  
+
 })(MathJax.OutputJax["HTML-CSS"],MathJax.ElementJax.mml,MathJax.Ajax);
 

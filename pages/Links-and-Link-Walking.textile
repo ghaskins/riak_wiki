@@ -65,7 +65,7 @@ How do we connect the dots? Link Walking, that's how.
 
 h2. Link Walking
 
-Once you have tagged objects in Riak with links, you can then traverse them with an operation called "Link Walking." 
+Once you have tagged objects in Riak with links, you can then traverse them with an operation called "Link Walking."
 
 To continue with the example from above, the "timoreilly" object is now pointer to the "dhh" object located in the "people" bucket. We can use a link walking query to follow the link from "timoreilly" to "dhh." Here is what that query would look like:
 

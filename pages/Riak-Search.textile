@@ -1,7 +1,7 @@
 Riak Search is a distributed, easily-scalable, failure-tolerant, real-time, full-text search engine built around Riak Core and tightly integrated with Riak KV.
- 
+
 Riak Search allows you to find and retrieve your Riak objects using the objects' values. When a Riak KV bucket has been enabled for Search integration (by installing the Search pre-commit hook), any objects stored in that bucket are also indexed seamlessly in Riak Search.
- 
+
 The Riak Client API can then be used to perform Search queries that return a list of bucket/key pairs matching the query. Alternatively, the query results can be used as the input to a Riak map/reduce operation. Currently the PHP, Python, Ruby, and Erlang APIs support integration with Riak Search.
 
 
@@ -9,24 +9,24 @@ The Riak Client API can then be used to perform Search queries that return a lis
 
 <div class="note"><div class="title">Search is "Beta Software"</div>
 Note that Riak Search should be considered beta software. Please be aware that there may be bugs and issues that we have not yet covered that may require a full data reload with the next version.</div>
- 
+
 
 h3. Operations
 
 Operationally, Riak Search is very similar to Riak KV. An administrator can add nodes to a cluster on the fly with simple commands to increase performance or capacity. Index and query operations can be run from any node. Multiple replicas of data are stored, allowing the cluster to continue serving full results in the face of machine failure. Partitions are handed off and replicated across clusters using the same mechanisms as Riak KV.
- 
+
 
 h3. Indexing
 
 At index time, Riak Search tokenizes a document into an inverted index using standard Lucene Analyzers. (For improved performance, the team re-implemented some of these in Erlang to reduce hops between Erlang and Java.) Custom analyzers can be created in either Java or Erlang. The system consults a schema (defined per-index) to determine required fields, the unique key, the default analyzer, and which analyzer should be used for each field. Field aliases (grouping multiple fields into one field) and dynamic fields (wildcard field matching) are supported.
- 
+
 After analyzing a document into an inverted index, the system uses a consistent hash to divide the inverted index entries (called postings) by term across the cluster. This is called term-partitioning and is a key difference from other commonly used distributed indexes. Term-partitioning was chosen because it provides higher overall query throughput with large data sets. (This can come at the expense of higher-latency queries for especially large result sets.)
 
 h3. Querying
 
 Search queries use the same syntax as Lucene, and support most Lucene operators including term searches, field searches, boolean operators, grouping, lexicographical range queries, and wildcards (at the end of a word only).
- 
-Querying has two distinct stages, planning and execution. During query planning, the system creates a directed graph of the query, grouping points on the graph in order to maximize data locality and minimize inter-node traffic. Single term queries can be executed on a single node, while range queries and fuzzy matches are executed using the minimal set of nodes that cover the query.  
+
+Querying has two distinct stages, planning and execution. During query planning, the system creates a directed graph of the query, grouping points on the graph in order to maximize data locality and minimize inter-node traffic. Single term queries can be executed on a single node, while range queries and fuzzy matches are executed using the minimal set of nodes that cover the query.
 
 As the query executes, Riak Search uses a series of merge-joins, merge-intersections, and filters to generate the resulting set of matching bucket/key pairs.
 

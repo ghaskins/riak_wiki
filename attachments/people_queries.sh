@@ -27,7 +27,7 @@ color=${2:-$black}           # Defaults to black, if not specified.
   Reset                      # Reset to normal.
 
   return
-}  
+}
 cecho "Press [Enter] after each query description to execute." $green
 
 cecho "Q: Get Sean's friends (A:Mark, Kevin)" $yellow
@@ -44,7 +44,7 @@ curl -s http://127.0.0.1:8091/riak/people/john/_,supervises,_/_,friend,1 | grep 
 echo
 cecho "Q: Get Tony's direct and indirect reports (A:[John,Marisa],[Sean,Mark,Maureen])" $yellow
 read
-curl -s http://127.0.0.1:8091/riak/people/tony/_,supervises,1/_,supervises,1 | grep -v ":" | grep "[:alnum:]\|--" 
+curl -s http://127.0.0.1:8091/riak/people/tony/_,supervises,1/_,supervises,1 | grep -v ":" | grep "[:alnum:]\|--"
 echo
 cecho "Q: Get friends of Tony's indirect reports (A:Sean,Mark,Kevin,Justin)" $yellow
 read

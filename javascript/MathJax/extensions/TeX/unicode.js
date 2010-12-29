@@ -1,12 +1,12 @@
 /*************************************************************
  *
  *  MathJax/extensions/TeX/unicode.js
- *  
+ *
  *  Implements the \unicode extension to TeX to allow arbitrary unicode
  *  code points to be entered into the TeX file.  You can specify
  *  the height and depth of the character (the width is determined by
  *  the browser), and the default font from which to take the character.
- *  
+ *
  *  Examples:
  *      \unicode{65}                        % the character 'A'
  *      \unicode{x41}                       % the character 'A'
@@ -24,9 +24,9 @@
  *  "STIXGeneral,'Arial Unicode MS'", so if the user has STIX fonts, the
  *  symbol will be taken from that (almost all the symbols are in
  *  STIXGeneral), otherwise Arial Unicode MS is tried.
- *  
+ *
  *  To configure the default font list, use
- *  
+ *
  *      MathJax.Hub.Configure({
  *        TeX: {
  *          unicode: {
@@ -37,17 +37,17 @@
  *
  *  The result of \unicode will have TeX class ORD (e.g., it will act like a
  *  variable).  Use \mathbin, \mathrel, etc, to specify a different class.
- *  
+ *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2009 Design Science, Inc.
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -57,20 +57,20 @@
 
 //
 //  The configuration defaults, augmented by the user settings
-//  
+//
 MathJax.Extension["TeX/unicode"] = {
   unicode: {},
   config: MathJax.Hub.Insert({
     fonts: "STIXGeneral,'Arial Unicode MS'"
   },((MathJax.Hub.config.TeX||{}).unicode||{}))
 };
-  
+
 MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
   var TEX = MathJax.InputJax.TeX;
   var MML = MathJax.ElementJax.mml;
   var FONTS = MathJax.Extension["TeX/unicode"].config.fonts;
   var UNICODE = MathJax.Extension["TeX/unicode"].unicode;
-  
+
   //
   //  Add \unicode macro
   //
@@ -107,7 +107,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
   });
 
 });
-    
+
 MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
   var HTMLCSS = MathJax.OutputJax["HTML-CSS"];
   var UNICODE = MathJax.Extension["TeX/unicode"].unicode;
@@ -125,7 +125,7 @@ MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
   });
 
   MathJax.Hub.Startup.signal.Post("TeX unicode Ready");
-  
+
 });
 
 MathJax.Ajax.loadComplete("[MathJax]/extensions/TeX/unicode.js");

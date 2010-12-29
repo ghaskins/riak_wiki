@@ -1,4 +1,4 @@
-The following steps should get you up and running with Riak on SuSE.  
+The following steps should get you up and running with Riak on SuSE.
 
 Riak may be unofficially installed on the following x86/x86_64 (1) flavors of SuSE via community provided support:
 * SLES11-SP1
@@ -8,7 +8,7 @@ Riak may be unofficially installed on the following x86/x86_64 (1) flavors of Su
 NOTE (1): There are currently issues with 32-bit builds, so only 64-bit platforms
 are supported for the time being.  We hope to have this resolved shortly.
 
-The Riak package and all of its dependencies (including the base Erlang) can be found in an OpenSUSE Build Service (http://build.opensuse.org) Zypper repository 
+The Riak package and all of its dependencies (including the base Erlang) can be found in an OpenSUSE Build Service (http://build.opensuse.org) Zypper repository
 
 (The following commands are assumed to be run as root)
 

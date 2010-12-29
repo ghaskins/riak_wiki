@@ -1,19 +1,19 @@
 /*************************************************************
  *
  *  MathJax/extensions/TeX/AMSsymbols.js
- *  
+ *
  *  Implements macros for accessing the AMS symbol fonts.
- *  
+ *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2009 Design Science, Inc.
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,14 +22,14 @@
  */
 MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
   var MML = MathJax.ElementJax.mml;
-  
+
   MathJax.Hub.Insert(MathJax.InputJax.TeX.Definitions,{
 
     mathchar0mi: {
       // Lowercase Greek letters
       digamma:                '03DD',
       varkappa:               '03F0',
-      
+
       // Uppercase Greek letters
       varGamma:               ['0393',{mathvariant: MML.VARIANT.ITALIC}],
       varDelta:               ['0394',{mathvariant: MML.VARIANT.ITALIC}],
@@ -76,7 +76,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       Game:                   '2141',
       diagdown:               '2572',
       Bbbk:                   ['006B',{mathvariant: MML.VARIANT.DOUBLESTRUCK}],
-      
+
       yen:                    '00A5',
       circledR:               '00AE',
       checkmark:              '2713',
@@ -289,7 +289,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       nleftrightarrow:        '21AE',
       nLeftrightarrow:        '21CE'
     },
-    
+
     delimiter: {
       // corners
       "\\ulcorner":           '250C',
@@ -297,14 +297,14 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
       "\\llcorner":           '2514',
       "\\lrcorner":           '2518'
     },
-    
+
     macros: {
       implies:    ['Macro','\\;\\Longrightarrow\\;'],
       impliedby:  ['Macro','\\;\\Longleftarrow\\;']
     }
-    
+
   });
-  
+
   var REL = MML.mo.OPTYPES.REL;
 
   MathJax.Hub.Insert(MML.mo.prototype,{
@@ -376,9 +376,9 @@ MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
               0x22E0: 0xE04B, 0x22E1: 0xE04F, 0x2288: 0xE016, 0x2289: 0xE018}
     });
   }
-  
+
   MathJax.Hub.Startup.signal.Post("TeX AMSsymbols Ready");
-  
+
 });
 
 

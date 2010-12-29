@@ -1,21 +1,21 @@
 /*************************************************************
  *
  *  MathJax/extensions/tex2jax.js
- *  
+ *
  *  Implements the TeX to Jax preprocessor that locates TeX code
  *  within the text of a document and replaces it with SCRIPT tags
  *  for processing by MathJax.
  *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2009 Design Science, Inc.
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -47,7 +47,7 @@ MathJax.Extension.tex2jax = {
     previewTeX: 1           // set to 0 to not insert MathJax_Preview spans
 
   },
-  
+
   PreProcess: function (element) {
     if (!this.configured) {
       MathJax.Hub.Insert(this.config,(MathJax.Hub.config.tex2jax||{}));
@@ -58,7 +58,7 @@ MathJax.Extension.tex2jax = {
     this.createPatterns();
     this.scanElement(element,element.nextSibling);
   },
-  
+
   createPatterns: function () {
     var starts = [], i, m, config = this.config;
     this.match = {};
@@ -79,23 +79,23 @@ MathJax.Extension.tex2jax = {
       };
     }
     this.start = new RegExp(
-        starts.sort(this.sortLength).join("|") + 
-        (config.processEnvironments ? "|\\\\begin\\{([^}]*)\\}" : "") + 
+        starts.sort(this.sortLength).join("|") +
+        (config.processEnvironments ? "|\\\\begin\\{([^}]*)\\}" : "") +
         (config.processEscapes ? "|\\\\*\\\\\\\$" : ""), "g"
     );
   },
-  
+
   patternQuote: function (s) {return s.replace(/([\^$(){}+*?\-|\[\]\:\\])/g,'\\$1')},
-  
+
   endPattern: function (end) {
     return new RegExp(this.patternQuote(end)+"|\\\\.","g");
   },
-  
+
   sortLength: function (a,b) {
     if (a.length !== b.length) {return b.length - a.length}
     return (a == b ? 0 : (a < b ? -1 : 1));
   },
-  
+
   scanElement: function (element,stop,ignore) {
     var cname, tname;
     while (element && element != stop) {
@@ -115,7 +115,7 @@ MathJax.Extension.tex2jax = {
       if (element) {element = element.nextSibling}
     }
   },
-  
+
   scanText: function (element) {
     if (element.nodeValue.replace(/\s+/,'') == '') {return element}
     var match, prev;
@@ -130,7 +130,7 @@ MathJax.Extension.tex2jax = {
       }
       if (this.search.matched) {element = this.encloseMath(element)}
       if (element) {
-        do {prev = element; element = element.nextSibling} 
+        do {prev = element; element = element.nextSibling}
           while (element && (element.nodeName.toLowerCase() === 'br' ||
                              element.nodeName.toLowerCase() === '#comment'));
         if (!element || element.nodeName !== '#text') {return prev}
@@ -138,7 +138,7 @@ MathJax.Extension.tex2jax = {
     }
     return element;
   },
-  
+
   startMatch: function (match,element) {
     var delim = this.match[match[0]];
     if (delim != null) {                              // a start delimiter
@@ -162,7 +162,7 @@ MathJax.Extension.tex2jax = {
     }
     return element;
   },
-  
+
   endMatch: function (match,element) {
     if (match[0] == this.search.end) {
       this.search.close = element;
@@ -174,13 +174,13 @@ MathJax.Extension.tex2jax = {
     }
     return element;
   },
-  
+
   switchPattern: function (pattern) {
     pattern.lastIndex = this.pattern.lastIndex;
     this.pattern = pattern;
     this.search.start = (pattern === this.start);
   },
-  
+
   encloseMath: function (element) {
     var search = this.search, close = search.close, CLOSE;
     if (search.cpos === close.length) {close = close.nextSibling}
@@ -207,7 +207,7 @@ MathJax.Extension.tex2jax = {
     if (CLOSE) {CLOSE.parentNode.removeChild(CLOSE)}
     return math;
   },
-  
+
   insertNode: function (node) {
     var search = this.search;
     if (search.close && search.close.parentNode) {
@@ -218,7 +218,7 @@ MathJax.Extension.tex2jax = {
       search.open.parentNode.appendChild(node);
     }
   },
-  
+
   createMathPreview: function (mode,tex) {
     var preview = document.createElement("span");
     preview.className = MathJax.Hub.config.preRemoveClass;
@@ -226,7 +226,7 @@ MathJax.Extension.tex2jax = {
     this.insertNode(preview);
     return preview;
   },
-  
+
   createMathTag: function (mode,tex) {
     var script = document.createElement("script");
     script.type = "math/tex" + mode;
@@ -235,7 +235,7 @@ MathJax.Extension.tex2jax = {
     this.insertNode(script);
     return script;
   }
-  
+
 };
 
 MathJax.Hub.Register.PreProcessor(["PreProcess",MathJax.Extension.tex2jax]);

@@ -1,13 +1,13 @@
 /*************************************************************
  *
  *  MathJax/jax/output/HTML-CSS/font/STIX/fontdata-beta.js
- *  
+ *
  *  Patches the STIX font data to work with the beta version of
  *  the STIX fonts (as opposed to the release version, assuming
  *  there ever is one).
  *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2010 Design Science, Inc.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,7 @@
  */
 
 (function (HTMLCSS,TEX) {
-  
+
   var GENERAL = "STIXGeneral",
       BOLD    = "STIXGeneral-bold",
       ITALIC  = "STIXGeneral-italic",
@@ -138,7 +138,7 @@
     0x20EF: [-40,252,0,27,463],        // COMBINING RIGHT ARROW BELOW
     0x20F0: [819,-517,0,123,393]       // COMBINING ASTERISK ABOVE
   });
-  
+
   REPLACE(BOLD,{
     0x300: [713,-528,0,141,379],       // COMBINING GRAVE ACCENT
     0x301: [713,-528,0,141,379],       // COMBINING ACUTE ACCENT
@@ -235,7 +235,7 @@
     0x20EF: [-35,373,0,40,524],        // COMBINING RIGHT ARROW BELOW
     0x20F0: [845,-543,0,125,395]       // COMBINING ASTERISK ABOVE
   });
-  
+
   REPLACE(ITALIC,{
     0x20D0: [760,-627,0,27,463],       // COMBINING LEFT HARPOON ABOVE
     0x20D1: [760,-627,0,54,490],       // COMBINING RIGHT HARPOON ABOVE
@@ -258,7 +258,7 @@
     0x20EE: [-40,252,490,27,463],      // COMBINING LEFT ARROW BELOW
     0x20EF: [-40,252,490,27,463]       // COMBINING RIGHT ARROW BELOW
   });
-  
+
   REPLACE(SIZE1,{
     0x302: [767,-554,0,0,560],         // COMBINING CIRCUMFLEX ACCENT
     0x303: [750,-598,0,-2,558],        // COMBINING TILDE
@@ -276,7 +276,7 @@
     0x20EE: [-26,279,0,27,899],        // COMBINING LEFT ARROW BELOW
     0x20EF: [-25,279,0,27,899]         // COMBINING RIGHT ARROW BELOW
   });
-  
+
   REPLACE(SIZE2,{
     0x302: [777,-564,0,0,979],         // COMBINING CIRCUMFLEX ACCENT
     0x303: [760,-608,0,-2,977],        // COMBINING TILDE
@@ -294,7 +294,7 @@
     0x20EE: [-26,279,0,27,1335],       // COMBINING LEFT ARROW BELOW
     0x20EF: [-26,279,0,27,1335]        // COMBINING RIGHT ARROW BELOW
   });
-  
+
   REPLACE(SIZE3,{
     0x302: [777,-564,0,0,1460],        // COMBINING CIRCUMFLEX ACCENT
     0x303: [774,-608,0,-2,1458],       // COMBINING TILDE
@@ -312,7 +312,7 @@
     0x20EE: [-26,279,0,27,1771],       // COMBINING LEFT ARROW BELOW
     0x20EF: [-26,279,0,27,1771]        // COMBINING RIGHT ARROW BELOW
   });
-  
+
   REPLACE(SIZE4,{
     0x302: [796,-573,0,0,1886],        // COMBINING CIRCUMFLEX ACCENT
     0x303: [771,-608,0,0,1886],        // COMBINING TILDE
@@ -330,7 +330,7 @@
     0x20EE: [-26,279,0,27,2207],       // COMBINING LEFT ARROW BELOW
     0x20EF: [-26,279,0,27,2207]        // COMBINING RIGHT ARROW BELOW
   });
-  
+
   REPLACE(SIZE5,{
     0x302: [816,-572,0,0,2328],        // COMBINING CIRCUMFLEX ACCENT
     0x303: [780,-617,0,0,2328],        // COMBINING TILDE
@@ -348,7 +348,7 @@
     0x20EE: [-26,279,0,0,3000],        // COMBINING LEFT ARROW BELOW
     0x20EF: [-26,279,0,0,3000]         // COMBINING RIGHT ARROW BELOW
   });
-  
+
   MathJax.Hub.Register.LoadHook(HTMLCSS.fontDir+"/General/BoldItalic/CombDiactForSymbols.js",
     function () {
       REPLACE("STIXGeneral-bold-italic",{
@@ -356,17 +356,17 @@
       });
     }
   );
-  
+
   var SIZES = [SIZE1,SIZE2,SIZE3,SIZE4];
   var CHARS = [0x2C6,0x2C7,0x2DC,0x2E7];
-  
+
   for (var i = 0; i < SIZES.length; i++) {
     for (var j = 0; j < CHARS.length; j++) {
       delete HTMLCSS.FONTDATA.FONTS[SIZES[i]][j];
     }
   }
-  
-  
+
+
   MathJax.Ajax.loadComplete(HTMLCSS.fontDir+"/fontdata-beta.js");
 
 })(MathJax.OutputJax["HTML-CSS"],MathJax.InputJax.TeX);

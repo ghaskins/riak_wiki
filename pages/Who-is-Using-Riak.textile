@@ -6,7 +6,7 @@ _This is a list of companies, projects, organizations and consultancies (that we
 
 Mozilla Test Pilot is a platform collecting structured user feedback through Firefox. Test Pilot studies explore how people use their web browser and the Internet - and help us build better products
 
-The Test Pilot Team is running multiple Riak clusters to gather user data and perform large-scale analysis on this data using Riak's MapReduce functionality. 
+The Test Pilot Team is running multiple Riak clusters to gather user data and perform large-scale analysis on this data using Riak's MapReduce functionality.
 
 * [[Why the Metrics Team Chose Riak|http://blog.mozilla.com/data/2010/05/18/riak-and-cassandra-and-hbase-oh-my/]]
 * [[Benchmarking Riak for the Mozilla Test Pilot Project|http://blog.mozilla.com/data/2010/08/16/benchmarking-riak-for-the-mozilla-test-pilot-project/]]
@@ -15,7 +15,7 @@ The Test Pilot Team is running multiple Riak clusters to gather user data and pe
 
 [[/attachments/ws.png|align=center|vspace=35px]]
 
-[[Widescript|http://www.widescript.com]] is a digital reading application targeted to people who study or make use of reference material. It allows them to interact with their texts, everywhere. The development of the idea started in early 2010 and the application is currently in private beta. 
+[[Widescript|http://www.widescript.com]] is a digital reading application targeted to people who study or make use of reference material. It allows them to interact with their texts, everywhere. The development of the idea started in early 2010 and the application is currently in private beta.
 
 *From Lead Developer Francisco Treacy:* "As Riak is content-type agnostic and excels at consistency/availability fine-tuning, it is being used to persist several kinds of data in Widescript's application - logging, user metadata, multimedia assets. Not only it was chosen for its distributed nature, but because it goes hand in hand with Widescript's Javascript development stack."
 
@@ -37,7 +37,7 @@ nodes and tolerates eventual consistency.
 [[/attachments/swingvine-dark.png|align=center|width=110]]
 
 
-Based in Seatlle, [[SwingVine|http://swingvine.com]] helps you discover new music, movies, books, fashion, wines, and more. SwingVine shows you what's hot in each category and then shows you the connections or vines between what you're already looking at and unexplored content that you might enjoy.  SwingVine then lets you personalize your discovery experience by incorporating your friends. 
+Based in Seatlle, [[SwingVine|http://swingvine.com]] helps you discover new music, movies, books, fashion, wines, and more. SwingVine shows you what's hot in each category and then shows you the connections or vines between what you're already looking at and unexplored content that you might enjoy.  SwingVine then lets you personalize your discovery experience by incorporating your friends.
 
 *From Co-Founder Alan McConnell:* "We've had a fantastic experience using Riak for a media scrapbook product we've recently released called SwingVine Gallery. Our legacy image storage system is over 10K lines of C++ code, and using Riak we were able to replace it with a system that is less than 1000 lines of python and performs better, scales better, and is more durable.  All of our users' scrapbook media (video, images and audio) data/metadata for the SwingVine Gallery product is housed in Riak.
 
@@ -49,7 +49,7 @@ Based in Seatlle, [[SwingVine|http://swingvine.com]] helps you discover new musi
 [[/attachments/rigel_group.png|align=center|width=175|vspace=35px]]
 
 
-[[Rigel Group|http://rigelgroupllc.com]] is a small, high-impact software development company based in Carlsbad, CA. We help clients leverage cutting-edge technologies and cloud-based architectures to build high-performance, large-scale applications at absurdly low costs. 
+[[Rigel Group|http://rigelgroupllc.com]] is a small, high-impact software development company based in Carlsbad, CA. We help clients leverage cutting-edge technologies and cloud-based architectures to build high-performance, large-scale applications at absurdly low costs.
 
 *From Rigel Group CTO John Lynch:* "One of our favorite tools is the Riak distributed key/value data store. Riak's incredibly low operational costs allow clients who do not have dedicated, high-end system administration resources to still deploy large-scale, data-heavy applications. This "democratization" of Big Data is allowing smaller firms to compete with the big guys. Having a company as developer-friendly as Basho stand behind the product is also a huge win for us."
 
@@ -105,7 +105,7 @@ inagist uses Riak for archiving tweets and analyzing trends. With Riak, they are
 
 [[SensiSoft|http://sensisoft.com/]] is a global services and software company specializing in classified advertising.
 
-SensiSoft uses Riak as the datastore for its Web Archive application, used to store and archive advertisements on behalf of its clients. It also makes extensive use of Riak's MapReduce functionality to query this archive.  
+SensiSoft uses Riak as the datastore for its Web Archive application, used to store and archive advertisements on behalf of its clients. It also makes extensive use of Riak's MapReduce functionality to query this archive.
 
 
 
@@ -122,7 +122,7 @@ Founded in 1979, [Tax Management Associates, Inc.|http://www.tma1.com/] (TMA) is
 TMA currently uses Riak for two internal applications with plans to roll out a third, public-facing application in 2011. Currently in production are:
 
 #  An archiving application responsible for the storage and security of tax forms for more than 100 counties in North Carolina; Using Riak as a document store, TMA is able to handle data inputs from six different applications while never worrying data about versioning and scalability.
-#  A spidering application that uses Riak to store data and distribute work loads via replication. Riak is responsible for managing the work queue that coordinates the spidering and then stores the resulting data to be queried later using Riak's MapReduce. 
+#  A spidering application that uses Riak to store data and distribute work loads via replication. Riak is responsible for managing the work queue that coordinates the spidering and then stores the resulting data to be queried later using Riak's MapReduce.
 
 
 
@@ -134,7 +134,7 @@ TMA currently uses Riak for two internal applications with plans to roll out a t
 
 
 
-[[Dayfindr.com|http://www.dayfindr.com/]] is a simple calendar collaboration tool that helps you find a day for your event where most people are available. 
+[[Dayfindr.com|http://www.dayfindr.com/]] is a simple calendar collaboration tool that helps you find a day for your event where most people are available.
 
 *From Dayfindr's Creator Benjamin Nortier*: "Using Riak as the storage engine provides peace of mind for horizontal scalability in the future, and it also scales down to a small memory footprint for running on a virtual private server. In addition to having a set of hard-core technical credentials, the team and community behind Riak are highly competent and helpful, which sets it apart in a ever more crowded NoSQL market."
 
@@ -148,7 +148,7 @@ TMA currently uses Riak for two internal applications with plans to roll out a t
 
 
 
-The Rock of Gainesville is a vibrant, non-denominational, family-centered Christian church located in Gainesville, Florida. 
+The Rock of Gainesville is a vibrant, non-denominational, family-centered Christian church located in Gainesville, Florida.
 
 The Rock used Riak to build an SMS-ready, distributed sign-up system that enables members to register for and track upcoming events.
 
@@ -180,7 +180,7 @@ We Geo uses Riak in its service layer to store a user's location-specific check-
 
 
 
-[[ZayMobile Technology|http://zaymobiletech.com/]] is a technology-enabler based in Kuala Lumpur, Malaysia.  They provide Web, WAP and Mobile solutions with a particular focus in Mobile Messaging.  
+[[ZayMobile Technology|http://zaymobiletech.com/]] is a technology-enabler based in Kuala Lumpur, Malaysia.  They provide Web, WAP and Mobile solutions with a particular focus in Mobile Messaging.
 
 *From Principal Partner Zafua Adian Yahaya*: "Our messaging gateway currently connected to the three main local mobile network operators uses Riak extensively for all our internal transactions. Riak is also used in our specialized, telco-grade, mission-critical systems in the Operational Support Systems (OSS), as well as in the Business Support Systems (BSS) areas."
 
@@ -216,7 +216,7 @@ There are many background processes (some services, some run run as cronjobs) wh
 
 
 
-[[Excel Collaborations & Communications (or XL59)|http://xl59.com]] is a hosted collaborations and communications platform service provider based in China. 
+[[Excel Collaborations & Communications (or XL59)|http://xl59.com]] is a hosted collaborations and communications platform service provider based in China.
 
 XL59 uses Riak as a distributed data store in its cloud-based data distribution model. The data access layer of the XL59 Platform is formed by a Riak cluster playing the role of edge data servers that interact with centralized PostgreSQL servers.
 
@@ -228,7 +228,7 @@ XL59 uses Riak as a distributed data store in its cloud-based data distribution 
 
 
 
-[[Ask Sponsored Listings|http://sponsoredlistings.ask.com/]] is the search engine marketing extension of Ask.com, a top tier search engine.  
+[[Ask Sponsored Listings|http://sponsoredlistings.ask.com/]] is the search engine marketing extension of Ask.com, a top tier search engine.
 
 *From VP of Technology David Weldon* : "We are currently using Riak to store publisher configuration data and click statistics for our direct navigation products. I sleep well at night knowing that my system is fault-tolerant."
 

@@ -153,11 +153,11 @@ The possible operations that the driver will run, plus their "weight" or likelih
 
 
 ```bash
- 
+
 % Run 80% gets, 20% puts.
 {operations, [{get, 4}, {put, 1}]}.
 ```
- 
+
 
 Operations are defined on a *per-driver* basis. Not all drivers will implement the "get"/"put" operations discussed above. Consult the driver source to determine the valid operations.
 
@@ -313,7 +313,7 @@ The Erlang cookie to use to connect to Riak clients. Default is {{'riak'}}.
 
 
 ```bash
-    
+
 {riakclient_cookie, riak}.
 ```
 
@@ -329,7 +329,7 @@ The name of the local node. This is passed into [{{net_kernel:start/1}}|http://e
 
 
 h4. riakclient_replies
-    
+
 This value is used for R-values during a get operation, and W-values during a put operation.
 
 
@@ -351,7 +351,7 @@ The Riak bucket to use for reading and writing values. Default is {{<<"test">>}}
 
 
 h3. basho_bench_driver_riakc_pb Settings
-   
+
 h4. riakc_pb_ips
 
 List of IP addresses to connect the workers to. A random IP will be chosen for each worker.

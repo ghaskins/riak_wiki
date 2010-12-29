@@ -5,17 +5,17 @@
  *  Implements the HTML-CSS OutputJax that displays mathematics
  *  using HTML and CSS to position the characters from math fonts
  *  in their proper locations.
- *  
+ *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2009-2010 Design Science, Inc.
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,7 +24,7 @@
  */
 
 (function (MML,AJAX,HTMLCSS) {
-   
+
   var FONTTEST = MathJax.Object.Subclass({
     FontInfo: {
       STIX: {family: "STIXSizeOneSym", testString: "() {} []"},
@@ -1653,8 +1653,8 @@
           var accent = (i != this.base && values[this.ACCENTS[i]]);
           if (accent && box.bbox.w <= 1/HTMLCSS.em+.0001) { // images can get the width off by 1px
             box.bbox.w = box.bbox.rw - box.bbox.lw; box.bbox.noclip = true;
-	    if (box.bbox.lw)
-	      {box.insertBefore(HTMLCSS.createSpace(box.parentNode,0,0,-box.bbox.lw),box.firstChild)}
+      if (box.bbox.lw)
+        {box.insertBefore(HTMLCSS.createSpace(box.parentNode,0,0,-box.bbox.lw),box.firstChild)}
             HTMLCSS.createBlank(box,0,0,box.bbox.rw+.1);
           }
           dw = {left:0, center:(W-box.bbox.w)/2, right:W-box.bbox.w}[values.align];
@@ -1985,7 +1985,7 @@
       });
     }
   });
-  
+
   HTMLCSS.loadComplete("jax.js");
 
 })(MathJax.ElementJax.mml, MathJax.Ajax, MathJax.OutputJax["HTML-CSS"]);

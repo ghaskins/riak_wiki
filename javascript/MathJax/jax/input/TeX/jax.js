@@ -1,21 +1,21 @@
 /*************************************************************
  *
  *  MathJax/jax/input/TeX/jax.js
- *  
+ *
  *  Implements the TeX InputJax that reads mathematics in
  *  TeX and LaTeX format and converts it to the MML ElementJax
  *  internal format.
  *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2009-2010 Design Science, Inc.
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,8 +24,8 @@
  */
 
 (function (TEX) {
-  var TRUE = true, FALSE = false, MML; 
-  
+  var TRUE = true, FALSE = false, MML;
+
   TEX.Stack = MathJax.Object.Subclass({
     Init: function (env) {
       this.global = {};
@@ -69,7 +69,7 @@
     },
     toString: function () {return "stack[\n  "+this.data.join("\n  ")+"\n]"}
   });
-  
+
   var STACKITEM = TEX.Stack.Item = MathJax.Object.Subclass({
     type: "base",
     closeError: "Extra close brace or missing open brace",
@@ -192,7 +192,7 @@
       return this.SUPER(arguments).checkItem.call(this,item);
     }
   });
-  
+
   STACKITEM.end = STACKITEM.Subclass({
     type: "end", isClose: TRUE
   });
@@ -205,7 +205,7 @@
       return [STACKITEM.mml(mml),item];
     }
   });
-  
+
   STACKITEM.position = STACKITEM.Subclass({
     type: "position",
     checkItem: function (item) {
@@ -223,7 +223,7 @@
       return this.SUPER(arguments).checkItem.call(this,item);
     }
   });
-  
+
   STACKITEM.array = STACKITEM.Subclass({
     type: "array", isOpen: TRUE, arraydef: {},
     Init: function () {
@@ -257,7 +257,7 @@
       for (var id in this.env) {if (this.env.hasOwnProperty(id)) {delete this.env[id]}}
     }
   });
-  
+
   STACKITEM.cell = STACKITEM.Subclass({
     type: "cell", isClose: TRUE
   });
@@ -274,19 +274,19 @@
     },
     Add: function () {this.data.push.apply(this.data,arguments); return this}
   });
-  
+
 
   var TEXDEF = TEX.Definitions = {};
-  
+
   TEX.Startup = function () {
     MML = MathJax.ElementJax.mml;
     MathJax.Hub.Insert(TEXDEF,{
-  
+
       // patterns for letters and numbers
       letter:  /[a-z]/i,
       digit:   /[0-9.]/,
       number:  /^(?:[0-9]+(?:\{,\}[0-9]{3})*(?:\.[0-9]*)*|\.[0-9]+)/,
-    
+
       special: {
         '\\':  'ControlSequence',
         '{':   'Open',
@@ -304,45 +304,45 @@
         '#':   'Hash',
         '\u2019': 'Prime'
       },
-      
+
       remap: {
         '-':   '2212',
         '*':   '2217'
       },
-    
+
       mathchar0mi: {
-	// Lower-case greek
-	alpha:        '03B1',
-	beta:         '03B2',
-	gamma:        '03B3',
-	delta:        '03B4',
-	epsilon:      '03F5',
-	zeta:         '03B6',
-	eta:          '03B7',
-	theta:        '03B8',
-	iota:         '03B9',
-	kappa:        '03BA',
-	lambda:       '03BB',
-	mu:           '03BC',
-	nu:           '03BD',
-	xi:           '03BE',
-	omicron:      '03BF', // added for completeness
-	pi:           '03C0',
-	rho:          '03C1',
-	sigma:        '03C3',
-	tau:          '03C4',
-	upsilon:      '03C5',
-	phi:          '03D5',
-	chi:          '03C7',
-	psi:          '03C8',
-	omega:        '03C9',
-	varepsilon:   '03B5',
-	vartheta:     '03D1',
-	varpi:        '03D6',
-	varrho:       '03F1',
-	varsigma:     '03C2',
-	varphi:       '03C6',
-        
+  // Lower-case greek
+  alpha:        '03B1',
+  beta:         '03B2',
+  gamma:        '03B3',
+  delta:        '03B4',
+  epsilon:      '03F5',
+  zeta:         '03B6',
+  eta:          '03B7',
+  theta:        '03B8',
+  iota:         '03B9',
+  kappa:        '03BA',
+  lambda:       '03BB',
+  mu:           '03BC',
+  nu:           '03BD',
+  xi:           '03BE',
+  omicron:      '03BF', // added for completeness
+  pi:           '03C0',
+  rho:          '03C1',
+  sigma:        '03C3',
+  tau:          '03C4',
+  upsilon:      '03C5',
+  phi:          '03D5',
+  chi:          '03C7',
+  psi:          '03C8',
+  omega:        '03C9',
+  varepsilon:   '03B5',
+  vartheta:     '03D1',
+  varpi:        '03D6',
+  varrho:       '03F1',
+  varsigma:     '03C2',
+  varphi:       '03C6',
+
         // Ord symbols
         S:            '00A7',
         aleph:        ['2135',{mathvariant: MML.VARIANT.NORMAL}],
@@ -375,7 +375,7 @@
         heartsuit:    ['2661',{mathvariant: MML.VARIANT.NORMAL}],
         spadesuit:    ['2660',{mathvariant: MML.VARIANT.NORMAL}]
       },
-        
+
       mathchar0mo: {
         surd:         '221A',
 
@@ -398,7 +398,7 @@
         oint:         ['222E',{texClass: MML.TEXCLASS.OP}],
         bigsqcup:     ['2A06',{texClass: MML.TEXCLASS.OP, movesupsub:TRUE}],
         smallint:     ['222B',{largeop:FALSE}],
-        
+
         // binary operations
         triangleleft:      '25C3',
         triangleright:     '25B9',
@@ -434,7 +434,7 @@
         ast:          '2217',
         times:        '00D7',
         star:         '22C6',
-        
+
         // Relations
         propto:       '221D',
         sqsubseteq:   '2291',
@@ -477,10 +477,10 @@
         doteq:        '2250',
         bowtie:       '22C8',
         models:       '22A8',
-        
+
         notChar:      '0338',
-        
-        
+
+
         // Arrows
         Leftrightarrow:     '21D4',
         Leftarrow:          '21D0',
@@ -509,8 +509,8 @@
         Longleftrightarrow: '27FA',
         longleftrightarrow: '27F7',
         longmapsto:         '27FC',
-        
-        
+
+
         // Misc.
         ldots:            '2026',
         cdots:            '22EF',
@@ -522,12 +522,12 @@
         dotsm:            '22EF',  // dots with multiplication
         dotsi:            '22EF',  // dots with integrals
         dotso:            '2026',  // other dots
-        
+
         ldotp:            ['002E', {texClass: MML.TEXCLASS.PUNCT}],
         cdotp:            ['22C5', {texClass: MML.TEXCLASS.PUNCT}],
         colon:            ['003A', {texClass: MML.TEXCLASS.PUNCT}]
       },
-      
+
       mathchar7: {
         Gamma:        '0393',
         Delta:        '0394',
@@ -540,7 +540,7 @@
         Phi:          '03A6',
         Psi:          '03A8',
         Omega:        '03A9',
-        
+
         '_':          '005F',
         '#':          '0023',
         '$':          '0024',
@@ -548,7 +548,7 @@
         '&':          '0026',
         And:          '0026'
       },
-      
+
       delimiter: {
         '(':                '(',
         ')':                ')',
@@ -592,13 +592,13 @@
         '\\lbrack':         '[',
         '\\rbrack':         ']'
       },
-      
+
       macros: {
         displaystyle:      ['SetStyle','D',TRUE,0],
         textstyle:         ['SetStyle','T',FALSE,0],
         scriptstyle:       ['SetStyle','S',FALSE,1],
         scriptscriptstyle: ['SetStyle','SS',FALSE,2],
-        
+
         rm:                ['SetFont',MML.VARIANT.NORMAL],
         mit:               ['SetFont',MML.VARIANT.ITALIC],
         oldstyle:          ['SetFont',MML.VARIANT.OLDSTYLE],
@@ -612,7 +612,7 @@
         tt:                ['SetFont',MML.VARIANT.MONOSPACE],
 
 //      font:
-        
+
         tiny:              ['SetSize',0.5],
         Tiny:              ['SetSize',0.6],  // non-standard
         scriptsize:        ['SetSize',0.7],
@@ -623,7 +623,7 @@
         LARGE:             ['SetSize',1.73],
         huge:              ['SetSize',2.07],
         Huge:              ['SetSize',2.49],
-        
+
         arcsin:            ['NamedOp',0],
         arccos:            ['NamedOp',0],
         arctan:            ['NamedOp',0],
@@ -656,7 +656,7 @@
         sup:                'NamedOp',
         tan:               ['NamedOp',0],
         tanh:              ['NamedOp',0],
-        
+
         limits:            ['Limits',1],
         nolimits:          ['Limits',0],
 
@@ -674,7 +674,7 @@
         overset:            'Overset',
         underset:           'Underset',
         stackrel:           ['Macro','\\mathrel{\\mathop{#2}\\limits^{#1}}',2],
-          
+
         over:               'Over',
         overwithdelims:     'Over',
         atop:               'Over',
@@ -684,13 +684,13 @@
         brace:             ['Over','{','}'],
         brack:             ['Over','[',']'],
         choose:            ['Over','(',')'],
-        
+
         frac:               'Frac',
         sqrt:               'Sqrt',
         root:               'Root',
         uproot:            ['MoveRoot','upRoot'],
         leftroot:          ['MoveRoot','leftRoot'],
-        
+
         left:               'LeftRight',
         right:              'LeftRight',
 
@@ -711,7 +711,7 @@
         qquad:             ['Spacer',"2em"],
         thinspace:         ['Spacer',MML.LENGTH.THINMATHSPACE],
         negthinspace:      ['Spacer',MML.LENGTH.NEGATIVETHINMATHSPACE],
-    
+
         hskip:              'Hskip',
         hspace:             'Hskip',
         kern:               'Hskip',
@@ -720,7 +720,7 @@
         mkern:              'Hskip',
         Rule:              ['Rule'],
         Space:             ['Rule','blank'],
-    
+
         big:               ['MakeBig',MML.TEXCLASS.ORD,0.85],
         Big:               ['MakeBig',MML.TEXCLASS.ORD,1.15],
         bigg:              ['MakeBig',MML.TEXCLASS.ORD,1.45],
@@ -751,7 +751,7 @@
 
         mathchoice:        ['Extension','mathchoice'],
         buildrel:           'BuildRel',
-    
+
         hbox:               ['HBox',0],
         text:               'HBox',
         mbox:               ['HBox',0],
@@ -763,7 +763,7 @@
         vphantom:          ['Phantom',1,0],
         hphantom:          ['Phantom',0,1],
         smash:              'Smash',
-    
+
         acute:             ['Accent', "02CA"],  // or 0301
         grave:             ['Accent', "02CB"],  // or 0300
         ddot:              ['Accent', "00A8"],  // or 0308
@@ -816,7 +816,7 @@
         not:               ['Macro','\\mathrel{\\rlap{\\kern.5em\\notChar}}'],
         ' ':               ['Macro','\\text{ }'],
         space:              'Tilde',
-        
+
 
         //  LaTeX
         begin:              'Begin',
@@ -825,11 +825,11 @@
         newcommand:        ['Extension','newcommand'],
         newenvironment:    ['Extension','newcommand'],
         def:               ['Extension','newcommand'],
-        
+
         verb:              ['Extension','verb'],
-        
+
         boldsymbol:        ['Extension','boldsymbol'],
-        
+
         tag:               ['Extension','AMSmath'],
         notag:             ['Extension','AMSmath'],
         label:             ['Macro','',1],           // not implemented yet
@@ -838,17 +838,17 @@
         //  Extensions to TeX
         unicode:    ['Extension','unicode'],
         color:      'Color',
-        
+
 //      href:       ['Extension','HTML'],
 //      'class':    ['Extension','HTML'],
 //      style:      ['Extension','HTML'],
 //      cssId:      ['Extension','HTML'],
 //      bbox:       ['Extension','bbox'],
-    
+
         require:            'Require'
 
       },
-      
+
       environment: {
         array:        ['Array'],
         matrix:       ['Array',null,null,null,'c'],
@@ -877,12 +877,12 @@
         'alignat*':   ['ExtensionEnv',null,'AMSmath'],
         alignedat:    ['ExtensionEnv',null,'AMSmath']
       },
-      
+
       p_height: 1.2 / .85   // cmex10 height plus depth over .85
 
     });
   };
-  
+
   /************************************************************************/
   /*
    *   The TeX Parser
@@ -912,7 +912,7 @@
       return this.stack.Top().data[0];
     },
     mmlToken: function (token) {return token}, // used by boldsymbol extension
-    
+
     /************************************************************************/
     /*
      *   Handle various token classes
@@ -969,19 +969,19 @@
       if (this.stack.env.font) {mml.mathvariant = this.stack.env.font}
       this.Push(this.mmlToken(mml));
     },
-    
+
     /*
      *  Handle { and }
      */
     Open: function (c) {this.Push(STACKITEM.open())},
     Close: function (c) {this.Push(STACKITEM.close())},
-    
+
     /*
      *  Handle tilde and spaces
      */
     Tilde: function (c) {this.Push(MML.mtext(MML.chars(" ")))},
     Space: function (c) {},
-    
+
     /*
      *  Handle ^, _, and '
      */
@@ -1031,21 +1031,21 @@
       sup = this.mmlToken(MML.mo(MML.chars(sup)).With({isPrime: TRUE, variantForm: TEX.isSTIX}));
       this.Push(MML.msubsup(base,null,sup));
     },
-    
+
     /*
      *  Handle comments
      */
     Comment: function (c) {
       while (this.i < this.string.length && this.string.charAt(this.i) != "\n") {this.i++}
     },
-    
+
     /*
      *  Handle hash marks outside of definitions
      */
     Hash: function (c) {
       TEX.Error("You can't use 'macro parameter character #' in math mode");
     },
-    
+
     /*
      *  Handle other characters (as <mo> elements)
      */
@@ -1062,12 +1062,12 @@
       if (mo.autoDefault("texClass",true) == "") {mo = MML.TeXAtom(mo)}
       this.Push(this.mmlToken(mo.With(def)));
     },
-    
+
     /************************************************************************/
     /*
      *   Macros
      */
-    
+
     SetFont: function (name,font) {this.stack.env.font = font},
     SetStyle: function (name,texStyle,style,level) {
       this.stack.env.style = texStyle; this.stack.env.level = level;
@@ -1085,15 +1085,15 @@
       if (old) {this.stack.env.color} else {delete this.stack.env.color}
       this.Push(MML.mstyle(math).With({mathcolor: color}));
     },
-    
+
     Spacer: function (name,space) {
       this.Push(MML.mspace().With({width: space, mathsize: MML.SIZE.NORMAL, scriptlevel:1}));
     },
-    
+
     LeftRight: function (name) {
       this.Push(STACKITEM[name.substr(1)]().With({delim: this.GetDelimiter(name)}));
     },
-    
+
     NamedOp: function (name,limits,id) {
       var underover = (limits != null && limits === 0 ? FALSE : TRUE);
       if (!id) {id = name.substr(1)}; limits = ((limits || limits == null) ? TRUE : FALSE);
@@ -1113,7 +1113,7 @@
       op.movesupsub = (limits ? TRUE : FALSE);
       op.movablelimits = FALSE;
     },
-    
+
     Over: function (name,open,close) {
       var mml = STACKITEM.over().With({name: name});
       if (open || close) {
@@ -1164,24 +1164,24 @@
       if (n.substr(0,1) !== "-") {n = "+"+n}
       this.stack.global[id] = n;
     },
-    
+
     Accent: function (name,accent,stretchy) {
       var c = this.ParseArg(name);
       var mml = this.mmlToken(MML.mo(MML.entity("#x"+accent)).With({accent: TRUE}));
       mml.stretchy = (stretchy ? TRUE : FALSE);
       this.Push(MML.munderover(c,null,mml).With({accent: TRUE}));
     },
-    
+
     UnderOver: function (name,c,stack) {
       var pos = {o: "over", u: "under"}[name.charAt(1)];
       var base = this.ParseArg(name);
       var mml = MML.munderover(base,null,null);
       if (stack) {mml.movesupsub = TRUE}
-      mml.data[mml[pos]] = 
+      mml.data[mml[pos]] =
         this.mmlToken(MML.mo(MML.entity("#x"+c)).With({stretchy: TRUE, accent: (pos == "under")}));
       this.Push(mml);
     },
-    
+
     Overset: function (name) {
       var top = this.ParseArg(name), base = this.ParseArg(name);
       this.Push(MML.munderover(base,null,top));
@@ -1190,17 +1190,17 @@
       var bot = this.ParseArg(name), base = this.ParseArg(name);
       this.Push(MML.munderover(base,bot,null));
     },
-    
+
     TeXAtom: function (name,mclass) {
       var def = {texClass: mclass};
       if (mclass == MML.TEXCLASS.OP) {def.movesupsub = def.movablelimits = TRUE}
       this.Push(MML.TeXAtom(this.ParseArg(name)).With(def));
     },
-    
+
     Strut: function (name) {
       this.Push(MML.mpadded().With({height: "8.6pt", depth: "3pt", width: 0}));
     },
-    
+
     Phantom: function (name,v,h) {
       var box = MML.mphantom(this.ParseArg(name));
       if (v || h) {
@@ -1210,7 +1210,7 @@
       }
       this.Push(box);
     },
-    
+
     Smash: function (name) {
       var bt = this.trimSpaces(this.GetBrackets(name));
       var smash = MML.mpadded(this.ParseArg(name));
@@ -1221,13 +1221,13 @@
       }
       this.Push(smash);
     },
-    
+
     Lap: function (name) {
       var mml = MML.mpadded(this.ParseArg(name)).With({width: 0});
       if (name === "\\llap") {mml.lspace = "-1 width"}
       this.Push(mml);
     },
-    
+
     RaiseLower: function (name) {
       var h = this.GetDimen(name);
       var item = STACKITEM.position().With({name: name, move: 'vertical'});
@@ -1235,7 +1235,7 @@
       if (name === "\\lower") {item.dh = '-'+h; item.dd = h} else {item.dh = h; item.dd = '-'+h}
       this.Push(item);
     },
-    
+
     MoveLeftRight: function (name) {
       var h = this.GetDimen(name);
       var nh = (h.charAt(0) === '-' ? h.slice(1) : '-'+h);
@@ -1246,13 +1246,13 @@
         right: MML.mspace().With({width: nh, mathsize: MML.SIZE.NORMAL, scriptlevel:1})
       }));
     },
-    
+
     Hskip: function (name) {
       this.Push(MML.mspace().With({
         width: this.GetDimen(name), mathsize: MML.SIZE.NORMAL, scriptlevel:0
       }));
     },
-    
+
     Rule: function (name,style) {
       var w = this.GetDimen(name),
           h = this.GetDimen(name),
@@ -1265,7 +1265,7 @@
       mml = (MML[type])().With(def);
       this.Push(mml);
     },
-    
+
     MakeBig: function (name,mclass,size) {
       size *= TEXDEF.p_height;
       size = String(size).replace(/(\.\d\d\d).+/,'$1')+"em";
@@ -1275,26 +1275,26 @@
         fence: TRUE, stretchy: TRUE, symmetric: TRUE
       })).With({texClass: mclass}));
     },
-    
+
     BuildRel: function (name) {
       var top = this.ParseUpTo(name,"\\over");
       var bot = this.ParseArg(name);
       this.Push(MML.TeXAtom(MML.munderover(bot,null,top)).With({mclass: MML.TEXCLASS.REL}));
     },
-    
+
     HBox: function (name,style) {
       this.Push.apply(this,this.InternalMath(this.GetArgument(name),style));
     },
-    
+
     FBox: function (name) {
       this.Push(MML.menclose.apply(MML,this.InternalMath(this.GetArgument(name))));
     },
-    
+
     Require: function (name) {
       var file = this.GetArgument(name); // @@@ FIXME: check for OK URL
       this.Extension(null,file);
     },
-    
+
     Extension: function (name,file,array) {
       if (name && !typeof(name) === "string") {name = name.name}
       file = TEX.extensionDir+"/"+file;
@@ -1304,7 +1304,7 @@
         MathJax.Hub.RestartAfter(MathJax.Ajax.Require(file));
       }
     },
-    
+
     Macro: function (name,macro,argcount) {
       if (argcount) {
         var args = [];
@@ -1314,7 +1314,7 @@
       this.string = this.AddArgs(macro,this.string.slice(this.i));
       this.i = 0;
     },
-    
+
     Matrix: function (name,open,close,align,spacing,vspacing,style) {
       var c = this.GetNext(); if (c === "") {TEX.Error("Missing argument for "+name)}
       if (c === "{") {this.i++} else {this.string = c+"}"+this.string.slice(this.i+1); this.i = 0}
@@ -1330,15 +1330,15 @@
       if (align != null)    {array.arraydef.columnalign = align}
       this.Push(array);
     },
-    
+
     Entry: function (name) {
       this.Push(STACKITEM.cell().With({isEntry: TRUE, name: name}));
     },
-    
+
     Cr: function (name) {
       this.Push(STACKITEM.cell().With({isCR: TRUE, name: name}));
     },
-    
+
    /************************************************************************/
    /*
     *   LaTeX environments
@@ -1356,11 +1356,11 @@
     End: function (name) {
       this.Push(STACKITEM.end().With({name: this.GetArgument(name)}));
     },
-    
+
     Equation: function (begin,row) {return row},
-    
+
     ExtensionEnv: function (begin,file) {this.Extension(begin.name,file,"environment")},
-    
+
     Array: function (begin,open,close,align,spacing,vspacing,style,raggedHeight) {
       if (!align) {align = this.GetArgument("\\begin{"+begin.name+"}")}
       var lines = align.replace(/[^clr|]/g,'').replace(/[^|]\|/g,'|').split('').join(' ');
@@ -1384,7 +1384,7 @@
       this.Push(begin);
       return array;
     },
-    
+
     /************************************************************************/
     /*
      *   String handling routines
@@ -1415,7 +1415,7 @@
     nextIsSpace: function () {
       return this.string.charAt(this.i).match(/[ \n\r\t]/);
     },
-    
+
     /*
      *  Get the next non-space character
      */
@@ -1423,7 +1423,7 @@
       while (this.nextIsSpace()) {this.i++}
       return this.string.charAt(this.i);
     },
-  
+
     /*
      *  Get and return a control-sequence name
      */
@@ -1460,10 +1460,10 @@
         }
         TEX.Error("Missing close brace");
         break;
-      }        
+      }
       return this.string.charAt(this.i++);
     },
-    
+
     /*
      *  Get an optional LaTeX argument in brackets
      */
@@ -1476,7 +1476,7 @@
          case '\\':  this.i++; break;
          case '}':
           if (parens-- <= 0) {TEX.Error("Extra close brace while looking for ']'")}
-          break;   
+          break;
          case ']':
           if (parens == 0) {return this.string.slice(j,this.i-1)}
           break;
@@ -1484,7 +1484,7 @@
       }
       TEX.Error("Couldn't find closing ']' for argument to "+name);
     },
-  
+
     /*
      *  Get the name of a delimiter (check it in the delimiter list).
      */
@@ -1517,7 +1517,7 @@
       }
       TEX.Error("Missing dimension or its units for "+name);
     },
-    
+
     /*
      *  Get everything up to the given control sequence (token)
      */
@@ -1544,7 +1544,7 @@
      */
     ParseArg: function (name) {return TEX.Parse(this.GetArgument(name),this.stack.env).mml()},
     ParseUpTo: function (name,token) {return TEX.Parse(this.GetUpTo(name,token),this.stack.env).mml()},
-    
+
     /*
      *  Break up a string into text and math blocks
      *  @@@ FIXME:  skip over braced groups?  @@@
@@ -1602,7 +1602,7 @@
       }
       return this.AddArgs(newstring,text);
     },
-    
+
     /*
      *  Make sure that macros are followed by a space if their names
      *  could accidentally be continued into the following text.
@@ -1611,9 +1611,9 @@
       if (s2.match(/^[a-z]/i) && s1.match(/(^|[^\\])(\\\\)*\\[a-z]+$/i)) {s1 += ' '}
       return s1+s2;
     }
-    
+
   });
-  
+
   /************************************************************************/
 
   TEX.Augment({
@@ -1621,7 +1621,7 @@
       var mml, math = script.innerHTML.replace(/^\s+/,"").replace(/\s+$/,"");
       if (MathJax.Hub.Browser.isKonqueror)
         {math = math.replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&amp;/g,"&")}
-      var displaystyle = 
+      var displaystyle =
         (script.type.replace(/\n/g," ").match(/(;|\s|\n)mode\s*=\s*display(;|\s|\n|$)/) != null);
       math = TEX.prefilterMath(math,displaystyle,script);
       try {
@@ -1648,5 +1648,5 @@
   });
 
   TEX.loadComplete("jax.js");
-  
+
 })(MathJax.InputJax.TeX);

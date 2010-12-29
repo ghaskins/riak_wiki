@@ -1,21 +1,21 @@
 /*************************************************************
  *
  *  MathJax/jax/input/MathML/jax.js
- *  
+ *
  *  Implements the MathML InputJax that reads mathematics in
  *  MathML format and converts it to the MML ElementJax
  *  internal format.
  *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2010 Design Science, Inc.
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,11 +25,11 @@
 
 (function (MATHML,BROWSER) {
   var MML;
-  
+
   MATHML.Parse = MathJax.Object.Subclass({
 
     Init: function (string) {this.Parse(string)},
-    
+
     //
     //  Parse the MathML and check for errors
     //
@@ -53,7 +53,7 @@
         MATHML.Error("MathML must be formed by a <math> element, not <"+doc.firstChild.nodeName+">");
       this.mml = this.MakeMML(doc.firstChild);
     },
-    
+
     //
     //  Convert the MathML structure to the MathJax Element jax structure
     //
@@ -86,13 +86,13 @@
       if (MATHML.config.useMathMLspacing) {mml.useMMLspacing = 0x08}
       return mml;
     },
-    
+
     trimSpace: function (string) {
       return string.replace(/^[ \t\n\r]+/,"")              // initial whitespace
                    .replace(/[ \t\n\r]+$/,"")              // trailing whitespace
                    .replace(/[ \t\n\r][ \t\n\r]+/g," ");   // internal multiple whitespace
     },
-    
+
     replaceEntity: function (match,entity) {
       if (MATHML.Parse.Entity[entity]) {return MATHML.Parse.Entity[entity]}
       var file = entity.charAt(0).toLowerCase();
@@ -104,7 +104,7 @@
       }
       return match;
     },
-    
+
     Remap: {
       '\u0027': '\u2032', // '
       '\u002A': '\u2217', // *
@@ -113,7 +113,7 @@
   }, {
     loaded: []
   });
-  
+
   /************************************************************************/
 
   MATHML.Augment({
@@ -124,7 +124,7 @@
         math = this.prefilterMathML(script.firstChild);
       } else {
         math = script.innerHTML.replace(/^\s+/,"").replace(/\s+$/,"");
-        if (BROWSER.isMSIE) 
+        if (BROWSER.isMSIE)
           {math = math.replace(/(&nbsp;)+$/,"").replace(/&amp;/g,"&").replace(/&lt;/g,"&amp;lt;")}
         else if (BROWSER.isKonqueror)
           {math = math.replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&amp;/g,"&")}
@@ -182,7 +182,7 @@
       }
     }
   });
-  
+
   MATHML.Parse.Entity = {
     ApplyFunction: '\u2061',
     Backslash: '\u2216',
@@ -584,7 +584,7 @@
     zeta: '\u03B6',
     zigrarr: '\u21DD'
   };
-  
+
   MATHML.loadComplete("jax.js");
-  
+
 })(MathJax.InputJax.MathML,MathJax.Hub.Browser);

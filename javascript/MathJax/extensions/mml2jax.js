@@ -1,21 +1,21 @@
 /*************************************************************
  *
  *  MathJax/extensions/mml2jax.js
- *  
+ *
  *  Implements the MathML to Jax preprocessor that locates <math> nodes
  *  within the text of a document and replaces them with SCRIPT tags
  *  for processing by MathJax.
  *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2010 Design Science, Inc.
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,7 +29,7 @@ MathJax.Extension.mml2jax = {
                             //   (defaults to full document)
   },
   MMLnamespace: "http://www.w3.org/1998/Math/MathML",
-  
+
   PreProcess: function (element) {
     if (!this.configured) {
       MathJax.Hub.Insert(this.config,(MathJax.Hub.config.mml2jax||{}));
@@ -49,7 +49,7 @@ MathJax.Extension.mml2jax = {
       for (var i = math.length-1; i >= 0; i--) {this.ProcessMath(math[i])}
     }
   },
-  
+
   ProcessMath: function (math) {
     var parent = math.parentNode;
     var script = document.createElement("script");
@@ -64,7 +64,7 @@ MathJax.Extension.mml2jax = {
       script.appendChild(math);
     }
   },
-  
+
   msieProcessMath: function (math) {
     var parent = math.parentNode;
     var script = document.createElement("script");
@@ -85,7 +85,7 @@ MathJax.Extension.mml2jax = {
     for (var i = 0, m = parts.length; i < m; i += 2) {parts[i] = parts[i].toLowerCase()}
     return parts.join('"');
   }
-  
+
 };
 
 MathJax.Hub.Browser.Select({
@@ -96,6 +96,6 @@ MathJax.Hub.Browser.Select({
     })
   }
 });
-  
+
 MathJax.Hub.Register.PreProcessor(["PreProcess",MathJax.Extension.mml2jax]);
 MathJax.Ajax.loadComplete("[MathJax]/extensions/mml2jax.js");

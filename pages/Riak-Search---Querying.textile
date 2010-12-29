@@ -20,7 +20,7 @@ You can specify a field to search by putting it in front of the term or phrase t
 
 
 ```bash
- 
+
 color:red
 ```
 
@@ -29,7 +29,7 @@ Or:
 
 
 ```bash
- 
+
 title:"See spot run"
 ```
 
@@ -38,7 +38,7 @@ You can further specify an index by prefixing the field with the index name. For
 
 
 ```bash
- 
+
 products.color:red
 ```
 
@@ -47,7 +47,7 @@ Or:
 
 
 ```bash
- 
+
 books.title:"See spot run"
 ```
 
@@ -75,7 +75,7 @@ For example:
 
 
 ```bash
- 
+
 bass~
 ```
 
@@ -84,7 +84,7 @@ Is equivalent to:
 
 
 ```bash
- 
+
 bass~0.5
 ```
 
@@ -99,7 +99,7 @@ For example:
 
 
 ```bash
- 
+
 "See spot run"~20
 ```
 
@@ -114,7 +114,7 @@ The following example will return documents with words containing "red" and "rum
 
 
 ```bash
- 
+
 "field:[[red TO rum]]"
 ```
 
@@ -123,7 +123,7 @@ The following example will return documents with words in between "red" and "rum
 
 
 ```bash
- 
+
 "field:{red TO rum}"
 ```
 
@@ -136,7 +136,7 @@ In the following example, documents with the term "red" will have their score bo
 
 
 ```bash
- 
+
 red^5 OR blue
 ```
 
@@ -149,7 +149,7 @@ The following example return documents containing the words "red" and "blue" but
 
 
 ```bash
- 
+
 red AND blue AND NOT yellow
 ```
 
@@ -158,7 +158,7 @@ The required ( + ) operator can be used in place of "AND", and the prohibited ( 
 
 
 ```bash
- 
+
 +red +blue -yellow
 ```
 
@@ -169,7 +169,7 @@ Clauses in a query can be grouped using parentheses. The following query returns
 
 
 ```bash
- 
+
 (red OR blue) AND NOT yellow
 ```
 
@@ -180,7 +180,7 @@ The Search Shell is the easiest way to run interactive queries against Riak Sear
 
 
 ```bash
- 
+
 bin/search-cmd shell [[INDEX]]
 ```
 
@@ -194,7 +194,7 @@ To run a single query from the command line, use:
 
 
 ```bash
- 
+
 bin/search-cmd search [[INDEX]] QUERY
 ```
 
@@ -203,7 +203,7 @@ For example:
 
 
 ```bash
- 
+
 bin/search-cmd search books "title:\"See spot run\""
 ```
 
@@ -212,7 +212,7 @@ This will display a list of Document ID values matching the query. To conduct a 
 
 
 ```bash
- 
+
 bin/search-cmd search_doc books "title:\"See spot run\""
 ```
 
@@ -223,7 +223,7 @@ To run a query from the Erlang shell, use @search:search(Query)@ or @search:sear
 
 
 ```bash
- 
+
 search:search(<<"books">>, <<"author:joyce">>).
 ```
 
@@ -232,7 +232,7 @@ This will display a list of Document ID values matching the query. To conduct a 
 
 
 ```bash
- 
+
 search:search_doc(<<"books">>, <<"author:joyce">>).
 ```
 
@@ -258,7 +258,7 @@ To query data in the system with Curl:
 
 
 ```bash
- 
+
 curl "http://localhost:8098/solr/books/select?start=0&rows=10000&q=prog*"
 ```
 
@@ -297,14 +297,14 @@ h4. Querying Integrated with Map/Reduce
 The Riak Client APIs that integrate with Riak Search also support using a search query to generate inputs for a map/reduce operation. This allows you to perform powerful analysis and computation across your data based on a search query. See the client documentation for more information. Currently, the Ruby, Python, PHP, and Erlang clients are supported.
 
 h4. Querying via HTTP/Curl
- 
+
 
 Developers who are using a language without an official Riak API or prefer to use the pure HTTP API can still execute a search-based map/reduce operation.
 
 The syntax is fairly simple.  In the "inputs" section of your map/reduce query, use the new "modfun" specification, naming "riak_search" as your module, "mapred_search" as your function, and your index and query as the arguments.
- 
+
 For example, if you wanted to search the "customers" bucket for objects that had the text "john" in their "first_name" field, you would normally issue a Solr query like:
- 
+
 
 ```bash
 $ curl http://localhost:8098/solr/customers/select?q=first_name:john

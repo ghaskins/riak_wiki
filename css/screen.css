@@ -9,7 +9,7 @@
 
 html, body {
   height: 100%;
-  color: black; 
+  color: black;
 }
 
 a, a:visited{
@@ -63,7 +63,7 @@ div.fixwidth {
 }
 
 #nav a {
-	font-size: 16px;
+  font-size: 16px;
     color: #ffffff;
     text-decoration: none;
 }
@@ -79,7 +79,7 @@ div.fixwidth {
 
 #nav div.rest a {
     color: #525c61;
-    font-size: 12px;    
+    font-size: 12px;
     font-weight: normal;
     display: block;
     padding: 2px 5px;
@@ -105,25 +105,25 @@ div.info, div.note {
 }
 
 div.info {
-	border: 1px solid #9eb6df;
-	background: #e0efff url(/images/information.png) no-repeat 0.7em 1.3em;
+  border: 1px solid #9eb6df;
+  background: #e0efff url(/images/information.png) no-repeat 0.7em 1.3em;
 }
 
 div.note {
-	border: 1px solid #f7df92;
-	background: #ffd url(/images/error.png) no-repeat 0.7em 1.3em;
+  border: 1px solid #f7df92;
+  background: #ffd url(/images/error.png) no-repeat 0.7em 1.3em;
 }
 
 div.info div.title {
-	padding-top: 0.1em;
-	font-size: 90%;
-	font-weight: bold;
+  padding-top: 0.1em;
+  font-size: 90%;
+  font-weight: bold;
 }
 
 div.note div.title {
-	padding-top: 0.1em;
-	font-size: 90%;
-	font-weight: bold;
+  padding-top: 0.1em;
+  font-size: 90%;
+  font-weight: bold;
 }
 
 #footer {
@@ -136,10 +136,10 @@ div.note div.title {
 }
 
 #footer table {
-	margin-top: 20px;
+  margin-top: 20px;
     margin-left:105px;
     margin-bottom: 30px;
-	width:90%;
+  width:90%;
 }
 
 #footer td {
@@ -165,7 +165,7 @@ div.note div.title {
     text-align: center;
     margin-top: 15px;
     margin-bottom: 15px;
-	margin-left:60px;
+  margin-left:60px;
 }
 
 #footer a {
@@ -233,13 +233,13 @@ html {overflow-y: scroll;}
 }
 
 #comment_footer {
-	height:23px;
-	background-color:#374042;
-	color:white;	
-	margin-left: 45px;
-	margin-bottom:5px;
-	text-align:center;
-	
+  height:23px;
+  background-color:#374042;
+  color:white;
+  margin-left: 45px;
+  margin-bottom:5px;
+  text-align:center;
+
 }
 
 #comment_footer a {color:#E5810c;}
@@ -293,18 +293,18 @@ html {overflow-y: scroll;}
   /* guide */
 
   #guides .guide {
-    overflow: hidden;   
-    width: 685px;     
+    overflow: hidden;
+    width: 685px;
   }
 
     /* main */
 
     #guides .guide .main {
-      margin-left: 45px;      
+      margin-left: 45px;
     }
-    
+
     #main {
-	  background-color: white;
+    background-color: white;
     }
 
     /* sidebar */

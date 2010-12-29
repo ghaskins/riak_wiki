@@ -1,28 +1,28 @@
 /*************************************************************
  *
  *  MathJax/extensions/jsMath2jax.js
- *  
+ *
  *  Implements a jsMath to Jax preprocessor that locates jsMath-style
  *  <SPAN CLASS="math">...</SPAN> and <DIV CLASS="math">...</DIV> tags
  *  and replaces them with SCRIPT tags for processing by MathJax.
- *  (Note: use the tex2jax preprocessor to convert TeX delimiters or 
+ *  (Note: use the tex2jax preprocessor to convert TeX delimiters or
  *  custom delimiters to MathJax SCRIPT tags.  This preprocessor is
  *  only for the SPAN and DIV form of jsMath delimiters).
- *  
+ *
  *  To use this preprocessor, include "jsMath2jax.js" in the extensions
  *  array in your config/MathJax.js file, or the MathJax.Hub.Config() call
  *  in your HTML document.
  *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2010 Design Science, Inc.
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,7 +34,7 @@ MathJax.Extension.jsMath2jax = {
   config: {
     previewTeX: true,   // Set to false to prevent preview strings from being inserted
   },
-  
+
   PreProcess: function (element) {
     if (!this.configured) {
       MathJax.Hub.Insert(this.config,(MathJax.Hub.config.jsMath2jax||{}));
@@ -50,7 +50,7 @@ MathJax.Extension.jsMath2jax = {
     for (i = 0, m = div.length; i < m; i++)
       {if (String(div[i].className).match(/\bmath\b/)) {this.ConvertMath(div[i],"; mode=display")}}
   },
-  
+
   ConvertMath: function (node,mode) {
     var parent = node.parentNode,
         script = this.CreateMathTag(mode,node.innerHTML);
@@ -62,7 +62,7 @@ MathJax.Extension.jsMath2jax = {
       parent.removeChild(node);
     }
   },
-  
+
   CreateMathTag: function (mode,tex) {
     var script = document.createElement("script");
     script.type = "math/tex" + mode;
@@ -70,7 +70,7 @@ MathJax.Extension.jsMath2jax = {
       else {script.appendChild(document.createTextNode(tex))}
     return script;
   }
-  
+
 };
 
 MathJax.Hub.Register.PreProcessor(["PreProcess",MathJax.Extension.jsMath2jax]);

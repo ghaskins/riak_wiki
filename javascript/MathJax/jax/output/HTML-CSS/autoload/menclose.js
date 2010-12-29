@@ -1,19 +1,19 @@
 /*************************************************************
  *
  *  MathJax/jax/output/HTML-CSS/autoload/menclose.js
- *  
+ *
  *  Implements the HTML-CSS output for <mencode> elements.
  *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2010 Design Science, Inc.
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,7 +22,7 @@
  */
 
 (function (MML,HTMLCSS) {
-  
+
   MML.menclose.Augment({
     toHTML: function (span) {
       var values = this.getValues("notation","thickness","padding");
@@ -53,9 +53,9 @@
       return span;
     }
   });
-  
+
   MathJax.Hub.Startup.signal.Post("HTML-CSS menclose Ready");
   MathJax.Ajax.loadComplete(HTMLCSS.autoloadDir+"/menclose.js");
-  
+
 })(MathJax.ElementJax.mml,MathJax.OutputJax["HTML-CSS"]);
 

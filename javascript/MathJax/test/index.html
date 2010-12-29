@@ -19,11 +19,11 @@
 //
 //  Do NOT include the following in your own pages.  This is only here to
 //  provide an alert rather than MathJax's usual small message in the lower
-//  left-hand corner.  Use sample.html as the example for how to call 
+//  left-hand corner.  Use sample.html as the example for how to call
 //  MathJax in your own pages.
 //
 (function (HUB) {
-  
+
   var MINVERSION = {
     Firefox: 3.0,
     Opera: 9.52,
@@ -33,7 +33,7 @@
     Konqueror: 4.0,
     Unknown: 10000.0 // always disable unknown browsers
   };
-  
+
   if (!HUB.Browser.versionAtLeast(MINVERSION[HUB.Browser]||0.0)) {
     HUB.config.jax = [];          // don't load any Jax
     HUB.config.extensions = [];   // don't load any extensions
@@ -41,7 +41,7 @@
           "so we can't test if MathJax is working.\n\n"+
           "Please try a different browser, or a newer version of your browser.");
   }
-  
+
 })(MathJax.Hub);
 
 MathJax.Hub.Register.StartupHook("End",function () {
@@ -107,9 +107,9 @@ MathJax-webfonts ZIP file from
 <BLOCKQUOTE>
 <A HREF="http://sourceforge.net/projects/mathjax/files/">http://sourceforge.net/projects/mathjax/files/</A>
 </BLOCKQUOTE>
-before continuing.  Failure to install the new versions of the fonts will 
-mean that the data MathJax is using will not match the fonts, and so 
-display errors will occur.  You can probably see this in the equation 
+before continuing.  Failure to install the new versions of the fonts will
+mean that the data MathJax is using will not match the fonts, and so
+display errors will occur.  You can probably see this in the equation
 above: the radial will be out of place.
 <p>
 <HR>

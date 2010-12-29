@@ -14,7 +14,7 @@ This is an overview of the operations you can perform over the HTTP interface to
 
 h2. Bucket operations
 
-Buckets in Riak are a virtual concept. They exist primarily as a namespace mechanism and as a mechanism to isolate specific behavior changes that deviate from the default bucket settings. For example, you may augment the number of replicas, the specific file store backend and commit hooks at the bucket level. Currently, Buckets come with virtually no cost except for when you modify the default bucket properties. Modified Bucket properties are gossiped around the cluster and therefore add to the amount of data sent around the network. 
+Buckets in Riak are a virtual concept. They exist primarily as a namespace mechanism and as a mechanism to isolate specific behavior changes that deviate from the default bucket settings. For example, you may augment the number of replicas, the specific file store backend and commit hooks at the bucket level. Currently, Buckets come with virtually no cost except for when you modify the default bucket properties. Modified Bucket properties are gossiped around the cluster and therefore add to the amount of data sent around the network.
 
 
 <div class="note"><div class="title">Delete Buckets</div>At the moment there is no straightforward way to delete an entire Bucket. There is, however, an open ticket for the feature. To delete all the keys in a bucket, you'll need to delete them all individually.</div>
@@ -712,13 +712,13 @@ curl -v http://127.0.0.1:8098/ping
 > User-Agent: curl/7.19.7 (universal-apple-darwin10.0) libcurl/7.19.7 OpenSSL/0.9.8l zlib/1.2.3
 > Host: 127.0.0.1:8098
 > Accept: */*
-> 
+>
 < HTTP/1.1 200 OK
 < Server: MochiWeb/1.1 WebMachine/1.7.1 (participate in the frantic)
 < Date: Fri, 16 Jul 2010 02:34:26 GMT
 < Content-Type: text/html
 < Content-Length: 2
-< 
+<
 * Connection #0 to host 127.0.0.1 left intact
 * Closing connection #0
 OK

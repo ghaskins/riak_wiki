@@ -31,15 +31,15 @@ As of the 1.6 release, MongoDB offers several options for replication:
 
 [[http://www.mongodb.org/display/DOCS/Master+Slave]]
 
-2. Replica sets 
+2. Replica sets
 
 From the Mongo Docs: "Replica Sets are MongoDB's new method for replication. They are an elaboration on the existing master/slave replication, adding automatic failover and automatic recovery of member nodes."
 
 [[http://www.mongodb.org/display/DOCS/Replica+Sets]]
 
-While Master/Slave replication is still supported, Replica sets adds auto failover so it's expected that most users will migrate to this configuration. However, in certain use cases traditional M/S is more appropriate and will still be supported. 
+While Master/Slave replication is still supported, Replica sets adds auto failover so it's expected that most users will migrate to this configuration. However, in certain use cases traditional M/S is more appropriate and will still be supported.
 
-To enable horizontal scaling, Mongo uses a process known as "sharding," which involves designating certain server to hold certain chunks of the data as the data set grows. 
+To enable horizontal scaling, Mongo uses a process known as "sharding," which involves designating certain server to hold certain chunks of the data as the data set grows.
 
 New in the 1.6 release is "auto-sharding."
 
@@ -51,7 +51,7 @@ h2. Scaling Back In
 
 Riak allows you to remove a node (or nodes) from the cluster when needed. When you do this, RIak will hand the partitions that the removed node was managing and hand them back to the machines still in the cluster, giving each remaining node a few more partitions to worry about. In other words, the load remains evenly distributed.
 
-MongoDB has support for removing shards from your database.  
+MongoDB has support for removing shards from your database.
 
 [[http://www.mongodb.org/display/DOCS/Configuring+Sharding#ConfiguringSharding-Removingashard]]
 

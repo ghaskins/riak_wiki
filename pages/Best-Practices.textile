@@ -1,4 +1,4 @@
-h1. Best Practices 
+h1. Best Practices
 
 Here are some collected best practices to keep in mind and reference when building and running a Riak Cluster:
 

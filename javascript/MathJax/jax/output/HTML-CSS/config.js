@@ -1,20 +1,20 @@
 /*************************************************************
  *
  *  MathJax/jax/output/HTML-CSS/config.js
- *  
+ *
  *  Initializes the HTML-CCS OutputJax  (the main definition is in
  *  MathJax/jax/input/HTML-CSS/jax.js, which is loaded when needed).
  *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2009 Design Science, Inc.
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,20 +30,20 @@ MathJax.OutputJax["HTML-CSS"] = MathJax.OutputJax({
   autoloadDir: MathJax.OutputJax.directory + "/HTML-CSS/autoload",
   fontDir: MathJax.OutputJax.directory + "/HTML-CSS/fonts", // font name added later
   webfontDir: MathJax.OutputJax.fontDir + "/HTML-CSS",      // font name added later
-  
+
   config: {
     scale: 100,
     availableFonts: ["STIX","TeX"],
     preferredFont: "TeX",
     webFont: "TeX",
     imageFont: "TeX",
-    
+
     styles: {
       ".MathJax_Display": {
         "text-align": "center",
         margin:       "1em 0em"
       },
-      
+
       ".MathJax .merror": {
         "background-color": "#FFFF88",
         color:   "#CC0000",
@@ -53,10 +53,10 @@ MathJax.OutputJax["HTML-CSS"] = MathJax.OutputJax({
         "font-style": "italic",
         "font-size":  "90%"
       },
-      
+
       ".MathJax_Preview": {color: "#888888"}
     }
-    
+
   }
 });
 MathJax.OutputJax["HTML-CSS"].Register("jax/mml");
@@ -76,7 +76,7 @@ MathJax.OutputJax["HTML-CSS"].Register("jax/mml");
       Safari: 2.0,
       Konqueror: 4.0
     },
-    
+
     //
     //  For unsupported browsers, put back these delimiters for the preview
     //

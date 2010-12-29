@@ -49,4 +49,3 @@ riaksearch ping
 The command will respond with @pong@ if the node is running, or @pang@ if it is not.
 
 
- 

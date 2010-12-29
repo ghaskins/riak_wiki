@@ -431,7 +431,7 @@ message RpbLink {
 
 
 
-<div class="note"><div class="title">Missing keys</div>Remember - if a key is not stored in Riak an RpbGetResp without content and vclock fields will be returned. This should be mapped to whatever convention the client language uses to return not found, e.g. the erlang client returns an atom 
+<div class="note"><div class="title">Missing keys</div>Remember - if a key is not stored in Riak an RpbGetResp without content and vclock fields will be returned. This should be mapped to whatever convention the client language uses to return not found, e.g. the erlang client returns an atom
 @{error, notfound}@</div>
 
 
@@ -721,9 +721,9 @@ Erlang <<0,0,0,248,23,10,226,1,123,34,105,110,112,117,116,115,34,58,32,34,98,
          112,112,108,105,99,97,116,105,111,110,47,106,115,111,110>>
 
 RpbMapRedReq protoc decode:
-request: "{"inputs": "bucket_501653", "query": [{"map": {"arg": null, 
-"name": "Riak.mapValuesJson", "language": "javascript", "keep": false}}, 
- {"reduce": {"arg": null, "name": "Riak.reduceSum", "language": 
+request: "{"inputs": "bucket_501653", "query": [{"map": {"arg": null,
+"name": "Riak.mapValuesJson", "language": "javascript", "keep": false}},
+ {"reduce": {"arg": null, "name": "Riak.reduceSum", "language":
 "javascript", "keep": true}}]}"
 content_type: "application/json"
 

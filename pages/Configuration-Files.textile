@@ -55,12 +55,12 @@ These are properties used for buckets that have not been explicitly defined (as 
 
 ```erlang
 {default_bucket_props, [{n_val,3},
-			{allow_mult,false},
-			{last_write_wins,false},
-			{precommit, []},
-			{postcommit, []},
-			{chash_keyfun, {riak_core_util, chash_std_keyfun}},
-			{linkfun, {modfun, riak_kv_wm_link_walker, mapreduce_linkfun}}
+      {allow_mult,false},
+      {last_write_wins,false},
+      {precommit, []},
+      {postcommit, []},
+      {chash_keyfun, {riak_core_util, chash_std_keyfun}},
+      {linkfun, {modfun, riak_kv_wm_link_walker, mapreduce_linkfun}}
 ]}
 ```
 

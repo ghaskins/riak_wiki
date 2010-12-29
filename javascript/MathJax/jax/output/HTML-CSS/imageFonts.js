@@ -1,19 +1,19 @@
 /*************************************************************
  *
  *  MathJax/jax/output/HTML-CSS/imageFonts.js
- *  
+ *
  *  Implements the image fallback fonts for the HTML-CSS OutputJax.
  *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2009 Design Science, Inc.
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,7 +26,7 @@
 
     HTMLCSS.Augment({
       allowWebFonts: false,
-      
+
       imgDir: HTMLCSS.webfontDir+"/png",
       imgSize: ['050','060','071','085',100,120,141,168,200,238,283,336,400,476],
       imgBaseIndex: 4,      // set by initImg()
@@ -60,7 +60,7 @@
         this.addElement(span,"img",{src:AJAX.fileURL(file), style:style});
         return "";
       },
-      
+
       defineImageData: function (def) {
         for (var font in def) {if (def.hasOwnProperty(font)) {
           var FONT = HTMLCSS.FONTDATA.FONTS[font];
@@ -70,7 +70,7 @@
           }
         }}
       },
-      
+
       initImg: function (span) {
         if (this.imgSizeForEm[this.em]) {this.imgBaseIndex = this.imgSizeForEm[this.em]}
         for (var i = 0, m = this.imgEmWidth.length-1; i < m; i++)
@@ -78,7 +78,7 @@
         if (i && this.imgEmWidth[i] - this.em > this.em - this.imgEmWidth[i-1]) {i--}
         this.imgSizeForEm[this.em] = this.imgBaseIndex = i;
       },
-      
+
       imgIndex: function (scale) {
         if (!scale) {return this.imgBaseIndex}
         if (!this.imgSizeForScale[this.em]) {this.imgSizeForScale[this.em] = {}}
@@ -90,13 +90,13 @@
         this.imgSizeForScale[this.em][scale] = i;
         return i;
       },
-      
+
       imgBrowserZoom: function () {return 1}
-      
+
     });
-    
+
     HUB.Browser.Select({
-      
+
       Firefox: function (browser) {
         var ZDIV = HTMLCSS.addElement(document.body,"div",{
           style: {
@@ -104,7 +104,7 @@
             position:"absolute", top:0, left: 0, width:"200px", height:"200px"
           }
         });
-        
+
         var ZFRAME = HTMLCSS.addElement(ZDIV,"div",{
           style: {position:"absolute", left:0, top:0, right:0, bottom:0}
         });
@@ -112,16 +112,16 @@
         HTMLCSS.Augment({
           imgSpaceBug: true,
           imgSpace: String.fromCharCode(0xA0),
-          
+
           imgZoomLevel: (browser.isMac ?
             {50:.3, 30:.5, 22:.67, 19:.8, 16:.9, 15:1, 13:1.1, 12:1.2,
               11:1.33, 10:1.5, 9:1.7, 7:2, 6:2.4, 5:3,  0:15} :
             {56:.3, 34:.5, 25:.67, 21:.8, 19:.9, 17:1, 15:1.1, 14:1.2,
               13:1.33, 11:1.5, 10:1.7, 8:2, 7:2.4, 6:3,  0:17}
           ),
-        
+
           imgZoomDiv: ZDIV,
-          
+
           imgBrowserZoom: function () {
             var size = this.imgZoomLevel;
             ZDIV.style.display = "";
@@ -134,27 +134,27 @@
       },
 
       Safari: function (browser) {
-	// for iPhone and iTouch
+  // for iPhone and iTouch
 //        var webkit = (navigator.appVersion+"AppleWebKit/530").match(/AppleWebKit\/(\d+)/)[1];
-	HTMLCSS.Augment({
+  HTMLCSS.Augment({
 //          imgHeightBug: (!browser.isMac || webkit > 525),
 //          imgDepthBug:  (!browser.isMac || webkit > 525),
           imgBrowserZoom: function () {return 3}
         });
       },
-      
+
       Chrome: function (browser) {
-	HTMLCSS.Augment({
+  HTMLCSS.Augment({
           imgHeightBug: true,
           imgBrowserZoom: function () {return 3}
         });
       },
-      
+
       Opera: function (browser) {
         HTMLCSS.Augment({
           imgSpaceBug: true,
           imgSpace: String.fromCharCode(0xA0)+String.fromCharCode(0xA0),
-          
+
           imgDoc: (document.compatMode == "BackCompat" ? document.body :
                    document.documentElement),
 
@@ -167,19 +167,19 @@
         });
       }
     });
-    
+
     var GETWIDTHS = function () {
       var img = HTMLCSS.FONTDATA.FONTS["MathJax_Main"][0x2014][5].img; // em-dash
       HTMLCSS.imgEmWidth = [];
       for (var i = 0, m = img.length; i < m; i++) {HTMLCSS.imgEmWidth[i] = img[i][0]}
     };
-    
+
     MathJax.CallBack.Queue(
       ["Require",AJAX,HTMLCSS.webfontDir+"/imagedata.js"],
       GETWIDTHS,
       ["loadComplete",AJAX,HTMLCSS.directory+"/imageFonts.js"]
     );
-      
+
   });
-  
+
 })(MathJax.Hub,MathJax.OutputJax["HTML-CSS"],MathJax.Ajax);

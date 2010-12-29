@@ -1,12 +1,12 @@
 /*************************************************************
  *
  *  MathJax/jax/output/HTML-CSS/font/STIX/fontdata.js
- *  
+ *
  *  Initializes the HTML-CSS OutputJax to use the STIX fonts
  *  for displaying mathematics.
  *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2009-2010 Design Science, Inc.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,9 +23,9 @@
  */
 
 (function (HTMLCSS) {
-  
+
   HTMLCSS.allowWebFonts = false;
-  
+
   var GENERAL = "STIXGeneral",
       BOLD    = "STIXGeneral-bold",
       ITALIC  = "STIXGeneral-italic",
@@ -60,7 +60,7 @@
         "STIXSizeFiveSym":            "SizeFiveSym/Regular/All.js",
         "STIXIntegralsD":             "IntegralsD/Regular/All.js"
       },
-      
+
       DEFAULTFAMILY: GENERAL, DEFAULTWEIGHT: "normal", DEFAULTSTYLE: "normal",
 
       VARIANT: {
@@ -93,7 +93,7 @@
         "-largeOp": {fonts:[SIZE1,"STIXIntegralsD",NONUNI,GENERAL]},
         "-smallOp": {}
       },
-      
+
       RANGES: [
         {name: "alpha", low: 0x61, high: 0x7A, offset: "A", add: 26},
         {name: "Alpha", low: 0x41, high: 0x5A, offset: "A"},
@@ -102,16 +102,16 @@
         {name: "Greek", low: 0x0391, high: 0x03F6, offset: "G",
            remap: {0x03F5: 53, 0x03D1: 54, 0x03F0: 55, 0x03D5: 56, 0x03F1: 57, 0x03D6: 58, 0x03F4: 17}}
       ],
-      
+
       RULECHAR: 0x203E,
-      
+
       REMAP: {
         0x2F3: 0x2DA, 0x2F4: 0x2CA,     // ring below, middle grave
         0xFE37: 0x23DE, 0xFE38: 0x23DF, // OverBrace, UnderBrace
         0x3008: 0x27E8, 0x3009: 0x27E9, // langle, rangle
         0x2758: 0x2223                  // VerticalSeparator
       },
-      
+
       DELIMITERS: {
         0x0028: // (
         {
@@ -175,7 +175,7 @@
         {
           dir: H, HW: [[.333,GENERAL],[.558,SIZE1],[.978,SIZE2],[1.458,SIZE3],[1.886,SIZE4],[2.328,SIZE5]]
         },
-        0x2016: // double vertical line 
+        0x2016: // double vertical line
         {
           dir: V, HW: [[.879,GENERAL]], stretch: {ext:[0x2016,GENERAL]}
         },
@@ -336,10 +336,10 @@
       }
     }
   });
-  
+
   MathJax.Hub.Register.StartupHook("TeX Jax Ready", function () {
     var TEX = MathJax.InputJax.TeX;
-    
+
     TEX.isSTIX = true;
     TEX.Definitions.mathchar0mi.hbar = ['210F',{variantForm: true}];
     TEX.Definitions.mathchar0mi.prime[1].variantForm = true;
@@ -1081,7 +1081,7 @@
       [0xA0,0xA0,"All"],
       [0xE000,0xF8FF,"PrivateUse"]
     ]
-  
+
   };
 
   HTMLCSS.FONTDATA.FONTS['STIXNonUnicode-italic'] = {
@@ -1383,7 +1383,7 @@
       HTMLCSS.FONTDATA.REMAP[0x2DA] = 0xB0; // ring above
     }
   });
-  
+
   //
   //  Check for Beta version versus release version of fonts
   //
@@ -1397,7 +1397,7 @@
       ["loadComplete",MathJax.Ajax,HTMLCSS.fontDir + "/fontdata.js"]
     );
   }
-  
+
 
 })(MathJax.OutputJax["HTML-CSS"]);
 

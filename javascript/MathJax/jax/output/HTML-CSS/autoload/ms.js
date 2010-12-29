@@ -1,19 +1,19 @@
 /*************************************************************
  *
  *  MathJax/jax/output/HTML-CSS/autoload/ms.js
- *  
+ *
  *  Implements the HTML-CSS output for <ms> elements.
  *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2010 Design Science, Inc.
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,7 +22,7 @@
  */
 
 (function (MML) {
-  
+
   MML.ms.Augment({
     toHTML: function (span) {
       span = this.HTMLhandleSize(this.HTMLcreateSpan(span));
@@ -41,9 +41,9 @@
     }
   });
   MML.ms.prototype.defaults.fontfamily = 'monospace';
-  
+
   MathJax.Hub.Startup.signal.Post("HTML-CSS ms Ready");
-  
+
 })(MathJax.ElementJax.mml);
 
 MathJax.Ajax.loadComplete(MathJax.OutputJax["HTML-CSS"].autoloadDir+"/ms.js");

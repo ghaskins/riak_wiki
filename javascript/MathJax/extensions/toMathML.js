@@ -1,20 +1,20 @@
 /*************************************************************
  *
  *  MathJax/extensions/toMathML.js
- *  
+ *
  *  Implements a toMathML() method for the mml Element Jax that returns
  *  a MathML string from a given math expression.
  *
  *  ---------------------------------------------------------------------
- *  
+ *
  *  Copyright (c) 2010 Design Science, Inc.
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,7 +24,7 @@
 
 MathJax.Hub.Register.LoadHook("[MathJax]/jax/element/mml/jax.js",function () {
   var MML = MathJax.ElementJax.mml;
-  
+
   MML.mbase.Augment({
 
     toMathML: function (space) {
@@ -70,7 +70,7 @@ MathJax.Hub.Register.LoadHook("[MathJax]/jax/element/mml/jax.js",function () {
       "id","class","href","style"
     ],
     skipAttributes: {texClass: 1, useHeight: 1, texprimestyle: 1},
-    
+
     quoteHTML: function (string) {
       string = String(string).split("");
       for (var i = 0, m = string.length; i < m; i++) {
@@ -85,7 +85,7 @@ MathJax.Hub.Register.LoadHook("[MathJax]/jax/element/mml/jax.js",function () {
       return string.join("");
     }
   });
-  
+
   MML.msubsup.Augment({
     toMathML: function (space) {
       var tag = this.type;
@@ -99,7 +99,7 @@ MathJax.Hub.Register.LoadHook("[MathJax]/jax/element/mml/jax.js",function () {
       return space + "<"+tag+attr+">\n" + data.join("\n") + "\n" + space + "</"+tag+">";
     }
   });
-  
+
   MML.munderover.Augment({
     toMathML: function (space) {
       var tag = this.type;
@@ -113,28 +113,28 @@ MathJax.Hub.Register.LoadHook("[MathJax]/jax/element/mml/jax.js",function () {
       return space + "<"+tag+attr+">\n" + data.join("\n") + "\n" + space + "</"+tag+">";
     }
   });
-  
+
   MML.TeXAtom.Augment({
     toMathML: function (space) {
       // FIXME:  Handle spacing using mpadded?
       return space+"<mrow>\n"+this.data[0].toMathML(space+"  ")+"\n"+space+"</mrow>";
     }
   });
-  
+
   MML.chars.Augment({
     toMathML: function (space) {return (space||"") + this.quoteHTML(this.toString())}
   });
-  
+
   MML.entity.Augment({
     toMathML: function (space) {return (space||"") + "&"+this.data[0]+";<!-- "+this.toString()+" -->"}
   });
-  
+
   MathJax.Hub.Register.StartupHook("TeX mathchoice Ready",function () {
     MML.TeXmathchoice.Augment({
       toMathML: function (space) {return this.Core().toMathML(space)}
     });
   });
-  
+
 });
 
 MathJax.Ajax.loadComplete("[MathJax]/extensions/toMathML.js");
