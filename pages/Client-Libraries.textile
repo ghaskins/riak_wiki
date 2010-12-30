@@ -1,7 +1,6 @@
-The list of Basho supported client libraries is ever-growing. If you don't see what you are looking for here, you may find it in the list of [[Community Contributed Projects|Community-Developed Libraries and Projects]].
+The list of Basho supported client libraries is ever-growing. If you don't see what you are looking for here, you may find it in the list of [[Community Contributed Projects|Community-Developed Libraries and Projects]]. 
 
 Basho is currently developing and supporting drivers for:
-
 
 <div id="toc"></div>
 
@@ -14,7 +13,7 @@ The primary client for code that is not inside Riak is the PBC client:
 * [[riak-erlang-client on GitHub|https://github.com/basho/riak-erlang-client]]
 * [[Erlang Protocol Buffers Client Documentation|Erlang Client PBC]]
 
-We also [[host the generated Erlang Client API Docs on GitHub|http://basho.github.com/riak-erlang-client/]]
+We also [[host the generated Erlang Client API Docs on GitHub|http://basho.github.com/riak-erlang-client/]].
 
 
 h2. Javascript
@@ -23,9 +22,7 @@ The officially supported Javascript client uses [[jQuery|http://jquery.com]] for
 
 The [[riak-javascript-client on GitHub|https://github.com/basho/riak-javascript-client]] is the main location for code and documentation.
 
-There is a JavaScript sample app called [[yakriak|http://github.com/seancribbs/yakriak]],a Riak-powered Ajax-polling chatroom.
-
-We also [[host the generated ___ client API Docs on GitHub|http://#]]
+There is a JavaScript sample app called [[yakriak|http://github.com/seancribbs/yakriak]], a Riak-powered Ajax-polling chatroom.
 
 <div class="info">There is also a mature, heavily-developed Node.js client for Riak called [[riak.js|http://riakjs.org]]</div>
 
@@ -34,21 +31,20 @@ h2. Java
 
 The [[riak-java-client repo on GitHub|http://github.com/basho/riak-java-client]] is the home for code and documentation. The README should get you up and and running.
 
-We also [[host the generated ___ client API Docs on GitHub|http://#]]
 
 h2. PHP
 
 The [[riak-php-client repo on GitHub|https://github.com/basho/riak-php-client]]. The README should get you up and and running.
 
-We also [[host the generated ___ client API Docs on GitHub|http://#]]
+We also [[host the generated PHP client API Docs on GitHub|http://basho.github.com/riak-php-client/]]
 
-There is a [[PHP sample app|http://github.com/schofield/riak_php_app]] that you can check out if you want to see the PHP library in action. You can get it
+There is a [[PHP sample app|http://github.com/schofield/riak_php_app]] that you can check out if you want to see the PHP library in action.
 
 h2. Python
 
 The [[riak-python-client repo on GitHub|https://github.com/basho/riak-python-client]] is the home for code and documentation. The README should get you up and and running.
 
-We also [[host the generated Python client API Docs on GitHub|http://basho.github.com/basho-riak-client]].
+We also [[host the generated Python client API Docs on GitHub|http://basho.github.com/riak-python-client/]].
 
 The Python Client is [[also available in the FreeBSD ports tree|http://www.freshports.org/databases/py-riak]].
 
