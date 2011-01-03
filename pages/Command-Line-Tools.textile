@@ -279,7 +279,7 @@ riak-admin cluster_info /tmp/cluster_info.txt
 
 ```bash
 # Output information from the current node
-riak-admin clutster_info /tmp/cluster_info.txt local
+riak-admin cluster_info /tmp/cluster_info.txt local
 ```
 
 ```bash
