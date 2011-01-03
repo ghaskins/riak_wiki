@@ -1,4 +1,4 @@
-The list of Basho supported client libraries is ever-growing. If you don't see what you are looking for here, you may find it in the list of [[Community Contributed Projects|Community-Developed Libraries and Projects]]. 
+The list of Basho supported client libraries is ever-growing. If you don't see what you are looking for here, you may find it in the list of [[Community Contributed Projects|Community-Developed Libraries and Projects]].
 
 Basho is currently developing and supporting drivers for:
 
