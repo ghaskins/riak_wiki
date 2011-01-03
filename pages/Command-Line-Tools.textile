@@ -1,4 +1,4 @@
-This is a description of the Riak command-line tools and their subcommands. They are in @bin/@ of an embedded node, and the path when installed from a package (usually @/usr/sbin@ or @/usr/local/sbin@).
+This is a description of the Riak command-line tools and their subcommands. These tools are located in the @bin@ directory of an embedded node, and the path when installed from a package (usually @/usr/sbin@ or @/usr/local/sbin@).
 
 <div id="toc"></div>
 
@@ -35,6 +35,7 @@ riak stop
 h3. restart
 
 Stops and then starts the running Riak node without exiting the Erlang VM. Prints "ok" when successful, "Node 'riak@127.0.0.1' not responding to pings." when the node is already stopped or not responding.
+
 
 
 ```bash
@@ -90,7 +91,7 @@ This script performs operations not related to node-liveness, including node mem
 ```bash
 Usage: riak-admin { join | leave | backup | restore | test | status |
                     reip | js_reload | wait-for-service | ringready |
-                    transfers }
+                    transfers | remove | cluster_info }
 ```
 
 
@@ -222,4 +223,66 @@ Identifies nodes that are awaiting transfer of one or more partitions. This usua
 
 ```bash
 riak-admin transfers
+```
+
+h3. remove
+
+Removes the specified node from the cluster.
+
+```bash
+riak-admin remove <node>
+```
+
+h3. cluster_info
+
+Output system information from a riak cluster. This command will collect information from all nodes or a subset of nodes and output the data to a single text file.
+
+The following information is collected:
+
+ * Current time and date
+ * VM statistics
+ * erlang:memory() summary
+ * Top 50 process memory hogs
+ * Registered process names
+ * Registered process name via regs()
+ * Non-zero mailbox sizes
+ * Ports
+ * Applications
+ * Timer status
+ * ETS summary
+ * Nodes summary
+ * net_kernel summary
+ * inet_db summary
+ * Alarm summary
+ * Global summary
+ * erlang:system_info() summary
+ * Loaded modules
+ * Riak Core config files
+ * Riak Core vnode modules
+ * Riak Core ring
+ * Riak Core latest ring file
+ * Riak Core active partitions
+ * Riak KV status
+ * Riak KV ringready
+ * Riak KV transfers
+
+```bash
+riak-admin cluster_info <output file> [<node list>]
+```
+
+Examples:
+
+```bash
+# Output information from all nodes to /tmp/cluster_info.txt
+riak-admin cluster_info /tmp/cluster_info.txt
+```
+
+```bash
+# Output information from the current node
+riak-admin clutster_info /tmp/cluster_info.txt local
+```
+
+```bash
+# Output information from a subset of nodes
+riak-admin cluster_info /tmp/cluster_info.txt riak@192.168.1.10 riak@192.168.1.11
 ```
