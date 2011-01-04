@@ -720,6 +720,59 @@ $ curl -v -d '{"inputs":"test", "query":[{"link":{"bucket":"test",{"map":{"langu
 
 h2. Other operations
 
+h3. List Resources
+
+List available HTTP resources for the Riak node.
+
+h4. Request
+
+```bash
+GET /
+```
+
+Headers:
+* Accept - @application/json@ or @text/html@
+
+h4. Response
+
+Normal status codes:
+* 200 OK
+
+h4. Example
+
+```bash
+# Request JSON response
+curl -i http://localhost:8098 -H "Accept: application/json"
+HTTP/1.1 200 OK
+Vary: Accept
+Server: MochiWeb/1.1 WebMachine/1.7.3 (participate in the frantic)
+Link: </riak>; rel="riak_kv_wm_link_walker",</mapred>; rel="riak_kv_wm_mapred",</ping>; rel="riak_kv_wm_ping",</riak>; rel="riak_kv_wm_raw",</stats>; rel="riak_kv_wm_stats"
+Date: Tue, 04 Jan 2011 00:33:39 GMT
+Content-Type: application/json
+Content-Length: 143
+
+{"riak_kv_wm_link_walker":"/riak","riak_kv_wm_mapred":"/mapred","riak_kv_wm_ping":"/ping","riak_kv_wm_raw":"/riak","riak_kv_wm_stats":"/stats"}
+```
+
+```bash
+# Request HTML response
+curl -i http://localhost:8098 -H "Accept: text/html"
+HTTP/1.1 200 OK
+Vary: Accept
+Server: MochiWeb/1.1 WebMachine/1.7.3 (participate in the frantic)
+Link: </riak>; rel="riak_kv_wm_link_walker",</mapred>; rel="riak_kv_wm_mapred",</ping>; rel="riak_kv_wm_ping",</riak>; rel="riak_kv_wm_raw",</stats>; rel="riak_kv_wm_stats"
+Date: Tue, 04 Jan 2011 00:35:54 GMT
+Content-Type: text/html
+Content-Length: 267
+
+<html><body><ul><li><a
+href="/riak">riak_kv_wm_link_walker</a></li><li><a
+href="/mapred">riak_kv_wm_mapred</a></li><li><a
+href="/ping">riak_kv_wm_ping</a></li><li><a
+href="/riak">riak_kv_wm_raw</a></li><li><a
+href="/stats">riak_kv_wm_stats</a></li></ul></body></html>
+```
+
 h3. Ping
 
 Check if the server is alive.
