@@ -21,8 +21,8 @@ h3. 64-bit
 
 
 ```bash
-$ curl -O http://downloads.basho.com/riak/riak-0.14/riak-0.14.0-osx-x86_64.tar.gz
-$ tar xzvf riak-0.14.0-osx-x86_64.tar.gz
+$ curl -O http://downloads.basho.com/riak/riak-0.14/riak-0.14.0-1-osx-x86_64.tar.gz
+$ tar xzvf riak-0.14.0-1-osx-x86_64.tar.gz
 ```
 
 
@@ -30,10 +30,9 @@ h3. 32-bit
 
 
 ```bash
-$ curl -O http://downloads.basho.com/riak/riak-0.11/riak-0.14.0-osx-i386.tar.gz
-$ tar xzvf riak-0.14.0-osx-i386.tar.gz
+$ curl -O http://downloads.basho.com/riak/riak-0.14/riak-0.14.0-1-osx-i386.tar.gz
+$ tar xzvf riak-0.14.0-1-osx-i386.tar.gz
 ```
-
 
 After the release is untared you will be able to cd into the riak directory and execute bin/riak start to start the Riak node.
 
@@ -58,7 +57,7 @@ Next, download and unpack the source distribution.
 
 
 ```bash
-$ curl -O http://downloads.basho.com/riak/riak-0.14/riak-0.14.0.tar.gz
+$ curl -O http://downloads.basho.com/riak/riak-0.14/riak-0.14.0-1.tar.gz
 $ tar zxvf riak-0.14.0.tar.gz
 $ make rel
 ```
