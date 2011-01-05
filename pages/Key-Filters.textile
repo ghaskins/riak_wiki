@@ -241,7 +241,7 @@ Negates the result of key-filter operations.
 ["not", [["matches", "solution"]]]
 ```
 
-h2(#examples). Example query solutions
+h2. Example query solutions
 
 h3. Find all invoices for a given customer
 
