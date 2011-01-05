@@ -96,6 +96,7 @@ div.fixwidth {
     position: relative;
     width: 200px;
     text-align: right;
+    padding-top: 20px;
 }
 
 div.info, div.note {
