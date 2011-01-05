@@ -4,8 +4,8 @@ h2. From our custom .rpm package
 
 
 ```bash
-$ wget http://downloads.basho.com/riak/riak-0.13/riak-0.13.0-2.el5.x86_64.rpm
-$ sudo rpm -Uvh riak-0.13.0-2.el5.x86_64.rpm
+$ wget http://downloads.basho.com/riak/riak-0.14/riak-0.14.0.el5.x86_64.rpm
+$ sudo rpm -Uvh riak-0.14.0.el5.x86_64.rpm
 ```
 
 
@@ -31,8 +31,8 @@ Now we can download and install Riak:
 
 
 ```bash
-$ wget http://downloads.basho.com/riak/riak-0.13/riak-0.13.0.tar.gz
-$ tar zxvf riak-0.13.0.tar.gz
+$ wget http://downloads.basho.com/riak/riak-0.14/riak-0.14.0.tar.gz
+$ tar zxvf riak-0.14.0.tar.gz
 $ cd riak
 $ make rel
 ```
