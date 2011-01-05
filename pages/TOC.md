@@ -27,6 +27,7 @@
   * [[PBC API]]
   * [[Links]]
   * [[MapReduce]]
+    * [[Key Filters]]
   * [[Pre- and Post-Commit Hooks]]
 * [[Riak Search]]
   * [[Riak Search - Installation and Setup]]
