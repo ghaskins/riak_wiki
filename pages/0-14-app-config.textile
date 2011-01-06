@@ -25,7 +25,7 @@ This is the default app.config created by rebar for the 0.14 release of Riak.
               %       {certfile, "etc/cert.pem"},
               %       {keyfile, "etc/key.pem"}
               %      ]},
-              
+
               %% riak_handoff_port is the TCP port that Riak uses for
               %% intra-cluster data handoff.
               {handoff_port, 8099 }
@@ -113,7 +113,7 @@ This is the default app.config created by rebar for the 0.14 release of Riak.
 
             %% Limit the total size of formatted info/error/warning reports.
             {fmt_max_bytes, 65536}
-           ]},        
+           ]},
 
  %% SASL config
  {sasl, [

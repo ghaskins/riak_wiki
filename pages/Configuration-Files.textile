@@ -148,13 +148,13 @@ The number of Javascript VMs started to handle map phases. (default: "8")
 
 h4. reduce_js_vm_count
 
-The number of Javascript VMs started to handle reduce phases.  (default: "6")  
+The number of Javascript VMs started to handle reduce phases.  (default: "6")
 
 h4. hook_js_vm_count
 
 The number of Javascript VMs started to handle pre-commit hooks.(default: "2")
 
-h4. mapper_batch_size                                                  
+h4. mapper_batch_size
 
 Number of items the mapper will fetch in one request. Larger values can impact read/write performance for non-MapReduce requests. (default: "5")
 
