@@ -27,9 +27,7 @@ Riak and the Erlang applications it depends on are configured by settings in the
 ```
 
 
-
 <div class="note"><div class="title">Configuration changes in 0.10</div>Many configuration settings changed names and sections in the 0.10 release.  Please backup your @app.config@ file when upgrading and then copy your previous customizations to the proper places in the new file. See [[the transition notes|http://hg.basho.com/riak/raw/efc290fd9c23/TRANSITION]] for more information.</div>
-
 
 
 <div class="note"><div class="title">Configuration changes in 0.12</div>The settings related to handoff moved from @riak_kv@ to @riak_core@ in the 0.12 release.  These are:
@@ -37,6 +35,10 @@ Riak and the Erlang applications it depends on are configured by settings in the
 * @handoff_port@
 * @handoff_concurrency@</div>
 
+
+<div class="note"><div class="title">Configuration changes in 0.14</div>The settings for web_ip and web_port are deprecated.  The new configuration mechanism is to use a list of IPs and ports in the http{} section of riak_core of app.config.
+
+The configuration for parameters for the Javascript VMs in the riak_kv section of app.config have changed and should be edited if your previous configuration didn't use the default parameters. You can see the new default configuration parameters for the 0.14 app.config [[here|0-14-app-config]].</div>
 
 h3. riak_core settings
 
@@ -108,17 +110,21 @@ Assuming _ring_creation_size_ is a power of 2, the ideal value for this setting 
 
 The default value is _4_. For this to be effective at preventing hotspots, your cluster size (number of physical nodes) must be equal to or larger than _target_n_val_.
 
-h4. web_ip
+h4. http
 
-The ip address on which Riak's HTTP interface should listen (default: "127.0.0.1"")
-
-Riak's HTTP interface will not be started if this setting is not defined.
-
-h4. web_port
-
-The port on which Riak's HTTP interface should listen (default: 8098")
+A list of ip addresses and ports on which Riak's HTTP interface should listen (default: {"127.0.0.1", 8091 })
 
 Riak's HTTP interface will not be started if this setting is not defined.
+
+h4. https
+
+A list of ip addresses and ports on which Riak's HTTPS interface should listen (default: not enabled)
+
+Riak's HTTPS interface will not be started if this setting is not defined.
+
+h4. ssl
+
+You can override the default SSL key and certificate settings (default: etc/cert.pem, etc/key.pem)
 
 h3. riak_kv settings
 
@@ -128,25 +134,45 @@ A list of paths to add to the Erlang code path.
 
 This setting is especially useful for allowing Riak to use external modules during map/reduce queries.
 
+h4. mapred_name
+
+The base of the path in the URL exposing [[MapReduce]] via HTTP. (default: "mapred")
+
+h4. mapred_queue_dir
+
+The directory used to store a transient queue for pending map tasks (default: "data/mrqueue")
+
+h4. map_js_vm_count
+
+The number of Javascript VMs started to handle map phases. (default: "8")
+
+h4. reduce_js_vm_count
+
+The number of Javascript VMs started to handle reduce phases.  (default: "6")
+
+h4. hook_js_vm_count
+
+The number of Javascript VMs started to handle pre-commit hooks.(default: "2")
+
+h4. mapper_batch_size
+
+Number of items the mapper will fetch in one request. Larger values can impact read/write performance for non-MapReduce requests. (default: "5")
+
 h4. js_max_vm_mem
 
 The maximum amount of memory allocated to each Javascript virtual machine, in megabytes. (default: "8")
-
-h4. js_source_dir
-
-Where to load user-defined built in Javascript functions (default: @unset@)
 
 h4. js_thread_stack
 
 The maximum amount of thread stack space to allocate to Javascript virtual machines, in megabytes.  (default: "16")
 
-h4. js_vm_count
+h4. map_cache_size
 
-How many Javascript virtual machines to start (default: "8").
+Number of object held in the MapReduce cache. These will be ejected when the cache runs out of room or the bucket/key pair for that entry changes. (default: "10000")
 
-h4. mapred_name
+h4. js_source_dir
 
-The base of the path in the URL exposing [[MapReduce]] via HTTP. (default: "mapred")
+Where to load user-defined built in Javascript functions (default: unset)
 
 h4. pb_ip
 
