@@ -118,7 +118,7 @@ Riak's HTTP interface will not be started if this setting is not defined.
 
 h4. https
 
-A list of ip addresses and ports on which Riak's HTTP interface should listen (default: not enabled)
+A list of ip addresses and ports on which Riak's HTTPS interface should listen (default: not enabled)
 
 Riak's HTTPS interface will not be started if this setting is not defined.
 
@@ -140,7 +140,7 @@ The base of the path in the URL exposing [[MapReduce]] via HTTP. (default: "mapr
 
 h4. mapred_queue_dir
 
-The directory used to store a transient queue for pending map tasts (default: "data/mrqueue")
+The directory used to store a transient queue for pending map tasks (default: "data/mrqueue")
 
 h4. map_js_vm_count
 
@@ -168,7 +168,7 @@ The maximum amount of thread stack space to allocate to Javascript virtual machi
 
 h4. map_cache_size
 
-Number of obect held in the MapReduce cache. These will be ejected when the cache runs out of room or the bucket/key pair for that entry changes. (default: "10000")
+Number of object held in the MapReduce cache. These will be ejected when the cache runs out of room or the bucket/key pair for that entry changes. (default: "10000")
 
 h4. js_source_dir
 
