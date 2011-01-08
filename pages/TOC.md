@@ -59,6 +59,7 @@
   * [[Innostore Configuration and Tuning]]
   * [[Network Security and Firewall Configurations]]
   * [[Recovering a failed node]]
+  * [[Rolling Upgrades]]
 * [[Riak Recaps]]
 * [[Contact Basho]]
 * [[Sample Data]]
