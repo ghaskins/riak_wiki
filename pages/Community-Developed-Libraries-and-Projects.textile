@@ -7,7 +7,7 @@ The Riak Community is developing at a break-neck pace, and the number of communi
 
 <div id="toc"></div>
 
-h2. Client Libraries
+h2. Client Libraries and Frameworks
 
 *C*
 * [[Riak C Client|https://github.com/chrisumbel/riakclient]]
@@ -41,6 +41,9 @@ h2. Client Libraries
 *Perl*
 * [[Net::Riak|http://search.cpan.org/~franckc/Net-Riak/]]
 * [[AnyEvent-Riak adapter|http://github.com/franckcuny/anyevent-riak]]
+
+*Play* 
+* [[Riak Module for The Play Framework|http://www.playframework.org/modules/riak-head/home]]
 
 *Python*
 * [[txriak|https://launchpad.net/txriak]]- a Twisted module for communicating with Riak via the HTTP interface
