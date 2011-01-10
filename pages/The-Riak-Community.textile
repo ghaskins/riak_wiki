@@ -18,7 +18,7 @@ Basho uses Bugzilla for its bug tracker. You can file, track and comment on all 
 
 h3. Riak on IRC
 
-The #riak IRC room is a great place for real-time help with your Riak issues and questions.
+The #riak IRC room on irc.freenode.net is a great place for real-time help with your Riak issues and questions.
 
 
 h3. Riak Function Contrib
