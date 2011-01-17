@@ -1,5 +1,3 @@
-h4. Community-Developed Libraries and Projects
-
 The Riak Community is developing at a break-neck pace, and the number of community-contributed libraries and drivers is growing right along side it. Here is a list of projects that may suit your programming needs or curiosities. (If you know of something that needs to be added or are developing something that you wish to see added to this list, let us know in the Comment section below.)
 
 
