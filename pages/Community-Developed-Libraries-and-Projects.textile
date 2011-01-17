@@ -11,6 +11,7 @@ h2. Client Libraries and Frameworks
 
 *C*
 * [[Riak C Client|https://github.com/chrisumbel/riakclient]]
+* [[Riak C Driver|https://github.com/fenek/riak-c-driver]]
 
 *Clojure*
 * [[clj-riak|http://github.com/mmcgrana/clj-riak]] - Clojure bindings to the Riak Protocol Buffers API
