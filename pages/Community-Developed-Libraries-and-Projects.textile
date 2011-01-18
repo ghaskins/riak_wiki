@@ -57,7 +57,7 @@ h2. Client Libraries and Frameworks
 * [[Riak PB Client|http://github.com/aitrus/riak-pbclient]] - Riak Protocol Buffer Client in Ruby
 * [[Devise-Ripple|http://github.com/frank06/devise-ripple]] - An ORM strategy to use Devise with Riak
 * [[Ripple-anaf|http://github.com/bkaney/ripple-anaf]]
-* [[Pabst|http://github.com/aitrus/pabst]] - Cross-platform Ruby extension for Protocol Buffers written in both Objective-C and Objective-C++
+* [[Pabst|https://github.com/sgonyea/pabst]] - Cross-platform Ruby extension for Protocol Buffers written in both Objective-C and Objective-C++
 
 *Scala*
 * [[Riakka|http://github.com/timperrett/riakka]]
