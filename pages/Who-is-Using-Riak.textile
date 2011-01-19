@@ -1,4 +1,5 @@
-_This is a list of companies, projects, organizations and consultancies (that we know about) using Riak to build truly awesome and innovative software and services. If you're using Riak and want to be listed here, email *mark@basho.com* so we can tell the world!_
+_This is a partial list of companies, projects, organizations and consultancies (that we know about) using Riak to build truly awesome and innovative software and services. If you're using Riak and want to be listed here, [[fork the Wiki repo on GitHub|https://github.com/basho/riak_wiki]] and add your details or email *mark@basho.com* if you have any questions._
+
 
 ----
 
