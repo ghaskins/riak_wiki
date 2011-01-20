@@ -165,6 +165,10 @@ h2. Bucket Properties and Operations
 
 Buckets are essentially a flat namespace in Riak and have little significance beyond their ability to allow the same key name to exist in multiple buckets and to provide some per-bucket configurability.
 
+<div class="info"><div class="title">How Many Buckets Can I Have?</div>
+Currently, buckets come with virtually no cost except for when you modify the default bucket properties. Modified Bucket properties are gossiped around the cluster and therefore add to the amount of data sent around the network. In other words, buckets using the default bucket properties are free.
+</div>
+
 h3. Setting a bucket's properties
 
 There is no need to "create" buckets in Riak.  They pop into existence when keys are added to them, and dissappear when all keys have been removed from them.
