@@ -8,6 +8,17 @@ ulimit -n 1024
 ```
 </div>
 
+h2. From Precompiled Tarballs
+
+h3. 32-bit
+
+
+```bash
+$ curl -O http://downloads.basho.com/riak-search/riak-search-0.14/riak_search-0.14.0-osx-i386.tar.gz
+$ tar xzvf riak_search-0.14.0-1-osx-i386.tar.gz
+```
+
+After the release is untared you will be able to cd into the riak directory and execute bin/riak start to start the Riak node.
 
 h2. Source Install
 
