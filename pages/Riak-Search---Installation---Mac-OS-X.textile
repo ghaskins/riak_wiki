@@ -22,7 +22,7 @@ After the release is untared you will be able to cd into the riak_search directo
 
 ```bash
 $ bin/riaksearch start 
-````
+```
 
 to start the Riak node.
 
