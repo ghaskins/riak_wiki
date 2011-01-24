@@ -19,7 +19,6 @@ sudo yum install gcc gcc-c++ glibc-devel make ant
 ```
 
 
-
 <div class="info">Installing Ant will also install the OpenJDK version of Java.</div>
 
 
@@ -27,11 +26,10 @@ Now we can download and install Riak Search:
 
 
 ```bash
-wget http://downloads.basho.com/riak-search/riak-search-0.13/riak_search-0.13.0.tar.gz
-tar zxvf riak_search-0.13.0.tar.gz
-cd riak_search-0.13.0
+wget http://downloads.basho.com/riak-search/riak-search-0.14/riak_search-0.14.0-1.tar.gz
+tar zxvf riak_search-0.14.0-1.tar.gz
+cd riak_search-0.14.0
 make rel
 ```
-
 
 There should now be a fresh build of Riak Search in the rel/riaksearch directory.

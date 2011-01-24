@@ -25,5 +25,13 @@ cd riak_search-0.13.0
 make rel
 ```
 
-
 There should now be a fresh build of Riak Search in the rel/riaksearch directory.
+
+h2. Homebrew 
+
+To install Riak Search using Homebrew:
+
+
+```bash
+$ brew install riak-search
+```
