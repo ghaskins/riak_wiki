@@ -18,7 +18,13 @@ $ curl -O http://downloads.basho.com/riak-search/riak-search-0.14/riak_search-0.
 $ tar xzvf riak_search-0.14.0-1-osx-i386.tar.gz
 ```
 
-After the release is untared you will be able to cd into the riak directory and execute bin/riak start to start the Riak node.
+After the release is untared you will be able to cd into the riak_search directory and execute: 
+
+```bash
+$ bin/riaksearch start 
+````
+
+to start the Riak node.
 
 h2. Source Install
 
@@ -30,9 +36,9 @@ Now we can download and install Riak Search:
 
 
 ```bash
-wget http://downloads.basho.com/riak-search/riak-search-0.13/riak_search-0.13.0.tar.gz
-tar zxvf riak_search-0.13.0.tar.gz
-cd riak_search-0.13.0
+wget http://downloads.basho.com/riak-search/riak-search-0.14/riak_search-0.14.0-1.tar.gz
+tar zxvf riak_search-0.14.0-1.tar.gz
+cd riak_search-0.14.0
 make rel
 ```
 
