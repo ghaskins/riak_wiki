@@ -1,12 +1,7 @@
 The following steps should get you up and running with Riak on MacOSX 10.5 or 10.6. You can install from source or download a precompiled tarball.
 
 
-<div class="note"><div class="title">ulimit on OS X</div>OS X gives you a very small limit on open file handles, so even with a backend that uses very few file handles, it's possible to run out.  Run this command before getting started developing on your Mac:
-
-```bash
-ulimit -n 1024
-```
-</div>
+<div class="note"><div class="title">ulimit on OS X</div>OS X gives you a very small limit on open file handles, so even with a backend that uses very few file handles, it's possible to run out. See [[Open Files Limit]] for more information about changing the limit.</div>
 
 ----
 

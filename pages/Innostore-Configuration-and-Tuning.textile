@@ -39,9 +39,7 @@ Innostore opens a file for each partition/bucket combination, plus several files
 {open_files, 100} %% accommodate a lower limit
 ```
 
-
-
-<div class="note"><div class="title">ulimit</div>To adjust the open files limit in your operating system, use the {{ulimit -n}} command.</div>
+<div class="note"><div class="title">Open Files Limit</div>See also [[Open Files Limit]] for information about changing this system-wide.</div>
 
 
 h3. log_group_home_dir &amp; data_home_dir

@@ -13,15 +13,6 @@ Click the link for your operating system to see instructions on how to install R
 h3. Starting Riak Search
 
 
-<div class="info">If you are running on a Mac increase your filehandle limit:
-
-
-```bash
-ulimit -n 1024
-```
-</div>
-
-
 To start up a Riak Search node, change directory as necessary to where you installed Riak Search (in the source directory, it's {{rel/riaksearch/bin}}) and run the {{riaksearch}} command like so:
 
 

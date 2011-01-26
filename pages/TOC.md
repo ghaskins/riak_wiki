@@ -20,6 +20,7 @@
   * [[Basic Cluster Setup]]
   * [[Configuration Files]]
   * [[Command-Line Tools]]
+  * [[Open Files Limit]]
 * [[How Things Work]]
   * [[Replication]]
   * [[REST API]]
