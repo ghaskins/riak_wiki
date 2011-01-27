@@ -21,7 +21,7 @@ The Fast Track will take you through the following five sections:
 # Tunable CAP Controls in Riak
 
 <div class="info">
-This by no means covers everything that Riak can do, but it should help you get a decent handle on some core functionality
+This by no means covers everything that Riak can do, but it should help you get a decent handle on some core functionality.
 </div>
 
 h2. How does it work?

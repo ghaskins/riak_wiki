@@ -35,7 +35,7 @@ GET /riak/bucket/key
 
 The body of the response will be the contents of the object (if it exists).  Simple, right?
 
-Riak understands many HTTP-defined headers, like *Accept* for content-type negotiation (relevant when dealing with siblings, see [[REST API#Siblings examples]]), and *If-None-Match*/*ETag* and *If-Modified-Since*/*Last-Modified* for conditional requests.
+Riak understands many HTTP-defined headers, like *Accept* for content-type negotiation (relevant when dealing with siblings, see [[the sibling examples for the REST API|REST API#Siblings examples]]), and *If-None-Match*/*ETag* and *If-Modified-Since*/*Last-Modified* for conditional requests.
 
 Riak also accepts many query parameters, including *r* for setting the R-value for this get request (R Values will be explained more in the final section of the Fast Track Tutorial).  Omitting the *r* query parameter is equivalent to specifying *r=2*.
 

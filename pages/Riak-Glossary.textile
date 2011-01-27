@@ -1,5 +1,7 @@
 Below is a list of terms and their applicability within the context of Riak:
 
+<div id="toc"></div>
+
 h2. Bucket
 
 A Bucket is a container and keyspace for data stored in Riak, with a set of common properties for its contents (the number of replicas, for instance).  Buckets are accessed at the top of the URL hierarchy under "riak", e.g. @/riak/bucket@.
