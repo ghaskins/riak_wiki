@@ -95,5 +95,5 @@ Installing with MacPorts is easy:
 
 
 ```bash
-$ port install erlang
+$ port install erlang +ssl
 ```

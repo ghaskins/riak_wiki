@@ -14,11 +14,7 @@ To run Riak from our precompiled tarball, run these commands for the appropriate
 
 h3. 64-bit
 
-
-```bash
-$ curl -O http://downloads.basho.com/riak/riak-0.14/riak-0.14.0-1-osx-x86_64.tar.gz
-$ tar xzvf riak-0.14.0-1-osx-x86_64.tar.gz
-```
+Only a 32bit binary is available at this time.
 
 
 h3. 32-bit
