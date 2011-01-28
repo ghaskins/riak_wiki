@@ -77,7 +77,7 @@ After adding new content or updating existing content in the wiki repo, it then 
 
    	`git push origin publish`
 
-After you merge your changes into publish and push them back to the repo, the post-receive hook will fire and wiki.basho.com should be upddate 
+After you merge your changes into publish and push them back to the repo, the post-receive hook will fire and wiki.basho.com should be updated 
 within several minutes.
 
 
