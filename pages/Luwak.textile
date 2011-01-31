@@ -206,3 +206,11 @@ Content-Type: application/json
 Content-Length: 0
 
 ```
+
+h2. Luwak and Map/Reduce
+
+Looking to Map/Reduce over data you are storing in Luwak? Start here:
+
+* [[Luwak Map/Reduce on Riak Function Contrib|http://contrib.basho.com/luwak_mr.html]] 
+* [[Baseball Batting Averages Using Riak Map/Reduce|http://blog.basho.com/2011/01/20/baseball-batting-average,-using-riak-map/reduce/]] (From the Basho Blog)
+* [[Fixing the Count|http://blog.basho.com/2011/01/26/fixing-the-count/]] (From the Basho Blog)
