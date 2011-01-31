@@ -24,6 +24,9 @@ h2. Client Libraries and Frameworks
 *Groovy*
 * [[spring-riak|https://github.com/jbrisbin/spring-riak]] - Riak support from Groovy and/or Java
 
+*Haskell*
+* [[Riak Haskell Client|https://github.com/mailrank/riak-haskell-client]] - A fast Haskell client library from the team at MailRank.
+
 *Java*
 * [[Riak-Java-PB-Client|http://github.com/krestenkrab/riak-java-pb-client]] - Java Client Library for Riak based on the Protocol Buffers API
 
