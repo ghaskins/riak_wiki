@@ -6,9 +6,13 @@ h3. The Default Schema
 
 The default schema treats all fields as strings, unless you suffix your field name as follows:
 
-* *FIELDNAME\_num* - Numeric field. Uses Whitespace analyzer. Values are padded to 10 characters.
-* *FIELDNAME\_dt* - Date field. Uses Whitespace analyzer.
-* All other fields are treated as Strings and use the Standard analyzer.
+* *FIELDNAME\_num* - Numeric field. Uses Integer analyzer. Values are padded to 10 characters.
+* *FIELDNAME\_int* - Numeric field. Uses Integer analyzer. Values are padded to 10 characters.
+* *FIELDNAME\_dt* - Date field. Uses No-Op analyzer.
+* *FIELDNAME\_date* - Date field. Uses No-Op analyzer.
+* *FIELDNAME\_txt* - Full text field. Uses Standard Analyzer.
+* *FIELDNAME\_text* - Full text field. Uses Standard Analyzer.
+* All other fields use the Whitespace analyzer.
 
 The default field is named *value*.
 
@@ -28,8 +32,7 @@ bin/search-cmd set_schema Index SchemaFile
 bin/search-cmd show_schema Index
 ```
 
-
-Note that changes to the Schema File *will not* affect previously indexed data. It is recommended that if you change field definitions, especially settings such as "type", that you re-index your documents.
+Note that changes to the Schema File *will not* affect previously indexed data. It is recommended that if you change field definitions, especially settings such as "type" or "analyzer_factory", that you re-index your documents.
 
 Below is an example schema file. The schema is formatted as an Erlang term. Spacing does not matter, but it is important to match opening and closing brackets and braces, to include commas between all list items, and to include the final period after the last brace:
 
@@ -42,38 +45,46 @@ Below is an example schema file. The schema is formatted as an Erlang term. Spac
         {default_field, "title"},
         {default_op, "or"},
         {n_val, 3},
-        {analyzer_factory, "com.basho.search.analysis.DefaultAnalyzerFactory"}
+        {analyzer_factory, {erlang, text_analyzers, whitespace_analyzer_factory}}
     ],
     [
+        %% Don't parse the field, treat it as a single token.
         {field, [
-            {name, "id"},
-            {type, string}
+            {name, "id"}
+            {analyzer_factory, {erlang, text_analyzers, noop_analyzer_factory}}
         ]},
+
+        %% Parse the field in preparation for full-text searching.
         {field, [
             {name, "title"},
             {required, true},
-            {type, string}
+            {analyzer_factory, {erlang, text_analyzers, standard_analyzer_factory}}
         ]},
+
+        %% Treat the field as a date, which currently uses noop_analyzer_factory.
         {field, [
             {name, "published"},
             {type, date}
         ]},
-        {dynamic_field, [
-            {name, "*_text"},
-            {type, string}
-        ]},
-        {field, [
-            {name, "tags"},
-            {type, string},
-            {analyzer_factory, "com.basho.search.analysis.WhitespaceAnalyzerFactory"}
-        ]},
+
+        %% Treat the field as an integer. Pad it with zeros to 10 places.
         {field, [
             {name, "count"},
             {type, integer},
             {padding_size, 10}
         ]},
-        {field, [
-            {name, "category"}
+
+        %% A dynamic field. Anything ending in "_text" will use the standard_analyzer_factory.
+        {dynamic_field, [
+            {name, "*_text"},
+            {analyzer_factory, {erlang, text_analyzers, standard_analyzer_factory}}
+        ]},
+
+        %% A dynamic field. Catches any remaining fields in the
+        %% document, and uses the analyzer_factory setting defined
+        %% above for the schema.
+        {dynamic_field, [
+            {name, "*"}
         ]}
     ]
 }.
@@ -105,7 +116,102 @@ The following properties are defined at a field level, and apply to both static 
 * *name* - Required. The name of the field. Dynamic fields can use wildcards. Note that the unique field identifying a document *must* be named "id".
 * *required* - Optional. Boolean flag indicating whether this field is required in an incoming search document. If missing, then the document will fail validation. Defaults to false.
 * *type* - Optional. The type of field, either "string" or "integer". If "integer" is specified, and no field-level analyzer_factory is defined, then the field will use the Whitespace analyzer. Defaults to "string".
-* *analyzer_factory* - Optional. Specify the analyzer factory to use when parsing the field. If not specified, defaults to the analyzer factory for the schema. (Unless the field is an integer type. See above.)
+* *analyzer\_factory* - Optional. Specify the analyzer factory to use when parsing the field. If not specified, defaults to the analyzer factory for the schema. (Unless the field is an integer type. See above.)
 * *skip* - Optional. When "true", the field is stored, but not indexed. Defaults to "false".
 * *aliases* - Optional. A list of aliases that should be mapped to the current field definition, effectively indexing multiple fields of different names into the same field. Defaults to an empty list.
 * *padding_size* - Optional. Values are padded up to this size. Defaults to 0 for string types, 10 for integer types.
+
+h3. Analyzers
+
+Riak Search ships with a number of different analyzer factories:
+
+h4. Whitespace Analyzer Factory
+
+The Whitespace Analyzer Factory tokenizes a field by splitting the text according to whitespace, including spaces, tabs, newlines, carriage returns, etc.
+
+For example, the text "It's well-known fact that a picture is worth 1000 words." is split into the following tokens: ["It's", "a", "well-known", "fact", "that", "a", "picture", "is", "worth", "1000", "words."]. Notice that capitalization and punctiation is preserved.
+
+To use the whitespace analyzer, set the *analyzer_factory* setting as seen below:
+```
+{analyzer_factory, {erlang, text_analyzers, whitespace_analyzer_factory}}}
+```
+
+
+h4. Standard Analyzer Factory
+
+The Standard Analyzer Factory mimics the Java/Lucene Standard Tokenizer. The Standard Analyzer is useful for full-text searches across documents written in English. It tokenizes a field according to the following rules:
+
+1. Split on all punctuation except for periods followed by a character.
+2. Lowercase all tokens.
+3. Strip out any tokens smaller than 3 characters as well as stopwords (common english words).
+
+The stopwords are defined as: "an", "as", "at", "be", "by", "if", "in", "is", "it", "no", "of", "on", "or", "to", "and", "are", "but", "for", "not", "the", "was", "into", "such", "that", "then", "they", "this", "will""their", "there", "these".
+
+The text "It's well-known fact that a picture is worth 1000 words." will result in the following tokens: ["well", "known", "fact", "picture", "worth", "1000", "words"].
+
+To use the standard analyzer, set the *analyzer_factory* setting as seen below:
+```
+{analyzer_factory, {erlang, text_analyzers, standard_analyzer_factory}}}
+```
+
+
+h4. Integer Analyzer Factory
+
+The Integer Analyzer Factory tokenizes a field by finding any integers within the field. An integer is defined as as string of numbers without any punctuation between them, possibly starting with a '-' to indicate a negative number.
+
+For example, the text "It's well-known fact that a picture is worth 1000 words." will result in only one token, "1000".
+
+To use the integer analyzer, set the *analyzer_factory* setting as seen below:
+```
+{analyzer_factory, {erlang, text_analyzers, integer_analyzer_factory}}}
+```
+
+h4. No-Op Analyzer Factory
+
+The No-Op Analyzer Factory doesn't tokenize a field, it simply returns back the full value of the field. For this reason, it is useful for identity fields.
+
+For example, the text "WPRS10-11#B" will tokenize unchanged into "WPRS10-11#B".
+
+To use the no-op analyzer, set the *analyzer_factory* setting as seen below:
+```
+{analyzer_factory, {erlang, text_analyzers, noop_analyzer_factory}}}
+```
+
+h4. Java Analyzers
+
+The Standard Analyzer and the Whitespace Analyzer have Java versions based on Lucene's StandardTokenizer and WhitespaceTokenizer. 
+
+To use the Java analyzers, you will first need to tell the system to launch a Java Virtual Machine during when Riak starts. This is done by setting the 'analysis_port' setting in the 'qilr' section of the app.config:
+
+```
+{analysis_port, 6095 },
+```
+
+Then, set the *analyzer_factory* setting as seen below:
+
+```
+%% For the Whitespace Analyzer...
+{analyzer_factory, "com.basho.search.analysis.WhitespaceAnalyzerFactory"}
+
+%% For the Standard Analyzer...
+{analyzer_factory, "com.basho.search.analysis.StandardAnalyzerFactory"}
+```
+
+The main advantage of using Java-based analyzers is better support for non-English text, and non-ASCII characters.
+
+h4. Custom Analyzers
+
+You can create your own custom analyzers in Erlang or Java. 
+
+Some tips:
+
+* Model your custom analyzer after an existing analyzer. 
+  See "apps/qilr/src/text_analyzers.erl" for sample Erlang code.
+  See "apps/qilr/java_src/analysis_server/src/com/bash/search/analysis/WhitespaceAnalyzerFactory.java" for sample Java code.
+ 
+* The analyzer should take a string and configuration parameters and
+  return a list of tokens. The order of tokens is important for
+  proximity searching.
+  
+* Make sure to put your compiled analyzer on the Erlang code path or
+  in the Java classpath.

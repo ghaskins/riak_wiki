@@ -75,8 +75,11 @@ For example, storing the following XML object in a Search-enabled bucket:
 </person>
 ```
 
-
 Would cause four fields to be indexed: "person_name", "person_bio", "person_favorites_item", and "person_favorite_item@type".  The values of the "..._item" and "..._item@type" fields will be the concatenation of the two distinct elements in the object ("The Moon is a Harsh Mistress Magical Mystery Tour" and "book album", respectively).  You could later query this data with queries like, "person_bio:engineer AND person_favorites_item:mystery".
+
+h4. Erlang Data
+
+If your object contains Erlang terms, you can set your Content-Type to "application/x-erlang". This expects either an Erlang term that is a proplist or a nested proplist. In the case of a proplist, the key is used as the field name, and the value as the field value. When the object's value is a nested proplist, field names are constructed by concatenating the nested keys together with underscores in between.
 
 h4. Plain-text Data
 
@@ -134,6 +137,6 @@ h4. Field Types
 
 If you read the "Other Data Encodings" section about writing your own encoder, you may have been surprised to find that all fields should be extracted as strings.  The reason for this is that it's the schema's job to say what the types of the fields are.
 
-If you do not specify a schema, the default will be used.  The default schema indexes all fields as string values, unless they end in "_num" or "_dt", where they will be indexed as integers or dates, respectively.
+If you do not specify a schema, the default will be used.  The default schema indexes all fields as string values, unless they end in "_num" or "_dt", or any of the other dynamic fields defined in the Schema documentation.
 
 You may define your own schema for your KV indexes, in the same manner as you would define a schema for non-KV indexes.  Just make sure the field names match those produced by the extractor in use.

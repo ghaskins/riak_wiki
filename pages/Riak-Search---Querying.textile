@@ -5,9 +5,6 @@ Riak Search follows the same query syntax as Lucene, detailed here:
    http://lucene.apache.org/java/2_4_0/queryparsersyntax.html
 
 
-<div class="info"><div class="title">A Note on Integer Padding</div>With the current defaults, Search pads all integers to 10 characters during indexing, and you must manually pad integers to 10 characters in your queries.</div>
-
-
 h4. Terms and Phrases
 
 A query can be as simple as a single term (ie: "red") or a series of terms surrounded by quotes called a phrase ("See spot run"). The term (or phrase) is analyzed using the default analyzer for the index.
@@ -51,6 +48,19 @@ Or:
 books.title:"See spot run"
 ```
 
+If your field contains special characters, such as ('+','-','/','[',']','(',')',':' or space), then either surround the phrase in single quotes, or escape each special character with a backslash.
+
+```bash
+
+books.url:'http://mycompany.com/url/to/my-book#foo'
+```
+
+-or-
+
+```bash
+
+books.url:http\:\/\/mycompany.com\/url\/to\/my\-book\#foo
+```
 
 h4. Wildcard Searches
 
@@ -248,7 +258,7 @@ The following parameters are supported:
 * *index=INDEX* - Specifies the default index name.
 * *q=QUERY* - Run the provided query.
 * *df=FIELDNAME* - Use the provided field as the default. Overrides the "default_field" setting in the schema file.
-* *q.op=OPERATION* - Allowed settings are either "and" or "or". Overrides the "default_op" setting in the schema file. Default is "or".
+* *q.op=OPERATION* - Allowed settings are either "and" or "or". Overrides the "default_op" setting in the schema file. Default is "or". (Note: A bug in Riak Search 0.14 causes the system to ignore this setting.)
 * *start=N* - Specify the starting result of the query. Useful for paging. Default is 0.
 * *rows=N* - Specify the maximum number of results to return. Default is 10.
 * *sort=FIELDNAME* - Sort on the specified field name. Default is "none", which causes the results to be sorted in descending order by score.

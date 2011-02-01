@@ -9,7 +9,6 @@ By default, Riak Search uses the following ports:
 * 8098 - Solr Interface
 * 8099 - Riak Handoff
 * 8087 - Protocol Buffers interface
-* 6095 - Analyzer Port
 
 Be sure to take the necessary security precautions to prevent exposing these ports to the outside world.
 
