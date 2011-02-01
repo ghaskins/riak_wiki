@@ -132,7 +132,7 @@ The Whitespace Analyzer Factory tokenizes a field by splitting the text accordin
 For example, the text "It's well-known fact that a picture is worth 1000 words." is split into the following tokens: ["It's", "a", "well-known", "fact", "that", "a", "picture", "is", "worth", "1000", "words."]. Notice that capitalization and punctiation is preserved.
 
 To use the whitespace analyzer, set the *analyzer_factory* setting as seen below:
-```
+```javascript
 {analyzer_factory, {erlang, text_analyzers, whitespace_analyzer_factory}}}
 ```
 
@@ -150,7 +150,8 @@ The stopwords are defined as: "an", "as", "at", "be", "by", "if", "in", "is", "i
 The text "It's well-known fact that a picture is worth 1000 words." will result in the following tokens: ["well", "known", "fact", "picture", "worth", "1000", "words"].
 
 To use the standard analyzer, set the *analyzer_factory* setting as seen below:
-```
+
+```javascript
 {analyzer_factory, {erlang, text_analyzers, standard_analyzer_factory}}}
 ```
 
@@ -162,7 +163,7 @@ The Integer Analyzer Factory tokenizes a field by finding any integers within th
 For example, the text "It's well-known fact that a picture is worth 1000 words." will result in only one token, "1000".
 
 To use the integer analyzer, set the *analyzer_factory* setting as seen below:
-```
+```javascript
 {analyzer_factory, {erlang, text_analyzers, integer_analyzer_factory}}}
 ```
 
@@ -173,9 +174,10 @@ The No-Op Analyzer Factory doesn't tokenize a field, it simply returns back the 
 For example, the text "WPRS10-11#B" will tokenize unchanged into "WPRS10-11#B".
 
 To use the no-op analyzer, set the *analyzer_factory* setting as seen below:
-```
+```javascript
 {analyzer_factory, {erlang, text_analyzers, noop_analyzer_factory}}}
 ```
+
 
 h4. Java Analyzers
 
@@ -183,13 +185,13 @@ The Standard Analyzer and the Whitespace Analyzer have Java versions based on Lu
 
 To use the Java analyzers, you will first need to tell the system to launch a Java Virtual Machine during when Riak starts. This is done by setting the 'analysis_port' setting in the 'qilr' section of the app.config:
 
-```
+```javascript
 {analysis_port, 6095 },
 ```
 
 Then, set the *analyzer_factory* setting as seen below:
 
-```
+```javascript
 %% For the Whitespace Analyzer...
 {analyzer_factory, "com.basho.search.analysis.WhitespaceAnalyzerFactory"}
 
