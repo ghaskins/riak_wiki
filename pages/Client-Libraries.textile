@@ -31,6 +31,8 @@ h2. Java
 
 The [[riak-java-client repo on GitHub|http://github.com/basho/riak-java-client]] is the home for code and documentation. The README should get you up and and running.
 
+The Java Client is also available [[in the Sonatype Maven Repo|https://oss.sonatype.org/index.html#nexus-search;quick~riak]].
+
 
 h2. PHP
 
