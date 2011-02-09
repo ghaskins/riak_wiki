@@ -1,21 +1,21 @@
 
 // remap jQuery to $
 (function($){
-	
+
 	$(document).ready(function()
 	  {
-	
+
 	    jQuery("#sidebar").find("li").each(function(){
 	        var item = jQuery(this);
 	        if ( item.has("ul").length ) {
-	            var hide = item.has("a[href=\"/The-Riak-Fast-Track.html\"]").length == 0;
-	
+	          var hide = item.has("a[href=\"" + document.location.pathname + "\"]").length == 0;
+
 	            if ( hide ) {
 	                item.addClass("collapsed");
 	            } else {
 	                item.addClass("expanded");
 	            }
-	
+
 	            item.click(function(event){
 	                if ( this == event.target ) {
 	                    item1 = jQuery(this);
@@ -26,20 +26,14 @@
 	                    return false;
 	                }
 	            });
-	
+
 	            if ( hide ) {
 	                item.find("ul").hide();
 	            }
-	
+
 	        }
 	    });
 	});
-	
-
-
- 
-
-
 
 })(this.jQuery);
 
@@ -60,9 +54,9 @@ window.log = function(){
 // catch all document.write() calls
 (function(doc){
   var write = doc.write;
-  doc.write = function(q){ 
-    log('document.write(): ',arguments); 
-    if (/docwriteregexwhitelist/.test(q)) write.apply(doc,arguments);  
+  doc.write = function(q){
+    log('document.write(): ',arguments);
+    if (/docwriteregexwhitelist/.test(q)) write.apply(doc,arguments);
   };
 })(document);
 
