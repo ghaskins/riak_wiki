@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="{{ wiki.base_path }}css/screen.css" type="text/css" charset="utf-8" />
     <link rel="stylesheet" href="{{ wiki.base_path }}css/gollum.css" type="text/css" charset="utf-8" />
     <link rel="stylesheet" href="{{ wiki.base_path }}css/syntax.css" type="text/css" charset="utf-8" />
+    <link rel="stylesheet" href="{{ wiki.base_path }}css/wiki_specific.css" type="text/css" charset="utf-8" />
 
   </head>
 
@@ -143,17 +144,12 @@
     <script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
     <![endif]-->
 
-    <!-- yui profiler and profileviewer - remove for production -->
-    <script src="{{ wiki.base_path }}js/profiling/yahoo-profiling.min.js"></script>
-    <script src="{{ wiki.base_path }}js/profiling/config.js"></script>
-    <!-- end profiling code -->
-
     <script type="text/javascript" src="http://fast.fonts.com/jsapi/ec69692f-f404-4e54-ac9e-f957fa43199c.js"></script>
 
     <!-- asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet
          change the UA-XXXXX-X to be your site's ID -->
     <script>
-      var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
+      var _gaq = [['_setAccount', 'UA-10051263-6'], ['_trackPageview']];
       (function(d, t) {
       var g = d.createElement(t),
       s = d.getElementsByTagName(t)[0];

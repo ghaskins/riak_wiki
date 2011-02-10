@@ -31,7 +31,3 @@ Looking for a specific Riak Driver? Basho [[list of supported libraries|Client L
 * [[PBC API|PBC-API]]
 * [[Links]]
 * [[Pre-and Post-Commit Hooks|Pre--and-Post-Commit-Hooks]]
-
-
-
-
