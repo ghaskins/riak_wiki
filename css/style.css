@@ -60,7 +60,6 @@ del { text-decoration: line-through; }
 abbr[title], dfn[title] { border-bottom:1px dotted; cursor:help; }
 
 /* tables still need cellspacing="0" in the markup */
-table { border-collapse:collapse; border-spacing:0; }
 
 hr { display:block; height:1px; border:0; border-top:1px solid #ccc; margin:1em 0; padding:0; }
 
@@ -227,7 +226,7 @@ button {  width: auto; overflow: visible; }
 
 body { background: #d7d7d7; }
 
-#container { background: #fff; width: 100%; padding-bottom: 30px; }
+#container { background: #fff; min-width: 1000px; width: 100%; padding-bottom: 30px; }
 
 #container header { width: 1000px; height: 89px; background: url(../images/bg_header.png) bottom no-repeat; margin: 0 auto; position: relative; margin-bottom: 30px; }
 
@@ -244,7 +243,7 @@ body { background: #d7d7d7; }
 
   #container header .search { width: 153px; height: 20px; background: #fff; position: absolute; right: 15px; top: 49px; padding: 2px 0 1px 5px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; border: 1px solid #d0d0d0;  }
 
-    #container header .search input[type=text] { width: 123px; border: none; }
+    #container header .search input[type=text] { width: 120px; border: none; }
       #container header .search input[type=text]:focus { outline: 0 none; }
 
 
@@ -363,12 +362,42 @@ p.more { text-align: right; margin: -5px 0 5px; }
       #container #main article hgroup h1 { float: left; font-size: 30px; font-weight: normal; }
       #container #main article hgroup h3 { float: right; margin: 50px 15px 0 0; }
 
-    #container #main article h2 { font-size: 22px; line-height: 18px; color: #404348; padding: 20px 0 5px; font-weight: normal; }
+    #container #main article h2 { font-size: 22px; line-height: 24px; color: #404348; padding: 20px 0 5px; font-weight: normal; }
 
     #container #main article p { font-size: 12px; line-height: 18px; color: #7e7e7e; padding: 6px 0; }
 
     #container #main article ul { margin-bottom: 20px; }
       #container #main article li { font-size: 12px; line-height: 18px; color: #7e7e7e; }
+
+
+
+/* Overview table */
+table.overview { background: #fff; border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px; }
+	
+	table.overview thead tr th { background: #fff; text-align: center; }
+
+	table.overview tbody tr td { padding: 6px 20px; background: #f1f1f1; margin: 1px; text-align: center; }
+		table.overview tbody tr td:first-child { text-align: left; }
+		table.overview tbody tr td:last-child { background: #fe9926; color: #fff; font-weight: bold; }
+		
+	table.overview thead tr th { background: #595c61; color: #fff; padding: 10px 20px; }
+		table.overview thead tr:last-child th:first-child { text-align: left; border-radius: 4px 0 0 0; -moz-border-radius: 4px 0 0 0; -webkit-border-radius: 4px 0 0 0; }	
+		table.overview thead tr:last-child th:last-child { background: #fe9926; border-radius: 0 4px 0 0; -moz-border-radius: 0 4px 0 0; -webkit-border-radius: 0 4px 0 0; }	
+
+	table.overview tr th { background: #797d83; padding: 6px 20px; text-align: left; color: #fff; }
+	
+	table.overview tfoot tr td { background: #595c61; text-align: center; padding: 10px 20px; color: #fff; font-weight: bold; }
+		table.overview tfoot tr td:first-child { text-align: left; border-radius: 0 0 0 4px; -moz-border-radius: 0 0 0 4px; -webkit-border-radius: 0 0 0 4px; }
+		table.overview tfoot tr td:last-child { background: #fe9926; border-radius: 0 0 4px 0; -moz-border-radius: 0 0 4px 0; -webkit-border-radius: 0 0 4px 0; }
+		
+		
+	h4.specialist { margin: 22px 0 0; font-weight: bold; color: #242424; font-size: 14px; text-align: right; }
+  h4.specialist a { background-image: -moz-linear-gradient( center top, rgb(255,196,128) 0%, rgb(255,155,41) 80%); background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgb(255,196,128)), color-stop(0.8, rgb(255,155,41)) ); border: 1px solid #e89143; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; color: #9d5e17; text-shadow: #ffb96b 1px 1px 1px; font-weight: bold; width: 128px; padding: 8px 10px; text-align: left; margin: 4px 0 0 10px; display: block; text-decoration: none; display: inline; text-align: center; }	
+  
+  table.overview thead tr th.orange { background: #fe9926; border-radius: 0 4px 0 0; -moz-border-radius: 0 4px 0 0; -webkit-border-radius: 0 4px 0 0; }
+  table.overview tbody tr td.orange { background-color: #fe9926; color: #fff; font-weight: bold; }
+  table.overview tfoot tr td.orange { background: #fe9926; border-radius: 0 0 4px 0; -moz-border-radius: 0 0 4px 0; -webkit-border-radius: 0 0 4px 0; }
+
 
 /* Featured area */
     #container #main article .featured { width: 100%; background: #f1f1f1; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; padding: 0; margin-bottom: 30px; }
@@ -459,15 +488,25 @@ p.more { text-align: right; margin: -5px 0 5px; }
             #container #main section.team aside li.orange a:hover { background-color: rgb(239, 239, 239); /* The Fallback */ background-color: rgba(255, 255, 255, 0.3); }
 
 
+/* news */
+
+.news ul { padding: 0; margin: 0; }
+.news li { list-style: none; }
+.news h5 { font-size: 10px; color: #7e7e7e; border-bottom: 1px solid #eee; margin: 0 0 5px; }
+.news p { padding: 0px 0 5px; }
+
 
 
 /* button icons */
+a.download { background: url(../images/icn_download.png) no-repeat 2px 1px; }
 .orange a.download { background: url(../images/icn_download_orange.png) no-repeat 2px 1px; }
 a.link { background: url(../images/icn_link.png) no-repeat 2px 1px; }
 a.documentation { background: url(../images/icn_documentation.png) no-repeat 2px 1px; }
+.orange a.documentation { background: url(../images/icn_documentation_orange.png) no-repeat 2px 1px; }
 a.pdf { background: url(../images/icn_pdf.png) no-repeat 2px 1px; }
 a.mail { background: url(../images/icn_mail.png) no-repeat 2px 1px; }
 a.video { background: url(../images/icn_video.png) no-repeat 2px 1px; }
+a.bug { background: url(../images/icn_bug.png) no-repeat 2px 1px; }
 a.twitter { background: url(../images/icn_twitter.png) no-repeat 2px 2px; }
 
 
@@ -511,7 +550,8 @@ footer { width: 1000px; margin: 0 auto; text-align: center; }
 /* Grade-A Mobile Browsers (Opera Mobile, iPhone Safari, Android Chrome)
    Consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ */
 @media screen and (max-device-width: 480px) {
-
+	
+	#floating_footer { visibility: hidden; }
 
   /* Uncomment if you don't want iOS and WinMobile to mobile-optimize the text for you
      j.mp/textsizeadjust

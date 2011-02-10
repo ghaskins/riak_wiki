@@ -1,1 +1,20 @@
 ul.dropdown ul li  { display: inline; width: 100%; }
+
+.home_featured .right li { background: url(../images/bg_gray_gradient.png) repeat-x center center; }
+.home_featured .right li.orange { background: url(../images/bg_orange_gradient.png) repeat-x center center; }
+
+h4.specialist a { background: url(../images/bg_orange_gradient.png) repeat-x center center; }
+
+#container #main section.project aside li { background: url(../images/bg_gray_gradient.png) repeat-x center center; }
+#container #main section.project aside li.orange { background: url(../images/bg_orange_gradient.png) repeat-x center center; }
+
+#container #main section.client aside li { background: url(../images/bg_gray_gradient.png) repeat-x center center; }
+#container #main section.client aside li.orange { background: url(../images/bg_orange_gradient.png) repeat-x center center; }
+
+#container #main section.step aside li { background: url(../images/bg_gray_gradient.png) repeat-x center center; }
+#container #main section.step aside li.orange { background: url(../images/bg_orange_gradient.png) repeat-x center center; }
+
+#container #main section.team aside li { background: url(../images/bg_gray_gradient.png) repeat-x center center; }
+#container #main section.team aside li.orange { background: url(../images/bg_orange_gradient.png) repeat-x center center; }
+
+#floating_footer a { background: url(../images/bg_orange_gradient.png) repeat-x center center; }
