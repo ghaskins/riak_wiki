@@ -76,10 +76,11 @@ h2. Monitoring, Management and GUI Tools
 
 h2. Backup Tools
 
-* [[Brackup|http://code.google.com/p/brackup/]] - A modern net-based backup system that supports deduplication, intelligent chunking, and gpg-based-encryption.
+* [[Brackup|http://code.google.com/p/brackup/]] - A modern net-based backup system that supports de-duplication, intelligent chunking, and gpg-based-encryption.
 
 h2. Other
 
+* [[Riak to CSV Export|https://github.com/bradfordw/riak_csv]] - A simple way to export your Riak buckets to CSV files
 * [[Couch to Riak|http://github.com/mattsta/couchdb/tree/couch_file-to-riak]]
 * [[Chimera|http://github.com/benmyles/chimera]] - An object mapper for Riak and Redis
 * [[Riak_Redis Backend|http://github.com/cstar/riak_redis_backend]]
