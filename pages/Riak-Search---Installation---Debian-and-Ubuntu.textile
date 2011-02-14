@@ -21,6 +21,7 @@ sudo apt-get install sun-java6-jre
 
 
 Next, download and install the Riak Search package:
+
 h3. 64-bit
 
 
