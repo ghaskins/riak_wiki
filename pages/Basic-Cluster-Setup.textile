@@ -18,25 +18,21 @@ First, stop your Riak node if it is currently running:
 $ bin/riak stop
 ```
 
-
-Change the following line in your @etc/app.config@ to have the node listen on the network interface you want your cluster to operate on, such as 192.168.1.10:
-
-
+Change the default IP address located under @http{}@ in the riak_core section of @etc/app.config@ . (The port, 8098, does not need to be changed.) Let's use 192.168.1.10.
 
 ```bash
-{web_ip, "127.0.0.1"},
+{http, [ {"127.0.0.1", 8098 } ]},
 ```
 
 becomes
 
+
 ```bash
-{web_ip, "192.168.1.10"},
+{http, [ {"192.168.1.10", 8098 } ]},
 ```
 
 
-
 Next edit the @etc/vm.args@ file and change the @-name@ to your new IP:
-
 
 
 ```bash
@@ -125,7 +121,7 @@ To run multiple nodes, make copies of the @riak@ directory.
 
 Now, assuming that you made copied @./rel/riak@ into @./rel/riak1@, @./rel/riak2@, @./rel/riak3@, etc.:
 
-* In riakN/etc/app.config, change the @web_port@, @handoff_port@, and @pb_port@ to unique ports for each node..
+* In riakN/etc/app.config, change @handoff_port@, @pb_port@, and the port specified in the @http{}@ section to unique ports for each node.
 * In @riakN/etc/vm.args@, change the line that says @-name riak@127.0.0.1@ to a unique name for each node, for example: @-name riak1@127.0.0.1@.
 
 Now, start the nodes, changing path names and nodes as appropriate:
