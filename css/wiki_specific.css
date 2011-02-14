@@ -27,3 +27,21 @@ div.note div.title {
   font-size: 90%;
   font-weight: bold;
 }
+
+h2 a.toc-anchor, 
+h3 a.toc-anchor, 
+h4 a.toc-anchor, 
+h5 a.toc-anchor, 
+h6 a.toc-anchor {
+   text-decoration: none;
+   color: #eee;
+   display: none;
+}
+
+h2:hover a.toc-anchor,
+h3:hover a.toc-anchor, 
+h4:hover a.toc-anchor, 
+h5:hover a.toc-anchor, 
+h6:hover a.toc-anchor {
+   display: inline;
+}
