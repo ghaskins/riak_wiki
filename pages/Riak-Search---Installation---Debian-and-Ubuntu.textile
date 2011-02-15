@@ -21,6 +21,7 @@ sudo apt-get install sun-java6-jre
 
 
 Next, download and install the Riak Search package:
+
 h3. 64-bit
 
 
@@ -34,7 +35,7 @@ h3. 32-bit
 
 
 ```bash
-$ wget http://downloads.basho.com/riak-search/riak-search-0.13/riak-search_0.14.0-1_i386.deb
+$ wget http://downloads.basho.com/riak-search/riak-search-0.14/riak-search_0.14.0-1_i386.deb
 $ sudo dpkg -i riak-search_0.14.0-1_i386.deb
 ```
 
