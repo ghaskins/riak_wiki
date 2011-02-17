@@ -65,4 +65,4 @@ h2. Recorded Webinars
 * [[Riak with Rials|http://vimeo.com/13924929]]
 * [[MapReduce Querying in Riak|http://vimeo.com/13554436]]
 * [[NoSQL Performance in the Cloud; Riak on Joyent|http://blog.basho.com/2010/09/16/nosql-performance-in-the-cloud-webinar/]]
-
+* [[MapReducing Big Data With Luwak|http://vimeo.com/20074937]]
