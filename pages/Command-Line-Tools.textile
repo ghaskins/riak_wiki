@@ -123,7 +123,7 @@ Backs up the data from the node or entire cluster into a file.
 
 * &lt;node&gt; is the node from which to perform the backup.
 * &lt;cookie&gt; is the Erlang cookie/shared secret used to connect to the node. This is "riak" in the [[default configuration|Configuration Files#\-setcookie]].
-* &lt;filename&gt; is the file where the backup will be stored.
+* &lt;filename&gt; is the file where the backup will be stored. _This should be the full path to the file._ 
 * [node|all] specifies whether the data on this node or the entire cluster will be backed up, respectively.
 
 
@@ -138,7 +138,7 @@ Restores data to the node or cluster from a previous backup.
 
 * &lt;node&gt; is the node which will perform the restore.
 * &lt;cookie&gt; is the Erlang cookie/shared secret used to connect to the node. This is "riak" in the [[default configuration|Configuration Files]].
-* &lt;filename&gt; is the file where the backup is stored.
+* &lt;filename&gt; is the file where the backup is stored. _This should be the full path to the file._
 
 
 ```bash
