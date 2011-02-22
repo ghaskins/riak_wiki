@@ -12,5 +12,5 @@ h4. Riak:
 h4. Basho
 
 * "EPS":https://github.com/basho/riak_wiki/raw/master/images/basho-logo.eps
-* "PNG":https://github.com/basho/riak_wiki/blob/master/images/basho-portrait.png
+* "PNG":https://github.com/basho/riak_wiki/blob/master/images/basho-logo.png
 
