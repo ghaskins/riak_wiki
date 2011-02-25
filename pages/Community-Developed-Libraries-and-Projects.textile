@@ -36,6 +36,9 @@ h2. Client Libraries and Frameworks
 * [[Nori|http://github.com/technoweenie/nori]] - Experimental Riak HTTP Library for Node.js modeled after Ripple
 * [[OrionNodeRiak|http://github.com/mauritslamers/OrionNodeRiak]] - Node-based server and database-frontend for Sproutcore
 
+*Lisp Flavored Erlang*
+* [[Gutenberg|https://github.com/dysinger/gutenberg/]] - Riak MapReduce Examples Written in Erlang LFE
+
 *.NET*
 * [[Hebo|http://github.com/bubbafat/hebo]]
 * [[Data.RiakClient|http://github.com/garethstokes/Data.RiakClient]]
@@ -43,6 +46,9 @@ h2. Client Libraries and Frameworks
 *Perl*
 * [[Net::Riak|http://search.cpan.org/~franckc/Net-Riak/]]
 * [[AnyEvent-Riak adapter|http://github.com/franckcuny/anyevent-riak]]
+
+*PHP*
+* [[Ripple-PHP|https://github.com/KevBurnsJr/ripple-php]] - A port of Ripple to PHP
 
 *Play* 
 * [[Riak Module for The Play Framework|http://www.playframework.org/modules/riak-head/home]]
@@ -80,6 +86,7 @@ h2. Backup Tools
 
 h2. Other
 
+* [[ring-session-riak|https://github.com/ossareh/ring-session-riak]] - A Riak implementation for Ring Session
 * [[Riak to CSV Export|https://github.com/bradfordw/riak_csv]] - A simple way to export your Riak buckets to CSV files
 * [[Couch to Riak|http://github.com/mattsta/couchdb/tree/couch_file-to-riak]]
 * [[Chimera|http://github.com/benmyles/chimera]] - An object mapper for Riak and Redis
