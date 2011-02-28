@@ -233,7 +233,7 @@ XL59 uses Riak as a distributed data store in its cloud-based data distribution 
 </a>
 </notextile>
 
-[[Digitar|http://digitar.com/]] is a messaging and web security company based in Boise, Idaho. DigiTar services enhance existing messaging and web systems with next-generation feature sets, through state-of-the-art technology development.
+[[DigiTar|http://digitar.com/]] is a messaging and web security company based in Boise, Idaho. DigiTar services enhance existing messaging and web systems with next-generation feature sets, through state-of-the-art technology development.
 
 *From COO/CTO Jason Williams* : When we started in 2004, there weren't any open-source data stores that had built-in fault-tolerance or clustering that didn't involve some form of shared storage infrastructure.  This necessitated building our own homegrown partitioning and failover mechanisms to provide the reliability of a shared-nothing architecture. However, this approach has required a significant commitment to maintaining these solutions and keeping them working with the latest versions of MySQL. 
 
