@@ -221,24 +221,25 @@ XL59 uses Riak as a distributed data store in its cloud-based data distribution 
 [[/attachments/ask_logo.gif|align=center|width=180|vspace=20px]]
 
 
-
-
 [[Ask Sponsored Listings|http://sponsoredlistings.ask.com/]] is the search engine marketing extension of Ask.com, a top tier search engine.
 
 *From VP of Technology David Weldon* : "We are currently using Riak to store publisher configuration data and click statistics for our direct navigation products. I sleep well at night knowing that my system is fault-tolerant."
 
 ----
 
+<notextile>
+<a id="digitar">
+<img src="attachments/digitar.png"><br>
+</a>
+</notextile>
 
-[[/attachments/digitar.png|align=center|width=180|vspace=20px]]
+[[Digitar|http://digitar.com/]] is a messaging and web security company based in Boise, Idaho. DigiTar services enhance existing messaging and web systems with next-generation feature sets, through state-of-the-art technology development.
 
-[[DigiTar|http://digitar.com/]] is a messaging and web security company based in Boise, Idaho.  DigiTar services enhance existing messaging and web systems with next-generation feature sets, through state-of-the-art technology development.
-
-*From COO/CTO Jason Williams* : When we started in 2004, there weren't any open-source datastores that had built-in fault-tolerance or clustering that didn't involve some form of shared storage infrastructure.  This necessitated building our own homegrown partitioning and failover mechanisms to provide the reliability of a shared-nothing architecture. However, this approach has required a significant commitment to maintaining these solutions and keeping them working with the latest versions of MySQL. 
+*From COO/CTO Jason Williams* : When we started in 2004, there weren't any open-source data stores that had built-in fault-tolerance or clustering that didn't involve some form of shared storage infrastructure.  This necessitated building our own homegrown partitioning and failover mechanisms to provide the reliability of a shared-nothing architecture. However, this approach has required a significant commitment to maintaining these solutions and keeping them working with the latest versions of MySQL. 
 
 By basing all of our new services and APIs on Riak, we've been able to focus our energies on the features our customers want, instead of keeping the infrastructure under them available. Our customers rely on us to keep their businesses functioning 24/7...and Riak has made it possible to do that without custom clustering solutions and black magic.
 
-Riak has allowed us to focus on what we love to do - building awesome services for our customers - and less time on making the datastore behind those services always available."
+Riak has allowed us to focus on what we love to do - building awesome services for our customers - and less time on making the datastore behind those services always available.
 
 
 
