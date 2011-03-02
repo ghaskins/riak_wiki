@@ -59,6 +59,7 @@ h2. Community Processes
 
 [[Code Submission and Integration]]
 [[Contributing to the Riak Wiki]]
+[[How to Report a Bug]]
 
 h2. Contributors
 

@@ -1,0 +1,39 @@
+Bugs happen. We do our best to find them all but will inevitably miss some. Here's the protocol to follow for when you think you might have found something that needs reporting.
+
+h2. Before You File a Bug Report
+
+Before you file a bug, we ask that you put in the necessary time and research to ensure that what you are reporting is in fact a bonafide bug and not the result of some other configuration, operating system or application problem. To ensure your bug report is worth filing, please attempt do the following:
+
+# Search through the existing issues in "Basho's Bug Tracker":https://issues.basho.com/. There are a lot of people using Riak and, as as result, chances are someone has run into the same issue and has reported it. 
+# Search the "Riak Mailing List Archives":http://riak.markmail.org/ for similar issues and possible resolution paths. (The Mailman archives of the list archives can also be accessed "here.":http://lists.basho.com/pipermail/riak-users_lists.basho.com/)
+# Email the "Riak Mailing List":http://lists.basho.com/mailman/listinfo/riak-users_lists.basho.com with your issue to see if there is a simple path to resolution. 
+
+
+h2. Writing and Filing Your Bug Report
+
+# Go to "issues.basho.com":https://issues.basho.com/ and select _File a Bug_.
+# Sign into Bugzilla. If you don't have a Bugzilla account you can create one using the "create new account" link. 
+# The next step is to read and familiarize yourself with the "bug writing guidelines":https://issues.basho.com/page.cgi?id=bug-writing.html if you haven't already. This set of instructions gives pointers and recommendations on how to actually write your bug report and lays out the actual steps to file a bug correctly.
+# After committing the guidelines to memory, go ahead and "enter a new bug.":https://issues.basho.com/enter_bug.cgi. You'll first be prompted to select the Basho project for which you want to enter a bug. Chances are you'll be filing a bug pertaining to Riak, but you can also use this for related projects such as Luwak and Riak Search.
+# With the Bug Writing Guidelines as your... guide, fill out the bug report, add attachments as necessary, and click _Submit Bug_ to complete the process. 
+
+*If at any point you have a question about how to file a bug or think there is something fishy about this process, please use the "Riak Mailing List.":http://lists.basho.com/mailman/listinfo/riak-users_lists.basho.com*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

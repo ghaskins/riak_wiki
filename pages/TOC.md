@@ -47,6 +47,7 @@
   * [[Code Submission and Integration]]
   * [[Contributing to the Riak Wiki]]
   * [[Contributors]]
+  * [[How to Report a Bug]]
 * [[Who is Using Riak]]
 * [[FAQ]]
 * [[Riak Glossary]]
