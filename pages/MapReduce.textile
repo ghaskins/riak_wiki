@@ -105,6 +105,7 @@ The rabbit-hole went straight on like a tunnel for some way, and then
 dipped suddenly down, so suddenly that Alice had not a moment to think
 about stopping herself before she found herself falling down a very deep
 well.
+^D
 ```
 
 
@@ -115,13 +116,11 @@ With data loaded, we can now run a query:
 
 ```bash
 $ curl -X POST -H "content-type: application/json" http://localhost:8098/mapred --data @-
-{"inputs":[["alice","p1"],["alice","p2"],["alice","p5"]] ,"query":[{"map":{"language":"javascript","source":"function(v) { var m = v.values[[0]].data.toLowerCase().match('\\\\w*','g'); var r = [[]; for(var i in m) if (m[i]] != '') { var o = {}; o[[m[i]]]  = 1; r.push(o); } return r; }"}},{"reduce":{"language":"javascript","source":"function(v) { var r = {}; for (var i in v) { for(var w in v[[i]]) { if (w in r) r[[w]] += v[[i]][[w]]; else r[[w]] = v[[i]][[w]]; } } return [[r]]; }"}}]}
+{"inputs":[["alice","p1"],["alice","p2"],["alice","p5"]] ,"query":[{"map":{"language":"javascript","source":"function(v) { var words = v.values[0].data.toLowerCase().match('\\\\w*','g'); var counts = []; for(var word in words) if (words[word] != '') { var count = {}; count[words[word]] = 1; counts.push(count); } return counts; }"}},{"reduce":{"language":"javascript","source":"function(values) { var result = {}; for (var value in values) { for(var word in values[value]) { if (word in result) result[word] += values[value][word]; else result[word] = values[value][word]; } } return [result]; }"}}]}
 ^D
 ```
 
-
 And we end up with the word counts for the three documents.
-
 
 ```bash
 [{"the":8,"rabbit":2,"hole":1,"went":1,"straight":1,"on":2,"like":1,"a":6,"tunnel":1,"for":2,"some":1,"way":1,"and":5,"then":1,"dipped":1,"suddenly":3,"down":2,"so":2,"that":1,"alice":3,"had":3,"not":1,"moment":1,"to":3,"think":1,"about":1,"stopping":1,"herself":2,"before":1,"she":4,"found":1,"falling":1,"very":3,"deep":1,"well":2,"was":3,"considering":1,"in":2,"her":5,"own":1,"mind":1,"as":2,"could":1,"hot":1,"day":1,"made":1,"feel":1,"sleepy":1,"stupid":1,"whether":1,"pleasure":1,"of":5,"making":1,"daisy":1,"chain":1,"would":1,"be":1,"worth":1,"trouble":1,"getting":1,"up":1,"picking":1,"daisies":1,"when":1,"white":1,"with":1,"pink":1,"eyes":1,"ran":1,"close":1,"by":2,"beginning":1,"get":1,"tired":1,"sitting":1,"sister":2,"bank":1,"having":1,"nothing":1,"do":1,"once":1,"or":3,"twice":1,"peeped":1,"into":1,"book":2,"reading":1,"but":1,"it":2,"no":1,"pictures":2,"conversations":1,"what":1,"is":1,"use":1,"thought":1,"without":1,"conversation":1}]
@@ -137,34 +136,35 @@ For more details about what each bit of syntax means, and other syntax options, 
 
 ```javascript
 function(v) {
-   var m = v.values[[0]].data.match('\\w*','g');
-   var r = [];
-   for(var i in m)
-      if (m[[i]] != '') {
-         var o = {};
-         o[[m[i]]]  = 1;
-         r.push(o);
-      }
-   return r;
+  var words = v.values[0].data.toLowerCase().match('\\w*','g');
+  var counts = [];
+  for(var word in words)
+    if (words[word] != '') {
+      var count = {};
+      count[words[word]] = 1;
+      counts.push(count);
+    }
+  return counts;
 }
+
 ```
 
 creates a list of JSON objects, one for each word (non-unique) in the text.  The object has as a key, the word, and as the value for that key, the integer 1.
 # The reduce function from the phase was run on the outputs of the map functions.  The function:
 
 ```javascript
-function(v) {
-   var r = {};
-   for (var i in v) {
-      for(var w in v[[i]]) {
-         if (w in r)
-            r[[w]] += v[[i]][[w]];
-         else
-            r[[w]] = v[[i]][[w]];
-      }
-   }
-   return [[r]];
- }
+function(values) {
+  var result = {};
+  for (var value in values) {
+    for(var word in values[value]) {
+      if (word in result)
+        result[word] += values[value][word];
+      else
+        result[word] = values[value][word];
+    }
+  }
+  return [result];
+}
 ```
 
 looks at each JSON object in the input list.  It steps through each key in each object, and produces a new object. That new object has a key for each key in every other object, the value of that key being the sum of the values of that key in the other objects.  It returns this new object in a list, because is may be run a second time on a list including that object and more inputs from the map phase.
@@ -176,11 +176,15 @@ Map/Reduce queries are issued over HTTP via a *POST* to the @/mapred@ resource. 
 
 Map/Reduce queries have a default timeout of 60000 milliseconds (60 seconds). The default timeout can be overridden by supplying a different value, in milliseconds, in the JSON document @{"inputs":[...inputs...],"query":[...query...],"timeout": 90000}@
 
+When the timeout hits, the node coordinating the MapReduce request cancels it and returns an error to the client. When and if you are going to hit the default timeout depends on the size of the data involved and on the general load of your cluster. If you find yourself hitting the timeout regularly, consider increasing it even more or reduce the amount of data required to run the MapReduce request.
+
 h4. Inputs
 
 The list of input objects is given as a list of 2-element lists of the form @[Bucket,Key]@ or 3-element lists of the form @[Bucket,Key,KeyData]@.
 
 You may also pass just the name of a bucket @({"inputs":"mybucket",...})@, which is equivalent to passing all of the keys in that bucket as inputs (i.e. "a map/reduce across the whole bucket").  You should be aware that this triggers the somewhat expensive "list keys" operation, so you should use it sparingly. A bucket input may also be combined with [[Key Filters]] to limit the number of objects processed by the first query phase.
+
+If you're using Riak Search, the list of inputs can also [[reference a search query|Riak-Search---Querying#Querying-Integrated-with-Map-Reduce]] to be used as inputs.
 
 h4. Query
 
@@ -198,9 +202,8 @@ For example:
 
 
 ```bash
-{"map":{"language":"javascript","source":"function(v) { return [[v]]; }","keep":true}}
+{"map":{"language":"javascript","source":"function(v) { return [v]; }","keep":true}}
 ```
-
 
 would run the Javascript function given in the spec, and include the results in the final output of the m/r query.
 
@@ -223,13 +226,12 @@ Map phases may also be passed static arguments by using the "arg" spec field.
 
 For example, the following map function will perform a regex match on object values using "arg" and return how often "arg" appears in each object:
 
-
 ```bash
 {"map":
   {"language":"javascript",
   "source":"function(v, keyData, arg) {
     var re = RegExp(arg, \"gi\");
-    var m = v.values[[0]].data.match(re);
+    var m = v.values[0].data.match(re);
     if (m == null) {
       return [{\"key\":v.key, \"count\":0}];
     } else {
@@ -239,8 +241,6 @@ For example, the following map function will perform a regex match on object val
   "arg":"static data used in map function"}
 }
 ```
-
-
 
 h5. Reduce
 
@@ -252,35 +252,36 @@ Link phases accept @bucket@ and @tag@ fields that specify which links match the 
 
 The following example would follow all links pointing to objects in the @foo@ bucket, regardless of their tag:
 
-
 ```bash
 {"link":{"bucket":"foo","keep":false}}
 ```
 
-
-
-
 <div class="info"> Riak comes with some prebuilt JavaScript Functions. You can check them out at: [[https://github.com/basho/riak_kv/blob/master/priv/mapred_builtins.js|https://github.com/basho/riak_kv/blob/master/priv/mapred_builtins.js]] </div>
-
-
 
 h2(#erlang). MapReduce via the Erlang API
 
 Riak also supports invoking MapReduce queries via the Erlang API.
 
-
 <div class="note"><div class="title">Distributing Erlang MapReduce Code</div>Any modules and functions you use in your Erlang MapReduce calls must be available on all nodes in the cluster.  You can add them in Erlang applications in the @rel/overlay/lib@ directory, by specifying the *-pz* option in [[vm.args|Configuration Files]], or by adding the path to the *add_paths* setting in @app.config@.</div>
-
 
 h3. Erlang Example
 
-If you have a Riak client hanging around, you can execute MapReduce queries on it like this:
+You can use the local Riak client to run MapReduce queries. Before we do, let's create some objects to run them on.
 
 ```bash
-1> Count = fun(G, undefined, none) ->
+1> {ok, Client} = riak:local_client().
+2> Mine = riak_object:new(<<"groceries">>, <<"mine">>, ["eggs", "bacon"]).
+3> Yours = riak_object:new(<<"groceries">>, <<"yours">>, ["bread", "bacon"]).
+4> Client:put(Yours, 1).
+5> Client:put(Mine, 1).
+```
+Now that we have a client and some data, let's run a query and count how many occurances of groceries.
+
+```bash
+6> Count = fun(G, undefined, none) ->
              [dict:from_list([{I, 1} || I <- riak_object:get_value(G)])]
            end.
-2> Merge = fun(Gcounts, none) ->
+7> Merge = fun(Gcounts, none) ->
              [lists:foldl(fun(G, Acc) ->
                             dict:merge(fun(_, X, Y) -> X+Y end,
                                        G, Acc)
@@ -288,15 +289,14 @@ If you have a Riak client hanging around, you can execute MapReduce queries on i
                           dict:new(),
                           Gcounts)]
            end.
-3> {ok, [[R]]} = Client:mapred([{<<"groceries">>, <<"mine">>},
+8> {ok, [R]} = Client:mapred([{<<"groceries">>, <<"mine">>},
                               {<<"groceries">>, <<"yours">>}],
                              [{map, {qfun, Count}, none, false},
                               {reduce, {qfun, Merge}, none, true}]).
-4> L = dict:to_list(R).
+9> L = dict:to_list(R).
 ```
 
-
-If the @mine@ and @yours@ objects in the groceries bucket had values of @["bread", "cheese"], ["bread", "butter"]@, the sequence of commands above would result in L being bound to @[{"bread", 2},{"cheese",1},{"butter",1}]@.
+Given the lists of groceries we created, the sequence of commands above would result in L being bound to @[{"bread",1},{"eggs",1},{"bacon",2}]@.
 
 h3. Erlang Query Syntax
 
@@ -314,7 +314,6 @@ The query is given as a list of map, reduce and link phases. Map and reduce phas
 ```bash
 {Type, FunTerm, Arg, Keep}
 ```
-
 
 *Type* is an atom, either *map* or *reduce*. *Arg* is a static argument (any Erlang term) to pass to each execution of the phase. *Keep* is either *true* or *false* and determines whether results from the phase will be included in the final value of the query.  Riak assumes the final phase will return results.
 
@@ -360,6 +359,7 @@ h3. Map phase functions
             "metadata":{
                         "X-Riak-VTag":VtagAsString,
                         "X-riak-Last-Modified":LastModAsString,
+                        "Links":[...List of link objects],
                         ...other metadata...
                        },
             "data":ObjectData
@@ -378,41 +378,31 @@ h4. Map function examples
 
 These map functions return the value (data) of the object being mapped:
 
-
-
-
 ```bash
 fun(Value, _KeyData, _Arg) ->
-    [[riak_object:get_value(Value)]]
+    [riak_object:get_value(Value)]
 end.
 ```
 
-
-
-
 ```javascript
 function(value, keydata, arg){
-  return [[value.values[0]].data];
+  return [value.values[0].data];
 }
 ```
 
 These map functions filter their inputs based on the arg and return bucket-key pairs for a subsequent map phase:
 
-
 ```bash
 fun(Value, _KeyData, Arg) ->
   Key = riak_object:key(Value),
   Bucket = riak_object:bucket(Value),
-  case erlang:byte_length(Key) of
+  case erlang:byte_size(Key) of
     L when L > Arg ->
       [{Bucket,Key}];
     _ -> []
   end
 end.
 ```
-
-
-
 
 ```javascript
 function(value, keydata, arg){
@@ -439,7 +429,7 @@ h3. Reduce phase functions
 ```bash
   F([a,b,c,d])
   F([a,d] ++ F([c,b]))
-  F([[F([a]]),F([[c]]),F([[b]]),F([[d]])])
+  F([F([a]),F([c]),F([b]),F([d])])
 ```
 
 
@@ -447,17 +437,11 @@ h4. Reduce function examples
 
 These reduce functions assume the values in the input are numbers and sum them:
 
-
-
-
 ```bash
 fun(ValueList, _Arg) ->
   [lists:foldl(fun erlang:'+'/2, 0, List)]
 end.
 ```
-
-
-
 
 ```javascript
 function(valueList, arg){
@@ -468,13 +452,7 @@ function(valueList, arg){
 }
 ```
 
-
-
-
 These reduce functions sort their inputs:
-
-
-
 
 ```bash
 fun(ValueList, _Arg) ->
@@ -482,17 +460,11 @@ fun(ValueList, _Arg) ->
 end.
 ```
 
-
-
-
 ```javascript
 function(valueList, arg){
   return valueList.sort();
 }
 ```
-
-
-
 
 h2. Debugging Javascript Map Reduce Phases
 
@@ -501,7 +473,6 @@ There are currently two facilities for debugging map reduce phases. If there was
 ```javascript
 ejsLog('/tmp/map_reduce.log', JSON.stringify(value))
 ```
-
 
 Note that when used from a map phase the ejsLog function will create a file on each node on which the map phase runs. The output of a reduce phase will be located on the node you queried with your map reduce function.
 
@@ -516,7 +487,6 @@ If you load larger JSON objects in your buckets there is a possibility you might
 
 You can increase the amount of memory allocated to the Javascript VM stack by editing your app.config. The follwing will increase the stack size from 8MB to 32MB:
 
-
 ```bash
 {js_thread_stack, 8}
 ```
@@ -526,7 +496,5 @@ becomes
 ```bash
 {js_thread_stack, 32},
 ```
-
-
 
 In addition to increasing the amount of memory allocated to the stack you can increase the heap size as well by increasing the @js_max_vm_mem@ from the default of 8MB. If you are collecting a large amount of results in a reduce phase you may need to increase this setting.

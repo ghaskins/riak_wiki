@@ -2,10 +2,7 @@ The following steps should get you up and running with Riak Search on Mac OS X 1
 
 <div class="note"><div class="title">ulimit on OS X</div>OS X gives you a very small limit on open file handles, so even with a backend that uses very few file handles, it's possible to run out. See [[Open Files Limit]] for more information about changing the limit.</div>
 
-h2. From Precompiled Tarballs
-
-h3. 32-bit
-
+h2. Installing the 32-bit Version From Precompiled Tarballs
 
 ```bash
 $ curl -O http://downloads.basho.com/riak-search/riak-search-0.14/riak_search-0.14.0-osx-i386.tar.gz
