@@ -4,11 +4,15 @@ require 'csv'
 require 'riak'
 
 client = Riak::Client.new
-bucket = client.bucket('goog', :keys => false)
+bucket = client['goog']
 
-CSV.foreach('goog.csv', :headers => true) do |row|
-  puts row.first[1].to_s
-  obj = bucket.new(row.first[1].to_s)
-  obj.data = Hash[row.to_a]
+quotes = File.readlines('goog.csv')
+header = CSV.parse_line quotes.shift
+
+quotes.each do |row|
+  data  = CSV.parse_line(row)
+  obj   = bucket[p data.first]
+
+  obj.data = Hash[ [header, data].transpose ]
   obj.store
 end
