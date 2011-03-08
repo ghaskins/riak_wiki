@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
-require 'rubygems'
-require 'csv'
-require 'riak'
+%w[rubygems csv time riak].each{|lib| require lib}
 
 client = Riak::Client.new
 bucket = client['goog']
