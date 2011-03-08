@@ -1,4 +1,4 @@
-h3. Installing Riak Search
+h2. Installing Riak Search
 
 Click the link for your operating system to see instructions on how to install Riak Search:
 * [[Debian and Ubuntu|Riak Search - Installation - Debian and Ubuntu]]
@@ -9,9 +9,7 @@ Click the link for your operating system to see instructions on how to install R
 <div class="note"><div class="title">Can I Install Search on an Existing Cluster?</div>We currently don't officially support "installing" Riak Search in an existing Riak KV cluster. If you are adventurous, the basic approach would be to shut down the cluster, move your data directory somewhere safe, uninstall Riak KV, install Riak Search, and move the data directory back, taking care to name all nodes the same.</div>
 
 
-
-h3. Starting Riak Search
-
+h2. Starting Riak Search
 
 To start up a Riak Search node, change directory as necessary to where you installed Riak Search (in the source directory, it's {{rel/riaksearch/bin}}) and run the {{riaksearch}} command like so:
 
@@ -38,5 +36,3 @@ riaksearch ping
 
 
 The command will respond with @pong@ if the node is running, or @pang@ if it is not.
-
-

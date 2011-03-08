@@ -1,17 +1,16 @@
-h3. Query Syntax
+<div id="toc"></div>
 
-Riak Search follows the same query syntax as Lucene, detailed here:
+h2. Query Syntax
 
-   http://lucene.apache.org/java/2_4_0/queryparsersyntax.html
+Riak Search follows the same query syntax as Lucene, detailed "here":http://lucene.apache.org/java/2_4_0/queryparsersyntax.html
 
-
-h4. Terms and Phrases
+h2. Terms and Phrases
 
 A query can be as simple as a single term (ie: "red") or a series of terms surrounded by quotes called a phrase ("See spot run"). The term (or phrase) is analyzed using the default analyzer for the index.
 
 The index schema contains a {{default_operator}} setting that determines whether a phrase is treated as an AND operation or an OR operation. By default, a phrase is treated as an OR operation. In other words, a document is returned if it matches any one of the terms in the phrase.
 
-h4. Fields
+h2. Fields
 
 You can specify a field to search by putting it in front of the term or phrase to search. For example:
 
@@ -62,7 +61,7 @@ books.url:'http://mycompany.com/url/to/my-book#foo'
 books.url:http\:\/\/mycompany.com\/url\/to\/my\-book\#foo
 ```
 
-h4. Wildcard Searches
+h2. Wildcard Searches
 
 Terms can include wildcards in the form of an asterisk ( * ) to allow prefix matching, or a question mark ( ? ) to match a single character.
 
@@ -73,7 +72,7 @@ For example:
 * "bus*" will match "busy", "business", "busted", etc.
 * "bus?" will match "busy", "bust", "busk", etc.
 
-h4. Fuzzy Searches
+h2. Fuzzy Searches
 
 
 <div class="note">Fuzzy Searches are not yet supported.</div>
@@ -101,7 +100,7 @@ bass~0.5
 
 And will match "bass" as well as "bask", "bats", "bars", etc. The fuzziness argument is a number between 0.0 and 1.0. Values close to 0.0 result in more fuzziness, values close to 1.0 result in less fuzziness.
 
-h4. Proximity Searches
+h2. Proximity Searches
 
 Proximity searching allows you to find terms that are within a certain number of words from each other. To specify a proximity seach, use the tilde argument on a phrase.
 
@@ -113,10 +112,9 @@ For example:
 "See spot run"~20
 ```
 
-
 Will find documents that have the words "see", "spot", and "run" all within the same block of 20 words.
 
-h4. Range Searches
+h2. Range Searches
 
 Range searches allow you to find documents with terms in between a specific range. Ranges are calculated lexicographically.  Use square brackets to specify an inclusive range, and curly braces to specify an exclusive range.
 
@@ -138,7 +136,7 @@ The following example will return documents with words in between "red" and "rum
 ```
 
 
-h4. Boosting a Term
+h2. Boosting a Term
 
 A term (or phrase) can have its score boosted using the caret operator along with an integer boost factor.
 
@@ -151,7 +149,7 @@ red^5 OR blue
 ```
 
 
-h4. Boolean Operators - AND, OR, NOT
+h2. Boolean Operators - AND, OR, NOT
 
 Queries can use the boolean operators AND, OR, and NOT. The boolean operators must be capitalized.
 
@@ -173,7 +171,7 @@ The required ( + ) operator can be used in place of "AND", and the prohibited ( 
 ```
 
 
-h4. Grouping
+h2. Grouping
 
 Clauses in a query can be grouped using parentheses. The following query returns documents that contain the terms "red" or "blue", but not "yellow":
 
@@ -184,7 +182,7 @@ Clauses in a query can be grouped using parentheses. The following query returns
 ```
 
 
-h3. Querying via the Search Shell
+h2. Querying via the Search Shell
 
 The Search Shell is the easiest way to run interactive queries against Riak Search. To start the shell, run:
 
@@ -198,7 +196,7 @@ bin/search-cmd shell [[INDEX]]
 This launches an interactive console into which you can type search commands. For help, type @h()@.
 
 
-h3. Querying via the Command Line
+h2. Querying via the Command Line
 
 To run a single query from the command line, use:
 
@@ -227,7 +225,7 @@ bin/search-cmd search_doc books "title:\"See spot run\""
 ```
 
 
-h3. Querying via the Erlang Command Line
+h2. Querying via the Erlang Command Line
 
 To run a query from the Erlang shell, use @search:search(Query)@ or @search:search(Index, Query)@. For example:
 
@@ -247,7 +245,7 @@ search:search_doc(<<"books">>, <<"author:joyce">>).
 ```
 
 
-h3. Querying via the Solr Interface
+h2. Querying via the Solr Interface
 
 Riak Search supports a Solr-compatible interface for searching documents via HTTP. By default, the select endpoint is located at "http://hostname:8098/solr/select".
 
@@ -273,7 +271,7 @@ curl "http://localhost:8098/solr/books/select?start=0&rows=10000&q=prog*"
 ```
 
 
-h3. Faceted Queries via the Solr Interfae
+h2. Faceted Queries via the Solr Interfae
 
 
 <div class="note">Facet querying through the Solr interface is not yet supported.</div>
@@ -294,35 +292,17 @@ Use the longer syntax if multiple fields are defined.
 
 Note that when faceting on a field, only terms that are present in the result set are listed in the facet results (in other words, you will never see a facet count entry of zero.) Faceted fields are analyzed using the analyzer associated with the field.
 
-h3. Querying via the Riak Client API
-
-h4. Basic Querying
+h2. Querying via the Riak Client API
 
 The Riak Client API's have been updated to support querying of Riak Search. See the client documentation for more information. Currently, the Ruby, Python, PHP, and Erlang clients are supported.
 
 The API takes a default search index as well as as search query, and returns a list of bucket/key pairs. Some clients transform this list into objects specific to that client.
 
-h4. Querying Integrated with Map/Reduce
+h2. Querying Integrated with Map/Reduce
 
 The Riak Client APIs that integrate with Riak Search also support using a search query to generate inputs for a map/reduce operation. This allows you to perform powerful analysis and computation across your data based on a search query. See the client documentation for more information. Currently, the Ruby, Python, PHP, and Erlang clients are supported.
 
-h4. Querying via HTTP/Curl
-
-
-Developers who are using a language without an official Riak API or prefer to use the pure HTTP API can still execute a search-based map/reduce operation.
-
-The syntax is fairly simple.  In the "inputs" section of your map/reduce query, use the new "modfun" specification, naming "riak_search" as your module, "mapred_search" as your function, and your index and query as the arguments.
-
-For example, if you wanted to search the "customers" bucket for objects that had the text "john" in their "first_name" field, you would normally issue a Solr query like:
-
-
-```bash
-$ curl http://localhost:8098/solr/customers/select?q=first_name:john
-```
-
-
 Kicking off a map/reduce query with the same result set over HTTP would use a POST body like this:
-
 
 ```javascript
 {
@@ -335,15 +315,25 @@ Kicking off a map/reduce query with the same result set over HTTP would use a PO
  }
 ```
 
-
 The phases in the "query" field should be exactly the same as usual.  An initial map phase will be given each object matching the search for processing, but an initial link phase or reduce phase will also work.
 
 The "arg" field of the inputs specification is always a two-element list.  The first element is the name of the bucket you wish to search, and the second element is the query to search for.  All syntax available in other Search interfaces is available in this query parameter.
 
-h3. Query Scoring
+h2. Querying via HTTP/Curl
 
-Documents are scored using roughly the same formulas described here:
+Developers who are using a language without an official Riak API or prefer to use the pure HTTP API can still execute a search-based map/reduce operation.
 
-   http://lucene.apache.org/java/3_0_2/api/core/org/apache/lucene/search/Similarity.html
+The syntax is fairly simple.  In the "inputs" section of your map/reduce query, use the new "modfun" specification, naming "riak_search" as your module, "mapred_search" as your function, and your index and query as the arguments.
+
+For example, if you wanted to search the "customers" bucket for objects that had the text "john" in their "first_name" field, you would normally issue a Solr query like:
+
+
+```bash
+$ curl http://localhost:8098/solr/customers/select?q=first_name:john
+```
+
+h2. Query Scoring
+
+Documents are scored using roughly the same formulas described "here":http://lucene.apache.org/java/3_0_2/api/core/org/apache/lucene/search/Similarity.html
 
 The key difference is in how Riak Search calculates the Inverse Document Frequency. The equations described on the /Similarity/ page require knowledge of the total number of documents in a collection. Riak Search does not maintain this information for a collection, so instead uses the count of the total number of documents associated with each term in the query.
