@@ -176,6 +176,8 @@ Map/Reduce queries are issued over HTTP via a *POST* to the @/mapred@ resource. 
 
 Map/Reduce queries have a default timeout of 60000 milliseconds (60 seconds). The default timeout can be overridden by supplying a different value, in milliseconds, in the JSON document @{"inputs":[...inputs...],"query":[...query...],"timeout": 90000}@
 
+When the timeout hits, the node coordinating the MapReduce request cancels it and returns an error to the client. When and if you are going to hit the default timeout depends on the size of the data involved and on the general load of your cluster. If you find yourself hitting the timeout regularly, consider increasing it even more or reduce the amount of data required to run the MapReduce request.
+
 h4. Inputs
 
 The list of input objects is given as a list of 2-element lists of the form @[Bucket,Key]@ or 3-element lists of the form @[Bucket,Key,KeyData]@.
