@@ -250,11 +250,9 @@ Riak has allowed us to focus on what we love to do - building awesome services f
 </notextile>
 
 
-[[UnityPark|http://www.unitypark3d.com/]] is a sister company to [[PikkoTekk|http://www.pikkotekk.com/]]. These two companies have made a [[world record game|http://www.rockpapershotgun.com/2011/03/07/pikkotekks-1000-player-fps/]] based on technology similar to the Riak core. UnityPark is a middleware company producing scalable middleware that can be used by game developers using the [[Unity Engine|http://unity3d.com/]]. The software from UnityPark makes it possible to start producing fast paced action games with thousands of players in the same virtual world.
+[[UnityPark|http://www.unitypark3d.com/]] is a sister company to [[PikkoTekk|http://www.pikkotekk.com/]]. These two companies have made a [[world record game|http://www.rockpapershotgun.com/2011/03/07/pikkotekks-1000-player-fps/]] based on technology similar to Riak core. UnityPark is a middleware company producing scalable middleware that can be used by game developers using the [[Unity Engine|http://unity3d.com/]]. The software from UnityPark makes it possible to start producing fast-paced action games with thousands of players in the same virtual world.
 
-One product from UnityPark, *uGame NoSQL*, is based on Riak. This integration software combines the strength of Unity and Riak and makes it easy for all Unity game developers to start using Riak when the game needs a scalable distributed database on the server side. Unity is the game engine with the largest user base in the world and it is growing fast
-
-
+One product from UnityPark, *uGame NoSQL*, is based on Riak. This integration software combines the strength of Unity and Riak and makes it easy for all Unity game developers to start using Riak when the game needs a scalable distributed database on the server side. Unity is the game engine with the largest user base in the world and it is growing fast.
 
 
 
