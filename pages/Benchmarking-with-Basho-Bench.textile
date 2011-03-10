@@ -13,7 +13,9 @@ The main repository for basho_bench is [[http://github.com/basho/basho_bench/|ht
 h2. Documentation
 
 
-<div class="info"><div class="title">Note on Documentation</div>What follows is primarily a reprint of what can be found in the basho_bench repository under @docs/Documentation.org@</div>
+<div class="info"><div class="title">Note on Documentation</div>This wiki
+topic replaces the documentation that was in the basho_bench repository
+under @docs/Documentation.org@ prior to February 2011.</div>
 
 
 h3. How does it work?
