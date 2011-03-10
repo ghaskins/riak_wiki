@@ -8,7 +8,9 @@ quotes  = CSV.read 'goog.csv'
 header  = quotes.shift
 
 quotes.each do |row|
-  obj = bucket[p row.first]
+  obj = bucket.new row.first
+
+  puts obj.key
 
   obj.data = Hash[ [header, row].transpose ]
   obj.store
