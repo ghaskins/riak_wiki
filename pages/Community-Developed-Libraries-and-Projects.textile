@@ -37,7 +37,7 @@ h2. Client Libraries and Frameworks
 * [[OrionNodeRiak|http://github.com/mauritslamers/OrionNodeRiak]] - Node-based server and database-frontend for Sproutcore
 
 *Lisp Flavored Erlang*
-* [[Gutenberg|https://github.com/dysinger/gutenberg/]] - Riak MapReduce Examples Written in Erlang LFE
+* [[Gutenberg|https://github.com/dysinger/gutenberg/]] - Riak MapReduce Examples Written in LFE
 
 *.NET*
 * [[Hebo|http://github.com/bubbafat/hebo]]
@@ -56,6 +56,7 @@ h2. Client Libraries and Frameworks
 
 *Python*
 * [[txriak|https://launchpad.net/txriak]]- a Twisted module for communicating with Riak via the HTTP interface
+* [[txriakidx|https://github.com/williamsjj/txriakidx]] - Riak client for Twisted Python that implements transparent indexes
 
 *Ruby*
 * [[Riak Model|http://github.com/botanicus/riak-model]]
