@@ -128,7 +128,7 @@ You can override the default SSL key and certificate settings (default: etc/cert
 
 h4. http_logdir
 
-Override the default location of the access logs.  See the "webmachine":#webmachine-settings settings to enable access logs.
+Override the default location of the access logs.  See the "webmachine_logger_module":#webmachine_logger_module settings to enable access logs.
 
 h3. riak_kv settings
 
@@ -233,8 +233,6 @@ h3. vnode_mr_timeout
 
 How long a map function is permitted to execute on a vnode before it times out and is retried on another vnode, in milliseconds. (default: "1000")
 
-h3. webmachine settings
-
 h4. webmachine_logger_module
 
 This needs to be set in order to enable access logs.
@@ -243,7 +241,7 @@ This needs to be set in order to enable access logs.
 {webmachine, [{webmachine_logger_module, webmachine_logger}]}
 ```
 
-<div class="note">The additional disk I/O of an access log imposes a performance cost you may not whish to pay.  Therefore, by default, Riak does not produce access logs.</div>
+<div class="note">The additional disk I/O of an access log imposes a performance cost you may not wish to pay.  Therefore, by default, Riak does not produce access logs.</div>
 
 h2. vm.args
 
