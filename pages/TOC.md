@@ -50,6 +50,7 @@
   * [[How to Report a Bug]]
 * [[Who is Using Riak]]
 * [[FAQ]]
+* [[Release Notes]]
 * [[Riak Glossary]]
 * [[Riak Comparisons]]
   * [[Riak Compared to Cassandra]]
