@@ -51,9 +51,12 @@ You can watch all the Riak screecasts and other videos that Basho publishes on t
 
 h3. Meetups
 
-At the moment we have a [[monthly Riak Meetup in San Francisco|http://www.meetup.com/San-Francisco-Riak-Meetup/]]. If you want to start a meetup or speak at an existing one, email _+mark@basho.com+_
+If you're looking for assistance getting a meetup or user group started in your area, or want to tell the community about one that you're starting, email _+mark@basho.com+_.
 
-* [[Riak San Francisco Meetup|http://www.meetup.com/San-Francisco-Riak-Meetup/]]
+Here's a list of the current Meetups:
+
+* [[San Francisco Riak Meetup|http://www.meetup.com/San-Francisco-Riak-Meetup/]]
+* [[Stockholm Riak Meetup|http://www.meetup.com/Stockholm-Riak-Meetup/events/16883122/]]
 
 h2. Community Processes
 
