@@ -74,6 +74,9 @@ h2. Client Libraries and Frameworks
 * [[Riakka|http://github.com/timperrett/riakka]]
 * [[Ryu - A `Tornado Whirlwind Kick` Scala Client|http://github.com/softprops/ryu]]
 
+*Smalltalk*
+* [[Riak-Smalltalk Interface|http://www.squeaksource.com/EpigentRiakInterface/]] (There is also a blog post with some additional info about the client [[here|http://blog.epigent.com/2011/03/riak-interface-for-pharo-smalltalk.html]].)
+
 h2. Monitoring, Management and GUI Tools
 
 * [[Gmond Python Modules for Riak|http://github.com/jnewland/gmond_python_modules/tree/master/riak]] - Ganglia Module for connecting to Riak
