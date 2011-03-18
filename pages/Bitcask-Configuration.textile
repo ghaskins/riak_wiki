@@ -1,9 +1,6 @@
 h1. Bitcask Configuration
 
-Bitcask is the default storage backend for Riak and its default
-settings work for many use-cases. In some scenarios, however, you
-might want to adjust the configuration to suit your production needs.
-Some of those scenarios are:
+Bitcask is the default storage backend for Riak and its default settings work for many use-cases. In some scenarios, however, you might want to adjust the configuration to suit your production needs. Some of those scenarios are:
 
 * Your application updates a small number of keys frequently.
 * You have limited disk space.
@@ -28,21 +25,17 @@ The default configuration values for Bitcask are as follows:
   {expiry_secs, -1}
 ```
 
-All of these settings can be configured in[[@app.config@|Configuration Files]] under the @bitcask@ section.
+All of these settings can be configured in[[app.config|Configuration Files]] under the @bitcask@ section.
 
 h2. Operational Settings
 
 h3. Open Timeout
 
-The @open_timeout@ setting specifies how long Bitcask will block on startup
-while attempting to create or open the data directory. The value is in
-seconds and the default is @4@. You generally need not change this
-value.
+The @open_timeout@ setting specifies how long Bitcask will block on startup while attempting to create or open the data directory. The value is in seconds and the default is @4@. You generally need not change this value.
 
 h3. Sync Strategy
 
-The @sync_strategy@ setting specifies how writes will be synchronized
-to disk.  Valid values for this setting are:
+The @sync_strategy@ setting specifies how writes will be synchronized to disk.  Valid values for this setting are:
 
 * @none@ - (default) Lets the operating system manage syncing writes.
 * @o_sync@ - Uses the O_SYNC flag which forces syncs on every write.
@@ -50,109 +43,46 @@ to disk.  Valid values for this setting are:
 
 h2. Disk-Usage and Merging Settings
 
-Each partition of the ring stored by Bitcask is represented by a
-directory that contains multiple files containing the key-value data
-and some "hint" files that point to where the various keys exist
-within the data files.  The design of Bitcask is crash-proof, in that
-data files are only appended to (never modified in-place) and are
-never reopened for modification (only reading).
+Each partition of the ring stored by Bitcask is represented by a directory that contains multiple files containing the key-value data and some "hint" files that point to where the various keys exist within the data files.  The design of Bitcask is crash-proof, in that data files are only appended to (never modified in-place) and are never reopened for modification (only reading).
 
-The caveat with this design is that it is wasteful with disk space.
-To counteract this problem, Bitcask implements a "merge" process which
-traverses data files and reclaims space from old versions of keys and
-deleted keys, writing the fresh keys to a new set of files within the
-directory.
+The caveat with this design is that it is wasteful with disk space. To counteract this problem, Bitcask implements a "merge" process which traverses data files and reclaims space from old versions of keys and deleted keys, writing the fresh keys to a new set of files within the directory.
 
-The merge process is affected by the settings described below.  In the
-discussion, "dead" refers to keys that have had newer versions
-written, or have been deleted. "Live" refers to keys that are the
-newest version and have not been deleted.
+The merge process is affected by the settings described below.  In the discussion, "dead" refers to keys that have had newer versions written, or have been deleted. "Live" refers to keys that are the newest version and have not been deleted.
 
 h3. Max File Size
 
-The @max_file_size@ setting describes the maximum permitted size for
-any single data file in the Bitcask directory. If an incoming write
-causes the current file to exceed this size, it is closed for writes
-and a new one is opened.  The setting is in bytes, so the default of
-@16#80000000@ is 2GB.  Increasing this value will cause Bitcask to
-create fewer, larger files, while decreasing the value will cause
-Bitcask to more numerous, smaller files.
+The @max_file_size@ setting describes the maximum permitted size for any single data file in the Bitcask directory. If an incoming write causes the current file to exceed this size, it is closed for writes and a new one is opened.  The setting is in bytes, so the default of @16#80000000@ is 2GB.  Increasing this value will cause Bitcask to create fewer, larger files, while decreasing the value will cause Bitcask to more numerous, smaller files.
 
 h3. Merge Window
 
-The @merge_window@ setting lets you specify when merge operations are
-allowed to be triggered.  Valid values are:
+The @merge_window@ setting lets you specify when merge operations are allowed to be triggered.  Valid values are:
 
 * @always@ (default) No restrictions
 * @never@ Merge will never be attempted
 * @{Start, End}@ Hours during which merging is permitted, where @Start@ and @End@ are integers between 0 and 23.
 
-If merging has a significant impact on performance of your cluster, or
-your cluster has quiet periods in which little storage activity
-occurs, you may want to change this setting from the default.
+If merging has a significant impact on performance of your cluster, or your cluster has quiet periods in which little storage activity occurs, you may want to change this setting from the default.
 
 h3. Merge Triggers
 
-Merge triggers determine *under what conditions* merging will be
-invoked. When either of these constraints are met by any file in the
-directory, Bitcask will attempt to merge files.
+Merge triggers determine *under what conditions* merging will be invoked. When either of these constraints are met by any file in the directory, Bitcask will attempt to merge files.
 
-*Fragmentation*: The @frag_merge_trigger@ setting describes what ratio
-of dead keys to total keys in a file will trigger merging. The value
-of this setting is a percentage (0-100). For example, if a data file
-contains 6 dead keys and 4 live keys, then merge will be triggered at
-the default setting of @60@. Increasing this value will cause merging
-to occur less often, whereas decreasing the value will cause merging
-to happen more often.
+*Fragmentation*: The @frag_merge_trigger@ setting describes what ratio of dead keys to total keys in a file will trigger merging. The value of this setting is a percentage (0-100). For example, if a data file contains 6 dead keys and 4 live keys, then merge will be triggered at the default setting of @60@. Increasing this value will cause merging to occur less often, whereas decreasing the value will cause merging to happen more often.
 
-*Dead Bytes*: The @dead_bytes_merge_trigger@ setting describes how
-much data stored for dead keys in a single file will trigger merging.
-The value is in bytes, so the default of 536870912 represents 512MB.
-If a file meets or exceeds the trigger value for dead bytes, merge
-will be triggered.  Increasing the value will cause merging to occur
-less often, whereas decreasing the value will cause merging to happen
-more often.
+*Dead Bytes*: The @dead_bytes_merge_trigger@ setting describes how much data stored for dead keys in a single file will trigger merging. The value is in bytes, so the default of 536870912 represents 512MB. If a file meets or exceeds the trigger value for dead bytes, merge will be triggered.  Increasing the value will cause merging to occur less often, whereas decreasing the value will cause merging to happen more often.
 
 h3. Merge Thresholds
 
-Merge thresholds determine *which files* will be chosen to be included
-in a merge operation. When any of these constraints are met for a
-single file, it will be included in the merge operation.
+Merge thresholds determine *which files* will be chosen to be included in a merge operation. When any of these constraints are met for a single file, it will be included in the merge operation.
 
-*Fragmentation*: The @frag_threshold@ setting describes what ratio of
-dead keys to total keys in a file will cause it to be included in the
-merge.  The value of this setting is a percentage (0-100). For
-example, if a data file contains 4 dead keys and 6 live keys, it will
-be included in the merge at the default setting of @40@.  Increasing
-the value will cause fewer files to be merged, decreasing the value
-wil cause more files to be merged.
+*Fragmentation*: The @frag_threshold@ setting describes what ratio of dead keys to total keys in a file will cause it to be included in the merge.  The value of this setting is a percentage (0-100). For example, if a data file contains 4 dead keys and 6 live keys, it will be included in the merge at the default setting of @40@.  Increasing the value will cause fewer files to be merged, decreasing the value wil cause more files to be merged.
 
-*Dead Bytes*: The @dead_bytes_threshold@ setting describes the minimum
-amount of data occupied by dead keys in a file to cause it to be
-included in the merge.  The value is in bytes, so the default of
-134217728 is 128MB.  Increasing the value will cause fewer files to be
-merged, decreasing the value will cause more files to be merged.
+*Dead Bytes*: The @dead_bytes_threshold@ setting describes the minimum amount of data occupied by dead keys in a file to cause it to be included in the merge.  The value is in bytes, so the default of 134217728 is 128MB.  Increasing the value will cause fewer files to be merged, decreasing the value will cause more files to be merged.
 
-*Small File*: The @small_file_threshold@ setting describes the minimum
-size a file must have to be _excluded_ from the merge.  Files smaller
-than the threshold will be included.  The value is in bytes, so the
-default of 10485760 is 10MB.  Increasing the value will cause _more_
-files to be merged, decreasing the value will cause _fewer_ files to
-be merged.
+*Small File*: The @small_file_threshold@ setting describes the minimum size a file must have to be _excluded_ from the merge.  Files smaller than the threshold will be included.  The value is in bytes, so the default of 10485760 is 10MB.  Increasing the value will cause _more_ files to be merged, decreasing the value will cause _fewer_ files to be merged.
 
 h2. Automatic expiration
 
-By default, Bitcask keeps all of your data around.  If your data has
-limited time-value, or if simply for space reasons you need to purge
-data, you can set the @expiry_secs@ option. This option is set to @-1@
-by default, which disables automatic expiration.  If you needed to
-purge data automatically after 1 day, set the option like so:
+By default, Bitcask keeps all of your data around.  If your data has limited time-value, or if simply for space reasons you need to purge data, you can set the @expiry_secs@ option. This option is set to @-1@ by default, which disables automatic expiration.  If you needed to purge data automatically after 1 day, set the value to @86400@.
 
-```erlang
-  {expiry_secs, 86400}
-```
-
-<div class="note">Space occupied by stale data *may not be reclaimed
-immediately*, but the data will become immediately inaccessible to
-client requests. Writing to a key will set a new modification
-timestamp on the value and prevent it from being expired.</div>
+<div class="note">Space occupied by stale data *may not be reclaimed immediately*, but the data will become immediately inaccessible to client requests. Writing to a key will set a new modification timestamp on the value and prevent it from being expired.</div>
