@@ -212,7 +212,7 @@ For example:
 
 ```bash
 
-bin/search-cmd search books "title:\"See spot run\""
+bin/search-cmd search books "title:\\"See spot run\\""
 ```
 
 
@@ -221,7 +221,7 @@ This will display a list of Document ID values matching the query. To conduct a 
 
 ```bash
 
-bin/search-cmd search_doc books "title:\"See spot run\""
+bin/search-cmd search_doc books "title:\\"See spot run\\""
 ```
 
 
