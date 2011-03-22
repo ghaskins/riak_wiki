@@ -208,7 +208,7 @@ The module name of the storage backend that Riak should use (default: "riak_kv_b
 The storage format Riak uses is configurable.  Riak will refuse to start if no storage backend is specified.
 
 Available backends, and their additional configuration options are:
-* *riak_kv_bitcask_backend*: data is stored in [[Bitcask|http://bitbucket.org/basho/bitcask]] append-only storage
+* *riak_kv_bitcask_backend*: data is stored in [[Bitcask|https://github.com/basho/bitcask]] append-only storage
 * *riak_kv_dets_backend*: data is stored in DETS files
 ** *riak_kv_dets_backend_root*: root directory where the DETS files are stored (defualt: "data/dets"
 * *riak_kv_ets_backend*: data is stored in ETS tables (in-memory)

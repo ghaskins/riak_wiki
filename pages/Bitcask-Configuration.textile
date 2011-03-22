@@ -47,7 +47,7 @@ The merge process is affected by the settings described below.  In the discussio
 
 h3. Max File Size
 
-The @max_file_size@ setting describes the maximum permitted size for any single data file in the Bitcask directory. If an incoming write causes the current file to exceed this size, it is closed for writes and a new one is opened.  The setting is in bytes, so the default of @16#80000000@ is 2GB.  Increasing this value will cause Bitcask to create fewer, larger files, while decreasing the value will cause Bitcask to more numerous, smaller files.
+The @max_file_size@ setting describes the maximum permitted size for any single data file in the Bitcask directory. If an incoming write causes the current file to exceed this size, it is closed for writes and a new one is opened.  The setting is in bytes, so the default of @16#80000000@ is 2GB.  Increasing this value will cause Bitcask to create fewer, larger files, while decreasing the value will cause Bitcask to creat more numerous, smaller files.
 
 h3. Merge Window
 
