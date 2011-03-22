@@ -18,7 +18,7 @@ First, stop your Riak node if it is currently running:
 $ bin/riak stop
 ```
 
-Change the default IP address located under @http{}@ in the riak_core section of @etc/app.config@ . (The port, 8098, does not need to be changed.) Let's use 192.168.1.10.
+Change the default IP address located under @http{}@ in the riak_core section of @etc/app.config@ . (The port, 8098, does not need to be changed.) Let's say our machine's IP address is 192.168.1.10. (This is just an example IP address. Yours will be specific to your machine.)
 
 ```bash
 {http, [ {"127.0.0.1", 8098 } ]},

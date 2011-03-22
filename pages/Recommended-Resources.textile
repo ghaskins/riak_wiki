@@ -53,7 +53,7 @@ h2. Influential Papers, Books, and other Publications
 
 * [[Amazon's Dynamo Paper|http://www.allthingsdistributed.com/2007/10/amazons_dynamo.html]]
 * [[Distributed Systems: Principles and Paradigms|http://www.amazon.com/Distributed-Systems-Principles-Andrew-Tanenbaum/dp/0130888931]]
-* [Time, Clocks, and the Ordering of Events in a Distributed System|http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.142.3682]
+* [[Time, Clocks, and the Ordering of Events in a Distributed System|http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.142.3682]]
 * [[Distributed Algorithms|http://www.amazon.com/Distributed-Algorithms-Kaufmann-Management-Systems/dp/1558603484/ref=sr_1_1?ie=UTF8&s=books&qid=1273371587&sr=1-1]]
 * [[Elements of Distributed Computing|http://www.amazon.com/Elements-Distributed-Computing-Vijay-Garg/dp/0471036005/ref=pd_bxgy_b_img_c]]
 * [[Towards Robust Distributed Systems|http://www.cs.berkeley.edu/~brewer/cs262b-2004/PODC-keynote.pdf]]
@@ -61,6 +61,7 @@ h2. Influential Papers, Books, and other Publications
 
 h2. Recorded Webinars
 
+* [[Riak with NodeJS:|http://vimeo.com/21099379]] - using the riak-js module for NodeJS to access Riak.
 * [[Riak in Action: Wriaki|http://vimeo.com/14275191]] - building a Riak-backed wiki.
 * [[Riak with Rials|http://vimeo.com/13924929]]
 * [[MapReduce Querying in Riak|http://vimeo.com/13554436]]
