@@ -57,7 +57,7 @@ MongoDB has support for removing shards from your database.
 
 h2. Performance
 
-Riak has pluggable storage engines, with the recommended being [Bitcask|http://blog.basho.com/2010/04/27/hello,-bitcask/] so you can tune levels of performance and durability based on your needs. (One thing  that is said around the office: "Eventual consistency is no excuse for losing data.") Durability and performance can also be tuned at the request level by specifying the number of nodes that need to agree on  reads and writes.
+Riak has pluggable storage engines, with the recommended being "Bitcask":http://blog.basho.com/2010/04/27/hello-bitcask so you can tune levels of performance and durability based on your needs. (One thing  that is said around the office: "Eventual consistency is no excuse for losing data.") Durability and performance can also be tuned at the request level by specifying the number of nodes that need to agree on  reads and writes.
 
 Mongo is more performant because it uses memory-mapped files. The tradeoff is that it fsyncs (flushes in-memory data to disk) only every 60 seconds by default, so you run the risk of losing data if your MongoDB server goes down. The solution for increasing durability in MongoDB is to replicate.
 
