@@ -2,9 +2,7 @@ Basho Bench is a benchmarking tool created to conduct accurate and repeatable pe
 
 Originally developed by Dave Smith (Dizzy) to benchmark Riak, Basho's key/value datastore, it exposes a pluggable driver interface and has been extended to serve as a benchmarking tool against a variety of projects. New drivers can be written in Erlang and are generally less than 200 lines of code.
 
-
 <div id="toc"></div>
-
 
 h2. Download
 
@@ -12,11 +10,7 @@ The main repository for basho_bench is [[http://github.com/basho/basho_bench/|ht
 
 h2. Documentation
 
-
-<div class="info"><div class="title">Note on Documentation</div>This wiki
-topic replaces the documentation that was in the basho_bench repository
-under @docs/Documentation.org@ prior to February 2011.</div>
-
+<div class="info"><div class="title">Note on Documentation</div>This wiki topic replaces the documentation that was in the basho_bench repository under @docs/Documentation.org@ prior to February 2011.</div>
 
 h3. How does it work?
 
@@ -24,13 +18,13 @@ When Basho Bench starts (basho_bench.erl), it reads the configuration (basho_ben
 
 During test setup, Basho Bench creates:
 
-* One *log process* (basho_bench_log.erl). During startup, this     creates a new @log.txt@ file in the current results directory, to     which output is logged at the specified logging level.
+* One *log process* (basho_bench_log.erl). During startup, this creates a new @log.txt@ file in the current results directory, to which output is logged at the specified logging level.
 * One *stats process* (basho_bench_stats.erl). This receives notifications when an operation completes, plus the elapsed time of the operation, and stores it in a histogram. At regular intervals, the histograms are dumped to @summary.csv@ as well as operation-specific latency CSVs (e.g. @put_latencies.csv@ for the 'put' operation).
-* N *workers*, where N is specified by the [{{concurrent}}|#concurrent] configuration setting. (basho_bench_worker.erl). The worker process wraps a driver module, specified by the [{{driver}}|#driver] configuration setting. The driver is randomly invoked using the distribution of operations as specified by the  /operation/ configuration setting. The rate at which the driver invokes operations is governed by the /mode/ setting.
+* N *workers*, where N is specified by the [[concurrent|Benchmarking with Basho Bench#concurrent]] configuration setting. (basho_bench_worker.erl). The worker process wraps a driver module, specified by the [driver|Benchmarking with Basho Bench#driver] configuration setting. The driver is randomly invoked using the distribution of operations as specified by the [[operation|Benchmarking with Basho Bench#operation]] configuration setting. The rate at which the driver invokes operations is governed by the [[mode|Benchmarking with Basho Bench#mode]] setting.
 
 Once these processes have been created and initialized, Basho Bench sends a run command to all worker processes, causing them to begin the test. Each worker is initialized with a common seed value for random number generation to ensure that the generated workload is reproducible at a later date.
 
-During the test, the workers repeatedly call /driver/:run/4, passing in the next operation to run, a keygen function, a valuegen function, and the last state of the driver. The worker process times the operation, and reports this to the stats process when the operation has completed.
+During the test, the workers repeatedly call @driver:run/4@, passing in the next operation to run, a keygen function, a valuegen function, and the last state of the driver. The worker process times the operation, and reports this to the stats process when the operation has completed.
 
 Finally, once the test has been run for the duration specified in the config file, all workers and stats processes are terminated and the benchmark ends. The measured latency and throughput of the test can be found in @./tests/current/@. Previous results are in timestamped directories of the form @./tests/YYYYMMDD-HHMMSS/@.
 
@@ -38,13 +32,12 @@ h2. Installation
 
 h3. Prerequisites
 
-* Erlang R13B04 or later - http://erlang.org/download.html
-* R - http://www.r-project.org/ (for graphing)
+* Erlang R13B04 or later - [[http://erlang.org/download.html]]
+* R - [[http://www.r-project.org/]] (for graphing)
 
 h3. Building from Source
 
 Basho Bench is currently available as source code only. To get the latest code, clone the basho_bench repository:
-
 
 ```bash
 git clone git://github.com/basho/basho_bench.git
@@ -52,16 +45,13 @@ cd basho_bench
 make
 ```
 
-
 h2. Usage
 
 Run basho_bench:
 
-
 ```bash
 ./basho_bench myconfig.config
 ```
-
 
 This will generate results in @tests/current/@. You will need to create a configuration file. The recommended approach is to start from a file in the @examples@ directory and modify settings using the [[Configuration|Benchmarking with Basho Bench#Configuration]] section below for reference.
 
@@ -77,8 +67,8 @@ h3. Prerequisites
 
 The R statistics language is needed to generate graphs.
 
-* More information: http://www.r-project.org/.
-* Download R: http://cran.r-project.org/mirrors.html
+* More information: [[http://www.r-project.org/]]
+* Download R: [[http://cran.r-project.org/mirrors.html]]
 
 Follow the instructions for your platform to install R.
 
@@ -86,21 +76,17 @@ h3. Generating Graphs
 
 To generate a benchmark graph against the current results, run:
 
-
 ```bash
 make results
 ```
-
 
 This will create a results file in @tests/current/summary.png@.
 
 You can also run this manually:
 
-
 ```bash
 priv/summary.r -i tests/current
 ```
-
 
 h2. Configuration
 
@@ -110,13 +96,12 @@ h3. Global Config Settings
 
 h4. mode
 
-The *mode* setting controls the rate at which workers invoke the {{driver:run/4}} function with a new operation. There are two possible values:
+The *mode* setting controls the rate at which workers invoke the @{driver:run/4}@ function with a new operation. There are two possible values:
 
-* {{max}} - generate as many ops per second as possible
-* {{{rate, N}}} - generate N ops per second, with exponentially distributed interarrival times.
+* @{max}@ - generate as many ops per second as possible
+* @{rate, N}@ - generate N ops per second, with exponentially distributed interarrival times.
 
-Note that this setting is applied to each driver independently. For example, if {{{rate, 5}}} is used with 3 concurrent workers, {{basho_bench}} will be generating 15 (i.e. 5 * 3) operations per second.
-
+Note that this setting is applied to each driver independently. For example, if @{rate, 5}@ is used with 3 concurrent workers, basho_bench will be generating 15 (i.e. 5 * 3) operations per second.
 
 ```bash
 % Run at max, ie: as quickly as possible.
@@ -126,45 +111,36 @@ Note that this setting is applied to each driver independently. For example, if 
 {mode, {rate, 15}}
 ```
 
-
 h4. concurrent
 
-The number of concurrent worker processes. The default is 3 worker processes.
-
+The number of concurrent worker processes. The default is 3 worker processes. This determines the number of concurrent clients running requests on API under test.
 
 ```bash
 % Run 10 concurrent processes.
 {concurrent, 10}
 ```
 
-
 h4. duration
 
 The duration of the test, in minutes. The default is 5 minutes.
-
 
 ```bash
 % Run the test for one hour.
 {duration, 60}
 ```
 
-
 h4. operations
 
-The possible operations that the driver will run, plus their "weight" or likelihood of being run. Default is {{[{get,4},{put,4},{delete, 1}]}} which means that out of every 9 operations, 'get' will be called four times, 'put' will called four times, and 'delete' will be called once, on average.
-
+The possible operations that the driver will run, plus their "weight" or likelihood of being run. Default is @[{get,4},{put,4},{delete, 1}]@ which means that out of every 9 operations, 'get' will be called four times, 'put' will called four times, and 'delete' will be called once, on average.
 
 ```bash
-
 % Run 80% gets, 20% puts.
 {operations, [{get, 4}, {put, 1}]}.
 ```
 
-
-Operations are defined on a *per-driver* basis. Not all drivers will implement the "get"/"put" operations discussed above. Consult the driver source to determine the valid operations.
+Operations are defined on a *per-driver* basis. Not all drivers will implement the "get"/"put" operations discussed above. Consult the driver source to determine the valid operations. E.g., if you're testing the HTTP interface, the corresponding operations are "get" and "update" respectively.
 
 If a driver does not support a specified operation ("asdfput" in this example) you may see errors like:
-
 
 ```bash
 DEBUG:Driver basho_bench_driver_null crashed: {function_clause,
@@ -179,27 +155,25 @@ DEBUG:Driver basho_bench_driver_null crashed: {function_clause,
                                             max_worker_run_loop,1}}}]}
 ```
 
-
 h4. driver
 
 The module name of the driver that basho_bench will use to generate load. A driver may simply invoke code in-process (such as when measuring the performance of innostore or DETS) or may open network connections and generate load on a remote system (such as when testing a Riak server/cluster).
 
 Available drivers include:
 
-* {{basho_bench_driver_http_raw}} - Uses Riak's HTTP interface to get/update/insert data on a Riak server
-* {{basho_bench_driver_riakc_pb}} - Uses Riak's Protocol Buffers interface to get/put/update/delete data on a Riak server
-* {{basho_bench_driver_riakclient}} - Uses Riak's Dist. Erlang interface to get/put/update/delete data on a Riak server
-* {{basho_bench_driver_bitcask}} - Directly invokes the Bitcask API
-* {{basho_bench_driver_dets}} - Directly invokes the DETS API
-* {{basho_bench_driver_innostore}} - Directly invokes the Innostore API
+* @basho_bench_driver_http_raw@ - Uses Riak's HTTP interface to get/update/insert data on a Riak server
+* @basho_bench_driver_riakc_pb@ - Uses Riak's Protocol Buffers interface to get/put/update/delete data on a Riak server
+* @basho_bench_driver_riakclient@ - Uses Riak's Dist. Erlang interface to get/put/update/delete data on a Riak server
+* @basho_bench_driver_bitcask@ - Directly invokes the Bitcask API
+* @basho_bench_driver_dets@ - Directly invokes the DETS API
+* @basho_bench_driver_innostore@ - Directly invokes the Innostore API
 
-On invocation of the {{driver:run/4}} method, the driver may return one of the following results:
+On invocation of the @driver:run/4@ method, the driver may return one of the following results:
 
-* {{{ok, NewState}}} - operation completed successfully
-* {{{error, Reason, NewState}}} - operation failed but the driver can continue processing (i.e. recoverable error)
-* {{{stop, Reason}}} - operation failed; driver can't/won't continue processing
-* {{{'EXIT', Reason}}} - operation failed; driver crashed
-
+* @{ok, NewState}@ - operation completed successfully
+* @{error, Reason, NewState}@ - operation failed but the driver can continue processing (i.e. recoverable error)
+* @{stop, Reason}@ - operation failed; driver can't/won't continue processing
+* @{'EXIT', Reason}@ - operation failed; driver crashed
 
 h4. code_paths
 
@@ -207,22 +181,21 @@ Some drivers need additional Erlang code in order to run. Specify the paths to t
 
 h4. key_generator
 
-The generator function to use for creating keys. Generators are defined in {{basho_bench_keygen.erl}}. Available generators include:
+The generator function to use for creating keys. Generators are defined in @basho_bench_keygen.erl@. Available generators include:
 
-* {sequential_int, MaxKey} - generates integers from 0..MaxKey in order and then stops the system. Note that each instance of this keygen is specific to a worker.
-* {{{partitioned_sequential_int, MaxKey}}} - same as {{sequential_int}}, but splits the keyspace evenly among the worker processes. This is useful for pre-loading a large dataset.
-* {{{partitioned_sequential_int, StartKey, NumKeys}}} - same as {{partitioned_sequential_int}}, but starting at the defined {{StartKey}} and going up to {{StartKey + NumKeys}}.
-* {{{uniform_int, MaxKey}}} - selects an integer from uniform distribution of 0..MaxKey. I.e. all integers are equally probable.
-* {{{pareto_int, MaxKey}}} - selects an integer from a Pareto distribution, such that 20% of the available keys get selected 80% of the time. Note that the current implementation of this generator MAY yield values larger than MaxKey due to the mathematical properties of the Pareto distribution.
-* {{{truncated_pareto_int, MaxKey}}} - same as {{pareto_int}}, but will NOT yield values above MaxKey.
-* {{{function, Module, Function, Args}}} - specifies an external function that should return a key generator function. The worker {{Id}} will be prepended to {{Args}} when the function is called.
-* {{{int_to_bin, Generator}}} - takes any of the above {{_int}} generators and converts the number to a 32-bit binary. This is needed for some drivers that require a binary key.
-* {{{int_to_str, Generator}}} - takes any of the above {{_int}} generators and converts the number to a string.  This is needed for some drivers that require a string key.
+* @{sequential_int, MaxKey}@ - generates integers from 0..MaxKey in order and then stops the system. Note that each instance of this keygen is specific to a worker.
+* @{partitioned_sequential_int, MaxKey}@ - same as @{sequential_int}@, but splits the keyspace evenly among the worker processes. This is useful for pre-loading a large dataset.
+* @{partitioned_sequential_int, StartKey, NumKeys}@ - same as @partitioned_sequential_int@, but starting at the defined @StartKey@ and going up to @StartKey + NumKeys@.
+* @{uniform_int, MaxKey}@ - selects an integer from uniform distribution of 0..MaxKey. I.e. all integers are equally probable.
+* @{pareto_int, MaxKey}@ - selects an integer from a Pareto distribution, such that 20% of the available keys get selected 80% of the time. Note that the current implementation of this generator MAY yield values larger than MaxKey due to the mathematical properties of the Pareto distribution.
+* @{truncated_pareto_int, MaxKey}@ - same as @{pareto_int}@, but will NOT yield values above MaxKey.
+* @{function, Module, Function, Args}@ - specifies an external function that should return a key generator function. The worker @Id@ will be prepended to @Args@ when the function is called.
+* @{int_to_bin, Generator}@ - takes any of the above @_int@ generators and converts the number to a 32-bit binary. This is needed for some drivers that require a binary key.
+* @{int_to_str, Generator}@ - takes any of the above @_int@ generators and converts the number to a string.  This is needed for some drivers that require a string key.
 
-The default key generator is {{{uniform_int, 100000}}}.
+The default key generator is @{uniform_int, 100000}@.
 
 Examples:
-
 
 ```bash
 % Use a randomly selected integer between 1 and 10,000
@@ -236,17 +209,16 @@ Examples:
 {key_generator, {pareto_int, 10000}}.
 ```
 
-
 h4. value_generator
 
 The generator function to use for creating values. Generators are defined in @basho_bench_valgen.erl@. Available generators include:
 
-* {{{fixed_bin, Size}}} - generates a random binary of Size bytes. Every binary is the same size, but varies in content.
-* {{{exponential_bin, MinSize, Mean}}} -  generates a random binary which has an  exponentially-distributed size. Most values will be approximately MinSize + Mean bytes in size, with a long-tail of larger values.
-* {{{uniform_bin, MinSize, MaxSize}}} - generates a random binary which has an evenly-distributed size between MinSize and MaxSize.
-* {{{function, Module, Function, Args}}} - specifies an external function that should return a value generator function. The worker {{Id}} will be prepended to {{Args}} when the function is called.
+* @{fixed_bin, Size}@ - generates a random binary of Size bytes. Every binary is the same size, but varies in content.
+* @{exponential_bin, MinSize, Mean}@ -  generates a random binary which has an  exponentially-distributed size. Most values will be approximately MinSize + Mean bytes in size, with a long-tail of larger values.
+* @{uniform_bin, MinSize, MaxSize}@ - generates a random binary which has an evenly-distributed size between MinSize and MaxSize.
+* @{function, Module, Function, Args}@ - specifies an external function that should return a value generator function. The worker @Id@ will be prepended to @Args@ when the function is called.
 
-The default value generator is {{{value_generator, {fixed_bin, 100}}}}.
+The default value generator is @{value_generator, {fixed_bin, 100}}@.
 
 Examples:
 
@@ -260,19 +232,16 @@ Examples:
 {value_generator, {exponential_bin, 1000, 2000}}.
 ```
 
-
 h4. rng_seed
 
 The initial random seed to use. This is explicitly seeded, rather than seeded from the current time, so that a test can be run in a predictable, repeatable fashion.
 
-Default is {{{rng_seed, {42, 23, 12}}}}.
-
+Default is @{rng_seed, {42, 23, 12}}@.
 
 ```bash
 % Seed to {12, 34, 56}
 {rng_seed, {12, 34, 56}.
 ```
-
 
 h4. log_level
 
@@ -303,54 +272,44 @@ h4. riakclient_nodes
 
 List of Riak nodes to use for testing.
 
-
 ```bash
 {riakclient_nodes, ['riak1@127.0.0.1', 'riak2@127.0.0.1']}.
 ```
 
-
 h4. riakclient_cookie
 
-The Erlang cookie to use to connect to Riak clients. Default is {{'riak'}}.
-
+The Erlang cookie to use to connect to Riak clients. Default is @'riak'@.
 
 ```bash
 
 {riakclient_cookie, riak}.
 ```
 
-
 h4. riakclient_mynode
 
-The name of the local node. This is passed into [{{net_kernel:start/1}}|http://erlang.org/doc/man/net_kernel.html].
-
+The name of the local node. This is passed into "net_kernel:start/1":http://erlang.org/doc/man/net_kernel.html.
 
 ```bash
 {riakclient_mynode, ['basho_bench@127.0.0.1', longnames]}.
 ```
 
-
 h4. riakclient_replies
 
 This value is used for R-values during a get operation, and W-values during a put operation.
-
 
 ```bash
 % Expect 1 reply.
 {riakclient_replies, 1}.
 ```
 
-
 h4. riakclient_bucket
 
-The Riak bucket to use for reading and writing values. Default is {{<<"test">>}}.
-
+The Riak bucket to use for reading and writing values. Default is @<<"test">>@.
 
 ```bash
 % Use the "bench" bucket.
 {riakclient_bucket, <<"bench">>}.
 ```
-
 
 h3. basho_bench_driver_riakc_pb Settings
 
@@ -358,8 +317,7 @@ h4. riakc_pb_ips
 
 List of IP addresses to connect the workers to. A random IP will be chosen for each worker.
 
-Default is {{{riakc_pb_ips, [{127,0,0,1}]}}}
-
+Default is @{riakc_pb_ips, [{127,0,0,1}]}@
 
 ```bash
 % Connect to a cluster of 3 machines
@@ -371,13 +329,13 @@ h4. riakc_pb_port
 
 The port on which to connect to the PBC interface.
 
-Default is {{{riakc_pb_port, 8087}}}
+Default is @{riakc_pb_port, 8087}@
 
 h4. riakc_pb_bucket
 
 The bucket to use for testing.
 
-Default is {{{riakc_pb_bucket, <<"test">>}}}
+Default is @{riakc_pb_bucket, <<"test">>}@
 
 
 h3. basho_bench_driver_http_raw Settings
@@ -386,47 +344,40 @@ h4. http_raw_ips
 
 List of IP addresses to connect the workers to. Each worker makes requests to each IP in a round-robin fashion.
 
-Default is {{{http_raw_ips, ["127.0.0.1"]}}}
-
+Default is @{http_raw_ips, ["127.0.0.1"]}@
 
 ```bash
 % Connect to a cluster of machines in the 10.x network
 {http_raw_ips, ["10.0.0.1", "10.0.0.2", "10.0.0.3"]}.
 ```
 
-
 h4. http_raw_port
 
 Select the default port to connect on for the HTTP server.
 
-Default is {{{http_raw_port, 8098}}}.
-
+Default is @{http_raw_port, 8098}@.
 
 ```bash
 % Connect on port 8090
 {http_raw_port, 8090}.
 ```
 
-
 h4. http_raw_path
 
 Base path to use for accessing riak - usually "/riak/<bucket>"
 
-Defaults is {{{http_raw_path, "/riak/test"}}}.
-
+Defaults is @{http_raw_path, "/riak/test"}@.
 
 ```bash
 % Place test data in another_bucket
 {http_raw_path, "/riak/another_bucket"}.
 ```
 
-
 h4. http_raw_params
 
 Additional parameters to add to the end of the URL. This can be used to set riak r/w/dw/rw parameters as as desired.
 
-Default is {{{http_raw_params, ""}}}.
-
+Default is @{http_raw_params, ""}@.
 
 ```bash
 % Set R=1, W=1 for testing a system with n_val set to 1
@@ -438,8 +389,7 @@ h4. http_raw_disconnect_frequency
 
 How often, in seconds or number of operations, the HTTP clients (workers) should forcibly disconnect from the server.
 
-Default is {{{http_raw_disconnect_frequency, infinity}.}} (never forcibly disconnect)
-
+Default is @{http_raw_disconnect_frequency, infinity}@. (never forcibly disconnect)
 
 ```bash
 % Disconnect after 60 seconds
@@ -449,11 +399,9 @@ Default is {{{http_raw_disconnect_frequency, infinity}.}} (never forcibly discon
 {http_raw_disconnect_frequency, {ops, 200}}.
 ```
 
-
 h2. Custom Driver
 
 A custom driver must expose the following callbacks.
-
 
 ```bash
 % Create the worker.
@@ -464,5 +412,4 @@ new(ID) -> {ok, State} or {error, Reason}.
 run(Op, KeyGen, ValueGen, State) -> {ok, NewState} or {error, Reason, NewState}.
 ```
 
-
-See the existing drivers for more details.
+See the "existing drivers":http://github.com/basho/basho_bench/src/ for more details.
