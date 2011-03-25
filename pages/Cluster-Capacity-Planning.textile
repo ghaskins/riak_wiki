@@ -4,7 +4,7 @@ This is a short document that outlines the various elements and variables that s
 
 h2. RAM 
 
-"RAM":http://en.wikipedia.org/wiki/Random-access_memory should be viewed as the most import resource when sizing your Riak cluster. Aside from helping you keep more data closer to your users, memory will also be required when running complex MapReduce queries, and caching data to provide low latency request times.
+"RAM":http://en.wikipedia.org/wiki/Random-access_memory should be viewed as the most important resource when sizing your Riak cluster. Aside from helping you keep more data closer to your users, memory will also be required when running complex MapReduce queries, and caching data to provide low latency request times.
 
 h3. Bitcask and Memory Requirements
 
@@ -39,7 +39,7 @@ For example, if you estimate having:
 * approximately 30 bytes for each bucket+key name
 * default n_val of 3 
 
-the amount of RAM you would need for Bitcask is about *32.6 GBs*.
+the amount of RAM you would need for Bitcask is about *32.6 GBs across your entire cluster.* 
 
 Additionally, Bitcask relies on your operating system's filesystem cache to deliver high performance reads. So, when sizing your cluster take this into account and plan on having several more gigabytes of RAM available for your filesystem cache. 
 
@@ -53,7 +53,7 @@ If Bitcask's RAM needs are prohibitive, Basho recommends the use of the Innostor
 
 h2. Disk
 
-Now that you have a an idea of how much RAM you'll need, it's time to think about disk space. Disk space needs are much easier to calculate and essentially boil down to this simple equation:
+Now that you have an idea of how much RAM you'll need, it's time to think about disk space. Disk space needs are much easier to calculate and essentially boil down to this simple equation:
 
 <div class="info">Estimated Total Objects * Average Object Size * n_val</div>
 
@@ -71,11 +71,11 @@ Many of the considerations taken when configuring a machine to serve a database 
 
 h2. Read/Write Profile
 
-Read/write ratios, as well as the the distribution of key access, should influence the configuration and design of your cluster. If your use case is write heavy you will need less RAM for caching, in addition if only a certain portion of keys is accessed regularly, such as a "pareto distribution":http://en.wikipedia.org/wiki/Pareto_distribution, you won't need as much RAM available to cache those keys values.
+Read/write ratios, as well as the the distribution of key access, should influence the configuration and design of your cluster. If your use case is write heavy you will need less RAM for caching, in addition if only a certain portion of keys is accessed regularly, such as a "pareto distribution":http://en.wikipedia.org/wiki/Pareto_distribution, you won't need as much RAM available to cache those keys' values.
 
 h2. Ring Size/Number of Partitions
 
-Ring size is the number of partitions that make up you Riak Cluster. This is a number that is configured before you cluster is started, and is set in your app.config file under the [[ring_creation_size|Configuration Files#ring_creation_size]] parameter. 
+Ring size is the number of partitions that make up your Riak Cluster. This is a number that is configured before you cluster is started, and is set in your app.config file under the [[ring_creation_size|Configuration Files#ring_creation_size]] parameter. 
 
 The default number of partitions in a Riak cluster is 64. This works for smaller clusters, but if you plan to grow your cluster past 5 nodes it is recommended you consider a larger ring size. Ring sizes must be a power of 2. The minimum number of partitions recommended per node is 10, and you can determine the number of partitions that will be allocated per node by dividing the number of partitions by the number of nodes. *At the moment, the ring size you choose will be the same for the life of the cluster, so taking growth into consideration is extremely important.* 
 
@@ -89,11 +89,11 @@ Basho recommends using "Basho Bench":http://wiki.basho.com/Benchmarking-with-Bas
 
 h3. Bandwidth
 
-Riak uses Erlang's built in distribution capabilities to provide reliable access to data. A Riak cluster can be deployed in many different network topologies, but it is recommended to have as little latency between nodes as possible. High latency leads to sub-optimal performance. It is not recommended to deploy a single Riak cluster across two data centers. If you need this capability Basho offers an inter data center replication option that is built to keep multiple Riak clusters in sync across several geographically diverse deployments. More information on Riak EnterpriseDS can be found "here":http://www.basho.com/products_riak_overview.php.
+Riak uses Erlang's built in distribution capabilities to provide reliable access to data. A Riak cluster can be deployed in many different network topologies, but it is recommended to have as little latency between nodes as possible. High latency leads to sub-optimal performance. It is not recommended to deploy a single Riak cluster across two data centers. If you need this capability Basho offers an inter-datacenter replication option that is built to keep multiple Riak clusters in sync across several geographically diverse deployments. More information on Riak EnterpriseDS can be found "here":http://www.basho.com/products_riak_overview.php.
 
 h3. IO
 
-In general the biggest bottleneck for Riak will be the amount of IO available to it, especially in the case of write heavy work loads. Riak functions much like any other database and the design of your disk access should take this into account. Because Riak is clustered and your data is stored on multiple physical nodes, you can consider forgoing a tradition RAID setup for redundancy and focus on providing the least latency possible using SAS or SSD disks, for example.
+In general the biggest bottleneck for Riak will be the amount of IO available to it, especially in the case of write-heavy work loads. Riak functions much like any other database and the design of your disk access should take this into account. Because Riak is clustered and your data is stored on multiple physical nodes, you can consider forgoing a tradition RAID setup for redundancy and focus on providing the least latency possible using SATA Drives or SSDs, for example.
 
 h2. Additional resources
 
