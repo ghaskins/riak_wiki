@@ -17,12 +17,6 @@ Using this knowledge, Riak can possibly auto-repair out-of-sync data,
 or at least provide a client with an opportunity to reconcile
 divergent changesets in an application specific manner.
 
-Riak attempts to move data toward a consistent state across nodes, but
-it doesn’t do so by comparing each and every object on each
-node. Instead, nodes gossip a
-[[Merkle tree|Riak Glossary#Merkle-Tree]], which allows them to
-quickly decide which values need comparing.
-
 ## Vector Clock Pruning
 
 Riak regularly prunes vector clocks based on four parameters which can
