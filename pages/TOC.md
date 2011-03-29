@@ -61,6 +61,7 @@
   * [[Riak Compared to Neo4j]]
 * [[Recommended Resources]]
 * [[Best Practices]]
+  * [[Cluster Capacity Planning]]
   * [[Hosting and Server Configuration]]
   * [[Network Security and Firewall Configurations]]
   * [[Recovering a failed node]]
