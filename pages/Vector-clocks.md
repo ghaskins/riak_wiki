@@ -51,9 +51,6 @@ per vclock entry. If the list length is between "small_vclock" and
 than "young_vclock" it is not pruned. If the entry is older than
 "old_vclock" than it is pruned.
 
-More aggressive vector clock pruning can be achieved by lowering the
-values of these four parameters.
-
 ## More Information
 
 Additional background information on vector clocks:
