@@ -2,39 +2,33 @@ Riak has two configuration files located in @etc/@ if you are using a source ins
 
 The @app.config@ file is used to set various attributes for the node such as the backend the node will use to store data. The @vm.args@ file is used to pass parameters to the Erlang node such as the name or cookie of the Erlang node.
 
-
 <div id="toc"></div>
-
 
 h2. app.config
 
 Riak and the Erlang applications it depends on are configured by settings in the @app.config@ file in the @etc@ directory of the Riak node.  The format of the file is similar to Erlang's ".app" files:
 
 ```bash
-   [
-    {riak_core, [
-                 {ring_state_dir, "data/ring"}
-                 %% More riak_core settings...
-                ]},
-    {riak_kv, [
-            {storage_backend, riak_dets_backend},
-            {riak_kv_dets_backend_root, "data/dets"}
-
-            %% More riak_kv settings...
-           ]}
-    %% Other application configurations...
-   ].
+[
+   {riak_core, [
+      {ring_state_dir, "data/ring"}
+      %% More riak_core settings...
+   ]},
+   {riak_kv, [
+      {storage_backend, riak_dets_backend},
+      {riak_kv_dets_backend_root, "data/dets"}
+      %% More riak_kv settings...
+   ]}
+   %% Other application configurations...
+].
 ```
 
-
 <div class="note"><div class="title">Configuration changes in 0.10</div>Many configuration settings changed names and sections in the 0.10 release.  Please backup your @app.config@ file when upgrading and then copy your previous customizations to the proper places in the new file. See [[the transition notes|http://hg.basho.com/riak/raw/efc290fd9c23/TRANSITION]] for more information.</div>
-
 
 <div class="note"><div class="title">Configuration changes in 0.12</div>The settings related to handoff moved from @riak_kv@ to @riak_core@ in the 0.12 release.  These are:
 * @handoff_ip@
 * @handoff_port@
 * @handoff_concurrency@</div>
-
 
 <div class="note"><div class="title">Configuration changes in 0.14</div>The settings for web_ip and web_port are deprecated.  The new configuration mechanism is to use a list of IPs and ports in the http{} section of riak_core of app.config.
 
@@ -54,18 +48,16 @@ These are properties used for buckets that have not been explicitly defined (as 
 * the quorum values for get, put and delete requests (*r, w, dw, rw)
 * global pre- and post-commit hooks (*precommit, postcommit*)
 
-
 ```erlang
 {default_bucket_props, [{n_val,3},
-      {allow_mult,false},
-      {last_write_wins,false},
-      {precommit, []},
-      {postcommit, []},
-      {chash_keyfun, {riak_core_util, chash_std_keyfun}},
-      {linkfun, {modfun, riak_kv_wm_link_walker, mapreduce_linkfun}}
+   {allow_mult,false},
+   {last_write_wins,false},
+   {precommit, []},
+   {postcommit, []},
+   {chash_keyfun, {riak_core_util, chash_std_keyfun}},
+   {linkfun, {modfun, riak_kv_wm_link_walker, mapreduce_linkfun}}
 ]}
 ```
-
 
 h4. gossip_interval
 
@@ -95,9 +87,7 @@ The number of partitions to divide the hash space into (default: "64")
 
 By default, each Riak node will own ring_creation_size/(number of nodes in the cluster) partitions.  It is generally a good idea to specify a "ring_creation_size" a few times the number of nodes in your cluster (e.g. specify 64-256 partitions for a 4-node cluster).  This gives you room to expand the number of nodes in the cluster, without worrying about under-use due to owning too few partitions. This number should be a power of 2 (64, 128, 256, etc.).
 
-
 <div class="note">The "ring_creation_size" should be established before your cluster is live and running and should not be changed thereafter.</div>
-
 
 h4. target_n_val
 
@@ -208,26 +198,57 @@ The module name of the storage backend that Riak should use (default: "riak_kv_b
 The storage format Riak uses is configurable.  Riak will refuse to start if no storage backend is specified.
 
 Available backends, and their additional configuration options are:
-* *riak_kv_bitcask_backend*: data is stored in [[Bitcask|https://github.com/basho/bitcask]] append-only storage
-* *riak_kv_dets_backend*: data is stored in DETS files
-** *riak_kv_dets_backend_root*: root directory where the DETS files are stored (defualt: "data/dets"
-* *riak_kv_ets_backend*: data is stored in ETS tables (in-memory)
-* *riak_kv_gb_trees_backend*: data is stored in general balanced trees (in-memory)
-* *riak_kv_fs_backend*: data is stored in binary files on the filesystem
-*riak_kv_fs_backendroot*: root directory where the files are stored (ex: @/var/lib/riak/data@)
-* *riak_kv_multi_backend*: enables storing data for different buckets in different backends
-Specify the backend to use for a bucket with _riak_client:set_bucket(BucketName,[{backend, BackendName}]_ in Erlang or {"props":{"backend":"BackendName"}} in the [[REST API]].
-** *multi_backend_default*: default backend to use if none is specified for a bucket (one of the *BackendName* atoms specified in the *multi_backend* setting)
-** *multi_backend*: list of backends to provide
-Format of each backend specification is @{BackendName, BackendModule, BackendConfig}@, where *BackendName* is any atom, *BackendModule* is the name of the Erlang module implementing the backend (the same values you would provide as "storage_backend" settings), and *BackendConfig* is a parameter that will be passed to the "start/2" function of the backend module.
-* *riak_kv_cache_backend*: a backend that behaves as an LRU-with-timed-expiry cache
-** *riak_kv_cache_backend_memory*: maximum amount of memory to allocate, in megabytes (default: "100")
-** *riak_kv_cache_backend_ttl*:  amount by which to extend an object's expiry lease on each access, in seconds (default: "600")
-** *riak_kv_cache_backend_max_ttl*: maximum allowed lease time (default: "3600")
+* *riak_kv_bitcask_backend*
+  Data is stored in [[Bitcask|https://github.com/basho/bitcask]] append-only storage
+* *riak_kv_dets_backend*
+  Data is stored in DETS files
+** *riak_kv_dets_backend_root*
+    Root directory where the DETS files are stored (defualt: "data/dets"
+* *riak_kv_ets_backend*
+  Data is stored in ETS tables (in-memory)
+* *riak_kv_gb_trees_backend*
+  Data is stored in general balanced trees (in-memory)
+* *riak_kv_fs_backend*
+  Data is stored in binary files on the filesystem
+** *riak_kv_fs_backendroot*
+   Root directory where the files are stored (ex: @/var/lib/riak/data@)
+* *riak_kv_multi_backend*
+  Enables storing data for different buckets in different backends.
+  Specify the backend to use for a bucket with _riak_client:set_bucket(BucketName,[{backend, BackendName}]_ in Erlang or {"props":{"backend":"BackendName"}} in the [[REST API]].
+** *multi_backend_default*
+    Default backend to use if none is specified for a bucket (one of the *BackendName* atoms specified in the *multi_backend* setting)
+** *multi_backend*
+    List of backends to provide.
+    Format of each backend specification is @{BackendName, BackendModule, BackendConfig}@, where *BackendName* is any Erlang binary, e.g. @<<"cache">>@, *BackendModule* is the name of the Erlang module implementing the backend (the same values you would provide as "storage_backend" settings), and *BackendConfig* is a parameter that will be passed to the "start/2" function of the backend module. See below for an example.
+* *riak_kv_cache_backend*
+  A backend that behaves as an LRU-with-timed-expiry cache
+** *riak_kv_cache_backend_memory*
+    Maximum amount of memory to allocate, in megabytes (default: "100")
+** *riak_kv_cache_backend_ttl*
+    Amount by which to extend an object's expiry lease on each access, in seconds (default: "600")
+** *riak_kv_cache_backend_max_ttl*
+    Maximum allowed lease time (default: "3600")
 
+An example of combining the *riak_kv_cache_backend* and the *riak_kv_bitcask_backend* as multi backends with custom settings, making the @<<"cache">>@ backend the default, could look like this:
+
+```erlang
+{storage_backend, riak_kv_multi_backend},
+{multi_backend_default, <<"cache">>},
+{multi_backend, [
+   {<<"bitcask">>, riak_kv_bitcask_backend, [
+      {data_root, "/var/riak/data/bitcask"}
+   ]},
+   {<<"cache">>, riak_kv_cache_backend, [
+      {riak_kv_cache_backend_memory, 1024},
+      {riak_kv_cache_backend_ttl, 600},
+      {riak_kv_cache_backend_max_ttl, 3600}
+   ]}
+]},
+```
+
+While both backends are now the default for all buckets, you can choose either "cache" or "bitcask" as custom values when setting bucket properties through the [[REST API]].
 
 <div class="note"><div class="title"> Dynamically Changing ttl</div>There is currently no way to dynamically change the ttl per bucket. The current work around would be to define multiple "riak_cache_backends" under "riak_multi_backend" with different ttl values.</div>
-
 
 h3. vnode_mr_timeout
 
