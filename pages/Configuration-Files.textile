@@ -203,7 +203,7 @@ Available backends, and their additional configuration options are:
 * *riak_kv_dets_backend*
   Data is stored in DETS files
 ** *riak_kv_dets_backend_root*
-    Root directory where the DETS files are stored (defualt: "data/dets"
+    Root directory where the DETS files are stored (default: "data/dets"
 * *riak_kv_ets_backend*
   Data is stored in ETS tables (in-memory)
 * *riak_kv_gb_trees_backend*
@@ -246,7 +246,7 @@ An example of combining the *riak_kv_cache_backend* and the *riak_kv_bitcask_bac
 ]},
 ```
 
-While both backends are now the default for all buckets, you can choose either "cache" or "bitcask" as custom values when setting bucket properties through the [[REST API]].
+While the cache backend is now the default for all buckets, you can choose either "cache" or "bitcask" as custom values when setting bucket properties through the [[REST API]].
 
 <div class="note"><div class="title"> Dynamically Changing ttl</div>There is currently no way to dynamically change the ttl per bucket. The current work around would be to define multiple "riak_cache_backends" under "riak_multi_backend" with different ttl values.</div>
 
