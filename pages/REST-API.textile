@@ -20,7 +20,6 @@ Currently, buckets come with virtually no cost except for when you modify the de
 
 <div class="note"><div class="title">Delete Buckets</div>At the moment there is no straightforward way to delete an entire Bucket. There is, however, an open ticket for the feature. To delete all the keys in a bucket, you'll need to delete them all individually.</div>
 
-
 h3. List buckets
 
 Lists all known buckets (ones that have keys stored in them). *This feature is new in Riak 0.14.*
@@ -120,11 +119,9 @@ Sets bucket properties like "n_val" and "allow_mult".
 
 h4. Request
 
-
 ```bash
 PUT /riak/bucket
 ```
-
 
 Important headers:
 * Content-Type - application/json
@@ -145,7 +142,10 @@ Useful properties:
 ** _Any integer_ - must be less than or equal to n_val
 * *backend* - when using riak_kv_multi_backend, which named backend to use for the bucket
 
-Other valid properties may be inferred from [[reading the properties|REST API#Read bucket information]], but are less-frequently changed.
+<div class="note">
+Make sure you use the proper types for attributes like *n_val* and *allow_mult*. If you use strings instead of integers and booleans respectively, you may see some
+odd errors in your logs, saying something like @"{badarith,[{riak_kv_util,normalize_rw_value,2},]}"@.
+</div>
 
 h4. Response
 
@@ -230,7 +230,6 @@ Important headers:
 * *Link* - user- and system-defined links to other resources. [[Read more about Links|Links]]
 
 The body of the response will be the contents of the object except when siblings are present.
-
 
 <div class="note"><div class="title">Siblings</div>
 When "allow_mult" is set to true in the bucket properties, concurrent updates are allowed to create "sibling" objects, meaning that the object has any number of different values that are related to one another by the vector clock.  This allows your application to use its own conflict resolution technique.
