@@ -19,9 +19,9 @@ divergent changesets in an application specific manner.
 
 Riak attempts to move data toward a consistent state across nodes, but
 it doesn’t do so by comparing each and every object on each
-node. Instead, nodes gossip a [[Merkle tree|Riak Glossary#Merkle
-trees]], which allows them to quickly decide which values need
-comparing.
+node. Instead, nodes gossip a
+[[Merkle tree|Riak Glossary#Merkle-Tree]], which allows them to
+quickly decide which values need comparing.
 
 ## Vector Clock Pruning
 
@@ -60,8 +60,10 @@ than "young_vclock" it is not pruned. If the entry is older than
 More aggressive vector clock pruning can be achieved by lowering the
 values of these four parameters.
 
+## More Information
+
 Additional background information on vector clocks:
 
- * [[http://blog.basho.com/2010/01/29/why-vector-clocks-are-easy/]]
- * [[http://blog.basho.com/2010/04/05/why-vector-clocks-are-hard/]]
- * [[http://wiki.basho.com/How-Things-Work.html#Vector-clocks]]
+ * [[Vector Clocks on Wikipedia|http://en.wikipedia.org/wiki/Vector_clock]]
+ * [[Why Vector Clocks are Easy|http://blog.basho.com/2010/01/29/why-vector-clocks-are-easy/]]
+ * [[Why Vector Clocks are Hard|http://blog.basho.com/2010/04/05/why-vector-clocks-are-hard/]]

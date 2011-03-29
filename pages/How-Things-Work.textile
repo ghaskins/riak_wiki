@@ -32,15 +32,7 @@ h2. Vector clocks
 
 With any node able to drive any request, and not all nodes needing to participate in each request, it is necessary to have a method for keeping track of which version of a value is current.  This is where vclocks come in.  The vector clocks used in Riak are based on the [[work of Leslie Lamport|http://portal.acm.org/citation.cfm?id=359563]].
 
-When a value is stored in Riak, it is tagged with a vector clock, establishing its initial version.  For each update, the vector clock is extended in such a way that Riak can later compare to versions of the object and determine:
-
-# Whether one object is a direct descendant of the other.
-# Whether the objects are direct descendants of a common parent.
-# Whether the objects are unrelated in recent heritage.
-
-Using this knowledge, Riak can possibly auto-repair out-of-sync data, or at least provide a client with an opportunity to reconcile divergent changesets in an application specific manner.
-
-Riak attempts to move data toward a consistent state across nodes, but it doesn't do so by comparing each and every object on each node. Instead, nodes gossip a [[Merkle tree|Riak Glossary#Merkle trees]], which allows them to quickly decide which values need comparing.
+More information regarding vector clocks is available [[here|Vector clocks]].
 
 h2. Backends
 
