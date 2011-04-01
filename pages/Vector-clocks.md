@@ -1,8 +1,7 @@
-With any node able to drive any request, and not all nodes needing to
+With any node able to receive any request, and not all nodes needing to
 participate in each request, it is necessary to have a method for
 keeping track of which version of a value is current. This is where
-vector clocks come in. The vector clocks used in Riak are based on the
-[[work of Leslie Lamport|http://portal.acm.org/citation.cfm?id=359563]].
+vector clocks come in. 
 
 When a value is stored in Riak, it is tagged with a vector clock,
 establishing its initial version. For each update, the vector clock is
@@ -60,6 +59,7 @@ Siblings in action:
     $ curl -v -X PUT -H "Content-Type: application/json" -d '{"dishes":9}' \
       http://127.0.0.1:8098/riak/kitchen/sink?returnbody=true
 
+
 ### <a name="vtags"></a>V-Tags
 
 At this point you should have seen the multiple responses provided to curl.
@@ -95,6 +95,7 @@ To view all of the siblings in a single request, you would use:
 If the Accept header prefers `multipart/mixed`, all siblings will be returned
 in a single request as chunks of the `multipart/mixed` response body.
 
+
 ### <a name="resolution"></a>Conflict Resolution
 
 Once you are presented with multiple options for a single value, you must
@@ -125,13 +126,26 @@ Once you have the vector clock you can update with the correct value.
   has been exceeded.
 </div></div>
       
-### Sibling Explosion
 
+### Sibling Explosion
+Sibling explosion occurs when an object rapidly collects siblings without
+being reconciled.  This can lead to a myriad of issues.  Having an enormous
+object in your node can cause reads of that object to crash the entire node.
+Other issues are increased cluster latency as the object is replicated and out
+of memory errors.
+
+
+### Vector Clock Explosion
+Besides sibling explosion, the vector clock can grow extremely large when a
+significant volume of updates are performed on a single object in a small
+period of time.  While updating a single object _extremely_ frequently is not
+recommended, you can tune Riak's vector clock pruning to prevent vector clocks
+from growing too large too quickly.
 
 ## Vector Clock Pruning
 
-Riak regularly prunes vector clocks based on four parameters which can
-be set per bucket. These parameters are:
+Riak regularly prunes vector clocks to prevent overgrowth based on four
+parameters which can be set per bucket. These parameters are:
 
  * `small_vclock`
  * `big_vclock`
@@ -140,7 +154,7 @@ be set per bucket. These parameters are:
 
 To understand what these parameters do let's first review the
 structure of a vector clock. Vector clocks are a list of updates made
-per client id ("X-Riak-ClientId"). For example:
+per client id (`X-Riak-ClientId`). For example:
 
     [{client1, 3},{client2, 1},{client3, 2}]
 
@@ -165,7 +179,7 @@ than `young_vclock` it is not pruned. If the entry is older than
 ## More Information
 
 Additional background information on vector clocks:
-
  * [[Vector Clocks on Wikipedia|http://en.wikipedia.org/wiki/Vector_clock]]
  * [[Why Vector Clocks are Easy|http://blog.basho.com/2010/01/29/why-vector-clocks-are-easy/]]
  * [[Why Vector Clocks are Hard|http://blog.basho.com/2010/04/05/why-vector-clocks-are-hard/]]
+ * The vector clocks used in Riak are based on the [[work of Leslie Lamport|http://portal.acm.org/citation.cfm?id=359563]].
