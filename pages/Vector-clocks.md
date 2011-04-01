@@ -3,6 +3,16 @@ participate in each request, it is necessary to have a method for
 keeping track of which version of a value is current. This is where
 vector clocks come in. 
 
+* <a href="#why">Why Vector Clocks?</a>
+* <a href="#siblings">Siblings</a>
+* <a href="#vtags">V-Tags</a>
+* <a href="resolution">Conflict Resolution</a>
+* <a href="sibling-explosion">Sibling Explosion</a>
+* <a href="vc-explosion">Vector Clock Explosion</a>
+* <a href="pruning">Vector Clock Pruning</a>
+* <a href="more">More Info</a>
+
+<a name="why"></a>
 When a value is stored in Riak, it is tagged with a vector clock,
 establishing its initial version. For each update, the vector clock is
 extended in such a way that Riak can later compare two versions of the
@@ -129,7 +139,7 @@ Once you have the vector clock you can update with the correct value.
 </div></div>
       
 
-### Sibling Explosion
+### <a name="sibling-explosion"></a>Sibling Explosion
 Sibling explosion occurs when an object rapidly collects siblings without
 being reconciled.  This can lead to a myriad of issues.  Having an enormous
 object in your node can cause reads of that object to crash the entire node.
@@ -137,14 +147,14 @@ Other issues are increased cluster latency as the object is replicated and out
 of memory errors.
 
 
-### Vector Clock Explosion
+### <a name="vc-explosion"></a>Vector Clock Explosion
 Besides sibling explosion, the vector clock can grow extremely large when a
 significant volume of updates are performed on a single object in a small
 period of time.  While updating a single object _extremely_ frequently is not
 recommended, you can tune Riak's vector clock pruning to prevent vector clocks
 from growing too large too quickly.
 
-## Vector Clock Pruning
+## <a name="pruning"></a>Vector Clock Pruning
 
 Riak regularly prunes vector clocks to prevent overgrowth based on four
 parameters which can be set per bucket. These parameters are:
@@ -178,9 +188,10 @@ per vclock entry. If the list length is between `small_vclock` and
 than `young_vclock` it is not pruned. If the entry is older than
 `old_vclock` than it is pruned.
 
-## More Information
+## <a name="more"></a> More Information
 
 Additional background information on vector clocks:
+
 * [[Vector Clocks on Wikipedia|http://en.wikipedia.org/wiki/Vector_clock]]
 * [[Why Vector Clocks are Easy|http://blog.basho.com/2010/01/29/why-vector-clocks-are-easy/]]
 * [[Why Vector Clocks are Hard|http://blog.basho.com/2010/04/05/why-vector-clocks-are-hard/]]
