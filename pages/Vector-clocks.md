@@ -22,22 +22,24 @@ A _sibling_ is created when Riak is unable to resolve the canonical version of
 an object being stored.  If `allow_mult` is set to true on a bucket's
 properties, three scenarios will create siblings inside of a single object.
 
-1. Concurrent writes.  If two writes occur simultaneously from clients with
+1. **Concurrent writes** If two writes occur simultaneously from clients with
 different client IDs but the same vector clock value, Riak will not be able to
 determine the correct object to store and the object is given two siblings.
 These writes could happen to the same node or different ones.
 
-2. Writes from any client using a stale vector clock value.  This is a less
-likely scenario from a well behaved client that does a read (to get the
-current vector clock) before a write.  However, a situation may occur where a
-write happens from a different client in between the read/write cycle.  This
-would cause the first client to issue the write with an old vector clock
-value and a sibling would be created.  A misbehaving client could continually
-create siblings if it habitually issued writes with a stale vector clock.
+2. **Stale Vector Clock** Writes from any client using a stale vector clock
+value.  This is a less likely scenario from a well behaved client that does a
+read (to get the current vector clock) before a write.  However, a situation
+may occur where a write happens from a different client in between the
+read/write cycle.  This would cause the first client to issue the write with
+an old vector clock value and a sibling would be created.  A misbehaving
+client could continually create siblings if it habitually issued writes with a
+stale vector clock.
 
-3. Writes to an existing object without a vector clock.  While the least
-likely scenario, it can happen when manipulating an object using a client like
-`curl` and forgetting to set the `X-Riak-Vclock` header.
+3. **Missing Vector Clock** Writes to an existing object without a vector
+clock.  While the least likely scenario, it can happen when manipulating an
+object using a client like `curl` and forgetting to set the `X-Riak-Vclock`
+header.
 
 Riak uses siblings because it is impossible to order events with respect to
 time in a distributed system, this means they must be ordered causally.  If
@@ -45,7 +47,6 @@ time in a distributed system, this means they must be ordered causally.  If
 you.  You must select one of the siblings or replace the object yourself.
 
 Siblings in action:
-
     # create a bucket with allow mult_true (if its not already)
     $ curl -v -X PUT -H "Content-Type: application/json" -d '{"props":{"allow_mult":true}}' \
       http://127.0.0.1:8098/riak/kitchen
@@ -66,7 +67,7 @@ At this point you should have seen the multiple responses provided to curl.
 When requesting an object that has siblings you have two choices.  You can
 retrieve just a list of the siblings using:
 
-    curl http://127.0.0.1:8098/riak/kitchen/sink
+    $ curl http://127.0.0.1:8098/riak/kitchen/sink
 
 You will get the response:
     
@@ -82,7 +83,7 @@ siblings by their `vtag` as plain text.  The `vtag` is how you can reference a
 single sibling inside of an object.  You can access a single sibling by
 appending the `vtag` parameter to the object's url.  For example: 
 
-    curl http://127.0.0.1:8098/riak/kitchen/sink?vtag=175xDv0I3UFCfGRC7K7U9z
+    $ curl http://127.0.0.1:8098/riak/kitchen/sink?vtag=175xDv0I3UFCfGRC7K7U9z
 
 will give you:
 
@@ -90,7 +91,7 @@ will give you:
 
 To view all of the siblings in a single request, you would use:
 
-    curl http://127.0.0.1:8098/riak/kitchen/sink -H "Accept: multipart/mixed"
+    $ curl http://127.0.0.1:8098/riak/kitchen/sink -H "Accept: multipart/mixed"
 
 If the Accept header prefers `multipart/mixed`, all siblings will be returned
 in a single request as chunks of the `multipart/mixed` response body.
@@ -102,10 +103,11 @@ Once you are presented with multiple options for a single value, you must
 determine the correct value.  In an application, this can be done in an
 automatic fashion or by presenting the conflicting objects to the end user.
 To update Riak with the appropriate value you will need the current vector
-clock.  Assuming that `{"dishes":11}` is the correct value, you would update
-your object as follows:
+clock.  Assuming that `{"dishes":11}` is the correct value, the process for
+updating your values is as follows:
 
-    curl -v http://127.0.0.1:8098/riak/kitchen/sink
+    # Read the object to get the vector clock
+    $ curl -v http://127.0.0.1:8098/riak/kitchen/sink
 
 In your verbose output you will have the `X-Riak-Vclock`, the value will be
 different but it should look similar to this:
@@ -179,7 +181,7 @@ than `young_vclock` it is not pruned. If the entry is older than
 ## More Information
 
 Additional background information on vector clocks:
- * [[Vector Clocks on Wikipedia|http://en.wikipedia.org/wiki/Vector_clock]]
- * [[Why Vector Clocks are Easy|http://blog.basho.com/2010/01/29/why-vector-clocks-are-easy/]]
- * [[Why Vector Clocks are Hard|http://blog.basho.com/2010/04/05/why-vector-clocks-are-hard/]]
- * The vector clocks used in Riak are based on the [[work of Leslie Lamport|http://portal.acm.org/citation.cfm?id=359563]].
+* [[Vector Clocks on Wikipedia|http://en.wikipedia.org/wiki/Vector_clock]]
+* [[Why Vector Clocks are Easy|http://blog.basho.com/2010/01/29/why-vector-clocks-are-easy/]]
+* [[Why Vector Clocks are Hard|http://blog.basho.com/2010/04/05/why-vector-clocks-are-hard/]]
+* The vector clocks used in Riak are based on the [[work of Leslie Lamport|http://portal.acm.org/citation.cfm?id=359563]].
