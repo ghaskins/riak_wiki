@@ -6,11 +6,11 @@ vector clocks come in.
 * <a href="#why">Why Vector Clocks?</a>
 * <a href="#siblings">Siblings</a>
 * <a href="#vtags">V-Tags</a>
-* <a href="resolution">Conflict Resolution</a>
-* <a href="sibling-explosion">Sibling Explosion</a>
-* <a href="vc-explosion">Vector Clock Explosion</a>
-* <a href="pruning">Vector Clock Pruning</a>
-* <a href="more">More Info</a>
+* <a href="#resolution">Conflict Resolution</a>
+* <a href="#sibling-explosion">Sibling Explosion</a>
+* <a href="#vc-explosion">Vector Clock Explosion</a>
+* <a href="#pruning">Vector Clock Pruning</a>
+* <a href="#more">More Info</a>
 
 <a name="why"></a>
 When a value is stored in Riak, it is tagged with a vector clock,
