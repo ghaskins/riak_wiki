@@ -99,6 +99,7 @@ h2. riak_core
 
 h2. Other Tools and Projects
 
+* [[riak-exchange|https://github.com/jbrisbin/riak-exchange]] - Custom RabbitMQ exchange type for sticking messages in Riak 
 * [[ring-session-riak|https://github.com/ossareh/ring-session-riak]] - A Riak implementation for Ring Session
 * [[Riak to CSV Export|https://github.com/bradfordw/riak_csv]] - A simple way to export your Riak buckets to CSV files
 * [[Couch to Riak|http://github.com/mattsta/couchdb/tree/couch_file-to-riak]]
