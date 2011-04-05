@@ -21,6 +21,7 @@
   * [[Command-Line Tools]]
   * [[Open Files Limit]]
 * [[How Things Work]]
+  * [[Vector clocks]]
   * [[Replication]]
   * [[REST API]]
     * [[Luwak]]

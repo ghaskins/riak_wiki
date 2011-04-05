@@ -144,7 +144,8 @@ h2. Writing and Updating Data
 
 h3. Vector clocks
 
-Each update to a Riak object is tracked by a vector clock. Vector clocks allow Riak to determine causal ordering and detect conflicts in a distributed system.
+Each update to a Riak object is tracked by a vector clock. Vector clocks allow Riak to determine causal ordering and detect conflicts in a distributed system. 
+* [[Vector Clocks In Depth|Vector Clocks]]
 
 h3. Conflict resolution
 
