@@ -44,6 +44,18 @@ riak soft nofile 2048
 riak hard nofile 10240
 ```
 
+This helps increase the file limit when the user riak does a full login using other means than sudo, to e.g. start Riak using just the `riak` command. Using sudo (e.g. as @sudo su - riak@) has side effects in terms of open file limits. On Ubuntu they'll be reset to 1024, no matter what's set in @/etc/security/limits.conf@ for the riak user.
+
+On Ubuntu, if you're always relying on the init scripts to start Riak, you can create the file @/etc/defaults/riak@ and specify a manual limit like so:
+
+```text
+ulimit -n 4096
+```
+
+This file is automatically sourced from the init script, and the Riak process started by it will properly inherit this setting. As init scripts are always run as the root user, there's no need to specifically set limits in @/etc/security/limits.conf@ if you're solely relying on init scripts.
+
+On CentOS/RedHat systems make sure to set a proper limit for the user you're usually logging in with to do any kind of work on the machine, including managing Riak. On CentOS, sudo properly inherits the values from the executing user.
+
 Reference: [[http://www.cyberciti.biz/faq/linux-increase-the-maximum-number-of-open-files/]]
 
 h3. Solaris
