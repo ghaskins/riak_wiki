@@ -3,14 +3,7 @@ participate in each request, it is necessary to have a method for
 keeping track of which version of a value is current. This is where
 vector clocks come in. 
 
-* <a href="#why">Why Vector Clocks?</a>
-* <a href="#siblings">Siblings</a>
-* <a href="#vtags">V-Tags</a>
-* <a href="#resolution">Conflict Resolution</a>
-* <a href="#sibling-explosion">Sibling Explosion</a>
-* <a href="#vc-explosion">Vector Clock Explosion</a>
-* <a href="#pruning">Vector Clock Pruning</a>
-* <a href="#more">More Info</a>
+<div id="toc"></div>
 
 <a name="why"></a>
 When a value is stored in Riak, it is tagged with a vector clock,
@@ -26,7 +19,7 @@ Using this knowledge, Riak can possibly auto-repair out-of-sync data,
 or at least provide a client with an opportunity to reconcile
 divergent changesets in an application specific manner.
 
-## <a name="siblings"></a> Siblings 
+## Siblings 
 
 A _sibling_ is created when Riak is unable to resolve the canonical version of
 an object being stored.  If `allow_mult` is set to true on a bucket's
