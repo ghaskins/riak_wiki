@@ -1,11 +1,12 @@
+<div id="toc"></div>
+
+## Overview
+
 With any node able to receive any request, and not all nodes needing to
 participate in each request, it is necessary to have a method for
 keeping track of which version of a value is current. This is where
 vector clocks come in. 
 
-<div id="toc"></div>
-
-<a name="why"></a>
 When a value is stored in Riak, it is tagged with a vector clock,
 establishing its initial version. For each update, the vector clock is
 extended in such a way that Riak can later compare two versions of the
