@@ -287,6 +287,6 @@ The Adlearn project at a AOL has 5 nodes of Riak playing a non-trivial role in a
 </a>
 </notextile>
 
-Mobile Interactive Group "(MIG)":http://www.migcan.com/ is a global integrated mobile and digital communications business and is the fastest growing privately owned technology company in the UK and EMEA.
+Mobile Interactive Group "(MIG)":http://www.migcan.com/ is a globally integrated mobile and digital communications business and is the fastest growing privately owned technology company in the UK and EMEA.
 
 *David Dawson, Head of Technology, Mobile Interactive Group (MIG) commented* "We use Riak as a persistent storage layer for many of our mission-critical systems, including our international SMS Gateway which was built from the ground up to be fully scalable, high performing, and data-centre redundant, whilst also maintaining a low operational footprint."
