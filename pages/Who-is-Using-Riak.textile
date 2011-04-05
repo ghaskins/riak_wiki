@@ -228,7 +228,7 @@ XL59 uses Riak as a distributed data store in its cloud-based data distribution 
 ----
 
 <notextile>
-<a id="digitar">
+<a name="digitar">
 <img src="attachments/digitar.png"><br>
 </a>
 </notextile>
@@ -244,7 +244,7 @@ Riak has allowed us to focus on what we love to do - building awesome services f
 ----
 
 <notextile>
-<a id="pikkotekk">
+<a name="pikkotekk">
 <img src="attachments/PikkoTekkLogo.png"><br>
 </a>
 </notextile>
@@ -257,7 +257,7 @@ One product from UnityPark, *uGame NoSQL*, is based on Riak. This integration so
 --- 
 
 <notextile>
-<a id="yammer">
+<a name="yammer">
 <img src="attachments/yammer_logo.png"><br>
 </a>
 </notextile>
@@ -270,7 +270,7 @@ Yammer recently built and deployed *Streamie*, a mission-critical application th
 ---
 
 <notextile>
-<a id="aol">
+<a name="aol">
 <img src="attachments/AOL_logo.jpg"><br>
 </a>
 </notextile>
@@ -283,7 +283,7 @@ The Adlearn project at a AOL has 5 nodes of Riak playing a non-trivial role in a
 ---
 
 <notextile>
-<a id="mig">
+<a name="mig">
 <img src="attachments/mig_logo.jpg"><br>
 </a>
 </notextile>
