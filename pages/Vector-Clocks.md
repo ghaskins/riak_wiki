@@ -10,7 +10,7 @@ vector clocks come in.
 When a value is stored in Riak, it is tagged with a vector clock,
 establishing its initial version. For each update, the vector clock is
 extended in such a way that Riak can later compare two versions of the
-object and determine:
+object and determine the following:
 
  * Whether one object is a direct descendant of the other.
  * Whether the objects are direct descendants of a common parent.
