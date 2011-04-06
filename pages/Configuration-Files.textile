@@ -81,7 +81,7 @@ The directory on-disk in which to store the ring state (default: "data/ring")
 
 Riak's ring state is stored on-disk by each node, such that each node may be restarted at any time (purposely, or via automatic failover) and know what its place in the cluster was before it terminated, without needing immediate access to the rest of the cluster.
 
-h4(#ring_creation_size). ring_creation_size
+h4. ring_creation_size
 
 The number of partitions to divide the hash space into (default: "64")
 
@@ -119,6 +119,10 @@ You can override the default SSL key and certificate settings (default: etc/cert
 h4. http_logdir
 
 Override the default location of the access logs.  See the "webmachine_logger_module":#webmachine_logger_module settings to enable access logs.
+
+h4. disable_http_nagle
+
+When set to @true@, this option will disable the Nagle buffering algorithm for HTTP traffic.  This is equivalent to setting the @TCP_NODELAY@ option on the HTTP socket. The setting defaults to @false@.  If you experience consistent minimum latencies in multiples of 20 milliseconds, setting this option to @true@ may reduce latency.
 
 h3. riak_kv settings
 
