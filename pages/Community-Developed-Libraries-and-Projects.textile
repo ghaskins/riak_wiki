@@ -59,6 +59,7 @@ h2. Client Libraries and Frameworks
 * [[txriakidx|https://github.com/williamsjj/txriakidx]] - Riak client for Twisted Python that implements transparent indexes
 
 *Ruby*
+* [[Risky|https://github.com/aphyr/risky]] - A lightweight Ruby ORM for Riak 
 * [[Riak Model|http://github.com/botanicus/riak-model]]
 * [[Riak DataObjects adapter|http://github.com/botanicus/do_riak]]
 * [[Riak_Client|http://github.com/technoweenie/riak_client]]
