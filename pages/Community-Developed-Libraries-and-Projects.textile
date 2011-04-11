@@ -24,6 +24,9 @@ h2. Client Libraries and Frameworks
 *Groovy*
 * [[spring-riak|https://github.com/jbrisbin/spring-riak]] - Riak support from Groovy and/or Java
 
+*Erlang*
+* [[riakpool|https://github.com/dweldon/riakpool]] - Application for maintaining a dynamic pool of Protocol Buffer client connections to a Riak database
+
 *Haskell*
 * [[Riak Haskell Client|https://github.com/mailrank/riak-haskell-client]] - A fast Haskell client library from the team at MailRank.
 
@@ -91,12 +94,12 @@ h2. Monitoring, Management and GUI Tools
 	
 h2. Backup Tools
 
-* [[Brackup|http://code.google.com/p/brackup/]] - A modern net-based backup system that supports de-duplication, intelligent chunking, and gpg-based-encryption.
+* [[Brackup|http://code.google.com/p/brackup/]] - A modern net-based backup system that supports de-duplication, intelligent chunking, and gpg-based-encryption
 
 h2. riak_core
 
 * [[rebar_riak_core|https://github.com/websterclay/rebar_riak_core]] - Rebar templates for generating riak_core applications
-* [[Riak Core Multinode|https://github.com/rzezeski/try-try-try/tree/master/2011/riak-core-first-multinode]] - Template (and some inspiring prose) that allows you to get a Riak Core based cluster up-and-running quickly.
+* [[Riak Core Multinode|https://github.com/rzezeski/try-try-try/tree/master/2011/riak-core-first-multinode]] - Template (and some inspiring prose) that allows you to get a Riak Core based cluster up-and-running quickly
 
 
 h2. Other Tools and Projects
