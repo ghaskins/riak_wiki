@@ -4,7 +4,7 @@
 
 Riak is a Dynamo-inspired database that is being used in production by companies like Mozilla and Comcast. Riak scales predictably and easily and simplifies development by giving users the ability to quickly prototype, test, and deploy their applications.
 
-A truly fault-tolerant system, Riak has no single point of failure. No machines are special or central in Riak, so developers and operations professionals can decide exactly how fault-tolerant they want and need their applications to be.
+A truly fault-tolerant system, Riak has no single point of failure. No machine is special or central in Riak, so developers and operations professionals can decide exactly how fault-tolerant they want and need their applications to be.
 
 ### Downloads
 * [Download a Riak Package](http://downloads.basho.com/riak/CURRENT/)
