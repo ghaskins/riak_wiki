@@ -51,7 +51,7 @@ Reduce phases accept any list of data as input, and produce any list of data as 
 
 The important thing to understand is that the function defining the reduce phase may be evaluated multiple times, and the input of later evaluations will include the input of earlier evaluations.
 
-For example, a reduce phase may implement the "<a href="http://en.wikipedia.org/wiki/Union_(set_theory)#Definition" target="_blank">set-union</a>" function.  In that case, the first set of inputs might be @[1,2,2,3]@, and the output would be @[1,2,3]@.  When the phase receives more inputs, say @[3,4,5]@, the function will be called with the concatentation of the two lists: @[1,2,3,4,5]@.
+For example, a reduce phase may implement the <a href="http://en.wikipedia.org/wiki/Union_(set_theory)#Definition" target="_blank">set-union</a> function.  In that case, the first set of inputs might be @[1,2,2,3]@, and the output would be @[1,2,3]@.  When the phase receives more inputs, say @[3,4,5]@, the function will be called with the concatentation of the two lists: @[1,2,3,4,5]@.
 
 Other systems refer to the second application of the reduce function as a "re-reduce".  There are at least a couple of reduce-query implementation strategies that work with Riak's model.
 
