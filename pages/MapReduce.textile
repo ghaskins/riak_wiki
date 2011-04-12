@@ -43,7 +43,7 @@ The phase list describes the chain of operations each input will flow through.  
 
 h3. How a Map Phase Works in Riak
 
-The input list to a map phase must be a list of (possibly annotated) bucket-key pairs.  For each pair, Riak will send the request to evaluate the map function to the partition that is responsible for storing the data for that bucket-key.  The vnode hosting that partition will lookup the object stored under that bucket-key, and evaluation the map function with the object as an argument.  The other arguments to the function will be the annotation, if any is included, with the bucket-key, and the static data for the phase, as specified in the query.
+The input list to a map phase must be a list of (possibly annotated) bucket-key pairs.  For each pair, Riak will send the request to evaluate the map function to the partition that is responsible for storing the data for that bucket-key.  The vnode hosting that partition will lookup the object stored under that bucket-key, and evaluates the map function with the object as an argument.  The other arguments to the function will be the annotation, if any is included, with the bucket-key, and the static data for the phase, as specified in the query.
 
 h3. How a Reduce Phase Works in Riak
 
@@ -51,7 +51,7 @@ Reduce phases accept any list of data as input, and produce any list of data as 
 
 The important thing to understand is that the function defining the reduce phase may be evaluated multiple times, and the input of later evaluations will include the input of earlier evaluations.
 
-For example, a reduce phase may implement the "set-union" function.  In that case, the first set of inputs might be @[1,2,2,3]@, and the output would be @[1,2,3]@.  When the phase receives more inputs, say @[3,4,5]@, the function will be called with the concatentation of the two lists: @[1,2,3,4,5]@.
+For example, a reduce phase may implement the "<a href="http://en.wikipedia.org/wiki/Union_(set_theory)#Definition" target="_blank">set-union</a>" function.  In that case, the first set of inputs might be @[1,2,2,3]@, and the output would be @[1,2,3]@.  When the phase receives more inputs, say @[3,4,5]@, the function will be called with the concatentation of the two lists: @[1,2,3,4,5]@.
 
 Other systems refer to the second application of the reduce function as a "re-reduce".  There are at least a couple of reduce-query implementation strategies that work with Riak's model.
 
@@ -338,6 +338,21 @@ Link phases are expressed in the following form:
 
 <div class="info">There is a small group of prebuilt Erlang MapReduce functions available with Riak. Check them out here: [[https://github.com/basho/riak_kv/blob/master/src/riak_kv_mapreduce.erl|https://github.com/basho/riak_kv/blob/master/src/riak_kv_mapreduce.erl]]</div>
 
+h2. Streaming MapReduce
+
+Because Riak distributes the map phases across the cluster to increase data-locality, you can gain access to the results of those individual computations via streaming.  However, if your MapReduce job has a reduce phase, this will cause all of the map phases to have to complete before the reduce phase, making streaming pointless.  Streaming can be very helpful when getting access to results from a high latency MapReduce job that only contains map phases.  
+
+h3. Streaming via the REST API
+
+You can enable streaming with MapReduce jobs submitted to the @/mapred@ resource by adding @?chunked=true@ to the url.  The response will be sent using HTTP 1.1 chunked transfer encoding.  Be aware that if you are streaming a set of serialized objects (like JSON objects), the chunks are not guaranteed to be separated along the same boundaries your that serialized objects are. So, for example, a chunk may end in the middle of a string representing a JSON object.
+
+h3. Streaming via the Erlang API
+
+You can use streaming with Erlang via the Riak local client or the Erlang protobuffs API.  In either case, you will provide the call to @mapred_stream@ with a @Pid@ that will receive the streaming results.
+
+For examples, see:
+1. [[MapReduce streaming via the local client|https://gist.github.com/905751]]
+2. [[MapReduce streaming via the Erlang Protobuffs client|https://gist.github.com/913625]]
 
 h2. Phase functions
 
