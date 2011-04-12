@@ -340,7 +340,7 @@ Link phases are expressed in the following form:
 
 h2. Streaming MapReduce
 
-Because Riak distributes the map phases across the cluster to increase data-locality, you can gain access to the results of those individual computations via streaming.  However, if your MapReduce job has a reduce phase, this will cause all of the map phases to have to complete before the reduce phase, making streaming pointless.  Streaming can be very helpful when getting access to results from a high latency MapReduce job that only contains map phases.  
+Because Riak distributes the map phases across the cluster to increase data-locality, you can gain access to the results of those individual computations as they finish via streaming.  Streaming can be very helpful when getting access to results from a high latency MapReduce job that only contains map phases.  However, if your MapReduce job has a reduce phase, this will cause all of the map phases to have to complete before the reduce phase, making streaming pointless.    
 
 h3. Streaming via the REST API
 
