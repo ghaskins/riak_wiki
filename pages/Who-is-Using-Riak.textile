@@ -228,7 +228,7 @@ XL59 uses Riak as a distributed data store in its cloud-based data distribution 
 ----
 
 <notextile>
-<a id="digitar">
+<a name="digitar">
 <img src="attachments/digitar.png"><br>
 </a>
 </notextile>
@@ -244,7 +244,7 @@ Riak has allowed us to focus on what we love to do - building awesome services f
 ----
 
 <notextile>
-<a id="pikkotekk">
+<a name="pikkotekk">
 <img src="attachments/PikkoTekkLogo.png"><br>
 </a>
 </notextile>
@@ -253,10 +253,11 @@ Riak has allowed us to focus on what we love to do - building awesome services f
 [[UnityPark|http://www.unitypark3d.com/]] is a sister company to [[PikkoTekk|http://www.pikkotekk.com/]]. These two companies have made a [[world record game|http://www.rockpapershotgun.com/2011/03/07/pikkotekks-1000-player-fps/]] based on technology similar to Riak core. UnityPark is a middleware company producing scalable middleware that can be used by game developers using the [[Unity Engine|http://unity3d.com/]]. The software from UnityPark makes it possible to start producing fast-paced action games with thousands of players in the same virtual world.
 
 One product from UnityPark, *uGame NoSQL*, is based on Riak. This integration software combines the strength of Unity and Riak and makes it easy for all Unity game developers to start using Riak when the game needs a scalable distributed database on the server side. Unity is the game engine with the largest user base in the world and it is growing fast.
+
 --- 
 
 <notextile>
-<a id="yammer">
+<a name="yammer">
 <img src="attachments/yammer_logo.png"><br>
 </a>
 </notextile>
@@ -269,7 +270,7 @@ Yammer recently built and deployed *Streamie*, a mission-critical application th
 ---
 
 <notextile>
-<a id="aol">
+<a name="aol">
 <img src="attachments/AOL_logo.jpg"><br>
 </a>
 </notextile>
@@ -279,6 +280,14 @@ Yammer recently built and deployed *Streamie*, a mission-critical application th
 
 The Adlearn project at a AOL has 5 nodes of Riak playing a non-trivial role in a system that delivers over 1.5 billion impressions a day. You can read more about how AOL is using Riak "here":http://www.progski.net/blog/2011/aol_meet_riak.html.
 
+---
 
+<notextile>
+<a name="mig">
+<img src="attachments/mig_logo.jpg"><br>
+</a>
+</notextile>
 
+Mobile Interactive Group "(MIG)":http://www.migcan.com/ is a globally integrated mobile and digital communications business and is the fastest growing privately owned technology company in the UK and EMEA.
 
+*David Dawson, Head of Technology, Mobile Interactive Group (MIG) commented* "We use Riak as a persistent storage layer for many of our mission-critical systems, including our international SMS Gateway which was built from the ground up to be fully scalable, high performing, and data-centre redundant, whilst also maintaining a low operational footprint."
