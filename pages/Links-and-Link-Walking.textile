@@ -35,7 +35,7 @@ Try it. It's easy, right? You've just attached a link to an object in Riak!
 To retrieve that object to see the attached link, simply to do the following:
 
 ```bash
-$ curl -v http://127.0.0.1:8093/riak/people/timoreilly
+$ curl -v http://127.0.0.1:8091/riak/people/timoreilly
 ```
 
 Look for the "Link" field in the response headers. This will show you your link information.
