@@ -412,4 +412,4 @@ new(ID) -> {ok, State} or {error, Reason}.
 run(Op, KeyGen, ValueGen, State) -> {ok, NewState} or {error, Reason, NewState}.
 ```
 
-See the "existing drivers":http://github.com/basho/basho_bench/src/ for more details.
+See the "existing drivers":https://github.com/basho/basho_bench/tree/master/src for more details.
