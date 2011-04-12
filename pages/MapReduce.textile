@@ -340,19 +340,19 @@ Link phases are expressed in the following form:
 
 h2. Streaming MapReduce
 
-Because Riak distributes the map phases across the cluster to increase data-locality, you can gain access to the results of those individual computations as they finish via streaming.  Streaming can be very helpful when getting access to results from a high latency MapReduce job that only contains map phases.  However, if your MapReduce job has a reduce phase, this will cause all of the map phases to have to complete before the reduce phase, making streaming pointless.    
+Because Riak distributes the map phases across the cluster to increase data-locality, you can gain access to the results of those individual computations as they finish via streaming.  Streaming can be very helpful when getting access to results from a high latency MapReduce job that only contains map phases.  However, streaming of results from reduce phases isn't as useful, but if your map phases return data (keep: true), they will be returned to the client even if the reduce phases haven't executed.
 
 h3. Streaming via the REST API
 
-You can enable streaming with MapReduce jobs submitted to the @/mapred@ resource by adding @?chunked=true@ to the url.  The response will be sent using HTTP 1.1 chunked transfer encoding.  Be aware that if you are streaming a set of serialized objects (like JSON objects), the chunks are not guaranteed to be separated along the same boundaries your that serialized objects are. For example, a chunk may end in the middle of a string representing a JSON object.
+You can enable streaming with MapReduce jobs submitted to the @/mapred@ resource by adding @?chunked=true@ to the url.  The response will be sent using HTTP 1.1 chunked transfer encoding with @Content-Type: multipart/mixed@.  Be aware that if you are streaming a set of serialized objects (like JSON objects), the chunks are not guaranteed to be separated along the same boundaries your that serialized objects are. For example, a chunk may end in the middle of a string representing a JSON object.
 
 h3. Streaming via the Erlang API
 
 You can use streaming with Erlang via the Riak local client or the Erlang protobuffs API.  In either case, you will provide the call to @mapred_stream@ with a @Pid@ that will receive the streaming results.
 
 For examples, see:
-1. [[MapReduce streaming via the local client|https://gist.github.com/905751]]
-2. [[MapReduce streaming via the Erlang Protobuffs client|https://gist.github.com/913625]]
+1. [[MapReduce localstream.erl]]
+2. [[MapReduce pbstream.erl]]
 
 h2. Phase functions
 
