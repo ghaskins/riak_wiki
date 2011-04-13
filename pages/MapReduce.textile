@@ -340,11 +340,11 @@ Link phases are expressed in the following form:
 
 h2. Streaming MapReduce
 
-Because Riak distributes the map phases across the cluster to increase data-locality, you can gain access to the results of those individual computations as they finish via streaming.  Streaming can be very helpful when getting access to results from a high latency MapReduce job that only contains map phases.  However, streaming of results from reduce phases isn't as useful, but if your map phases return data (keep: true), they will be returned to the client even if the reduce phases haven't executed.
+Because Riak distributes the map phases across the cluster to increase data-locality, you can gain access to the results of those individual computations as they finish via streaming.  Streaming can be very helpful when getting access to results from a high latency MapReduce job that only contains map phases.  Streaming of results from reduce phases isn't as useful, but if your map phases return data (keep: true), they will be returned to the client even if the reduce phases haven't executed.  This will let you use streaming with a reduce phase to collect the results of the map phases while the jobs are run and then get the result to the reduce phase at the end.
 
 h3. Streaming via the REST API
 
-You can enable streaming with MapReduce jobs submitted to the @/mapred@ resource by adding @?chunked=true@ to the url.  The response will be sent using HTTP 1.1 chunked transfer encoding with @Content-Type: multipart/mixed@.  Be aware that if you are streaming a set of serialized objects (like JSON objects), the chunks are not guaranteed to be separated along the same boundaries your that serialized objects are. For example, a chunk may end in the middle of a string representing a JSON object.
+You can enable streaming with MapReduce jobs submitted to the @/mapred@ resource by adding @?chunked=true@ to the url.  The response will be sent using HTTP 1.1 chunked transfer encoding with @Content-Type: multipart/mixed@.  Be aware that if you are streaming a set of serialized objects (like JSON objects), the chunks are not guaranteed to be separated along the same boundaries your that serialized objects are. For example, a chunk may end in the middle of a string representing a JSON object, so you will need to decode and parse your responses appropriately in the client.
 
 h3. Streaming via the Erlang API
 
