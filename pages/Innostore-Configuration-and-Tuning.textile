@@ -53,7 +53,6 @@ For best performance, we recommend putting Innostore's log data on a separate ha
 ```
 
 
-
 h3. innodb log amount and size
 
 When storing binary objects or working with a cluster the number of log files as well as their size should be increased to handle the additional amount of data being stored in Innostore. The following error exemplifies the log messages that will be seen if your log setup can't cope with the amount of data.
@@ -76,6 +75,28 @@ To fix this issue the following log settings will work for most environments:
 {log_file_size, 268435456},  %% No bigger than 256MB, otherwise recovery takes too long
 ```
 
+h2. InnoDB Table Format
+
+Embedded InnoDb offers several table formats: @compact@, @dynamic@ and @compressed@. 
+
+
+* @compact@ format stores the first 768 bytes of the value with the key and any extra data on extension pages.  This is a good option for small values.
+* @dynamic@ format stores the value outside separately from the index.  For larger values (>600 bytes) this will make the index pages denser and may provide a performance increase.
+* @compressed@ format is like dynamic format, except it compresses the key and data pages.
+
+The default format is @compact@ to match previous innostore releases. To configure, set the @format@ option in your innostore config. The setting is system wide and will be used for all buckets.
+
+```erlang
+  %% Use dynamic format tables.
+  {innostore, [{format, dynamic}]}.
+```
+
+If you wish to use compressed tables the @page_size@ must be set to 0 (changing this is not recommended for any other case).
+
+```erlang
+  {innostore, [{format, compressed},
+               {page_size, 0}]}.
+```
 
 h2. Other tuning techniques
 
