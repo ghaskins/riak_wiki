@@ -247,9 +247,9 @@ search:search_doc(<<"books">>, <<"author:joyce">>).
 
 h2. Querying via the Solr Interface
 
-Riak Search supports a Solr-compatible interface for searching documents via HTTP. By default, the select endpoint is located at "http://hostname:8098/solr/select".
+Riak Search supports a Solr-compatible interface for searching documents via HTTP. By default, the select endpoint is located at @http://hostname:8098/solr/select@.
 
-Alternatively, the index can be included in the URL, for example "http://hostname:8098/solr/INDEX/select".
+Alternatively, the index can be included in the URL, for example @http://hostname:8098/solr/INDEX/select@.
 
 The following parameters are supported:
 
