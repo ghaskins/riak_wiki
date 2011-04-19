@@ -117,9 +117,7 @@
       </p>
     </footer>
 
-    <div id="floating_footer">
-      <p>Have a comment, question, or issue about this page? <a href="https://github.com/basho/riak_wiki/issues">Please open an issue</a></p>
-    </div>
+    <a id="feedback-link" href="https://github.com/basho/riak_wiki/issues">Feedback?</a>
 
     <!-- Javascript at the bottom for fast page loading -->
 
@@ -135,6 +133,8 @@
     <!-- end concatenated and minified scripts-->
 
     <script type="text/javascript" language="javascript" src="http://www.basho.com/js/jquery.dropdownPlain.js"></script>
+
+    <script src="/libs/jquery.cookie.js" type="text/javascript" language="javascript"></script>
 
     <!--[if lt IE 7 ]>
     <script src="js/libs/dd_belatedpng.js"></script>
@@ -162,6 +162,13 @@
       var hs_salog_version = "2.00";
       var hs_ppa = "basho1.app6.hubspot.com";
       document.write(unescape("%3Cscript src='" + document.location.protocol + "//" + hs_ppa + "/salog.js.aspx' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+
+    <script type="text/javascript" charset="utf-8">
+      $('#hide-issues').click(function() {
+        
+      });
+      
     </script>
     <!-- End of HubSpot Logging Code -->
 

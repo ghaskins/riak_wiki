@@ -45,3 +45,29 @@ h5:hover a.toc-anchor,
 h6:hover a.toc-anchor {
    display: inline;
 }
+
+a#feedback-link {
+  background-image: -moz-linear-gradient( center top, rgb(255,196,128) 0%, rgb(255,155,41) 80%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgb(255,196,128)), color-stop(0.8, rgb(255,155,41)) );
+  border: 1px solid #e89143;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  color: #9d5e17;
+  text-shadow: #ffb96b 1px 1px 1px;
+  font-weight: bold;
+  width: 90px;
+  padding: 20px 4px 8px 8px;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  position: absolute;
+  top: 50%;
+  left: -40px;
+}
+
+a#feedback-link:hover {
+  margin-left: 4px;
+}
