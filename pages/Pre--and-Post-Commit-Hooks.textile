@@ -1,3 +1,6 @@
+<div id="toc"></div>
+
+h2. Overview 
 
 Pre- and Post- Commit hooks are invoked before or after a riak_object is persisted and can greatly enhance the functionality of any application. Commit hooks can:
 
@@ -8,8 +11,6 @@ Pre- and Post- Commit hooks are invoked before or after a riak_object is persist
 Post-commit hooks are notified after the fact and should not modify the riak_object. Updating riak_objects in post-commit hooks can cause nasty feedback loops which will wedge the hook into an infinite cycle unless the hook functions are carefully written to detect and short-circuit such cycles.
 
 Pre- and post-commit hooks are defined on a per-bucket basis and are stored in the target bucket's properties. They are run once per successful response to the client.
-
-<div class="toc"></div>
 
 h2. Configuration
 
