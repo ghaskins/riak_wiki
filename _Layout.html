@@ -117,7 +117,7 @@
       </p>
     </footer>
 
-    <a id="feedback-link" href="https://github.com/basho/riak_wiki/issues">Feedback?</a>
+    <a id="feedback-link" href="https://github.com/basho/riak_wiki/issues" style="display: none" title="Have a comment, question, or issue about this page? Please open an issue.">Feedback?</a>
 
     <!-- Javascript at the bottom for fast page loading -->
 
@@ -163,14 +163,13 @@
       var hs_ppa = "basho1.app6.hubspot.com";
       document.write(unescape("%3Cscript src='" + document.location.protocol + "//" + hs_ppa + "/salog.js.aspx' type='text/javascript'%3E%3C/script%3E"));
     </script>
+    <!-- End of HubSpot Logging Code -->
 
     <script type="text/javascript" charset="utf-8">
-      $('#hide-issues').click(function() {
-        
-      });
-      
+      $(window).bind("resize", function() {
+        $('#feedback-link').toggle($(this).width() >= ($('#main').width() + 80));  
+      }).trigger("resize");
     </script>
-    <!-- End of HubSpot Logging Code -->
 
   </body>
 </html>
