@@ -89,7 +89,7 @@ Currently users can write their MapReduce queries in either Erlang or Javascript
 
 <div class="info"><div class="title">Additional Reading</div>* [[A High Level Introduction to Riak|An Introduction To Riak]]
 * [[The Riak Glossary|Riak Glossary]]
-* [[More on Vector Clocks|https://wiki.basho.com/display/RIAK/Riak+Glossary#RiakGlossary-VectorClock]]
+* [[More on Vector Clocks|Vector Clocks]]
 * [[Protocol Buffers Client Interface|PBC API]]
 * [[Client Libraries|Community-Developed Libraries and Projects]]
 * [[Replication|Replication]]
