@@ -37,6 +37,11 @@ pong
 
 The command will respond with *pong* if the node is running, or *pang* if it is not.
 
+
+<div class="note"><div class="title">Open Files Limit</div>
+As you may have noticed, if you haven't adjusted your _ulimit_ settings, Riak will warn you. You're advised to raise your open files limit when running Riak. You can read more about why on the [[Open Files Limit]] page.
+</div>
+
 h2(#doesitwork).  Does it work?
 
 The easiest way to test whether Riak is working is to use the @curl@ command-line tool.  Now that you have Riak running on your local machine, run this command:
