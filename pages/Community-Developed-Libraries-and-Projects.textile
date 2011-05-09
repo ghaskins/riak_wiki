@@ -8,12 +8,10 @@ The Riak Community is developing at a break-neck pace, and the number of communi
 h2. Client Libraries and Frameworks
 
 *C*
-* [[Riak C Client|https://github.com/chrisumbel/riakclient]]
 * [[Riak C Driver|https://github.com/fenek/riak-c-driver]]
 
 *Clojure*
 * [[clj-riak|http://github.com/mmcgrana/clj-riak]] - Clojure bindings to the Riak Protocol Buffers API
-* [[teriak|http://github.com/dysinger/teriak]] - Riak Clojure Client that uses Riak's Protocol Buffers API
 
 *Django*
 * [[django-riak-sessions|https://bitbucket.org/stodge/django-riak-session]]
