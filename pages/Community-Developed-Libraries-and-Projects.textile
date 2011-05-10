@@ -8,12 +8,10 @@ The Riak Community is developing at a break-neck pace, and the number of communi
 h2. Client Libraries and Frameworks
 
 *C*
-* [[Riak C Client|https://github.com/chrisumbel/riakclient]]
 * [[Riak C Driver|https://github.com/fenek/riak-c-driver]]
 
 *Clojure*
 * [[clj-riak|http://github.com/mmcgrana/clj-riak]] - Clojure bindings to the Riak Protocol Buffers API
-* [[teriak|http://github.com/dysinger/teriak]] - Riak Clojure Client that uses Riak's Protocol Buffers API
 
 *Django*
 * [[django-riak-sessions|https://bitbucket.org/stodge/django-riak-session]]
@@ -29,6 +27,7 @@ h2. Client Libraries and Frameworks
 
 *Erlang*
 * [[riakpool|https://github.com/dweldon/riakpool]] - Application for maintaining a dynamic pool of Protocol Buffer client connections to a Riak database
+* [[pooler|https://github.com/seth/pooler]] - An OTP Process Pool Application
 
 *Haskell*
 * [[Riak Haskell Client|https://github.com/mailrank/riak-haskell-client]] - A fast Haskell client library from the team at MailRank.
@@ -86,6 +85,7 @@ h2. Client Libraries and Frameworks
 
 h2. Monitoring, Management and GUI Tools
 
+* [[Rekon|https://github.com/adamhunter/rekon]] - Riak Node Data Browser (maintained by Basho)
 * [[Gmond Python Modules for Riak|http://github.com/jnewland/gmond_python_modules/tree/master/riak]] - Ganglia Module for connecting to Riak
 * [[Riaktive|http://github.com/WealthyThinker/Riaktive]] - A Riak Management Tool released under the MIT License
 * [[riak-admin|http://bitbucket.org/harmen/riak-admin/]] - A Java program with GUI to browse and update a Riak database
@@ -106,9 +106,17 @@ h2. riak_core
 * [[riak_zab|https://github.com/jtuple/riak_zab]] - an extension for riak_core that provides totally ordered atomic broadcast capabilities 
 * [[riak_zab_example|https://github.com/jtuple/riak_zab_example]] - an example application that allows you to build a multi-node cluster using riak_zab
 
+h2. Riak and RabbitMQ 
+
+* [[Riak/RabbitMQ Commit Hook|https://github.com/jbrisbin/riak-rabbitmq-commit-hooks]] - A Post-Commit hook that sends entries into a RabbitMQ broker using the Erlang AMQP client
+* [[riak-exchange|https://github.com/jbrisbin/riak-exchange]] - Custom RabbitMQ exchange type for sticking messages in Riak 
+* [[rabbit_riak_queue|https://github.com/jbrisbin/rabbit_riak_queue]] - Riak-backed RabbitMQ persistent queue implementation
+
 h2. Other Tools and Projects
 
-* [[riak-exchange|https://github.com/jbrisbin/riak-exchange]] - Custom RabbitMQ exchange type for sticking messages in Riak 
+* [[Riak BTree Backend|https://github.com/krestenkrab/riak_btree_backend]] - Backend for Riak/KV based on couch_btree*
+* [[Riak Link Index|https://github.com/krestenkrab/riak_link_index]] - Simple Indexer for Riak based on Links
+* [[rack-rekon|https://github.com/seomoz/rack-rekon]] - A Rack application to serve [[Rekon|https://github.com/adamhunter/rekon/]]
 * [[ring-session-riak|https://github.com/ossareh/ring-session-riak]] - A Riak implementation for Ring Session
 * [[Riak to CSV Export|https://github.com/bradfordw/riak_csv]] - A simple way to export your Riak buckets to CSV files
 * [[Couch to Riak|http://github.com/mattsta/couchdb/tree/couch_file-to-riak]]

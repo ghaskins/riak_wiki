@@ -74,7 +74,6 @@ To fix this issue the following log settings will work for most environments:
 {log_files_in_group, 6},  %% How many files you need, usually 3 < x < 6
 {log_file_size, 268435456},  %% No bigger than 256MB, otherwise recovery takes too long
 ```
-
 h2. InnoDB Table Format
 
 Embedded InnoDb offers several table formats: @compact@, @dynamic@ and @compressed@. 
@@ -97,6 +96,10 @@ If you wish to use compressed tables the @page_size@ must be set to 0 (changing 
   {innostore, [{format, compressed},
                {page_size, 0}]}.
 ```
+
+h2. Other Configuration Options
+
+Innostore has many other configuration options that can be tuned to improve performance. They are documented more extensively in the "Embedded InnoDB documentation":http://www.innodb.com/doc/embedded_innodb-1.0/#config-vars. When setting a configuration option, be sure to respect its type; for example, "Boolean" types should be @true@ or @false@.
 
 h2. Other tuning techniques
 
