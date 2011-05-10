@@ -63,7 +63,7 @@ a#feedback-link {
   text-align: center;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: -40px;
 }
