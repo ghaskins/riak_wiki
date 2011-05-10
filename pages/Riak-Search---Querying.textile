@@ -261,6 +261,7 @@ The following parameters are supported:
 * *rows=N* - Specify the maximum number of results to return. Default is 10.
 * *sort=FIELDNAME* - Sort on the specified field name. Default is "none", which causes the results to be sorted in descending order by score.
 * *wt=FORMAT* - Choose the format of the output.  Options are "xml" and "json".  The default is "xml".
+* *filter=FILTERQUERY* - Filters the search by an additional query scoped to [[inline fields|Riak Search - Schema#Fields-and-Field-Level-Properties]].
 
 
 To query data in the system with Curl:
