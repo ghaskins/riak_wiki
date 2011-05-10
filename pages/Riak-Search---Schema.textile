@@ -39,7 +39,7 @@ Note that changes to the Schema File *will not* affect previously indexed data. 
 Below is an example schema file. The schema is formatted as an Erlang term. Spacing does not matter, but it is important to match opening and closing brackets and braces, to include commas between all list items, and to include the final period after the last brace:
 
 
-```javascript
+```erlang
 {
     schema,
     [
@@ -93,7 +93,7 @@ Below is an example schema file. The schema is formatted as an Erlang term. Spac
 ```
 
 
-h2. Schema-level properties:
+h2. Schema-level Properties
 
 The following properties are defined at a schema level:
 
@@ -103,7 +103,7 @@ The following properties are defined at a schema level:
 * *n_val* - Optional. Set the number of replicas of search data. Defaults to 3.
 * *analyzer_factory* - Optional. Defaults to "com.basho.search.analysis.DefaultAnalyzerFactory"
 
-h2. Fields and Field-Level Properties:
+h2. Fields and Field-Level Properties
 
 Fields can either by static or dynamic. A static field is denoted with @field@ at the start of the field definition, whereas a dynamic field is denoted with @dynamic_field@ at the start of the field definition.
 
@@ -131,10 +131,11 @@ h2. Whitespace Analyzer Factory
 
 The Whitespace Analyzer Factory tokenizes a field by splitting the text according to whitespace, including spaces, tabs, newlines, carriage returns, etc.
 
-For example, the text "It's well-known fact that a picture is worth 1000 words." is split into the following tokens: ["It's", "a", "well-known", "fact", "that", "a", "picture", "is", "worth", "1000", "words."]. Notice that capitalization and punctiation is preserved.
+For example, the text "It's well-known fact that a picture is worth 1000 words." is split into the following tokens: ["It's", "a", "well-known", "fact", "that", "a", "picture", "is", "worth", "1000", "words."]. Notice that capitalization and punctuation is preserved.
 
 To use the whitespace analyzer, set the *analyzer_factory* setting as seen below:
-```javascript
+
+```erlang
 {analyzer_factory, {erlang, text_analyzers, whitespace_analyzer_factory}}}
 ```
 
@@ -153,7 +154,7 @@ The text "It's well-known fact that a picture is worth 1000 words." will result 
 
 To use the standard analyzer, set the *analyzer_factory* setting as seen below:
 
-```javascript
+```erlang
 {analyzer_factory, {erlang, text_analyzers, standard_analyzer_factory}}}
 ```
 
@@ -165,7 +166,8 @@ The Integer Analyzer Factory tokenizes a field by finding any integers within th
 For example, the text "It's well-known fact that a picture is worth 1000 words." will result in only one token, "1000".
 
 To use the integer analyzer, set the *analyzer_factory* setting as seen below:
-```javascript
+
+```erlang
 {analyzer_factory, {erlang, text_analyzers, integer_analyzer_factory}}}
 ```
 
@@ -176,7 +178,8 @@ The No-Op Analyzer Factory doesn't tokenize a field, it simply returns back the 
 For example, the text "WPRS10-11#B" will tokenize unchanged into "WPRS10-11#B".
 
 To use the no-op analyzer, set the *analyzer_factory* setting as seen below:
-```javascript
+
+```erlang
 {analyzer_factory, {erlang, text_analyzers, noop_analyzer_factory}}}
 ```
 
@@ -187,13 +190,13 @@ The Standard Analyzer and the Whitespace Analyzer have Java versions based on Lu
 
 To use the Java analyzers, you will first need to tell the system to launch a Java Virtual Machine during when Riak starts. This is done by setting the 'analysis_port' setting in the 'qilr' section of the app.config:
 
-```javascript
-{analysis_port, 6095 },
+```erlang
+{analysis_port, 6095},
 ```
 
 Then, set the *analyzer_factory* setting as seen below:
 
-```javascript
+```erlang
 %% For the Whitespace Analyzer...
 {analyzer_factory, "com.basho.search.analysis.WhitespaceAnalyzerFactory"}
 
