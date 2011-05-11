@@ -21,7 +21,7 @@ If you want to read more about what the keydir is and what it entails, and some 
 With that in mind, the following variables will factor into your RAM calculation:
 
 <div class="info">
-# _static bitcask per key overhead_ - 40 bytes per key
+# _static bitcask per key overhead_ - 22 bytes per key
 # _estimated average bucket+key length_ -  this is the combined number of characters your bucket+keynames will require (on average). We'll assume 		1 byte per character. 
 # _Estimated Total Objects_ - the total number of key/value pairs your cluster will have when started
 # _Replication Value (n_val)_ - the number of times each key will be replicated when written to Riak; defaults to 3
