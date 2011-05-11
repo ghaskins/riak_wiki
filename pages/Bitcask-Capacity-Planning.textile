@@ -43,5 +43,3 @@ This calculator will allow you to calculate the total storage capacity of a Riak
 <li><b>Total Documents:</b> <span id="total_documents"></span></li>
 <li><b>Total Disk Used:</b> <span id="total_disk_space"></span></li>
 </div>
-
-<script src="/js/bitcask_calculator.js"></script>
