@@ -1,0 +1,49 @@
+These calculators will assist you in sizing your cluster if you plan to use the default Bitcask storage backend.
+
+<div id="toc"></div>
+h3. Node Calculator
+
+To calculate the number of nodes you will need in your Riak cluster you will need to know: the total number of keys you plan to store, the size of the keys, and total amount of RAM per node.  Basho recommends having a minimum of 3 nodes in your Riak cluster. 
+
+<div class="calculator">
+<ul>
+<li>Total Number of Keys: <input id="n_total_keys"  type="text" size="12" name="n_total_keys" value="" class="calc_input"><span class="error_span" id="n_total_keys_error"></span></li>
+<li>Average Bucket Size (Bytes): <input id="n_bucket_size"type="text" size="7" name="n_bucket_size" value="" class="calc_input"><span class="error_span"id="n_bucket_size_error"></span></li>
+<li>Average Key Size: <input type="text" size="2" name="n_key_size" id="n_key_size" value="" class="calc_input"><span class="error_span" id="n_key_size_error"></span></li>
+<li>Average Value Size (Bytes): <input id="n_record_size"type="text" size="7" name="n_record_size" value="" class="calc_input"><span class="error_span"id="n_record_size_error"></span></li>
+<li>RAM Per Node (in GB): <input type="text" size="4" name="n_ram" id="n_ram" value="" class="calc_input"><span class="error_span" id="n_ram_error"></span></li>
+<li><i>N</i> (Number of Write Copies): <input type="text" size="2" name="n_nval" id="n_nval" value="" class="calc_input"><span class="error_span" id="n_nval_error"></span></li>
+<li><b>Total Key Space:</b> <span id="node_keydir"></span></li>
+<li><b>Node Count:</b> <span id="node_count"></span></li>
+
+
+</ul>
+
+
+</div>
+
+<br/>
+
+
+
+h3. Bitcask Storage Calculator
+
+This calculator will allow you to calculate the total storage capacity of a Riak cluster by providing the key size, RAM per node, and the total number of nodes you will have in the cluster. Using this calculator will assist you in long term capacity planning by increasing the amount of nodes or RAM per node.
+
+<div id="entry_info"></div>
+<div class="calculator">
+<ul>
+<li>Average Key Size: <input type="text" size="4" name="key_size" id="key_size" value="" class="calc_input"><span class="error_span" id="key_size_error"></span></li>
+<li>Average Bucket Size (Bytes): <input id="bucket_size"type="text" size="7" name="bucket_size" value="" class="calc_input"><span class="error_span"id="bucket_size_error"></span></li>
+<li>Average Value Size (Bytes): <input type="text" size="8" name="value_size" id="value_size" value="" class="calc_input"><span class="error_span" id="value_size_error"></span></li>
+<li>RAM Per Node (in GB): <input type="text" size="4" name="ram" id="ram" value="" class="calc_input"><span class="error_span" id="ram_error"></span></li>
+<li>Number of Nodes: <input type="text" size="4" name="nodes" id="nodes" value="" ><span class="error_span"  id="nodes_error"></span></li>
+<li><i>N</i> (Number of Write Copies): <input type="text" size="2" name="nval" id="nval" value="" class="calc_input"><span class="error_span" id="nval_error"></span></li>
+<li><b>Key Overhead:</b> <span id="key_overhead"></span></li>
+<li><b>Total Documents:</b> <span id="total_documents"></span></li>
+<li><b>Total Disk Used:</b> <span id="total_disk_space"></span></li>
+</div>
+
+
+
+
