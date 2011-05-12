@@ -1,4 +1,4 @@
-Basho holds free webinars on a monthly basis. You should join us for the next one. In the meantime, these past webinars should keep you occupied. 
+This is a collection of videos from across the Riak community. They range from Basho webinars, to meeetup presentations, to conference talks. *(If you have a video to add, please fork the "Riak Wiki Repo on GitHub":https://github.com/basho/riak_wiki and do so.)*
 
 * [[Riak with NodeJS:|http://vimeo.com/21099379]] - Using the riak-js module for NodeJS to access Riak
 * [[Riak in Action: Wriaki|http://vimeo.com/14275191]] - Building a Riak-backed wiki
@@ -8,3 +8,6 @@ Basho holds free webinars on a monthly basis. You should join us for the next on
 * [[MapReducing Big Data With Luwak|http://vimeo.com/20074937]] - Using Riak's MapReduce with Luwak, our large file storage component
 * [[Schema Design for Riak|http://vimeo.com/17604126]] - A discussion of strategies for designing application schemas that use the Riak distributed key-value store
 * [[Riak Operations|http://vimeo.com/22448110]] - This webinar covers the various operational aspects of running a production Riak cluster
+* [[Riak and Scala at Yammer|http://blog.basho.com/2011/03/28/Riak-and-Scala-at-Yammer/]] - An overview of how Yammer is using Riak and Scala from Engineers Coda Hale and Ryan Kennedy
+* [[Riak Search Explained|http://vimeo.com/23197839]] - An extensive introduction to Riak Search from Basho's Dan Reverri
+

@@ -63,7 +63,7 @@
 * **Recommended Resources**
   * [[Overviews and Introductions]]
   * [[Slide Decks]]
-  * [[Recorded Webinars]]
+  * [[Videos]]
   * [[Riak Sample Applications]]
   * [[Publications]]
 * [[FAQ]]
