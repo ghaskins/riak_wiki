@@ -11,6 +11,7 @@ h2. General Overviews, Tutorials, and Introductions
 * [[An Introduction to Innostore|http://blog.basho.com/2010/02/02/basho-podcast-three---an-introduction-to-innostore/]]
 * [[Schema Design in Riak - An Introduction|http://blog.basho.com/2010/03/19/schema-design-in-riak---introduction//]]
 * [[Schema Design in Riak Pt. 2 - Relationships|http://blog.basho.com/2010/03/25/schema-design-in-riak---relationships/]]
+* [[Riak Search Explained|http://vimeo.com/23197839]] - An extensive introduction to Riak Search from Basho's Dan Reverri
 
 h2. Slide Decks
 
@@ -39,7 +40,7 @@ h2. Sample Applications built using Riak:
 * [[yakriak|http://github.com/seancribbs/yakriak]] - Riak-powered Ajax-polling chatroom.
 * [[wriaki|http://bitbucket.org/basho/wriaki/src]] - a wiki app backed by Riak.
 
-h2. Screencasts:
+h2. Screencasts
 
 * [[Introduction to JavaScript MapReduce in Riak|http://blog.basho.com/2010/02/03/the-release-riak-0.8-and-javascript-map/reduce/]]
 * [[Riak in an Embedded Node Using Rebar|http://blog.basho.com/2009/12/17/basho-screencast---dave-smith-introduces-riak-in-an-embedded-node/]]
