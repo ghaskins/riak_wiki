@@ -1,0 +1,114 @@
+h1. HTTP Status
+
+Reports about the performance and configuration of the Riak node to which it was requested.  You must have the @{riak_kv_stat,true}@ configuration setting in app.config for this endpoint to be active. This is equivalent to the [[riak-admin status|Command-Line Tools#status]] command.
+
+h2. Request
+
+```bash
+GET /stats
+```
+
+Important headers:
+
+* @Accept@ - determines whether the response will be formatted in @application/json@ or @text/plain@.
+
+h2. Response
+
+Normal status codes:
+* @200 OK@
+
+Typical error codes:
+* @404 Not Found@ - if @riak_kv_stat@ is not enabled
+
+Important headers:
+* @Content-Type@ - @application/json@ or @text/plain@ (JSON with added line-breaks)
+
+h2. Example
+
+```bash
+$ curl -v http://127.0.0.1:8098/stats -H "Accept: text/plain"
+* About to connect() to 127.0.0.1 port 8098 (#0)
+*   Trying 127.0.0.1... connected
+* Connected to 127.0.0.1 (127.0.0.1) port 8098 (#0)
+> GET /stats HTTP/1.1
+> User-Agent: curl/7.19.7 (universal-apple-darwin10.0) libcurl/7.19.7 OpenSSL/0.9.8l zlib/1.2.3
+> Host: 127.0.0.1:8098
+> Accept: text/plain
+>
+< HTTP/1.1 200 OK
+< Vary: Accept, Accept-Encoding
+< Server: MochiWeb/1.1 WebMachine/1.7.1 (participate in the frantic)
+< Date: Wed, 14 Jul 2010 18:13:04 GMT
+< Content-Type: text/plain
+< Content-Length: 2102
+<
+{
+    "vnode_gets": 0,
+    "vnode_puts": 0,
+    "read_repairs": 0,
+    "vnode_gets_total": 0,
+    "vnode_puts_total": 0,
+    "node_gets": 0,
+    "node_gets_total": 0,
+    "node_get_fsm_time_mean": "undefined",
+    "node_get_fsm_time_median": "undefined",
+    "node_get_fsm_time_95": "undefined",
+    "node_get_fsm_time_99": "undefined",
+    "node_get_fsm_time_100": "undefined",
+    "node_puts": 0,
+    "node_puts_total": 0,
+    "node_put_fsm_time_mean": "undefined",
+    "node_put_fsm_time_median": "undefined",
+    "node_put_fsm_time_95": "undefined",
+    "node_put_fsm_time_99": "undefined",
+    "node_put_fsm_time_100": "undefined",
+    "read_repairs_total": 0,
+    "cpu_nprocs": 84,
+    "cpu_avg1": 251,
+    "cpu_avg5": 174,
+    "cpu_avg15": 110,
+    "mem_total": 7946684000.0,
+    "mem_allocated": 4340880000.0,
+    "nodename": "riak@127.0.0.1",
+    "connected_nodes": [
+
+    ],
+    "sys_driver_version": "1.5",
+    "sys_global_heaps_size": 0,
+    "sys_heap_type": "private",
+    "sys_logical_processors": 2,
+    "sys_otp_release": "R13B04",
+    "sys_process_count": 189,
+    "sys_smp_support": true,
+    "sys_system_version": "Erlang R13B04 (erts-5.7.5) [[source]] [[64-bit]] [[smp:2:2]] [[rq:2]] [[async-threads:5]] [[hipe]] [[kernel-poll:true]]",
+    "sys_system_architecture": "i386-apple-darwin10.3.0",
+    "sys_threads_enabled": true,
+    "sys_thread_pool_size": 5,
+    "sys_wordsize": 8,
+    "ring_members": [
+        "riak@127.0.0.1"
+    ],
+    "ring_num_partitions": 64,
+    "ring_ownership": "[{'riak@127.0.0.1',64}]",
+    "ring_creation_size": 64,
+    "storage_backend": "riak_kv_bitcask_backend",
+    "pbc_connects_total": 0,
+    "pbc_connects": 0,
+    "pbc_active": 0,
+    "riak_kv_version": "0.11.0",
+    "riak_core_version": "0.11.0",
+    "bitcask_version": "1.0.1",
+    "luke_version": "0.1",
+    "webmachine_version": "1.7.1",
+    "mochiweb_version": "1.7.1",
+    "erlang_js_version": "0.4",
+    "runtime_tools_version": "1.8.3",
+    "crypto_version": "1.6.4",
+    "os_mon_version": "2.2.5",
+    "sasl_version": "2.1.9",
+    "stdlib_version": "1.16.5",
+    "kernel_version": "2.13.5"
+}
+* Connection #0 to host 127.0.0.1 left intact
+* Closing connection #0
+```
