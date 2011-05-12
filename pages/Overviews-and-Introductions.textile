@@ -1,0 +1,12 @@
+This is a collection of blog posts, presentations, and other resources that should give you a better understanding of various aspects of Riak.
+
+* [[Justin Sheehy's Riak Presentation at NoSQL East|https://nosqleast.com/2009/#speaker/sheehy]]
+* [[Riak and Nitrogen by Example - Rusty Klophaus at Erlang User Conf. 2009|http://vimeo.com/8258045]]
+* [[Why Riak Should Power Your Next Rails App|http://seancribbs.com/tech/2010/02/06/why-riak-should-power-your-next-rails-app/]]
+* [[Wrap Your Head Around Riak's MapReduce|http://seancribbs.com/tech/2010/02/07/wrap-your-sql-head-around-riaks-map-reduce/]]
+* [[Link Walking By Example|http://blog.basho.com/2010/02/24/link-walking-by-example/]]
+* [[Why Vector Clocks Are Easy|http://blog.basho.com/2010/01/29/why-vector-clocks-are-easy/]]
+* [[An Introduction to Innostore|http://blog.basho.com/2010/02/02/basho-podcast-three---an-introduction-to-innostore/]]
+* [[Schema Design in Riak - An Introduction|http://blog.basho.com/2010/03/19/schema-design-in-riak---introduction//]]
+* [[Schema Design in Riak Pt. 2 - Relationships|http://blog.basho.com/2010/03/25/schema-design-in-riak---relationships/]]
+* [[Riak Search Explained|http://vimeo.com/23197839]] - An extensive introduction to Riak Search from Basho's Dan Reverri
