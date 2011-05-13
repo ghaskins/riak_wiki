@@ -290,4 +290,18 @@ The Adlearn project at a AOL has 5 nodes of Riak playing a non-trivial role in a
 
 Mobile Interactive Group "(MIG)":http://www.migcan.com/ is a globally integrated mobile and digital communications business and is the fastest growing privately owned technology company in the UK and EMEA.
 
-*David Dawson, Head of Technology, Mobile Interactive Group (MIG) commented* "We use Riak as a persistent storage layer for many of our mission-critical systems, including our international SMS Gateway which was built from the ground up to be fully scalable, high performing, and data-centre redundant, whilst also maintaining a low operational footprint."
+*David Dawson, Head of Technology, Mobile Interactive Group (MIG):* "We use Riak as a persistent storage layer for many of our mission-critical systems, including our international SMS Gateway which was built from the ground up to be fully scalable, high performing, and data-centre redundant, whilst also maintaining a low operational footprint."
+
+---
+
+<notextile>
+<a name="swipely">
+<img src="attachments/swipely_logo.png"><br>
+</a>
+</notextile>
+
+"Swipely":https://swipely.com turns purchases into cash-back rewards at the local places you love to shop. Swipely works with the credit and debit cards you already have, so there's no coupon to cut, voucher to buy, phone app to download, or loyalty card to lose.
+
+*Anthony Accardi, Engineering Lead, Swipely:* "We store data for 15 million merchants in Riak, which we can update without disturbing the critical path of responding to the user. Riak also gives us a very predictable model for scaling our service."
+
+
