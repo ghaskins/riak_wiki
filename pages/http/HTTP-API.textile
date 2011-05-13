@@ -1,6 +1,6 @@
 h1. HTTP API
 
-Riak has a rich, full-featured HTTP API.  This is an overview of the operations you can perform via HTTP and can be used as a guide for developing a compliant client.  All URLs assume the default configuration values where applicable. All examples use @curl@ to interact with Riak.
+Riak has a rich, full-featured HTTP 1.1 API.  This is an overview of the operations you can perform via HTTP and can be used as a guide for developing a compliant client.  All URLs assume the default configuration values where applicable. All examples use @curl@ to interact with Riak.
 
 <div class="note"><div class="title">Client ID</div>All requests should include the @X-Riak-ClientId@ header, which can be any string that uniquely identifies the client, for purposes of tracing object modifications in the [[vector clock|Riak Glossary]].</div>
 

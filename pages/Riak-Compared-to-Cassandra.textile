@@ -70,7 +70,7 @@ h2. API
 
 Riak offers two primary interfaces to non-Erlang clients:
 
-_[[HTTP|REST API]]_
+_[[HTTP|HTTP API]]_
 _[[Protocol Buffers|PBC API]]_
 
 Cassandra uses Thrift, which means that all access must be through a Thrift-based client.

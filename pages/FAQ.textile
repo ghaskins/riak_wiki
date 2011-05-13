@@ -63,7 +63,7 @@ There is no standard operation for deleting a bucket. (Remember, buckets are ess
 
 h2.  How can I authenticate users who are accessing Riak?
 
-Riak has no built-in authentication or authorization mechanism, as it was designed to be used in private networks and to be simple to configure.  If you are using the [[REST API]], we recommend inserting a reverse-proxy between Riak and the client that can handle the authentication.  Members of the community have used nginx and Apache for this purpose.
+Riak has no built-in authentication or authorization mechanism, as it was designed to be used in private networks and to be simple to configure.  If you are using the [[HTTP API]], we recommend inserting a reverse-proxy between Riak and the client that can handle the authentication.  Members of the community have used nginx and Apache for this purpose.
 
 h2. Is it normal for Riak to consume a large number of open file handles (greater than 1024 in some cases)?
 

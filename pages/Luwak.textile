@@ -1,6 +1,4 @@
-
-<div id="toc"></div>
-
+h1. Luwak
 
 h2. About Luwak
 
@@ -10,23 +8,21 @@ h2. Enabling Luwak
 
 Luwak can be enabled in Riak's @app.config@ file. As of version 0.13 a new section has been added to the @app.config@ file for Luwak:
 
-```bash
+```erlang
 {luwak, [{enabled, false}]}
 ```
 
-
 To enable Luwak set the "enabled" property to "true" and restart Riak:
 
-```bash
+```erlang
 {luwak, [{enabled, true}]}
 ```
 
-
 h2. Configuring Luwak
 
-Luwak, by default, is accessible from the @/luwak@ endpoint of Riak (i.e. http://127.0.0.1:8098/luwak). This endpoint is configurable via the "prefix" property in the Luwak section of @app.config@:
+Luwak, by default, is accessible from the @/luwak@ endpoint of Riak (i.e. @http://127.0.0.1:8098/luwak@). This endpoint is configurable via the "prefix" property in the Luwak section of @app.config@:
 
-```bash
+```erlang
 {luwak,
  [{enabled, true},
   {prefix, "different_luwak_prefix"}
@@ -35,177 +31,7 @@ Luwak, by default, is accessible from the @/luwak@ endpoint of Riak (i.e. http:/
 
 h2. Luwak Operations
 
-The first thing you'll notice about the Luwak REST API is that there are no buckets; files are stored in a flat namespace. Other than the lack of buckets, the operations for storing an object are the same as Riak.
-
-h3. Read file
-
-Reads a Luwak file
-
-h4. Request
-
-```bash
-GET /luwak/key
-```
-
-
-Important headers:
-* *Range* - request a portion of the object, i.e. a range of bytes
-
-h4. Response
-
-Normal response codes:
-* 200 OK
-* 206 Partial Content
-
-Typical error codes:
-* 400 Bad Request
-* 404 Not Found - the object could not be found
-* 416 Requested Range Not Satisfiable
-* 503 Service Unavailable - the request timed out internally
-
-Important headers:
-* *Content-Type* - the media type/format
-* *X-Riak-Meta* - any user-defined metadata defined when storing the object
-* *Last-Modified* - a timestamp for when the object was last written, in HTTP datetime format
-
-The body of the response will be the contents of the file.
-
-h4. Simple Example
-
-```bash
-$ curl -i http://localhost:8098/luwak/key
-HTTP/1.1 200 OK
-X-Riak-Meta-Test: test
-Vary: Accept-Encoding
-Transfer-Encoding: chunked
-Server: MochiWeb/1.1 WebMachine/1.7.2 (participate in the frantic)
-Last-Modified: Mon, 11 Oct 2010 06:25:09 GMT
-Date: Mon, 11 Oct 2010 09:13:16 GMT
-Content-Type: application/json
-
-Hello World
-```
-
-h3. Store a file without a key
-
-Stores a new file with a random Luwak-assigned key.
-
-h4. Request
-
-
-```bash
-POST /luwak
-```
-
-
-Important headers:
-* *Content-Type* must be set for the stored object. Set what you expect to receive back when next requesting it.
-* *X-Riak-Meta-* any additional metadata headers that should be stored with the object.
-
-_+This request must include a body (entity).+_
-
-h4. Response
-
-Normal status codes:
-* 201 Created
-
-Typical error codes:
-* 400 Bad Request
-
-Important headers:
-* *Location* - a relative URL to the newly-created object
-
-h4. Example
-
-
-```bash
-$ curl -i -d 'this is a test' -H "Content-Type: text/plain" http://127.0.0.1:8098/luwak
-HTTP/1.1 201 Created
-Vary: Accept-Encoding
-Server: MochiWeb/1.1 WebMachine/1.7.2 (participate in the frantic)
-Location: /luwak/FwDjezaP9JsSWztOVKkJ5egJp1a
-Date: Mon, 11 Oct 2010 09:19:57 GMT
-Content-Type: application/json
-Content-Length: 0
-
-```
-
-
-h3. Store a new or existing file with a key
-
-Stores a file with an existing or user-defined key.
-
-h4. Request
-
-
-```bash
-PUT /luwak/key
-```
-
-
-*POST* is also a valid verb, for compatibility's sake.
-
-Important headers:
-* *Content-Type* must be set for the stored object. Set what you expect to receive back when next requesting it.
-* *X-Riak-Meta-* any additional metadata headers that should be stored with the object.
-
-h4. Response
-
-Normal status codes:
-* 204 No Content
-
-Typical error codes:
-* 400 Bad Request
-
-h4. Example
-
-
-```bash
-$ curl -i -X PUT -d '{"bar":"baz"}' -H "Content-Type: application/json" http://127.0.0.1:8098/luwak/file.json
-HTTP/1.1 204 No Content
-Vary: Accept-Encoding
-Server: MochiWeb/1.1 WebMachine/1.7.2 (participate in the frantic)
-Date: Mon, 11 Oct 2010 09:22:21 GMT
-Content-Type: application/json
-Content-Length: 0
-
-```
-
-
-h3. Delete file
-
-Deletes a file.
-
-h4. Request
-
-
-```bash
-DELETE /luwak/key
-```
-
-
-h4. Response
-
-Normal response codes:
-* 204 No Content
-* 404 Not Found
-
-Typical error codes:
-* 400 Bad Request
-
-h4. Example
-
-
-```bash
-$ curl -i -X DELETE http://127.0.0.1:8098/luwak/file.json
-file.jsonHTTP/1.1 204 No Content
-Vary: Accept-Encoding
-Server: MochiWeb/1.1 WebMachine/1.7.2 (participate in the frantic)
-Date: Mon, 11 Oct 2010 09:23:38 GMT
-Content-Type: application/json
-Content-Length: 0
-
-```
+Luwak operations are detailed in the [[HTTP API|HTTP API#Luwak Operations (Large Files)]].
 
 h2. Luwak and Map/Reduce
 

@@ -290,8 +290,7 @@ h3. Set Bucket Properties
 
 Set the properties for a bucket
 
-
-<div class="note">The PBC interface does not currently support all bucket properties. It is currently limited to *allow_mult* and *n_val*; other bucket properties would need to be set with the [[REST API|REST API#Set bucket properties]].</div>
+<div class="note">The PBC interface does not currently support all bucket properties. It is currently limited to *allow_mult* and *n_val*; other bucket properties would need to be set with the [[HTTP API|HTTP Set Bucket Properties]]. *This issue is addressed in development versions of Riak.*</div>
 
 
 h4. Request

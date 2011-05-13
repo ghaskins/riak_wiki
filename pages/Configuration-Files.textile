@@ -42,7 +42,7 @@ The name of the cluster. This currently has no visible effect, but could be usef
 
 h4. default_bucket_props
 
-These are properties used for buckets that have not been explicitly defined (as outlined in the [[REST API]]).They are useful for setting default bucket behavior such as:
+These are properties used for buckets that have not been explicitly defined (as outlined in the [[HTTP API]]).They are useful for setting default bucket behavior such as:
 * the number of replicas stored (*"n_val")
 * whether or not siblings are allowed (*allow_mult")
 * the quorum values for get, put and delete requests (*r, w, dw, rw)
@@ -218,7 +218,7 @@ Available backends, and their additional configuration options are:
    Root directory where the files are stored (ex: @/var/lib/riak/data@)
 * *riak_kv_multi_backend*
   Enables storing data for different buckets in different backends.
-  Specify the backend to use for a bucket with _riak_client:set_bucket(BucketName,[{backend, BackendName}]_ in Erlang or {"props":{"backend":"BackendName"}} in the [[REST API]].
+  Specify the backend to use for a bucket with _riak_client:set_bucket(BucketName,[{backend, BackendName}]_ in Erlang or {"props":{"backend":"BackendName"}} in the [[HTTP API]].
 ** *multi_backend_default*
     Default backend to use if none is specified for a bucket (one of the *BackendName* atoms specified in the *multi_backend* setting)
 ** *multi_backend*
@@ -250,7 +250,7 @@ An example of combining the *riak_kv_cache_backend* and the *riak_kv_bitcask_bac
 ]},
 ```
 
-While the cache backend is now the default for all buckets, you can choose either "cache" or "bitcask" as custom values when setting bucket properties through the [[REST API]].
+While the cache backend is now the default for all buckets, you can choose either "cache" or "bitcask" as custom values when setting bucket properties through the [[HTTP API]].
 
 <div class="note"><div class="title"> Dynamically Changing ttl</div>There is currently no way to dynamically change the ttl per bucket. The current work around would be to define multiple "riak_cache_backends" under "riak_multi_backend" with different ttl values.</div>
 
