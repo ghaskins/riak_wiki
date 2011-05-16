@@ -28,15 +28,15 @@ If your resource traversed the graph all the way to one of the standard, non-err
 
 The Detail Panel has three tabs: Request (labeled Q), Response (labeled R), and Decision (labeled D). Clicking each of these will show information about the request, response, or current decision, respectively.
 
-!/images/basic-trace-request-tab.png!
+[[/images/basic-trace-request-tab.png|align=center]]
 
 The Request Tab shows details about what the client requested. The method and path are displayed at the top, headers below that, and body (if available) at the bottom.
 
-!/images/basic-trace-response-tab.png!
+[[/images/basic-trace-response-tab.png|align=center]]
 
 The Response Tab shows details about how your resource responded. The response code is displayed at the top, headers below that, and body (if available) at the bottom.
 
-!/images/basic-trace-decision-tab.png!
+[[/images/basic-trace-decision-tab.png|align=center]]
 
 The Decision Tab shows details about the currently selected decision. The decision's name is displayed in a dropdown at the top (changing this dropdown or clicking on a decision in the graph will change which decision is displayed). The list of the functions called in the resource's module is displayed in a dropdown below the decision. The arguments with which the function was called are displayed just below the function's name, and the return value of the function is displayed at the bottom of the panel.
 
