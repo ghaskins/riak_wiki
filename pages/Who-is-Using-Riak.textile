@@ -302,6 +302,6 @@ Mobile Interactive Group "(MIG)":http://www.migcan.com/ is a globally integrated
 
 "Swipely":https://swipely.com turns purchases into cash-back rewards at the local places you love to shop. Swipely works with the credit and debit cards you already have, so there's no coupon to cut, voucher to buy, phone app to download, or loyalty card to lose.
 
-*Anthony Accardi, Engineering Lead, Swipely:* "We store data for 15 million merchants in Riak, which we can update without disturbing the critical path of responding to the user. Riak also gives us a very predictable model for scaling our service."
+*Anthony Accardi, Head of Engineering, Swipely:* "We store data for 15 million merchants in Riak, which we can update without disturbing the critical path of responding to the user. Riak also gives us a very predictable model for scaling our service."
 
 
