@@ -1,8 +1,4 @@
-h2. Webmachine is not much like the Web frameworks you're used to.
-
-h3. You can call Webmachine a REST toolkit if you like, and we won't argue with you.
-
-Webmachine is an application layer that adds HTTP semantic awareness on top of the excellent bit-pushing and HTTP syntax-management provided by [[mochiweb|http://github.com/basho/mochiweb/]], and provides a simple and clean way to connect that to your application's behavior.
+Webmachine is not much like the web frameworks you're used to. You can call Webmachine a REST toolkit if you like, and we won't argue with you. Webmachine is an application layer that adds HTTP semantic awareness on top of the excellent bit-pushing and HTTP syntax-management provided by [[mochiweb|http://github.com/basho/mochiweb/]], and provides a simple and clean way to connect that to your application's behavior.
 
 A Webmachine application is a set of resources, each of which is a set of [[functions|Webmachine---Resources]] over the state of the resource. We really mean functions here, not object-methods, infinite-server-loops, or any other such construction. This aspect of Webmachine is one of the reasons why Webmachine applications are relatively easy to understand and extend.
 
@@ -13,7 +9,7 @@ For most Webmachine applications, most of the functions are quite small and isol
 We believe that by giving Web developers a [[system|Webmachine---Mechanics]] with conventions that [[directly map to HTTP|Webmachine---Diagram]] and REST, we help them to write and extend Web applications quickly while not dictating the shape of the rest of their application. The resulting applications are straightforward to examine and maintain, and have very easily understood HTTP semantics.
 
 <div class="info">
-  <div class="title">Additional Reading</div> 
+  <div class="title">Additional Reading</div>
     In addition to the documentation on this site and the source code on github, some useful Webmachine writing can be found on blogs and elsewhere. A small sampling of these is here:
 
     * The [[restful way blog|http://blog.restfulway.com]] is almost entirely dedicated to Webmachine.
