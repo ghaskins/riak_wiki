@@ -16,7 +16,7 @@ Rebuild and reload the module, then in your webmachine application's shell, type
 
 Now issue the HTTP request that you're trying to debug. Once it has finished, point your browser at http://YOUR_HOST/wmtrace/. You'll see one or more trace files available for inspection. Click on one of them to navigate to the trace inspection utility, which will look something like this:
 
-!/images/basic-trace-labeled.png!
+[[/images/basic-trace-labeled.png|width=550px|align=center]]
 
 The example above is a trace of a resource that responded to a GET of the root path (as you can see in the Detail Panel), and ran all the way to a 200 response code (as you can see in the Decision Graph).
 
