@@ -2,7 +2,7 @@ Having trouble with your webmachine resource? Try debugging it with the webmachi
 
 h2. Basic Use
 
-To get started, first change your resource's init/1 function to return {trace, Path} instead of ok. For example:
+To get started, first change your resource's @init/1@ function to return @{trace, Path}@ instead of @ok@. For example:
 
 ```erlang
 init(Config) ->
@@ -12,9 +12,11 @@ init(Config) ->
 
 Rebuild and reload the module, then in your webmachine application's shell, type:
 
-@wmtrace_resource:add_dispatch_rule("wmtrace", "/tmp").@
+```erlang
+wmtrace_resource:add_dispatch_rule("wmtrace", "/tmp").
+```
 
-Now issue the HTTP request that you're trying to debug. Once it has finished, point your browser at http://YOUR_HOST/wmtrace/. You'll see one or more trace files available for inspection. Click on one of them to navigate to the trace inspection utility, which will look something like this:
+Now issue the HTTP request that you're trying to debug. Once it has finished, point your browser at @http://YOUR_HOST/wmtrace/@. You'll see one or more trace files available for inspection. Click on one of them to navigate to the trace inspection utility, which will look something like this:
 
 [[/images/basic-trace-labeled.png|width=550px|align=center]]
 
@@ -48,7 +50,7 @@ The Webmachine trace tool is divided into two parts: one produces the trace logs
 
 h3. Trace Log Production Configuration
 
-You may configure the path under which trace files are stored by specifying that path as the Path part of your resource module's init/1 return value. Every time a request is made to that resource, a new trace file will be created in the specified directory.
+You may configure the path under which trace files are stored by specifying that path as the Path part of your resource module's @init/1@ return value. Every time a request is made to that resource, a new trace file will be created in the specified directory.
 
 Warning: Trace files can be large. It is advised that you do not leave tracing enabled on a large-content-producing or high-hit-rate resource.
 
@@ -57,23 +59,30 @@ The path may be either absolute:
 ```erlang
 init(Config) ->
    {{trace, "/tmp/traces"}, Config}. %% absolute path /tmp/traces
-or relative to your application's root:
+```
 
+Or relative to your application's root:
+
+```erlang
 init(Config) ->
    {{trace, "traces"}, Config}. %% "traces" directory in application's root
 ```
 
 h3. Trace Viewer Configuration
 
-The viewer is configured by its entry in the dispatch list. Two functions make modifying that entry easy: wmtrace_resource:add_dispatch_rule/2 and wmtrace_resource:remove_dispatch_rules/0.
+The viewer is configured by its entry in the dispatch list. Two functions make modifying that entry easy: @wmtrace_resource:add_dispatch_rule/2@ and @wmtrace_resource:remove_dispatch_rules/0@.
 
-Call add_dispatch_rule/2 with the HTTP-exported path, and the path to the trace files. For example, to expose the viewer at http://YOUR_HOST/dev/wmtrace/ and point it at the trace files in /tmp/traces, type in your application's erlang shell:
+Call @add_dispatch_rule/2@ with the HTTP-exported path, and the path to the trace files. For example, to expose the viewer at @http://YOUR_HOST/dev/wmtrace/@ and point it at the trace files in @/tmp/traces@, type in your application's erlang shell:
 
-@wmtrace_resource:add_dispatch_rule("dev/wmtrace", "/tmp/traces").@
+```erlang
+wmtrace_resource:add_dispatch_rule("dev/wmtrace", "/tmp/traces").
+```
 
 If you know that you always want the viewer enabled and configured in a specific way, you can also add a line like the following to your application's dispatch list:
 
-@{["dev", "wmtrace", '*'], wmtrace_resource, [{trace_dir, "/tmp/traces"}]}@
+```erlang
+{["dev", "wmtrace", '*'], wmtrace_resource, [{trace_dir, "/tmp/traces"}]}
+```
 
 To disable all trace viewer resources at any point, just execute @wmtrace_resource:remove_dispatch_rules/0@ in your application's erlang shell.
 
@@ -82,19 +91,19 @@ h2. Trace Log Format
 The trace file is fairly straightforward, if you want to read it with @less@:
 
 * @{decision, X}@. indicates that a decision point was reached
-* @{attempt, Module, Function, Args}@. indicates that a call to Module:Function(Args) was made.
-* @{result, Module, Function, Result}@. indicates that the call to Module:Function(Args) returned Result .
+* @{attempt, Module, Function, Args}@. indicates that a call to @Module:Function(Args)@ was made.
+* @{result, Module, Function, Result}@. indicates that the call to @Module:Function(Args)@ returned Result .
 * @{not_expored, Module, Function, Args}@. indicates that @Module:Function(Args)@ would have been called, but it was not exported (or not defined) by the module
 
 The format should be such that a @file:consult/1@ will give you a list of the lines as erlang terms.
 
 h2. Special Handling for Funs and Pids
 
-Funs and Pids don't roundtrip through file serialization very well (file:consult/1 will blow up on a fun or pid written to a file with io:format("~p", [FunOrPid])). To deal with this, the trace logger prints a recognizable tuple translation instead of the fun or pid.
+Funs and Pids don't roundtrip through file serialization very well (@file:consult/1@ will blow up on a fun or pid written to a file with @io:format("~p", [FunOrPid])@). To deal with this, the trace logger prints a recognizable tuple translation instead of the fun or pid.
 
 h3. Fun Translation
 
-Funs you might see in Erlang source as fun io:format/2 will appear in a trace log as:
+Funs you might see in Erlang source as fun @io:format/2@ will appear in a trace log as:
 
 ```erlang
 {'WMTRACE_ESCAPED_FUN',[{module,io},
