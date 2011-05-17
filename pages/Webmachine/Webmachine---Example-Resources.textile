@@ -1,6 +1,6 @@
-h2. Quickstart Examples
+h2. Demo Examples
 
-The [[Quickstart|Webmachine---Quickstart]] guide walks through setting up the [[demo|https://github.com/basho/webmachine/tree/master/demo]] application from the Webmachine repository. The demo application provides two basic example resources:
+The [[demo|https://github.com/basho/webmachine/tree/master/demo]] application from the Webmachine repository provides two basic example resources:
 
 * [[webmachine_demo_fs_resource|https://github.com/basho/webmachine/blob/master/demo/src/webmachine_demo_fs_resource.erl]] - an example of a read/write filesystem server showing several interesting features and supporting GET, PUT, DELETE, and POST
 * [[webmachine_demo_resource|https://github.com/basho/webmachine/blob/master/demo/src/webmachine_demo_resource.erl]] - an example of a simple resource demonstrating content negotiation, basic auth, and some caching headers.
