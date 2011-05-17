@@ -304,4 +304,18 @@ Mobile Interactive Group "(MIG)":http://www.migcan.com/ is a globally integrated
 
 *Anthony Accardi, Head of Engineering, Swipely:* "We store data for 15 million merchants in Riak, which we can update without disturbing the critical path of responding to the user. Riak also gives us a very predictable model for scaling our service."
 
+---
+
+<notextile>
+<a name="voxer">
+<img src="attachments/voxer_riak.gif"><br>
+</a>
+</notextile>
+
+"Voxer":http://voxer.com/ is a Walkie Talkie app for smartphones that lets you send instant audio, text and photo messages to one of more friends, and is the number one social networking app in the the US, the UK, Canada, Hong Kong, and other countries. 
+
+Voxer users Riak and Riak Search extensively on the backend to store, serve and analyze critical user data. 
+
+*Matt Ranney, CTO, Voxer:* "We need a database that can grow as our traffic grows and can reliably deliver low response times.  This kind of scalability and availability doesn't come for free, and Riak is refreshingly honest about what it takes achieve this."
+
 
