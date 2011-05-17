@@ -312,7 +312,7 @@ Mobile Interactive Group "(MIG)":http://www.migcan.com/ is a globally integrated
 </a>
 </notextile>
 
-"Voxer":http://voxer.com/ is a Walkie Talkie app for smartphones that lets you send instant audio, text and photo messages to one of more friends, and is the number one social networking app in the the US, the UK, Canada, Hong Kong, and other countries. 
+"Voxer":http://voxer.com/ is a Walkie Talkie app for smartphones that lets you send instant audio, text and photo messages to one of more friends, and is the number one social networking app in the US, UK, Canada, Hong Kong, Taiwan, and several other countries. 
 
 Voxer users Riak and Riak Search extensively on the backend to store, serve and analyze critical user data. 
 
