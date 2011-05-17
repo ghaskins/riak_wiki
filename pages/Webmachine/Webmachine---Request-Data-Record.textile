@@ -1,19 +1,21 @@
 h2. Webmachine request/response data
 
-This is documentation of the Webmachine Request Data API as embodied by the "wrq" module. This module is the means by which resources access and manipulate the state of the request they are handling.
+This is documentation of the Webmachine Request Data API as embodied by the @wrq@ module. This module is the means by which resources access and manipulate the state of the request they are handling.
 
-Given that all webmachine resource functions have this signature:
+Given that all Webmachine resource functions have this signature:
 
-@f(ReqData, Context) -> {Result, ReqData, Context}@
+```erlang
+f(ReqData, Context) -> {Result, ReqData, Context}
+```
 
-we should explain in detail the ReqData input and output parameter. This is a data structure used to represent the request sent by the client as well as the response being built by the resource. The wrq module is used to access the values in the input parameter. Most functions in most resources have no need to modify the output ReqData and can simply pass along the one received as input. However, in some cases a resource will need to make some update to the response other than that implied by Result and in those cases it should use the wrq module to build a modified ReqData from the original one for the return value.
+we should explain in detail the @ReqData@ input and output parameter. This is a data structure used to represent the request sent by the client as well as the response being built by the resource. The @wrq@ module is used to access the values in the input parameter. Most functions in most resources have no need to modify the output @ReqData@ and can simply pass along the one received as input. However, in some cases a resource will need to make some update to the response other than that implied by @Result@ and in those cases it should use the @wrq@ module to build a modified @ReqData@ from the original one for the return value.
 
 A couple of nonstandard types are assumed here:
 
 |_. TYPE|_. DESCRIPTION|
-|@string()@|a list() with all elements in the ASCII range|
-|@rd()@|opaque record, used as the input/output ReqData|
-|@streambody()@|A webmachine [[streamed body format|Webmachine--Streamed-Body]]|
+|@string()@|a @list()@ with all elements in the ASCII range|
+|@rd()@|opaque record, used as the input/output @ReqData@|
+|@streambody()@|A Webmachine [[streamed body format|Webmachine--Streamed-Body]]|
 |@mochiheaders()@|a structure used in mochiweb for HTTP header storage|
 
 The accessors are:
