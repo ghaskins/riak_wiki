@@ -6,4 +6,4 @@ Version 1 of this diagram, from Alan Dean, was the inspiration for webmachine_de
 
 A copy of v3 is found in the webmachine source tree for convenience.
 
-[[/images/http-headers-status-v3.png|align=center]]
+"[[/images/http-headers-status-v3.png|width=550px|align=center]]":/images/http-headers-status-v3.png
