@@ -17,5 +17,5 @@ We believe that by giving Web developers a [[system|Webmachine---Mechanics]] wit
     * The blog of [[Andy Gross|http://blog.argv0.net]] has some useful hints and tutorials.
     * Paul Mineiro posted about [[dynamically loading webmachine resources|http://dukesoferl.blogspot.com/2009/08/dynamically-loading-webmachine.html]].
     * [[Kevin Smith|http://weblog.hypotheticalabs.com/?page_id=413]] teaches an excellent Erlang training class which often culminates with development of applications in Webmachine.
-    * There is a fairly low traffic [[mailing list|http://lists.therestfulway.com/mailman/listinfo/webmachine_lists.therestfulway.com]] for technical discussion of Webmachine.
+    * There is a [[mailing list|http://lists.therestfulway.com/mailman/listinfo/webmachine_lists.therestfulway.com]] for technical discussion of Webmachine.
 </div>
