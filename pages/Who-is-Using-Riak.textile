@@ -314,8 +314,8 @@ Mobile Interactive Group "(MIG)":http://www.migcan.com/ is a globally integrated
 
 "Voxer":http://voxer.com/ is a Walkie Talkie app for smartphones that lets you send instant audio, text and photo messages to one of more friends, and is the number one social networking app in the US, UK, Canada, Hong Kong, Taiwan, and several other countries. 
 
-Voxer users Riak and Riak Search extensively on the backend to store, serve and analyze critical user data. 
+Voxer uses Riak and Riak Search extensively on the backend to store, serve and analyze critical user data. 
 
-*Matt Ranney, CTO, Voxer:* "We need a database that can grow as our traffic grows and can reliably deliver low response times.  This kind of scalability and availability doesn't come for free, and Riak is refreshingly honest about what it takes achieve this."
+*Matt Ranney, CTO, Voxer:* "We need a database that can grow as our traffic grows and can reliably deliver low response times.  This kind of scalability and availability doesn't come for free, and Riak is refreshingly honest about what it takes to achieve this."
 
 
