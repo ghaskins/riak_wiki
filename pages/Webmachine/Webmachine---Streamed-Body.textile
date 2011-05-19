@@ -1,4 +1,4 @@
-Webmachine allows the resource developer to handle request and response bodies as either whole units (binary or iolist) to be handed around at once, or else to choose to "stream" the body.
+Webmachine allows the resource developer to handle request and response bodies as either whole units (@binary@ or @iolist@) to be handed around at once, or else to choose to "stream" the body.
 
 The body-handling functions are:
 
@@ -12,7 +12,9 @@ The first of these (@req_body@) is the simplest. It will provide the whole incom
 
 If a resource wants to handle the incoming request body a hunk at a time, it may call @wrq:stream_req_body/2@ instead. Instead of a binary, this produces a @StreamBody@ structure.
 
-(It is an error to call both @wrq:req_body/1@ and @wrq:stream_req_body/2@ in the execution of a single resource.)
+<div class="note">
+It is an error to call both @wrq:req_body/1@ and @wrq:stream_req_body/2@ in the execution of a single resource.
+</div>
 
 A @StreamBody@ is a pair of the form @{Data,Next}@ where @Data@ is a binary and @Next@ is either the atom @done@ signifying the end of the body or else a 0-arity function that, when called, will produce the "next" @StreamBody@ structure.
 
