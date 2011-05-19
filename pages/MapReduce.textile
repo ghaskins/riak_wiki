@@ -116,7 +116,7 @@ With data loaded, we can now run a query:
 
 ```bash
 $ curl -X POST -H "content-type: application/json" http://localhost:8098/mapred --data @-
-{"inputs":[["alice","p1"],["alice","p2"],["alice","p5"]] ,"query":[{"map":{"language":"javascript","source":"function(v) { var words = v.values[0].data.toLowerCase().match('\\\\w*','g'); var counts = []; for(var word in words) if (words[word] != '') { var count = {}; count[words[word]] = 1; counts.push(count); } return counts; }"}},{"reduce":{"language":"javascript","source":"function(values) { var result = {}; for (var value in values) { for(var word in values[value]) { if (word in result) result[word] += values[value][word]; else result[word] = values[value][word]; } } return [result]; }"}}]}
+{"inputs":[["alice","p1"],["alice","p2"],["alice","p5"]] ,"query":[{"map":{"language":"javascript","source":"function(v) { var words = v.values[0].data.toLowerCase().match('\\\\\\\\w*','g'); var counts = []; for(var word in words) if (words[word] != '') { var count = {}; count[words[word]] = 1; counts.push(count); } return counts; }"}},{"reduce":{"language":"javascript","source":"function(values) { var result = {}; for (var value in values) { for(var word in values[value]) { if (word in result) result[word] += values[value][word]; else result[word] = values[value][word]; } } return [result]; }"}}]}
 ^D
 ```
 
