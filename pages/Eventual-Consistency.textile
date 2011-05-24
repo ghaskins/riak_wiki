@@ -2,6 +2,11 @@ An introduction to eventual consistency and what it means in terms of handling d
 
 <div id="toc"></div>
 
+In a distributed and fault-tolerant environment like Riak, the unexpected is expected. That means that nodes may leave and join the cluster at any time, be it by
+accident (node failure, network partition, etc.) or on purpose, e.g. by explicitly removing a node from a Riak cluster. But even with one or more nodes down, the
+cluster is still expected to accept writes and serve reads, and the system is expected to return the same data from all nodes eventually, even the failed ones after
+they rejoined the cluster.
+
 h2. A simple example of eventual consistency
 
 This basis for a simple example is a Riak cluster with five nodes and a default quorum of 3. That means every piece of data exists
@@ -15,6 +20,10 @@ The purpose of this list of examples is to describe how the replica node that ju
 undetermined point in the future, all replicas of a piece of data will be up-to-date. There are ways of controlling when a specific
 piece of data is consistent across all its replicas, but either way, the data will eventually be consistent on all of them.
 
+Most of these scenarios are easy enough to reproduce. Most of the time you just need to determine the preference list for a key on a healthy cluster, take down X
+nodes and try a combination of read and write requests to see what happens in each case. It's also good to keep an eye on the logs to find out when hinted handoffs
+occur.
+
 h2. Anatomy of a Riak Request
 
 To understand how eventual consistency is handled in a Riak environment, it's important to know how a request is handled internally.
@@ -27,7 +36,7 @@ Recall that every key belongs to N primary virtual nodes and a number of seconda
 given time. Secondaries are fallback nodes, they're logically close to the primaries in the key space, and they're the nodes to go to should a primary become
 unavailable.
 
-The basic steps of a request in Riak are the following.
+The basic steps of a request in Riak are the following:
 
 * Determine the nodes responsible for the key from the preference list
 * Send a request to all the nodes determined in the previous step
@@ -50,26 +59,26 @@ succeed, until the third replica comes back up again. It's up to the application
 or as a feature flip that can be tuned at runtime accordingly, or to simply retry when a piece of data is expected to be found, but a first request returns a
 not_found.
 
-h3. One Primary Fails
+h3. Reading When One Primary Fails
 
 * Data is written to a key with W=3
 * One node goes down, it happens to be a primary for that key
 * Data is read from that key with R=3
 * Riak returns not_found on first request
 * Read repair ensures data is replicated to a secondary node
-* Subsequent reads return correct value with R=3
+* Subsequent reads return correct value with R=3, two values coming from primary and one from secondary nodes
 
-h3. Two Primaries Fail
+h3. Reading When Two Primaries Fail
 
 * Data is written to a key with W=3
 * Two nodes go down, they happen to be primaries for that key
 * Data is read from that key with R=3
 * Riak returns not_found on first request
-* Read repair ensures data is replicated to a secondary node
+* Read repair ensures data is replicated to secondary nodes, one value coming from the remaining primary, two coming from secondaries
 
 Similar scenario to the above, but initial read consistency expectations may degrade even further, leaving only one initial replica.
 
-h3. Edge Case: Two Primaries Fails, R=1
+h3. Edge Case: Reading With R=1 When Two Primaries Fail
 
 When two primaries go down, leaving only one replica, and clients read using an R value of 1, something that may be unexpected and even confusing happens. The
 current implementation of get in Riak involves a mechanism called basic quorum. The basic quorum assumes that if a majority of nodes return that an object wasn't
@@ -81,13 +90,42 @@ Just like above, subsequent requests would yield the expected results, as read r
 
 The potential for confusion around the basic quorum has been addressed in the "current development of Riak":https://issues.basho.com/show_bug.cgi?id=992, and the next major release will include an option to disable the basic quorum for a specific request.</div>
 
-h3. Three Primaries Fail
+h3. Reading When Three Primaries Fail
 
 * Data is written to a key with W=3
 * All primary nodes responsible for the key go down
 * Data is read using R=3 (or any quorum)
 
 This incident will always yield a not found error, as no node is able to serve the request.
+
+h3. Writing And Reading When One Primary Failed
+
+* One primary goes down
+* Data is written with W=3
+* A secondary takes reponsibility for the write
+* Reads with R=3 will immediately yield the desired result, as the secondary node can satisfy the default quorum
+
+h3. Writing And Reading When One Primary Failed and Later Recovered
+
+* One primary goes down
+* Data is written with W=3
+* A secondary takes responsibility for the write
+* The primary comes back up
+* Within a default timeframe of 60 seconds, hinted handoff will occur, transferring the updated data to the primary
+* After handoff occurred, the node can successfully serve requests
+
+h3. Edge Case: Writing And Reading During Hand-off
+
+This is an extension of the previous scenario. The primary has recovered from failure and re-joined the cluster. As hinted handoff kicks in, the node has already re-claimed its position in the ring. Should the new node already be hit with requests during the hand-off it's likely to return not_founds for data that has been written to a secondary during its unavailability.
+
+This is a known issue in Riak, and a solution for it is already in the works.
+
+As a workaround, during the handover the application could e.g. reduce the quorum used for reads and writes to make up for currently recovering node until data has been fully handed off between secondaries and the new node.
+
+h3. Writing And Reading When Two Primaries Failed and One Recovers
+
+Similar to just one primary failing. When one primary recovers either hinted handoff or read repair kick in to ensure a following read with the default quorum can be served successfully. Same happens when the second failed
+primary comes back up again.
 
 h2. Further Reading
 
