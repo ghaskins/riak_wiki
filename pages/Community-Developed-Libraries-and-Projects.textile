@@ -35,18 +35,18 @@ h2. Client Libraries and Frameworks
 *Java*
 * [[Riak-Java-PB-Client|http://github.com/krestenkrab/riak-java-pb-client]] - Java Client Library for Riak based on the Protocol Buffers API
 
-*JavaScript*
-* [[Riak-js|http://github.com/frank06/riak-js]]
-* [[Node-Riak|http://github.com/orlandov/node-riak]]
-* [[Nori|http://github.com/technoweenie/nori]] - Experimental Riak HTTP Library for Node.js modeled after Ripple
-* [[OrionNodeRiak|http://github.com/mauritslamers/OrionNodeRiak]] - Node-based server and database-frontend for Sproutcore
-
 *Lisp Flavored Erlang*
 * [[Gutenberg|https://github.com/dysinger/gutenberg/]] - Riak MapReduce Examples Written in LFE
 
 *.NET*
 * [[Hebo|http://github.com/bubbafat/hebo]]
 * [[Data.RiakClient|http://github.com/garethstokes/Data.RiakClient]]
+
+*Node.js*
+* [[Riak-js|http://riakjs.org/]] - Node.js client for Riak with support for HTTP and Protocol Buffers
+* [[Node-Riak|http://github.com/orlandov/node-riak]]
+* [[Nori|http://github.com/technoweenie/nori]] - Experimental Riak HTTP Library for Node.js modeled after Ripple
+* [[OrionNodeRiak|http://github.com/mauritslamers/OrionNodeRiak]] - Node-based server and database-frontend for Sproutcore
 
 *Perl*
 * [[Net::Riak|http://search.cpan.org/~franckc/Net-Riak/]]
@@ -114,6 +114,8 @@ h2. Riak and RabbitMQ
 
 h2. Other Tools and Projects
 
+* [[Statebox_Riak|https://github.com/mochi/statebox_riak ]] - Convenience library that makes it easier to use [[Statebox|https://github.com/mochi/statebox]] with Riak. (There is a great blog post from the Mochi Team about how this is used in production [[here|http://labs.mochimedia.com/archive/2011/05/08/statebox/]].	)
+* [[bitcask-ruby|https://github.com/aphyr/bitcask-ruby]] - An interface to the Bitcask storage system
 * [[Riak BTree Backend|https://github.com/krestenkrab/riak_btree_backend]] - Backend for Riak/KV based on couch_btree*
 * [[Riak Link Index|https://github.com/krestenkrab/riak_link_index]] - Simple Indexer for Riak based on Links
 * [[rack-rekon|https://github.com/seomoz/rack-rekon]] - A Rack application to serve [[Rekon|https://github.com/adamhunter/rekon/]]
