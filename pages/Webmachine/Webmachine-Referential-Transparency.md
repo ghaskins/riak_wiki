@@ -1,7 +1,7 @@
 ## Referential Transparency
 
 Webmachine goes to great lengths to help your [[resource
-functions|Webmachine Resource]] to be as referentially transparent
+functions|Webmachine Resource]] be as referentially transparent
 as possible. By "referentially transparent" we mean that given the
 same input `{ReqData, Context}` the function will return the same
 output `{Result, ReqData, Context}` and that side effects will be
