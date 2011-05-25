@@ -46,7 +46,7 @@ will do the rest. A good understanding of this central mechanism in
 Webmachine is most useful when [[debugging your
 resources|Webmachine Debugging]].
 
-From the way that webmachine's decision core works, it follows that
+From the way that Webmachine's decision core works, it follows that
 Webmachine's HTTP behavior is transactional. Each HTTP Request is
 fully received, and the resulting HTTP Response is then fully
 constructed before being returned. This means that while Webmachine is

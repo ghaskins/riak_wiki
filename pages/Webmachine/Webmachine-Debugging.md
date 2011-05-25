@@ -1,5 +1,5 @@
-Having trouble with your webmachine resource? Try debugging it with
-the webmachine trace utility!
+Having trouble with your Webmachine resource? Try debugging it with
+the Webmachine trace utility!
 
 ## Basic Use
 
@@ -12,7 +12,7 @@ init(Config) ->
    %%{ok, Config}.             %% regular code
 ```
 
-Rebuild and reload the module, then in your webmachine application's
+Rebuild and reload the module, then in your Webmachine application's
 shell, type:
 
 ```erlang

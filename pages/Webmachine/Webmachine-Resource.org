@@ -1,6 +1,6 @@
 ** include_lib
 
-All webmachine resources should include the webmachine resource
+All Webmachine resources should include the Webmachine resource
 library:
 
 ```erlang
@@ -9,11 +9,11 @@ library:
 
 ** init/1
 
-All webmachine resources should define and export =init/1=, which will
+All Webmachine resources should define and export =init/1=, which will
 receive a configuration property list from the dispatcher as its
 argument. This function should, if successful, return ={ok,
 Context}=. =Context= is any term, and will be threaded through all of
-the other webmachine resource functions. Alternately, the resource can
+the other Webmachine resource functions. Alternately, the resource can
 go into debugging mode by returning ={{trace, Dir}, Context}= -- see
 the [[debugging|Webmachine Debugging]] documentation for more
 information.

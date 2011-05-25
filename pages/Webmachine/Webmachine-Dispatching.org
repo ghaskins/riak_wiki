@@ -1,7 +1,7 @@
 ** Dispatching
 
 This page describes the configuration of URI dispatching to resources
-in a webmachine application. The dispatch map data structure is a list
+in a Webmachine application. The dispatch map data structure is a list
 of 3-tuples, where each entry is of the form ={pathspec, resource,
 args}=. The first =pathspec= in the list that matches the URI for a
 request will cause the corresponding =resource= to be used in handling
@@ -34,7 +34,7 @@ The =resource= is an atom identifying a resource module that should
 handle a matching request. It will have the args (which must be a
 list) passed to its =init= function before request handling begins.
 
-In the default directory structure for a new webmachine application,
+In the default directory structure for a new Webmachine application,
 the dispatch terms will be in =file:consult= form in
 =priv/dispatch.conf= under the application root.
 

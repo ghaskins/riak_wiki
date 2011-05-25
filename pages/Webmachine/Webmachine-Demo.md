@@ -40,7 +40,7 @@ init([]) -> {ok, undefined}.
 to_html(ReqData, Context) -> {"Hello, new world", ReqData, Context}.
 ```
 
-That's really it -- a working webmachine resource. That resource will
+That's really it -- a working Webmachine resource. That resource will
 respond to all valid GET requests with the exact same response.
 
 Many interesting bits of HTTP are handled automatically by
@@ -65,7 +65,7 @@ content as well)
 ```erlang
 to_text(ReqData, Context) ->
     Path = wrq:disp_path(ReqData),
-    Body = io_lib:format("Hello ~s from webmachine.~n", [Path]),
+    Body = io_lib:format("Hello ~s from Webmachine.~n", [Path]),
     {Body, ReqData, Context}.
 ```
 
@@ -89,7 +89,7 @@ Date: Sun, 15 Mar 2009 02:54:02 GMT
 Content-Type: text/plain
 Content-Length: 39
 
-Hello a/resource/path from webmachine.
+Hello a/resource/path from Webmachine.
 ```
 
 ## Authorization
@@ -109,10 +109,10 @@ is_authorized(ReqData, Context) ->
                         ["authdemo", "demo1"] ->
                             {true, ReqData, Context};
                         _ ->
-                            {"Basic realm=webmachine", ReqData, Context}
+                            {"Basic realm=Webmachine", ReqData, Context}
                     end;
                 _ ->
-                    {"Basic realm=webmachine", ReqData, Context}
+                    {"Basic realm=Webmachine", ReqData, Context}
             end;
         _ -> {true, ReqData, Context}
     end.
@@ -134,7 +134,7 @@ $ curl -v http://localhost:8000/demo/authdemo
 > Accept: */*
 >
 < HTTP/1.1 401 Unauthorized
-< WWW-Authenticate: Basic realm=webmachine
+< WWW-Authenticate: Basic realm=Webmachine
 < Server: MochiWeb/1.1 WebMachine/0.97
 < Date: Sun, 15 Mar 2009 02:57:43 GMT
 < Content-Length: 0
@@ -154,7 +154,7 @@ $ curl -v -u authdemo:demo1 http://localhost:8000/demo/authdemo
 < Content-Type: text/html
 < Content-Length: 59
 <
-<html><body>Hello authdemo from webmachine.
+<html><body>Hello authdemo from Webmachine.
 </body></html>
 ```
 
@@ -188,7 +188,7 @@ Date: Sun, 15 Mar 2009 02:59:02 GMT
 Content-Type: text/html
 Content-Length: 59
 
-<html><body>Hello authdemo from webmachine.
+<html><body>Hello authdemo from Webmachine.
 </body></html>
 ```
 

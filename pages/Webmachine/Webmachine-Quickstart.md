@@ -5,7 +5,7 @@ Erlang]] for information on getting Erlang setup on your system.
 
 ## Get Webmachine
 
-Get the webmachine code:
+Get the Webmachine code:
 
 ```bash
 git clone git://github.com/basho/webmachine
