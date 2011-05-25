@@ -15,7 +15,7 @@ argument. This function should, if successful, return ={ok,
 Context}=. =Context= is any term, and will be threaded through all of
 the other webmachine resource functions. Alternately, the resource can
 go into debugging mode by returning ={{trace, Dir}, Context}= -- see
-the [[debugging|Webmachine---Debugging]] documentation for more
+the [[debugging|Webmachine Debugging]] documentation for more
 information.
 
 ** Resource Function Signature
@@ -69,7 +69,7 @@ export the function.
 
 Any function which has no description is optional and the effect of
 its return value should be evident from examining the
-[[diagram|Webmachine---Diagram]].
+[[diagram|Webmachine Diagram]].
 
 
 | Function                                                                  | Default                           | Halt | Allowed                                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
