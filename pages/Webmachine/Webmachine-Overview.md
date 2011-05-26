@@ -46,7 +46,7 @@ rest of their application. The resulting applications are
 straightforward to examine and maintain, and have very easily
 understood HTTP semantics.
 
-## Additional Resources
+## Additional Information
 
 In addition to the documentation on this site and the source code on
 github, some useful Webmachine writing can be found on blogs and
