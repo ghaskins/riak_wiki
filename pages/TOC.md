@@ -77,7 +77,7 @@
 * [[Contact Basho]]
 * [[Sample Data]]
 * [[Benchmarking with Basho Bench]]
-* [[Webmachine|Webmachine Overview]]
+* [[Webmachine|Webmachine]]
   * [[How It Works|Webmachine Mechanics]]
   * [[Quickstart|Webmachine Quickstart]]
   * [[Demo|Webmachine Demo]]
