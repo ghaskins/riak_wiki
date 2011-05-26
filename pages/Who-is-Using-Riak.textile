@@ -326,7 +326,7 @@ Voxer uses Riak and Riak Search extensively on the backend to store, serve and a
 </a>
 </notextile>
 
-"Unison":https://www.unison.com/ makes social software for business, allowing companies to chat, video/voice call and post to shared ‘walls’. By giving people better ways to communicate, Unison makes offices more fun and productive.
+"Unison":https://www.unison.com/ makes social software for business, allowing companies to chat, video/voice call and post to shared ‘walls.’ By giving people better ways to communicate, Unison makes offices more fun and productive.
 
 The team at Unison was initially attracted to Riak because they use Erlang heavily internally, but also because they were looking for a fault-tolerant, scalable data storage layer that could grow with their user and customer base. The Unison server makes heavy use of Riak, relying on it as the primary storage engine for application elements like user accounts, contacts, walls, persistent chats, and call-history.
  
