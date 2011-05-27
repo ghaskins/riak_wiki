@@ -25,6 +25,8 @@ GEM
     mixlib-log (1.2.0)
     mustache (0.12.0)
     nokogiri (1.4.4)
+    org-ruby (0.5.3)
+      rubypants (>= 0.2.0)
     pygmentize (0.0.2)
     rack (1.2.1)
     rake (0.8.7)
@@ -37,6 +39,7 @@ GEM
     rspec-expectations (2.3.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.3.0)
+    rubypants (0.2.0)
     sanitize (1.2.1)
       nokogiri (~> 1.4.1)
     sinatra (1.1.2)
@@ -50,6 +53,7 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   gollum-site
+  org-ruby
   pygmentize
   rake
   rdiscount
