@@ -92,6 +92,10 @@ within several minutes.
 
 * Create a new [Issue][issues]
 
+## Credits
+
+Includes [icons from famfamfam][silk].
+
 [phark]:      mailto:mark@basho.com "Mark"
 [mail-list]:  http://lists.basho.com/mailman/listinfo/riak-users_lists.basho.com "Riak-Users"
 [issues]:     https://github.com/basho/riak_wiki/issues "Riak-Wiki Issues Page"
@@ -104,3 +108,4 @@ within several minutes.
 [gollum]:     https://github.com/github/gollum "Gollum Repo"
 [gol-site]:   https://github.com/dreverri/gollum-site "Gollum-Site Repo"
 [basho-wiki]: http://wiki.basho.com "Basho Wiki"
+[silk]: http://www.famfamfam.com/lab/icons/silk/ "FamFamFam Silk Icons"
