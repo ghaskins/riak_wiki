@@ -27,7 +27,7 @@
     * [[List Buckets|HTTP List Buckets]]
     * [[List Keys|HTTP List Keys]]
     * [[Get Bucket|HTTP Get Bucket Properties]]
-    * [[Set Bucket|HTTP Get Bucket Properties]]
+    * [[Set Bucket|HTTP Set Bucket Properties]]
     * [[Fetch Object|HTTP Fetch Object]]
     * [[Store Object|HTTP Store Object]]
     * [[Delete Object|HTTP Delete Object]]
