@@ -208,4 +208,4 @@ The guys who wrote Riak are also responsible for the Erlang REST framework Webma
 
 Clients can set the Content-Type header for each Riak object. Riak will replay the header when the object is fetched. This is nice since it allows Riak to be content agnostic.
 
-* [[Take an in depth look at Riak's REST API|REST API]]
+* [[Take an in depth look at Riak's HTTP API|HTTP API]]

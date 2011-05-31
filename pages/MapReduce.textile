@@ -65,7 +65,7 @@ Link phases find links matching patterns specified in the query definition.  The
 
 "Following a link" means adding it to the output list of this phase.  The output of this phase is often most useful as input to a map phase, or another reduce phase.
 
-h2. MapReduce via the [[REST API]]
+h2. MapReduce via the [[HTTP API]]
 
 Riak supports writing MapReduce query functions in JavaScript and Erlang, as well as specifying query execution over HTTP.
 
@@ -73,9 +73,9 @@ Riak supports writing MapReduce query functions in JavaScript and Erlang, as wel
 <div class="note"><div class="title">"bad encoding" error</div>If you receive an error "bad encoding" from a MapReduce query that includes phases in Javascript, verify that your data does not contain incorrect Unicode escape sequences.  Data being transferred into the Javascript VM must be in Unicode format.</div>
 
 
-h3. REST Example
+h3. HTTP Example
 
-This example will store several chunks of text in Riak, and then compute word counts on the set of documents, using MapReduce via the REST API.
+This example will store several chunks of text in Riak, and then compute word counts on the set of documents, using MapReduce via the HTTP API.
 
 h4. Load data
 
@@ -198,7 +198,7 @@ function(values) {
 looks at each JSON object in the input list.  It steps through each key in each object, and produces a new object. That new object has a key for each key in every other object, the value of that key being the sum of the values of that key in the other objects.  It returns this new object in a list, because is may be run a second time on a list including that object and more inputs from the map phase.
 # The final output is a list with one element: a JSON object with a key for each word in all of the documents (unique), with the value of that key being the number of times the word appeared in the documents.
 
-h3(#rest). REST Query Syntax
+h3(#rest). HTTP Query Syntax
 
 Map/Reduce queries are issued over HTTP via a *POST* to the @/mapred@ resource.  The body should be @application/json@ of the form @{"inputs":[...inputs...],"query":[...query...]}@
 
@@ -370,7 +370,7 @@ h2. Streaming MapReduce
 
 Because Riak distributes the map phases across the cluster to increase data-locality, you can gain access to the results of those individual computations as they finish via streaming.  Streaming can be very helpful when getting access to results from a high latency MapReduce job that only contains map phases.  Streaming of results from reduce phases isn't as useful, but if your map phases return data (keep: true), they will be returned to the client even if the reduce phases haven't executed.  This will let you use streaming with a reduce phase to collect the results of the map phases while the jobs are run and then get the result to the reduce phase at the end.
 
-h3. Streaming via the REST API
+h3. Streaming via the HTTP API
 
 You can enable streaming with MapReduce jobs submitted to the @/mapred@ resource by adding @?chunked=true@ to the url.  The response will be sent using HTTP 1.1 chunked transfer encoding with @Content-Type: multipart/mixed@.  Be aware that if you are streaming a set of serialized objects (like JSON objects), the chunks are not guaranteed to be separated along the same boundaries your that serialized objects are. For example, a chunk may end in the middle of a string representing a JSON object, so you will need to decode and parse your responses appropriately in the client.
 

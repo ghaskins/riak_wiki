@@ -1,0 +1,63 @@
+h1. HTTP List Resources
+
+List available HTTP resources for the Riak node. This can be used by clients to automatically recognize the location of the resources for specific operations.
+
+The standard resources are:
+
+* @riak_kv_wm_raw@ - [[Bucket Operations|HTTP API#Bucket Operations]] and [[Object/Key Operations|HTTP API#Object/Key Operations]]
+* @riak_kv_wm_link_walker@ - [[HTTP Link Walking]]
+* @riak_kv_wm_mapred@ - [[HTTP MapReduce]]
+* @riak_kv_wm_ping@ - [[HTTP Ping]]
+* @riak_kv_wm_stats@ - [[HTTP Status]]
+* @luwak_wm_file@ - [[Luwak Operations|HTTP API#Luwak Operations (Large Objects)]] (when enabled)
+
+Riak Search also includes these resources:
+
+* @riak_solr_searcher_wm@ - [[Solr search|Riak Search - Querying#Querying via the Solr Interface]]
+* @riak_solr_indexer_wm@ - [[Solr indexing|Riak Search - Indexing#Indexing using the Solr Interface]]
+
+h2. Request
+
+```bash
+GET /
+```
+
+Headers:
+
+* @Accept@ - @application/json@ or @text/html@
+
+h2. Response
+
+Normal status codes:
+* @200 OK@
+
+Important headers:
+* @Link@ - all resources that are described in the response body, but in Link form
+
+h2. Example
+
+```bash
+# Request JSON response
+curl -i http://localhost:8098 -H "Accept: application/json"
+HTTP/1.1 200 OK
+Vary: Accept
+Server: MochiWeb/1.1 WebMachine/1.7.3 (participate in the frantic)
+Link: </riak>; rel="riak_kv_wm_link_walker",</mapred>; rel="riak_kv_wm_mapred",</ping>; rel="riak_kv_wm_ping",</riak>; rel="riak_kv_wm_raw",</stats>; rel="riak_kv_wm_stats"
+Date: Tue, 04 Jan 2011 00:33:39 GMT
+Content-Type: application/json
+Content-Length: 143
+
+{"riak_kv_wm_link_walker":"/riak","riak_kv_wm_mapred":"/mapred","riak_kv_wm_ping":"/ping","riak_kv_wm_raw":"/riak","riak_kv_wm_stats":"/stats"}
+
+# Request HTML response
+curl -i http://localhost:8098 -H "Accept: text/html"
+HTTP/1.1 200 OK
+Vary: Accept
+Server: MochiWeb/1.1 WebMachine/1.7.3 (participate in the frantic)
+Link: </riak>; rel="riak_kv_wm_link_walker",</mapred>; rel="riak_kv_wm_mapred",</ping>; rel="riak_kv_wm_ping",</riak>; rel="riak_kv_wm_raw",</stats>; rel="riak_kv_wm_stats"
+Date: Tue, 04 Jan 2011 00:35:54 GMT
+Content-Type: text/html
+Content-Length: 267
+
+<html><body><ul><li><a href="/riak">riak_kv_wm_link_walker</a></li><li><a href="/mapred">riak_kv_wm_mapred</a></li><li><a href="/ping">riak_kv_wm_ping</a></li><li><a href="/riak">riak_kv_wm_raw</a></li><li><a href="/stats">riak_kv_wm_stats</a></li></ul></body></html>
+```

@@ -34,7 +34,7 @@ Looking for a specific Riak Driver? Basho [[list of supported libraries|Client L
 ### In Depth On
 * [[Replication]]
 * [[MapReduce]]
-* [[REST API|REST-API]]
-* [[PBC API|PBC-API]]
+* [[HTTP API|HTTP API]]
+* [[PBC API|PBC API]]
 * [[Links]]
 * [[Pre-and Post-Commit Hooks|Pre--and-Post-Commit-Hooks]]

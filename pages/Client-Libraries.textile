@@ -6,7 +6,7 @@ Basho is currently developing and supporting drivers for:
 
 h2. Erlang
 
-The local Erlang client is a tightly-integrated part of Riak and the Riak REST interface uses the Erlang client internally.
+The local Erlang client is a tightly-integrated part of Riak and the Riak HTTP and Protocol Buffers interfaces use the Erlang client internally.
 
 The primary client for code that is not inside Riak is the PBC client:
 

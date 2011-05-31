@@ -102,8 +102,8 @@ h2. API
 
 Riak offers two primary interfaces to non-Erlang clients:
 
-1. [[HTTP|REST API]]
-2. [[Protocol Buffers API|PBC API]]
+1. [[HTTP|HTTP API]]
+2. [[Protocol Buffers|PBC API]]
 
 MongoDB uses a custom protocol with BSON as the interchange format, and [[10gen|http://10gen.com/]] supports clients in the most popular programming languages.
 

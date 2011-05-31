@@ -1,0 +1,48 @@
+h1. HTTP Delete Object
+
+Deletes an object from the specified bucket / key.
+
+h2. Request
+
+```
+DELETE /riak/bucket/key
+```
+
+Optional query parameters:
+* @rw@ - quorum for both operations (get and put) involved in deleting an object. (default is set at the bucket level)
+
+h2. Response
+
+Normal response codes:
+
+* @204 No Content@
+* @404 Not Found@
+
+Typical error codes:
+
+* @400 Bad Request@ - e.g. when rw parameter is invalid (> N)
+
+@404@ responses are "normal" in the sense that DELETE operations are idempotent and not finding the resource has the same effect as deleting it.
+
+h4. Example
+
+```bash
+$ curl -v -X DELETE http://127.0.0.1:8098/riak/test/test2
+* About to connect() to 127.0.0.1 port 8098 (#0)
+*   Trying 127.0.0.1... connected
+* Connected to 127.0.0.1 (127.0.0.1) port 8098 (#0)
+> DELETE /riak/test/test2 HTTP/1.1
+> User-Agent: curl/7.19.4 (universal-apple-darwin10.0) libcurl/7.19.4 OpenSSL/0.9.8l zlib/1.2.3
+> Host: 127.0.0.1:8098
+> Accept: */*
+>
+< HTTP/1.1 204 No Content
+< Vary: Accept-Encoding
+< Server: MochiWeb/1.1 WebMachine/1.6 (eat around the stinger)
+< Date: Wed, 10 Mar 2010 12:53:33 GMT
+< Content-Type: application/json
+< Content-Length: 0
+<
+* Connection #0 to host 127.0.0.1 left intact
+* Closing connection #0
+```

@@ -4,7 +4,7 @@ Links are metadata that establish one-way relationships between objects in Riak.
 
 h2. The Link Header
 
-The essential way to read and modify links via the [[REST API]] is the [[HTTP Link header|http://www.martinpayne.me.uk/experiments/HTTP/Link-Header/HTTP-Link-example.html]].  This header emulates the purpose of &lt;link&gt; tags in HTML, that is, establishing relationships to other HTTP resources.  The format that Riak uses is like so:
+The essential way to read and modify links via the [[HTTP API]] is the [[HTTP Link header|http://www.martinpayne.me.uk/experiments/HTTP/Link-Header/HTTP-Link-example.html]].  This header emulates the purpose of &lt;link&gt; tags in HTML, that is, establishing relationships to other HTTP resources.  The format that Riak uses is like so:
 
 
 ```bash
@@ -57,7 +57,7 @@ To store links back in the object, update the dict, update the object metadata, 
 
 h2. Link-walking
 
-Link-walking (traversal) is a special case of [[MapReduce|MapReduce#Link phases]] querying, and can be accessed through the [[REST API|REST API#Link-walking]].  Link-walks start at a single input object and follow links on that object to find other objects that match the submitted specifications.  More than one traversal may be specified in a single request, with any number of the intermediate results returned.  The final traversal in a link-walking request always returns results.
+Link-walking (traversal) is a special case of [[MapReduce|MapReduce#Link phases]] querying, and can be accessed through the [[HTTP Link Walking]].  Link-walks start at a single input object and follow links on that object to find other objects that match the submitted specifications.  More than one traversal may be specified in a single request, with any number of the intermediate results returned.  The final traversal in a link-walking request always returns results.
 
 * [[Link-walking by Example|http://blog.basho.com/2010/02/24/link-walking-by-example/]] on the Basho Blog
 * [[Links and Link Walking]] on the Riak Fast Track
