@@ -1,4 +1,4 @@
-If you manage your infrastructure with Chef it is possible to install Riak with the use of the cookbook located in the Opscode cookbook repository. You can find the cookbook as well as usage information [[here|http://github.com/opscode/cookbooks/tree/master/riak/]].
+If you manage your infrastructure with Chef it is possible to install Riak with the use of the cookbook located in the Opscode cookbook repository. You can find the cookbook as well as usage information [[here|http://community.opscode.com/cookbooks/riak]].
 
 The cookbook will allow you run a single node, but running a cluster will require customization of the appropriate configuration files.
 You can find more information on that subject [[here|Basic Cluster Setup]] and in the [[The Riak Fast Track|Building a Development Environment]].
