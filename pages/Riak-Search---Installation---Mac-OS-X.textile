@@ -27,8 +27,8 @@ Now we can download and install Riak Search:
 
 
 ```bash
-wget http://downloads.basho.com/riak-search/riak-search-0.14/riak_search-0.14.2-1.tar.gz
-tar zxvf riak_search-0.14.2-1.tar.gz
+wget http://downloads.basho.com/riak-search/riak-search-0.14/riak_search-0.14.2.tar.gz
+tar zxvf riak_search-0.14.2.tar.gz
 cd riak_search-0.14.2
 make rel
 ```
