@@ -2,7 +2,7 @@ h1. Luwak
 
 h2. About Luwak
 
-Luwak is an application built on top of Riak that provides functionality for managing large files. Luwak works by breaking large files into blocks and storing each block as a separate Riak object. Luwak is bundled with Riak, as of version 0.13, but disabled by default. (You can also browse the Luwak source code on [[here on GitHub|https://github.com/basho/luwak]].)
+Luwak is an application built on top of Riak that provides functionality for managing large files. Luwak works by breaking large files into blocks and storing each block as a separate Riak object. Luwak is bundled with Riak, as of version 0.13, but disabled by default. (You can also browse the Luwak source code [[on GitHub|https://github.com/basho/luwak]].)
 
 h2. Enabling Luwak
 
