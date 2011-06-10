@@ -31,7 +31,7 @@ Luwak, by default, is accessible from the @/luwak@ endpoint of Riak (i.e. @http:
 
 h2. Luwak Operations
 
-Luwak operations are detailed in the [[HTTP API|HTTP API#Luwak Operations (Large Files)]].
+Luwak operations are detailed in the [[HTTP API|HTTP API#Luwak Operations (Large Objects)]].
 
 h2. Luwak and Map/Reduce
 
