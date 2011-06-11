@@ -44,6 +44,7 @@ h2. Client Libraries and Frameworks
 
 *Node.js*
 * [[Riak-js|http://riakjs.org/]] - Node.js client for Riak with support for HTTP and Protocol Buffers
+* [[Riakjs-model|https://github.com/dandean/riakjs-model]] - a model abstraction around riak-js
 * [[Node-Riak|http://github.com/orlandov/node-riak]]
 * [[Nori|http://github.com/technoweenie/nori]] - Experimental Riak HTTP Library for Node.js modeled after Ripple
 * [[OrionNodeRiak|http://github.com/mauritslamers/OrionNodeRiak]] - Node-based server and database-frontend for Sproutcore
