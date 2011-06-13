@@ -29,6 +29,10 @@ After the release is untared you will be able to cd into the riak directory and 
 
 h2.  Homebrew
 
+<div class="note">
+Do *not* use Homebrew to install Riak until further notice as it will fail. Riak version 0.14.x does not work with versions R14B02 and later of Erlang. Homebrew is configured to use the latest Erlang, which is currently R14B03. You are advised to build from source until we can rectify this build issue.
+</div>
+
 Installing with Homebrew is easy:
 
 
