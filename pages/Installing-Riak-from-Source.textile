@@ -4,6 +4,10 @@ h2. Dependencies
 
 Riak requires [[Erlang|http://www.erlang.org/]] R13B04 or later. If you do not have Erlang already installed, see [[Installing Erlang]]. Don't worry, it's easy!
 
+<div class="note">
+Riak will not compile with Clang. Please make sure your default C/C++ compiler is GCC.
+</div>
+
 h2. Installation
 
 The following instructions generate a complete, self-contained build of Riak in @$RIAK/rel/riak@ where "$RIAK" is the location of the unpacked or cloned source.
