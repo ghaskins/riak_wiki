@@ -46,28 +46,15 @@ rest of their application. The resulting applications are
 straightforward to examine and maintain, and have very easily
 understood HTTP semantics.
 
-## Additional Information
+## Additional Resources
 
-In addition to the documentation on this site and the source code on
-github, some useful Webmachine writing can be found on blogs and
-elsewhere. A small sampling of these is here:
+In addition to the extensive docs found on this Wiki, here are a few other resources to keep in mind when working with Webmachine:
 
-* The [[restful way blog|http://blog.restfulway.com]] is almost
-  entirely dedicated to Webmachine.
 
-* The [[BeerRiot blog|http://blog.beerriot.com]] contains multiple
-  topics, including a wealth of examples and discussion of Webmachine.
+* Join the [[Webmachine Mailing
+  List|http://lists.therestfulway.com/mailman/listinfo/webmachine_lists.therestfulway.com]]
+  to keep an eye on the daily issues, discussions, and community happenings. 
 
-* The blog of [[Andy Gross|http://blog.argv0.net]] has some useful
-  hints and tutorials.
+* Browse the [[Webmachine source code on GitHub|https://github.com/basho/webmachine]].
 
-* Paul Mineiro posted about [[dynamically loading Webmachine
-  resources|http://dukesoferl.blogspot.com/2009/08/dynamically-loading-webmachine.html]].
-
-* [[Kevin Smith|http://weblog.hypotheticalabs.com/?page_id=413]]
-  teaches an excellent Erlang training class which often culminates
-  with development of applications in Webmachine.
-
-* There is a [[mailing
-  list|http://lists.therestfulway.com/mailman/listinfo/webmachine_lists.therestfulway.com]]
-  for technical discussion of Webmachine.
+* The #riak IRC room on irc.freenode.net is also packed with knowledgable Webmachine users.
