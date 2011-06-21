@@ -46,7 +46,7 @@ riak hard nofile 10240
 
 This helps increase the file limit when the user riak does a full login using other means than sudo, to e.g. start Riak using just the `riak` command. Using sudo (e.g. as @sudo su - riak@) has side effects in terms of open file limits. On Ubuntu they'll be reset to 1024, no matter what's set in @/etc/security/limits.conf@ for the riak user.
 
-On Ubuntu, if you're always relying on the init scripts to start Riak, you can create the file @/etc/defaults/riak@ and specify a manual limit like so:
+On Ubuntu, if you're always relying on the init scripts to start Riak, you can create the file @/etc/default/riak@ and specify a manual limit like so:
 
 ```text
 ulimit -n 4096
