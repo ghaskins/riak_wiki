@@ -47,6 +47,7 @@
   * [[MapReduce]]
     * [[Key Filters]]
   * [[Pre- and Post-Commit Hooks]]
+  * [[Eventual Consistency]]
 * [[Who is Using Riak]]
 * [[Best Practices]]
   * [[Bitcask Capacity Planning]]
