@@ -17,8 +17,11 @@ This basis for a simple example is a Riak cluster with five nodes and
 a default quorum of 3. That means every piece of data exists three
 times in this cluster. In this setup reads use a quorum of 2 to ensure
 at least two copies, whereas writes also use a quorum of 2 to enforce
-strong consistency. Remember that R + W > N ensures strong consistency in
-a cluster.
+strong consistency.
+
+Remember that R + W > N ensures strong consistency in a cluster,
+meaning that a read following a particular write will return the
+previously written data.
 
 When data is written with a quorum of 2, Riak sends the write request
 to all three replicas anyway, but returns a successful reply when two
@@ -37,6 +40,9 @@ you just need to determine the preference list for a key on a healthy
 cluster, take down X nodes and try a combination of read and write
 requests to see what happens in each case. It's also good to keep an
 eye on the logs to find out when hinted handoffs occur.
+
+Before we dive into the failure scenarios, let's examine how a request
+in Riak is handled and spread across the replicas.
 
 ## Anatomy of a Riak Request
 
@@ -93,8 +99,11 @@ found.
 * Data is written to a key with W=3
 * One node goes down, it happens to be a primary for that key
 * Data is read from that key with R=3
-* Riak returns not_found on first request
-* Read repair ensures data is replicated to a secondary node
+* Riak returns not\_found on first request
+* Read repair ensures data is replicated to a secondary node. Read
+  repair will always occur, regardless of the R value. Even with an R
+  of 2, read repair will kick in and ensure that all nodes responsible
+  for this particular data are consistent.
 * Subsequent reads return correct value with R=3, two values coming
   from primary and one from secondary nodes
 
@@ -106,7 +115,7 @@ would have succeeded because 2 replicas are available.
 * Data is written to a key with W=3
 * Two nodes go down, they happen to be primaries for that key
 * Data is read from that key with R=3
-* Riak returns not_found on first request
+* Riak returns not\_found on first request
 * Read repair ensures data is replicated to secondary nodes, one value
   coming from the remaining primary, two coming from secondaries
 
