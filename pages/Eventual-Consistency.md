@@ -139,16 +139,16 @@ nodes.
 
 <div class="note"><div class="title">Basic Quorum</div>
 
-Basic quorum requires the majority of nodes to return a `not_found`
-for a request to be successful. The simple minority is enough, and is
-calculated using @floor(N / 2.0 + 1)@, so for an N value of 3, at
-least 2 nodes must return a value for a successful request.
+Basic quorum requires the majority of nodes to return a not\_found for
+a request to be successful. The simple minority is enough, and is
+calculated using <pre>floor(N / 2.0 + 1)</pre>, so for an N value of
+3, at least 2 nodes must return a value for a successful request.
 
 The potential for confusion around the basic quorum has been addressed
-in the
-[current development of Riak](https://issues.basho.com/show_bug.cgi?id=992),
-and the next major release will include an option to disable the basic
-quorum for a specific request or bucket-wide.
+in the <a href="https://issues.basho.com/show_bug.cgi?id=992">current
+development of Riak</a>, and the next major release will include an
+option to disable the basic quorum for a specific request or
+bucket-wide.
 
 </div>
 
@@ -187,7 +187,7 @@ recovered from failure and is again available to the cluster. As
 hinted handoff kicks in, the node has already re-claimed its position
 in the preference list and will serve requests for the key. Should the
 recovered node be hit with requests durin handoff it's likely to
-return not_founds for data that has been written to a secondary during
+return not\_founds for data that has been written to a secondary during
 its unavailability.
 
 In situations of limited degradation, this will not be an issue
