@@ -4,28 +4,55 @@ Riak requires [[Erlang|http://erlang.org]] R13B04 or later. Riak versions prior 
 
 <div id="toc"></div>
 
+h2. Install using kerl
+
+kerl is a simple shell script that allows installing different Erlang versions with only two
+commands. It's probably the easiest way to install Erlang from source on a system.
+Installing kerl is as simple as running the following command
+
+```bash
+$ curl -O https://github.com/dreverri/kerl/raw/master/kerl; chmod a+x kerl
+```
+
+Then you can just build the Erlang release of your choice, as of current, you'll need
+R13B04:
+
+```bash
+$ ./kerl build R13B04 r13b04
+```
+
+This installs Erlang and does all the steps required to manually install Erlang for you.
+
+When successfully built you can install it using
+
+```bash
+$ ./kerl install R13B04 /opt/erlang/r13b04
+$ . /opt/erlang/r13b04/activate
+```
+
+The last line activates the Erlang build that was just installed into /opt/erlang/r13b04.
+See the [[kerl readme|https://github.com/dreverri/kerl]] for more details on the available
+commands.
+
+If you prefer to install completely manually though, we've got you covered too.
+
 h2. Installing on GNU/Linux
 
 Most distributions _do not_ have the most recent Erlang release available, *so you will need to install from source*.
 
 First, make sure you have a compatible build system and the @ncurses@ and @openssl@ development libraries installed.  On Debian/Ubuntu use this command:
 
-
 ```bash
 $ sudo apt-get install build-essential libncurses5-dev openssl libssl-dev
 ```
 
-
 On RHEL/CentOS use this command:
-
 
 ```bash
 $ sudo yum install gcc glibc-devel make ncurses-devel openssl-devel
 ```
 
-
 Next, download, build and install Erlang:
-
 
 ```bash
 $ wget http://erlang.org/download/otp_src_R13B04.tar.gz
@@ -33,7 +60,6 @@ $ tar zxvf otp_src_R13B04.tar.gz
 $ cd otp_src_R13B04
 $ ./configure && make && sudo make install
 ```
-
 
 h2. Installing on Mac OS/X
 
@@ -45,49 +71,45 @@ To build from source, you must have XCode tools installed from the CD that came 
 
 First, download and unpack the source:
 
-
 ```bash
 $ curl -O http://erlang.org/download/otp_src_R13B04.tar.gz
 $ tar zxvf otp_src_R13B04.tar.gz
 $ cd otp_src_R13B04
 ```
 
-
 Next, configure Erlang.  If you're on Snow Leopard (OS/X 10.6) or Leopard (OS/X 10.5) with an Intel processor:
-
 
 ```bash
 $ ./configure --enable-hipe --enable-smp-support --enable-threads \
 --enable-kernel-poll  --enable-darwin-64bit
 ```
 
-
 If you're on a non-Intel processor or older version of OS/X:
-
 
 ```bash
 $ ./configure --enable-hipe --enable-smp-support --enable-threads --enable-kernel-poll
 ```
 
-
 Now build and install:
-
 
 ```bash
 $ make && sudo make install
 ```
 
-
 You will be prompted for your sudo password.
 
 h3.  Homebrew
+
+<div id="note">The current Homebrew formula for Erlang installs R14B03, which is not
+compatible with the Riak 0.14 release series, and the compile will fail. Install via
+Homebrew only if you intend to play with Riak's master branch, which runs only on R14B02 and
+R14B03, but is not recommended for production usage in any way.</div>
 
 If you intend to install Riak with Homebrew, simply follow those instructions [[here|Installing on Mac OS X]] and Erlang will be installed automatically. To install it separately:
 
 ```bash
 $ brew install erlang
 ```
-
 
 h3.  MacPorts
 
