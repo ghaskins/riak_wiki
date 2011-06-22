@@ -6,16 +6,13 @@ Riak requires [[Erlang|http://erlang.org]] R13B04 or later. Riak versions prior 
 
 h2. Install using kerl
 
-kerl is a simple shell script that allows installing different Erlang versions with only two
-commands. It's probably the easiest way to install Erlang from source on a system.
-Installing kerl is as simple as running the following command
+kerl is a simple shell script that allows installing different Erlang versions with only two commands. It's probably the easiest way to install Erlang from source on a system.  Installing kerl is as simple as running the following command
 
 ```bash
 $ curl -O https://github.com/dreverri/kerl/raw/master/kerl; chmod a+x kerl
 ```
 
-Then you can just build the Erlang release of your choice, as of current, you'll need
-R13B04:
+Then you can just build the Erlang release of your choice, as of current, you'll need R13B04:
 
 ```bash
 $ ./kerl build R13B04 r13b04
@@ -30,9 +27,7 @@ $ ./kerl install R13B04 /opt/erlang/r13b04
 $ . /opt/erlang/r13b04/activate
 ```
 
-The last line activates the Erlang build that was just installed into /opt/erlang/r13b04.
-See the [[kerl readme|https://github.com/dreverri/kerl]] for more details on the available
-commands.
+The last line activates the Erlang build that was just installed into /opt/erlang/r13b04.  See the [[kerl readme|https://github.com/dreverri/kerl]] for more details on the available commands.
 
 If you prefer to install completely manually though, we've got you covered too.
 
@@ -100,10 +95,7 @@ You will be prompted for your sudo password.
 
 h3.  Homebrew
 
-<div id="note">The current Homebrew formula for Erlang installs R14B03, which is not
-compatible with the Riak 0.14 release series, and the compile will fail. Install via
-Homebrew only if you intend to play with Riak's master branch, which runs only on R14B02 and
-R14B03, but is not recommended for production usage in any way.</div>
+<div class="note">The current Homebrew formula for Erlang installs R14B03, which is not compatible with the Riak 0.14 release series, and the compile will fail. Install via Homebrew only if you intend to play with Riak's master branch, which runs only on R14B02 and R14B03, but is not recommended for production usage in any way.</div>
 
 If you intend to install Riak with Homebrew, simply follow those instructions [[here|Installing on Mac OS X]] and Erlang will be installed automatically. To install it separately:
 
