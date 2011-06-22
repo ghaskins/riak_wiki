@@ -47,12 +47,6 @@ Now that you have Erlang and git squared away, it's time to clone the latest Ria
 $ git clone git://github.com/basho/riak.git
 ```
 
-If you prefer to clone from BitBucket:
-
-```bash
-$ hg clone http://bitbucket.org/basho/riak
-```
-
 You should now have the latest version of Riak.
 
 ### Build Riak
@@ -63,7 +57,6 @@ So now you have a copy of Riak. Time to build it. Do this by accessing the "riak
 $ cd riak
 $ make all
 ```
-
 
 As you can see, "make all" is grabbing all the Riak dependencies for you so that you don't have to chase them down. This should take a few moments.
 

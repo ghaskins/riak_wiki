@@ -23,7 +23,7 @@ Riak and the Erlang applications it depends on are configured by settings in the
 ].
 ```
 
-<div class="note"><div class="title">Configuration changes in 0.10</div>Many configuration settings changed names and sections in the 0.10 release.  Please backup your @app.config@ file when upgrading and then copy your previous customizations to the proper places in the new file. See [[the transition notes|http://hg.basho.com/riak/raw/efc290fd9c23/TRANSITION]] for more information.</div>
+<div class="note"><div class="title">Configuration changes in 0.10</div>Many configuration settings changed names and sections in the 0.10 release.  Please backup your @app.config@ file when upgrading and then copy your previous customizations to the proper places in the new file. See [[the transition notes|https://github.com/basho/riak/blob/riak-0.10/TRANSITION] for more information.</div> 
 
 <div class="note"><div class="title">Configuration changes in 0.12</div>The settings related to handoff moved from @riak_kv@ to @riak_core@ in the 0.12 release.  These are:
 * @handoff_ip@

@@ -34,19 +34,6 @@ $ cd riak
 $ make rel
 ```
 
-
-h3. Installing from Bitbucket
-
-Clone the repository using [[Mercurial|http://mercurial.selenic.com/]] and build:
-
-
-```bash
-$ hg clone http://hg.basho.com/riak
-$ cd riak
-$ make rel
-```
-
-
 h2. Platform Specific Instructions
 
 For instructions about specific platforms, see:
