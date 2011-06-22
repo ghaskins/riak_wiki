@@ -77,7 +77,10 @@ Not submitting an R or W value is the same as sending "default".
 h2. N, R and W in Action
 
 Here is brief screencast that will show you just how the N, R, and W values function in our running three node Riak cluster:
-<iframe src="http://player.vimeo.com/video/11172656" width="400" height="225" frameborder="0"></iframe><p><a href="http://vimeo.com/11172656">Tuning CAP Controls in Riak</a> from <a href="http://vimeo.com/bashotech">Basho Technologies</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+
+<div style="display:none" class="iframe-video" id="http://player.vimeo.com/video/11172656"></div>
+
+<p><a href="http://vimeo.com/11172656">Tuning CAP Controls in Riak</a> from <a href="http://vimeo.com/bashotech">Basho Technologies</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
 
 
 h3. What's next?

@@ -118,11 +118,9 @@ would run the Javascript function given in the spec, and include the results in 
 
 would run the Javascript function declared in the content of the Riak object under "mymap" in the "myjs" bucket, and the results of the function would not be included in the final output of the m/r query.
 
-
 ```javascript
 {"map":{"language":"erlang","module":"riak_mapreduce","function":"map_object_value"}}
 ```
-
 
 would run the Erlang function "riak_mapreduce:map_object_value/3".
 
@@ -132,7 +130,6 @@ h4. Reduce
 
 Reduce phases look exactly like map phases, but are labeled "reduce".
 
-
 <div class="info">For more information on map and reduce functions please refer to the [[MapReduce|MapReduce#Phasefunctions]] section of the wiki which includes a description of the arguments passed to these functions.</div>
 
 h4. Link
@@ -141,20 +138,19 @@ Link phases accept "bucket" and "tag" fields that specify which links match the 
 
 For example:
 
-
 ```javascript
 {"link":{"bucket":"foo","keep":false}}
 ```
 
-
 would follow all links pointing to objects in the "foo" bucket, regardless of their tag.
-
 
 h2. MapReduce Screencast
 
 With the syntax and query design fresh in your mind, take a few minutes to watch this screencast and check out Riak's MapReduce in action.
 
-<iframe src="http://player.vimeo.com/video/11328947" width="400" height="225" frameborder="0"></iframe><p><a href="http://vimeo.com/11328947">JavaScript MapReduce in Riak</a> from <a href="http://vimeo.com/bashotech">Basho Technologies</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+<div style="display:none" class="iframe-video" id="http://player.vimeo.com/video/11328947"></div>
+
+<p><a href="http://vimeo.com/11328947">JavaScript MapReduce in Riak</a> from <a href="http://vimeo.com/bashotech">Basho Technologies</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
 
 
 Here are some of the jobs we submitted in the screencast:

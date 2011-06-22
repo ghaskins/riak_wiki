@@ -123,7 +123,9 @@ h2. A Magnificent Link Walking Screen Cast
 
 In this screencast, Basho Hacker Sean Cribbs will take you through link walking basics and then dive into more complex and advanced usage of links in Riak.
 
-<iframe src="http://player.vimeo.com/video/14563219" width="400" height="225" frameborder="0"></iframe><p><a href="http://vimeo.com/14563219">Links and Link Walking in Riak</a> from <a href="http://vimeo.com/bashotech">Basho Technologies</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+<div style="display:none" class="iframe-video" id="http://player.vimeo.com/video/14563219"></div>
+
+<p><a href="http://vimeo.com/14563219">Links and Link Walking in Riak</a> from <a href="http://vimeo.com/bashotech">Basho Technologies</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
 
 h2. Link Walking Scripts
 
@@ -134,7 +136,6 @@ In the above screencast, Sean makes use of several scripts to demonstrate some d
 <dt>[[people_queries.sh|/attachments/people_queries.sh]]</dt>
 </dl>
 
-
 If you watched the video, it's apparent how these scripts are used to demonstrate link walking. For those of you who didn't watch or who want to run and tweak the scripts themselves, check out this graphic:
 [[/attachments/circle-of-friends.png]]
 
@@ -144,27 +145,21 @@ If you watched the video, it's apparent how these scripts are used to demonstrat
 
 To use "load_people.sh" download it to your "dev" directory and run
 
-
 ```bash
 $ chmod +x load_people.sh
 ```
 
-
 followed by
-
 
 ```bash
 $ ./load_people.sh
 ```
 
-
 After the several lines of output finish, do the same for "people_queries.sh":
-
 
 ```bash
 $ chmod +x people_queries.sh
 ```
-
 
 followed by
 
@@ -186,7 +181,6 @@ Q: Get Sean's friends (A:Mark, Kevin)
 Have fun!
 
 *What's Next? Congratulations. You can now tell your friends that you've done distributed MapReduce AND Link Walking Queries in Riak! Now it's time to bring it all home with a brief overview of [[Tunable CAP controls in Riak]].*
-
 
 <div class="info"><div class="title">Additional Reading for this Section</div>
 * [[More on Links|Links]]

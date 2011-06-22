@@ -4,54 +4,60 @@ In this section, we will take you through the process to build a development env
 
 To make it as easy as possible, we've recorded a screencast. If you don't like videos and prefer to read, the instructions below mirror those that are in the screencast. Either way you choose, you'll have a three node Riak cluster in no time!
 
+<div class="note"><div class="title">A few things to note before we start</div>
 
+<ul>
+<li>You do not need to download and build Erlang from source to install Riak. We have
+pre-packaged binaries available for most major platforms that embed the Erlang runtime.
+However, for development/source builds, you'll need to have Erlang R13B04 or later, and this
+tutorial is based on a source build.</li>
 
-<div class="note"><div class="title">A few things to note before we start</div>* You do not need to download and build Erlang from source to install Riak. We have pre-packaged binaries available for most major platforms that embed the Erlang runtime. However, for development/source builds, you'll need to have Erlang R13B04 or later, and this tutorial is based on a source build.
+<li>The setup outlined below that you are about to build sets up nodes with HTTP interfaces
+listening on ports 8091-3. The default port for nodes to listen on is 8098 and users will
+need to take note of this when trying to use any of the default other-language client
+settings.</li>
 
-* The setup outlined below that you are about to build sets up nodes with HTTP interfaces listening on ports 8091-3. The default port for nodes to listen on is _8098_ and users will need to take note of this when trying to use any of the default other-language client settings.
+<li>There are various screencasts throughout the Riak Fast Track. At the time they were
+made, Basho was using Mercurial and Bitbucket for our version control system and development
+platform, respectively. We have since switched to Git and GitHub but the screencasts do not
+yet reflect this. Do not be alarmed. We will re-record these using Git/GitHub when time
+permits.</li>
+</ul>
+</div>
 
-* There are various screencasts throughout the Riak Fast Track. At the time they were made, Basho was using Mercurial and Bitbucket for our version control system and development platform, respectively. We have since switched to Git and GitHub but the screencasts do not yet reflect this. Do not be alarmed. We will re-record these using Git/GitHub when time permits.</div>
+## Downloading Riak and Building a Three Node Cluster
+ 
+<div style="display:none" class="iframe-video" id="http://player.vimeo.com/video/11240885"></div>
 
+<a href="http://vimeo.com/11240885">Setting up a Three Node Riak Cluster</a> from <a href="http://vimeo.com/bashotech">Basho Technologies</a> on <a href="http://vimeo.com">Vimeo</a>.
 
-h2. Downloading Riak and Building a Three Node Cluster
-
-<iframe src="http://player.vimeo.com/video/11240885" width="400" height="225" frameborder="0"></iframe><p><a href="http://vimeo.com/11240885">Setting up a Three Node Riak Cluster</a> from <a href="http://vimeo.com/bashotech">Basho Technologies</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
-
-
-h3. Download and install the latest Erlang
+### Download and install the latest Erlang
 
 Running Riak requires Erlang R13B04 or later. We have platform specific instructions written up for downloading Erlang located [[here|Installing Erlang]]. If you don't already have Version R13B04 installed, go do so and hurry back.
 
-h3. Download Git
+### Download Git
 
 Git is the source control system that Basho uses for Riak development. If you don't already have it installed, you can get it here: [[http://git-scm.com/download|http://git-scm.com/download]]
 
-h3. Clone a copy of the latest Riak from source
+### Clone a copy of the latest Riak from source
 
 Now that you have Erlang and git squared away, it's time to clone the latest Riak. From a terminal, run the following command:
-
-
 
 ```bash
 $ git clone git://github.com/basho/riak.git
 ```
 
-
 If you prefer to clone from BitBucket:
-
 
 ```bash
 $ hg clone http://bitbucket.org/basho/riak
 ```
 
-
-
 You should now have the latest version of Riak.
 
-h3. Build Riak
+### Build Riak
 
 So now you have a copy of Riak. Time to build it. Do this by accessing the "riak" directory and running "make all"
-
 
 ```bash
 $ cd riak
@@ -65,78 +71,61 @@ h3. Use Rebar to start up three nodes
 
 Now that Riak is built, we are going to use Rebar, a packaging and build system for Erlang applications, to get three self-contained Riak nodes running on your machine. Tomorrow, when you put Riak into production, Rebar will enable you to ship a pre-built Riak package to your deployment machines. But for now, we will just stick to the three nodes. To start these up, run "make devrel"
 
-
 ```bash
 $ make devrel
 ```
 
-
 You have just generated a "dev" directory. Let's go into that directory to check out its contents:
-
 
 ```bash
 $ cd dev; ls
 ```
 
-
 That should give you the following:
-
 
 ```bash
 dev1       dev2       dev3
 ```
 
-
 Each directory starting with "dev" is a complete package containing a Riak node. We now need to start each node. Let's start with "dev1"
-
 
 ```bash
 $ dev1/bin/riak start
 ```
 
-
 Then do the same for "dev2" and "dev3"
-
 
 ```bash
 $ dev2/bin/riak start
 $ dev3/bin/riak start
 ```
 
-
-
-h3. Test to see the running Riak nodes
+### Test to see the running Riak nodes
 
 After you have the nodes up and running, it's time to test them and make sure they are available. You can do this by taking a quick look at your process list. To do this, run:
-
 
 ```bash
 $ ps aux | grep beam
 ```
 
-
 This should give you details on three running Riak nodes.
 
-h3. Join the nodes to make a cluster
+### Join the nodes to make a cluster
 
 The next step is to join these three nodes together to form a cluster. You can do this using the Riak Admin tool. Specifically, what we want to do is join "dev2" and "dev3" to "dev1":
-
 
 ```bash
 $ dev2/bin/riak-admin join dev1@127.0.0.1
 $ dev3/bin/riak-admin join dev1@127.0.0.1
 ```
 
-
-h3. Test the cluster and add some data to verify the cluster is working
+### Test the cluster and add some data to verify the cluster is working
 
 Great. We now a have a running three node Riak cluster. Let's make sure it's working correctly. For this we can hit Riak's HTTP interface using _curl_. Try this:
-
 
 ```bash
 $ curl -H "Accept: text/plain" http://127.0.0.1:8091/stats
 ```
-
 
 Once this runs, look for a field in the output named "ring_ownership." This should show you that all three of your nodes are part of your Riak cluster. You might also notice that each node has claimed a set of partitions. The default partition setting for our three node development cluster is 64. This means that two of the three nodes will have claimed 21 partitions, and the third node will handle the last 22.
 
@@ -146,27 +135,21 @@ The number of partitions in your cluster is set with by the parameter [[ring_cre
 
 If you want, you can add a file to your Riak cluster and test it's working properly. Let's say, for instance, we wanted to add an image and make sure it was accessible. First, copy an image to your directory if you don't already have one:
 
-
 ```bash
 $ cp ~/image/location/image_name.jpg .
 ```
 
-
 We can then PUT that image into Riak using a curl command:
-
 
 ```bash
 $ curl -X PUT HTTP://127.0.0.1:8091/riak/images/1.jpg \
   -H "Content-type: image/jpeg" --data-binary @image_name.jpg
 ```
 
-
 You can then verify that image was in fact stored. To do this, simply copy the URL where we PUT the image and paste it into a browser. Your image should appear.
-
 
 You should now have a running, three node Riak cluster. Congratulations! That didn't take so long, did it?
 
 *What's Next? You now have a three node Riak cluster up and running.* *[[Time to learn about the basic HTTP API operations.|Basic Riak API Operations]]*
-
 
 <div class="info"><div class="title">Additional Reading</div>* [[Rebar|http://www.basho.com/developers.html#Rebar]]</div>
