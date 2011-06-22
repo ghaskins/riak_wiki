@@ -189,7 +189,7 @@ Have fun!
 
 
 <div class="info"><div class="title">Additional Reading for this Section</div>
-* [[More on Links|http://wiki.basho.com/display/RIAK/Links]]
+* [[More on Links|Links]]
 * [[Link Walking By Example|http://blog.basho.com/2010/02/24/link-walking-by-example]]
 * [[Link-Map-Reduce with Riak at inagist.com|http://blog.inagist.com/link-map-reduce-in-riak-an-example-from-inagi]]
 * [[IETF "Web Linking" Draft|http://tools.ietf.org/html/draft-nottingham-http-link-header-10]]</div>

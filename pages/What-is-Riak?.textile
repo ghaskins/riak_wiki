@@ -93,4 +93,4 @@ Currently users can write their MapReduce queries in either Erlang or Javascript
 * [[Protocol Buffers Client Interface|PBC API]]
 * [[Client Libraries|Community-Developed Libraries and Projects]]
 * [[Replication|Replication]]
-* [[Recommended General Resources|Recommended Resources]]</div>
+* Recommended Resources: [[Publications]], [[Slides|Slide Decks]], and [[Videos]]</div>
