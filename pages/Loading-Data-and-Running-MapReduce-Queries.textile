@@ -169,9 +169,7 @@ Based on the sample data we loaded in the last section, here are some functions 
 curl -X POST http://127.0.0.1:8091/mapred -H "Content-Type: application/json" -d @-
 ```
 
-After pressing return, paste your job in, for example the one shown below in the section "Complete Job", press return again, and then Ctrl-D to submit it. This way of running MapReduce queries is not
-specific to this tutorial, but it comes in very handy to just run quick fire-and-forget queries from the command line in general. With a client library, most of the dirty work of assembling the JSON
-that's sent to Riak will be done for you.</div>
+After pressing return, paste your job in, for example the one shown below in the section "Complete Job", press return again, and then Ctrl-D to submit it. This way of running MapReduce queries is not specific to this tutorial, but it comes in very handy to just run quick fire-and-forget queries from the command line in general. With a client library, most of the dirty work of assembling the JSON that's sent to Riak will be done for you.</div>
 
 h3. Map: find the days where the high was over $600.00
 
