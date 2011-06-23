@@ -40,17 +40,13 @@ Download the CSV file of stock data linked below and place it in the "dev" direc
 <dd>Erlang script to load data (as shown in snippet).</dd>
 </dl>
 
-
 Now load the data into Riak.
-
 
 ```bash
 $ ./load_data goog.csv
 ```
 
-
 So now we have some data in our Riak cluster. Let's put that aside for a minute and learn a bit about MapReduce, and how Riak uses it.
-
 
 h2. MapReduce
 
@@ -102,22 +98,17 @@ Function source can be specified directly in the query by using the "source" spe
 
 For example:
 
-
 ```javascript
 {"map":{"language":"javascript","source":"function(v) { return [v]; }","keep":true}}
 ```
 
-
 would run the Javascript function given in the spec, and include the results in the final output of the m/r query.
-
 
 ```javascript
 {"map":{"language":"javascript","bucket":"myjs","key":"mymap","keep":false}}
 ```
 
-
 would run the Javascript function declared in the content of the Riak object under "mymap" in the "myjs" bucket, and the results of the function would not be included in the final output of the m/r query.
-
 
 ```javascript
 {"map":{"language":"erlang","module":"riak_mapreduce","function":"map_object_value"}}
@@ -153,7 +144,6 @@ With the syntax and query design fresh in your mind, take a few minutes to watch
 
 <p><a href="http://vimeo.com/11328947">JavaScript MapReduce in Riak</a> from <a href="http://vimeo.com/bashotech">Basho Technologies</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
 
-
 Here are some of the jobs we submitted in the screencast:
 
 <dl>
@@ -167,15 +157,11 @@ Here are some of the jobs we submitted in the screencast:
 <dd>A simple map-only job that returns the values for the first week of January 2010.</dd>
 </dl>
 
-
 h2. Sample Functions
-
 
 So you've seen us run some MapReduce jobs. Now it's time to try your hand at it.
 
-
 Based on the sample data we loaded in the last section, here are some functions that should work for you. Take a few minutes to run them and, if you're feeling daring, modify them based on what you know about MapReduce in Riak to see if you can manipulate the results.
-
 
 <div class="info"><div class="title">Submitting [[MapReduce]] queries from the shell</div>To run a query from the shell, here's the curl command to use:
 
@@ -183,14 +169,13 @@ Based on the sample data we loaded in the last section, here are some functions 
 curl -X POST http://127.0.0.1:8091/mapred -H "Content-Type: application/json" -d @-
 ```
 
-
-After pressing return, paste your job in and then press Ctrl-D to submit it.</div>
-
+After pressing return, paste your job in, for example the one shown below in the section "Complete Job", press return again, and then Ctrl-D to submit it. This way of running MapReduce queries is not
+specific to this tutorial, but it comes in very handy to just run quick fire-and-forget queries from the command line in general. With a client library, most of the dirty work of assembling the JSON
+that's sent to Riak will be done for you.</div>
 
 h3. Map: find the days where the high was over $600.00
 
 *Phase Function*
-
 
 ```javascript
 function(value, keyData, arg) {
@@ -202,9 +187,7 @@ function(value, keyData, arg) {
 }
 ```
 
-
 *Complete Job*
-
 
 ```javascript
 {"inputs":"goog",
@@ -214,14 +197,11 @@ function(value, keyData, arg) {
 }
 ```
 
-
 [[sample-highs-over-600.json|/attachments/sample-highs-over-600.json]]
-
 
 h3. Map: find the days where the close is lower than open
 
 *Phase Function*
-
 
 ```javascript
 function(value, keyData, arg) {
@@ -233,9 +213,7 @@ function(value, keyData, arg) {
 }
 ```
 
-
 *Complete Job*
-
 
 ```javascript
 {"inputs":"goog",
@@ -244,7 +222,6 @@ function(value, keyData, arg) {
                   "keep":true}}]
 }
 ```
-
 
 [[sample-close-lt-open.json|/attachments/sample-close-lt-open.json]]
 
