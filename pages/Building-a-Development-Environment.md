@@ -107,6 +107,14 @@ $ dev2/bin/riak-admin join dev1@127.0.0.1
 $ dev3/bin/riak-admin join dev1@127.0.0.1
 ```
 
+<div class="info"><div class="title">About riak-admin</div>
+riak-admin is Riak's administrative tool. It's used to do any operational tasks
+other than starting and stopping node, e.g. to join and leave a cluster, to back
+up data, and to manage general cluster operations. For more information on
+riak-admin, check our <a
+href="http://wiki.basho.com/Command-Line-Tools.html#riak-admin">page dedicated
+to the command line tools</a> that come with Riak.
+
 ### Test the cluster and add some data to verify the cluster is working
 
 Great. We now a have a running three node Riak cluster. Let's make sure it's working correctly. For this we can hit Riak's HTTP interface using _curl_. Try this:
