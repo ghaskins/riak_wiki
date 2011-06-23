@@ -213,28 +213,26 @@ number of predefined replicas in your cluster, you can assume that a
 subsequent read will return the value you just wrote, given that no
 node in the cluster failed just that instance.
 
-However, that kind of event can occur at any point in time, so your
+However, node failure can occur at any point in time, so your
 application should be prepared to retry reads for objects that it
 expects to exist, both for reads on the same nodes as it just sent a
 write to, but also for reads from other nodes in the cluster.
 
-There is no guarantee in terms of timing that a write will make it to
-all replicas before another client ask a different node for the same
-object. A write may still be in effect, waiting for confirmation from
-even just one vnode, while another client already tries to read from a
-different or even the same physical node. Clients should usually be
-unaware of partition and replica placement in your cluster, so they'll
-have to work around the potential issues that can occur. Latency can
-lead to unpredictable circumstances in these scenarios even in the
-milliseconds range.
+There is no guarantee that a write will make it to all replicas before
+another client asks a different node for the same object. A write may
+still be in flight, waiting for confirmation from even just one vnode,
+while another client already tries to read from a different or even
+the same physical node. Clients are unaware of partition and replica
+placement in your cluster, so they'll have to work around the
+potential issues that can occur. Latency can lead to unpredictable
+circumstances in these scenarios even in the milliseconds range.
 
 In your application, if you rely on and expect objects you read to
 exist at any time, be prepared to retry a number of times when your
 code receives a not\_found from Riak. Ensure some way of
 exponential backoff and eventual failure or simply giving up in your
-application's code, when you can safely assume the value does indeed
-not exist, returning an older value or simply no value at
-all.
+application's code, when you can safely assume the value is indeed
+nonexistent, returning an older value or simply no value at all.
 
 ## Further Reading
 
