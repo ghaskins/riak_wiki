@@ -2,7 +2,7 @@
 
 h2. What is the Riak Fast Track?
 
-We wanted a straightforward, concise, interactive module to acquaint people with Riak and how it works. We figured one of the best ways to do this was to make it easy to learn by doing. So, the Fast Track is a five part module that enables people to do just that: get a grasp on some of Riak's core concepts quickly.
+We wanted a straightforward, concise, interactive module to acquaint people with Riak and how it works. We figured one of the best ways to do this was to make it easy to learn by doing. So, the Fast Track is a series of short modules that enables people to do just that: get a grasp on some of Riak's core concepts quickly.
 
 h2. Who should use the Riak Fast Track?
 
@@ -11,7 +11,7 @@ The Fast Track is aimed at people who have little or no experience with Riak. Th
 
 h2. What does the Fast Track Cover?
 
-The Fast Track will take you through the following five sections:
+The Fast Track will take you through the following sections:
 
 # A High Level Overview of Riak and its Architecture
 # Setting up a Development Cluster on your Machine
@@ -26,7 +26,7 @@ This by no means covers everything that Riak can do, but it should help you get 
 
 h2. How does it work?
 
-The Fast Track is broken up into five, one page sections. Start with the first section, and when you get to the end, follow the +What's Next?+ link located at the bottom of each page. This will take you to the next section in the tutorial. Simply repeat this process until you reach the end.
+The Fast Track is broken up into one page sections. Start with the first section, and when you get to the end, follow the +What's Next?+ link located at the bottom of each page. This will take you to the next section in the tutorial. Simply repeat this process until you reach the end.
 
 You will also notice that at the bottom of each page there is a section entitled "Additional Reading." These are pointers to resources that might be worthwhile if you want to learn more about what's being discussed in each section.
 
