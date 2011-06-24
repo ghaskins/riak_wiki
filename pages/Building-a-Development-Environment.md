@@ -7,10 +7,12 @@ To make it as easy as possible, we've recorded a screencast. If you don't like v
 <div class="note"><div class="title">A few things to note before we start</div>
 
 <ul>
-<li>You do not need to download and build Erlang from source to install Riak. We have
-pre-packaged binaries available for most major platforms that embed the Erlang runtime.
-However, for development/source builds, you'll need to have Erlang R13B04 or later, and this
-tutorial is based on a source build.</li>
+<li>You do not need to download and build Erlang from source to install Riak. We
+have pre-packaged binaries available for most major platforms that embed the
+Erlang runtime.  However, for source builds, you'll need to have Erlang R13B04,
+and this tutorial is based on a source build. Current Riak development has moved
+to Erlang R14B02 or later, but for this tutorial, Erlang R13B04 is the way to
+go.</li>
 
 <li>The setup outlined below that you are about to build sets up nodes with HTTP interfaces
 listening on ports 8091-3. The default port for nodes to listen on is 8098 and users will
@@ -33,28 +35,21 @@ permits.</li>
 
 ### Download and install the latest Erlang
 
-Running Riak requires Erlang R13B04 or later. We have platform specific instructions written up for downloading Erlang located [[here|Installing Erlang]]. If you don't already have Version R13B04 installed, go do so and hurry back.
+We have platform specific instructions written up for downloading Erlang located [[here|Installing Erlang]]. If you don't already have Erlang installed, go do so and hurry back.
 
-### Download Git
+### Download the source code of the latest Riak version
 
-Git is the source control system that Basho uses for Riak development. If you don't already have it installed, you can get it here: [[http://git-scm.com/download|http://git-scm.com/download]]
-
-### Clone a copy of the latest Riak from source
-
-Now that you have Erlang and git squared away, it's time to clone the latest Riak. From a terminal, run the following command:
-
-```bash
-$ git clone git://github.com/basho/riak.git
-```
-
-You should now have the latest version of Riak.
+You can always find the latest release of Riak in our [downloads directory](http://downloads.basho.com/riak/CURRENT/).
+The current version is 0.14.2, and you can download the [source code
+here](http://downloads.basho.com/riak/riak-0.14/riak-0.14.2.tar.gz). Unpack the package once downloaded, and you're
+ready for the next step.
 
 ### Build Riak
 
 So now you have a copy of Riak. Time to build it. Do this by accessing the "riak" directory and running "make all"
 
 ```bash
-$ cd riak
+$ cd riak-0.14.2
 $ make all
 ```
 
@@ -112,6 +107,14 @@ $ dev2/bin/riak-admin join dev1@127.0.0.1
 $ dev3/bin/riak-admin join dev1@127.0.0.1
 ```
 
+<div class="info"><div class="title">About riak-admin</div>
+riak-admin is Riak's administrative tool. It's used to do any operational tasks
+other than starting and stopping node, e.g. to join and leave a cluster, to back
+up data, and to manage general cluster operations. For more information on
+riak-admin, check our <a
+href="http://wiki.basho.com/Command-Line-Tools.html#riak-admin">page dedicated
+to the command line tools</a> that come with Riak.
+
 ### Test the cluster and add some data to verify the cluster is working
 
 Great. We now a have a running three node Riak cluster. Let's make sure it's working correctly. For this we can hit Riak's HTTP interface using _curl_. Try this:
@@ -145,4 +148,4 @@ You should now have a running, three node Riak cluster. Congratulations! That di
 
 *What's Next? You now have a three node Riak cluster up and running.* *[[Time to learn about the basic HTTP API operations.|Basic Riak API Operations]]*
 
-<div class="info"><div class="title">Additional Reading</div>* [[Rebar|http://www.basho.com/developers.html#Rebar]]</div>
+<div class="info"><div class="title">Additional Reading</div>* [[Rebar Documentation|https://github.com/basho/rebar/wiki]]</div>

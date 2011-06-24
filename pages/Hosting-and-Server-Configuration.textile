@@ -12,6 +12,13 @@ We recommend using a mainstream Unix-like operating system on which to deploy Ri
 * *Debian based:* Debian, Ubuntu
 * *Solaris based:* Sun Solaris, OpenSolaris
 
+h2. Software
+
+If you're using the [[Basho supplied Riak packages|http://downloads.basho.com/riak/]], there's
+no need for any extra software packages. Should you decide to build the Riak installation from
+source, you'll need to have Erlang installed on your systems. See our [[wiki page|Installing
+Erlang]] for instruction on building and installing Erlang.
+
 h2. Hardware
 
 Riak is designed to scale horizontally -- that is, to improve performance as you add nodes -- but it can always take advantage of more powerful hardware. These are some generic recommendations for hardware configuration:
