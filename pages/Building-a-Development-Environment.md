@@ -12,7 +12,7 @@ have pre-packaged binaries available for most major platforms that embed the
 Erlang runtime.  However, for source builds, you'll need to have Erlang R13B04,
 and this tutorial is based on a source build. Current Riak development has moved
 to Erlang R14B02 or later, but for this tutorial, Erlang R13B04 is the way to
-go</li>
+go.</li>
 
 <li>The setup outlined below that you are about to build sets up nodes with HTTP interfaces
 listening on ports 8091-3. The default port for nodes to listen on is 8098 and users will
