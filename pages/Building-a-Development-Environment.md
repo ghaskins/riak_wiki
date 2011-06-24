@@ -35,7 +35,7 @@ permits.</li>
 
 ### Download and install the latest Erlang
 
-Running Riak requires Erlang R13B04 or later. We have platform specific instructions written up for downloading Erlang located [[here|Installing Erlang]]. If you don't already have Version R13B04 installed, go do so and hurry back.
+We have platform specific instructions written up for downloading Erlang located [[here|Installing Erlang]]. If you don't already have Erlang installed, go do so and hurry back.
 
 ### Download the source code of the latest Riak version
 
