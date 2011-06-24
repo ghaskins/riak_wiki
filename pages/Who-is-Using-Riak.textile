@@ -20,7 +20,7 @@ The Test Pilot Team is running multiple Riak clusters to gather user data and pe
 
 *From Lead Developer Francisco Treacy:* "As Riak is content-type agnostic and excels at consistency/availability fine-tuning, it is being used to persist several kinds of data in Widescript's application - logging, user metadata, multimedia assets. Not only it was chosen for its distributed nature, but because it goes hand in hand with Widescript's Javascript development stack."
 
-* [[Riak at Widescript|http://blog.widescript.com/2010/08/14/riak-js/]]
+* [[Riak at Widescript|https://widescript.com/blog/2010/08/14/riak-js]]
 * [[Riak-js|http://riakjs.org/]]
 
 ----
