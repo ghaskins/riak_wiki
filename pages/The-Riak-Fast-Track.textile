@@ -11,7 +11,7 @@ The Fast Track is aimed at people who have little or no experience with Riak. Th
 
 h2. What does the Fast Track Cover?
 
-The Fast Track will take you through the following five sections:
+The Fast Track will take you through the following sections:
 
 # A High Level Overview of Riak and its Architecture
 # Setting up a Development Cluster on your Machine
